@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+    <trans-unit id="3f9a9de6e960ded608ffbe18b1be6e904467257a" datatype="html">
+        <source>
+          Account <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>keyboard_arrow_down<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+        </source>
+         <target>Profile  <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>keyboard_arrow_down<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/> </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/navbar/navbar.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+
+     <trans-unit id="27ed87bb9c56d52b595b5e54544b39d309b13fe7" datatype="html">
+        <source>Logout
+          <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
+            settings_power
+          <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target> Déconnexion <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
+            settings_power
+          <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/navbar/navbar.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+    <trans-unit id="65ef322343dbe08caded4d8bdfc6a164996feb05" datatype="html">
+        <source>
+      Create monitor
+    </source>
+   <target>Création d'un monitor </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="da193b77fc90c2d37561f9cb357bd5a1d048bb8a" datatype="html">
+        <source>Informations</source>
+        <target>Informations</target>
+
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source>
+          <target>Nom</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eec715de352a6b114713b30b640d319fa78207a0" datatype="html">
+        <source>Description</source>
+          <target>Description</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="da23e2e7927271a44435cf2326406d44f4c61c1b" datatype="html">
+        <source>Website and Contact</source>
+         <target>Site web et contacts</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2028dc01e2263eb62bc0c4b647706bfe8441cf56" datatype="html">
+        <source>Receiver(s)</source>
+         <target>Destinataires</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4a41f824a35ba01d5bd7be61aa06b3e8145209d0" datatype="html">
+        <source>Configuration</source>
+<target>Configuration</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="38bd5794dbe84081cfa7867e876245e1ddae93e7" datatype="html">
+        <source>seconds</source>
+        <target>secondes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dc55b5639dcfca88068a7762bd94a7503b10888a" datatype="html">
+        <source>Monitor Interval*</source>
+        <target>L'interval de surveillance</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="64299012c9cac7627ca79dd0a9b34f9cb831ac7d" datatype="html">
+        <source>Alert</source>
+        <target>Alerte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="17dc5dc6dda1a174f9cbe32b54c118a013952348" datatype="html">
+        <source>Customise email template </source>
+        <target>Personnaliser l'email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="72fd0a862a7d0284078313e4fe3a6081425bf0d7" datatype="html">
+        <source>
+              choose
+              <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>keyboard_arrow_down<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+            </source>
+               <target>choisir  <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>keyboard_arrow_down<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/> </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a0e38ccc9ac2d8af3a07c325c40555231061428e" datatype="html">
+        <source>
+                default
+              </source>
+                 <target>par défault</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="804c9e7ed78795540f179ad47f2f798fbf164506" datatype="html">
+        <source>
+                custom
+              </source>
+                 <target>personnaliser</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c03db026851e5c8e5eaf2bd6bbbbb1eaaed1af41" datatype="html">
+        <source>Start now </source>
+           <target>Démarrer maintenant</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="17a9d3860d9ad593dd09a9f934e03999d9e76a7a" datatype="html">
+        <source>
+            Cancel
+          </source>
+           <target>Annuler</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aeaf494b34ba6d6671879b71ce978da2c45ac710" datatype="html">
+        <source>
+            Submit!
+          </source>
+           <target>Ajouter</target>
+
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1fa3588a9ada9c43527ab4ddedd4fce57d20048d" datatype="html">
+        <source>
+      Update monitor
+    </source>
+    <target>Édite le monitor</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2c1904658e8329f104dab2ddf9dc1fa029eb43b6" datatype="html">
+        <source>Edit or customize email template </source>
+         <target>Édite ou personnalise l'email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5ca707824ab93066c7d9b44e1b8bf216725c2c22" datatype="html">
+        <source>Filter</source>
+         <target>Filtrer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c8f32e27169d9dcdc3c08646cbd6750877af6c93" datatype="html">
+        <source>
+      <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/>add<x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/>
+      Create monitor
+    </source>
+    <target>Création d'un monitor</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="81b97b8ea996ad1e4f9fca8415021850214884b1" datatype="html">
+        <source>Status</source>
+         <target>Status</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a762e269b2c4a8f718860ba1afda207e29683d7b" datatype="html">
+        <source>
+            Choose actions <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>more_vert<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+          </source>
+           <target>Choisir les actions <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>more_vert<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4cace7c289176caa64c27952824301b9fc20e70d" datatype="html">
+        <source>
+              Edit
+            </source>
+             <target>Éditer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="2e96504c7c59bbf4862f1dea8d45282aa890c48c" datatype="html">
+        <source>
+              Show stats
+            </source>
+            <target>Afficher statistiques</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8288099989d962613bcc4594421f50b976c6fdb1" datatype="html">
+        <source>
+              Start
+            </source>
+             <target>Démarrer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c83c0f29a91e937703b645c3c50429ad49546e1e" datatype="html">
+        <source>
+              Stop
+            </source>
+             <target>Arreter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a3cf13c419f9f37a2b338ed0617d72137051b910" datatype="html">
+        <source>
+              Delete
+            </source>
+             <target>Supprimer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="039d175828a24c09f3658ebc5fef9fcde38c79e5" datatype="html">
+        <source>
+      <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/> report_problem<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+      Downtime stats for <x id="INTERPOLATION" equiv-text="{{ monitorName }}"/>
+    </source>
+    <target> <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/> report_problem<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+      Les statistiques des incidents pour <x id="INTERPOLATION" equiv-text="{{ monitorName }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d6ee7fade4642abd0e6c70f0b4ef914585a6c040" datatype="html">
+        <source>
+      <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/> keyboard_backspace<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+      Back
+    </source>
+     <target> <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/> keyboard_backspace<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+      retour</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="374e8e8a6060b0f9a625cbf5bca9eb273d06f53c" datatype="html">
+        <source>
+      <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/> get_app<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+      Export csv logs
+    </source>
+    <target><x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/> get_app<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+      Exporter csv logs</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7dd902083c37096d7611721d08fa8d6d88dc0eb3" datatype="html">
+        <source>Downtime on year</source>
+        <target>Incidents par an</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2b7ce4213ed85e1bf5e2a64dba66acc86f665645" datatype="html">
+        <source>Latest Events</source>
+        <target>Les derniers évènements</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2706b9bc84af2a5e1ae119253a61621e444401b5" datatype="html">
+        <source>Incident time</source>
+        <target>Temps d'incident</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="65cc4ab3b4c438e07c89be2b677d08369fb62da2" datatype="html">
+        <source>Welcome</source>
+         <target>Bienvenue</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
+        <source>Email</source>
+         <target>Email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source>
+         <target>Mot de passe</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="73c85a147bcc1b5f79ae10affa13f420fc99c2e9" datatype="html">
+        <source>
+          Log in
+        </source>
+         <target>Connexion</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="189b4b4fe578676e674d4f617fdc826204b552fc" datatype="html">
+        <source>
+          Register
+        </source>
+         <target>Inscription</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7975b3ca1d0f39cbc5cf8beb37294d12b5bfe1a9" datatype="html">
+        <source>Join us</source>
+        <target>Joignez-vous à nous</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="4fcb6dbd1b656de4f606e061af0ed606d3fdc547" datatype="html">
+        <source>User Name</source>
+         <target>Surnom</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cfc2f436ec2beffb042e7511a73c89c372e86a6c" datatype="html">
+        <source>Register</source>
+         <target>Inscription</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f093d9574ab746b231504bd2cbb65f04bd7b00db" datatype="html">
+        <source>Log in</source>
+         <target>Connexion</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="17fc3efe5f9fa4e0289c900cb6202265215a1a27" datatype="html">
+        <source>Monitoring</source>
+          <target>Surveillance</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tabs/tabs.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8cc9a5eb5bdf270da8d1aa16e20c1aab889dfb40" datatype="html">
+        <source>
+                Alerting
+              </source>
+               <target>Système d'alerte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tabs/tabs.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a5c05002b0ac2040f1aede5e727e0ffd06eda819" datatype="html">
+        <source>Custom</source>
+         <target>Personnaliser</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tabs/tabs.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+ <trans-unit id="ce0a43742e8da73553c07f8ec813e5d0b4d52045" datatype="html">
+        <source>
+              Panic Control monitors your pages and checks whether they are up or down.
+              This check uptime is highly configurable
+            </source>
+             <target>Panic Control surveille la disponibilité de votre sites et page web, et verifié si cela est disponible ou pas. Le test de disponibilté est entièrement configurable.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tabs/tabs.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+<trans-unit id="689a1bf9a0dc083415163076aa280b4719d78cba" datatype="html">
+        <source>
+              If your website goes down an email is sent to you and your team. You can add
+              multiple addresses to sent the alerts
+            </source>
+            <target>Si votre site web est plus disponible, une alerte par email est envoyé a vous et/ ou votre equipe de developpeurs. Pour alerter les cibles vous pouvez ajouter plusieurs contacts</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tabs/tabs.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+<trans-unit id="30960750908dd86aca989fe29b8322ca82120226" datatype="html">
+        <source>
+              You don&apos;t like our email template or you want create your own template?
+              Let&apos;s go! You are welcome!
+            </source>
+             <target>Avec l'option personnaliser votre email, vous avez la liberté de creér votre propre template</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tabs/tabs.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+       <trans-unit id="1bb554e8fd30a9f1c4de94bc1ab4162c1298c543" datatype="html">
+        <source>Ping Timeout</source>
+         <target>Le délai de reponse</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d1d9eff37b4546cdafd07871b61906aa1120bca3" datatype="html">
+        <source>* in seconds</source>
+        <target>* en secondes</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+         <trans-unit id="7b4a671d203d8239acb160ecb1eef12cd566cbc8" datatype="html">
+        <source>Panic controls your web site</source>
+        <target>Panic controle ton site web</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/landing/landing/landing.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="739bcfe0a667d51006c53a4aa4fd31f77eec3d64" datatype="html">
+        <source>Monitoring and Alerting application</source>
+        <target>Application de Monitoring et Alerting</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/landing/landing/landing.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="584a052336bca2e3156644a9fe4459f442f685a2" datatype="html">
+        <source>
+        Getting started
+      </source>
+      <target>Commancer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/landing/landing/landing.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

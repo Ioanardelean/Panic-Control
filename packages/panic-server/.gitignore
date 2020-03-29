@@ -1,0 +1,10 @@
+/node_modules
+/dist
+/logs
+/coverage
+/config/default.json
+/.vscode
+/package-lock.json
+/docs
+/.env
+/logs/access.log

@@ -1,0 +1,40 @@
+<div class="login-page" [@routerTransition]>
+  <div class="row justify-content-md-center">
+    <div class="col-md-4">
+      <h1 i18n>Welcome</h1>
+      <form role="form" [formGroup]="loginForm" (ngSubmit)="loginUser()">
+        <div class="form-content">
+          <div class="form-group">
+            <input
+              type="text"
+              ng-model="name"
+              class="form-control input-underline input-lg"
+              formControlName="username"
+              i18n-placeholder
+              placeholder="Email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control input-underline input-lg"
+              formControlName="password"
+              i18n-placeholder
+              placeholder="Password"
+              required
+            />
+          </div>
+        </div>
+        <button i18n class="btn rounded-btn" id="login" type="submit">
+          Log in
+        </button>
+        &nbsp;
+        <button i18n class="btn rounded-btn" id="signup" [routerLink]="['/singup']">
+          Register
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

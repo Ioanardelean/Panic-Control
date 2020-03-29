@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {  
+      "baseUrl": "./src",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "lib": ["dom", "es2015", "es2016", "es2017"],
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "noImplicitAny": true,
+      "noImplicitReturns": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "outDir": "dist",
+      "removeComments": true,
+      "skipLibCheck": true,
+      "sourceMap": true,
+      "noEmitHelpers": true,                        
+      "importHelpers": true,
+      "allowJs": true,
+      "forceConsistentCasingInFileNames":true,
+      "rootDir": "./src",
+      "typeRoots": ["./node_modules/@types/", "./typing"],
+      "target": "es2016"
+    },
+    "typedocOptions": {
+      "mode": "modules",
+      "out": "docs"
+  },
+
+    "include": ["src", "typing"],
+    "exclude": ["node_modules", "build", "src/public", "**/*.spec.ts"],
+    "includePattern": ".+\\.js(doc|x)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+  }

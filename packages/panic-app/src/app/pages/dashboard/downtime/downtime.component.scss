@@ -1,0 +1,49 @@
+h2 {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  text-transform: uppercase;
+}
+h4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  text-transform: uppercase;
+  color: black;
+}
+p {
+  font-size: large;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+table {
+  table-layout: fixed;
+  overflow-x: scroll;
+  width: 100%;
+  tr {
+    td {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}
+.example-container {
+  height: 500px;
+  overflow: auto;
+}
+#back-button {
+  margin-left: 10px;
+  background: lightgrey;
+  margin-bottom: 20px;
+}
+#csv-button {
+  float: right;
+}
+#banner {
+  margin-bottom: 10px;
+  background-color: rgb(233, 233, 233);
+}
+#chart {
+  margin: 20px;
+}

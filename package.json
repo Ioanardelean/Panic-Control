@@ -1,0 +1,15 @@
+{
+  "name": "paniccontrol",
+  "version": "1.2.0",
+  "description": "Monitoring and alerting application",
+  "main": "index.js",
+  "scripts": {
+    "app:watch": "cd packages/panic-app && npm run start",
+    "app:build:dev": "cd packages/panic-app && npm run dev",
+    "app:build:prod": "cd packages/panic-app && npm run build",
+    "server:watch": "cd packages/panic-server && npm run server:watch",
+    "server:dev": "cd packages/panic-server && npm run dev"
+  },
+  "author": "Ioana Ardelean",
+  "license": "ISC"
+}

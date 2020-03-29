@@ -1,0 +1,52 @@
+.example-chip-list {
+  width: 100%;
+}
+mat-slider {
+  width: 100%;
+}
+
+mat-card {
+  mat-card-title {
+    border-bottom: #0f4f86 2px solid;
+    color: #0f4f86;
+    font-family: 'Montserrat', sans-serif;
+  }
+  mat-label {
+    font-size: 16px;
+    color: black;
+  }
+  h5 {
+    color: #227093;
+  }
+  span {
+    vertical-align: middle;
+  }
+  .buttons {
+    margin-top: 20px;
+    margin-bottom: 60px;
+
+    #submit-button {
+      float: right;
+      background: red;
+      margin-bottom: 10px;
+      color: white;
+      font-size: 20px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    #cancel-button {
+      float: left;
+      background: #c2c4c5;
+      margin-bottom: 10px;
+      color: white;
+      font-size: 20px;
+      font-family: 'Montserrat', sans-serif;
+    }
+  }
+  mat-slide-toggle {
+    padding: 20px 20px;
+  }
+  mat-icon {
+    display: inline-flex;
+    vertical-align: middle;
+  }
+}

@@ -1,0 +1,138 @@
+<div class="col-md-8 offset-md-2" style="margin-top: 20px;">
+  <mat-card>
+    <mat-card-title i18n>
+      Update monitor
+    </mat-card-title>
+    <mat-card-content>
+      <form class="example-form" [formGroup]="updateForm" (ngSubmit)="updateProject()">
+        <div class="row" style="margin: 20px 20px;">
+          <div class="col-md-6">
+            <h5 i18n>
+              Informations
+              <span class="material-icons">
+                description
+              </span>
+            </h5>
+            <mat-form-field class="example-chip-list">
+              <mat-label i18n>Name</mat-label>
+              <input matInput placeholder="Ex. DoITnow" formControlName="name" required />
+            </mat-form-field>
+            <mat-form-field class="example-chip-list">
+              <mat-label i18n>Description</mat-label>
+              <input
+                matInput
+                placeholder="Ex.my precios website"
+                formControlName="description"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <h5 i18n title="Url must be valid and http(s) only">
+              Website and Contact
+              <span class="material-icons">
+                important_devices
+              </span>
+            </h5>
+            <mat-form-field class="example-chip-list">
+              <mat-label>URL</mat-label>
+              <input matInput placeholder="Ex. https://" formControlName="url" />
+            </mat-form-field>
+
+            <mat-form-field class="example-chip-list">
+              <mat-label i18n>Receiver(s)</mat-label>
+              <mat-chip-list #chipList aria-label="Fruit selection" required>
+                <mat-chip
+                  *ngFor="let item of emails"
+                  [selectable]="selectable"
+                  [removable]="removable"
+                  (removed)="remove(item)"
+                >
+                  {{ item }}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input
+                  type="email"
+                  formControlName="receiver"
+                  [formControl]="emailCtrl"
+                  [matChipInputFor]="chipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="add($event)"
+                />
+              </mat-chip-list>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row" style="margin: 20px 20px;">
+          <div class="col-md-6">
+            <h5
+              i18n
+              title="Ping timeout is the response time that we consider down in seconds and interval is the frequency of uptime tests "
+            >
+              Configuration
+              <span class="material-icons">
+                settings
+              </span>
+            </h5>
+            <mat-form-field class="example-chip-list">
+              <mat-label i18n>Ping Timeout</mat-label>
+              <mat-select formControlName="ping" required>
+                <mat-option *ngFor="let item of pings" [value]="item.ping">
+                  {{ item.ping }}
+                </mat-option>
+              </mat-select>
+              <mat-hint i18n>seconds</mat-hint>
+            </mat-form-field>
+
+            <mat-label i18n>Monitor Interval*</mat-label>
+            <mat-slider
+              color="primary"
+              formControlName="monitorInterval"
+              [value]="value"
+              thumbLabel
+              [displayWith]="formatLabel"
+              tickInterval="10"
+              min="1"
+              max="12O"
+              required
+            >
+            </mat-slider>
+          </div>
+          <div class="col-md-6">
+            <h5
+              i18n
+              title="If you want customize email, you can, or refresh your cute template"
+            >
+              Alert
+              <span class="material-icons">
+                mail_outline
+              </span>
+            </h5>
+            <mat-label i18n>Edit or customize email template </mat-label>
+            <kendo-editor
+              formControlName="emailTemplate"
+              [value]="value"
+              style="height: 300px;"
+            ></kendo-editor>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button
+            i18n
+            id="cancel-button"
+            mat-raised-button
+            type="button"
+            [routerLink]="['/api/dashboard']"
+          >
+            Cancel
+          </button>
+          <button i18n id="submit-button" mat-raised-button type="submit">
+            Submit!
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

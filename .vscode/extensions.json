@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "EditorConfig.EditorConfig",
+    "codezombiech.gitignore",
+    "MariusAlchimavicius.json-to-ts",
+    "anseki.vscode-color",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "yzhang.markdown-all-in-one",
+    "eamodio.gitlens",
+    "formulahendry.auto-rename-tag",
+    "shinnn.stylelint",
+    "rebornix.project-snippets",
+    "DavidAnson.vscode-markdownlint",
+    "formulahendry.auto-close-tag"
+  ]
+}

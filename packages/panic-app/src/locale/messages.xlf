@@ -1,0 +1,1394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="ngb.alert.close" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/alert/alert.d.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.carousel.previous" datatype="html">
+        <source>Previous</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.carousel.next" datatype="html">
+        <source>Next</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/carousel/carousel.d.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.datepicker.previous-month" datatype="html">
+        <source>Previous month</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.datepicker.next-month" datatype="html">
+        <source>Next month</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation.d.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.datepicker.select-month" datatype="html">
+        <source>Select month</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.datepicker.select-year" datatype="html">
+        <source>Select year</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/datepicker/datepicker-navigation-select.d.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.first" datatype="html">
+        <source>««</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.previous" datatype="html">
+        <source>«</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.next" datatype="html">
+        <source>»</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.last" datatype="html">
+        <source>»»</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.first-aria" datatype="html">
+        <source>First</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.previous-aria" datatype="html">
+        <source>Previous</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.next-aria" datatype="html">
+        <source>Next</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.pagination.last-aria" datatype="html">
+        <source>Last</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/pagination/pagination.d.ts</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.progressbar.value" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{getPercentValue()}}"/>%</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/progressbar/progressbar.d.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.increment-hours" datatype="html">
+        <source>Increment hours</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.HH" datatype="html">
+        <source>HH</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.hours" datatype="html">
+        <source>Hours</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.decrement-hours" datatype="html">
+        <source>Decrement hours</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.increment-minutes" datatype="html">
+        <source>Increment minutes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.MM" datatype="html">
+        <source>MM</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.minutes" datatype="html">
+        <source>Minutes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.decrement-minutes" datatype="html">
+        <source>Decrement minutes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.increment-seconds" datatype="html">
+        <source>Increment seconds</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.SS" datatype="html">
+        <source>SS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.seconds" datatype="html">
+        <source>Seconds</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.decrement-seconds" datatype="html">
+        <source>Decrement seconds</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.PM" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ i18n.getAfternoonPeriod() }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.timepicker.AM" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ i18n.getMorningPeriod() }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/timepicker/timepicker.d.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ngb.toast.close-aria" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@ng-bootstrap/ng-bootstrap/toast/toast.d.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="27ed87bb9c56d52b595b5e54544b39d309b13fe7" datatype="html">
+        <source>Logout
+          <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
+            settings_power
+          <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/navbar/navbar.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="17fc3efe5f9fa4e0289c900cb6202265215a1a27" datatype="html">
+        <source>Monitoring</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tabs/tabs.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ce0a43742e8da73553c07f8ec813e5d0b4d52045" datatype="html">
+        <source>
+              Panic Control monitors your pages and checks whether they are up or down.
+              This check uptime is highly configurable
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tabs/tabs.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8cc9a5eb5bdf270da8d1aa16e20c1aab889dfb40" datatype="html">
+        <source>
+                Alerting
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tabs/tabs.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="689a1bf9a0dc083415163076aa280b4719d78cba" datatype="html">
+        <source>
+              If your website goes down an email is sent to you and your team. You can add
+              multiple addresses to sent the alerts
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tabs/tabs.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a5c05002b0ac2040f1aede5e727e0ffd06eda819" datatype="html">
+        <source>Custom</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tabs/tabs.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="30960750908dd86aca989fe29b8322ca82120226" datatype="html">
+        <source>
+              You don&apos;t like our email template or you want create your own template?
+              Let&apos;s go! You are welcome!
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/tabs/tabs.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0fa71630d40c425b9c366afd7f6c3cecc5bef59d" datatype="html">
+        <source>increment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-inputs/dist/es2015/slider/slider.component.d.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">The title of the **Increase** button of the Slider.</note>
+        <note priority="1" from="meaning">kendo.slider.increment</note>
+      </trans-unit>
+      <trans-unit id="042c26f68d78afd6834ea46a5f7533850fe8c800" datatype="html">
+        <source>decrement</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-inputs/dist/es2015/slider/slider.component.d.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">The title of the **Decrease** button of the Slider.</note>
+        <note priority="1" from="meaning">kendo.slider.decrement</note>
+      </trans-unit>
+      <trans-unit id="481eb98e9cd8ef8e8b22051796441901e883763d" datatype="html">
+        <source>Drag</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-inputs/dist/es2015/slider/slider.component.d.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="description">The title of the drag handle of the Slider.</note>
+        <note priority="1" from="meaning">kendo.slider.dragHandle</note>
+      </trans-unit>
+      <trans-unit id="155f0a38198ffbf0429c5dbf9765e74f246a8617" datatype="html">
+        <source>ON</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-inputs/dist/es2015/switch/switch.component.d.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">The **On** label of the Switch.</note>
+        <note priority="1" from="meaning">kendo.switch.on</note>
+      </trans-unit>
+      <trans-unit id="79df1a6d2b35c32b2948e3cee56dd3ffe28127bc" datatype="html">
+        <source>OFF</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-inputs/dist/es2015/switch/switch.component.d.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">The **Off** label of the Switch.</note>
+        <note priority="1" from="meaning">kendo.switch.off</note>
+      </trans-unit>
+      <trans-unit id="0fc68540ffa04fdc246cf6cf8a1fed085f8b19a5" datatype="html">
+        <source>Increase value</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-inputs/dist/es2015/numerictextbox/numerictextbox.component.d.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">The title for the **Increment** button in the NumericTextBox</note>
+        <note priority="1" from="meaning">kendo.numerictextbox.increment</note>
+      </trans-unit>
+      <trans-unit id="df4751834075bf970c77d0da2c960b4e19a6b0dd" datatype="html">
+        <source>Decrease value</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-inputs/dist/es2015/numerictextbox/numerictextbox.component.d.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">The title for the **Decrement** button in the NumericTextBox</note>
+        <note priority="1" from="meaning">kendo.numerictextbox.decrement</note>
+      </trans-unit>
+      <trans-unit id="9b2bd34897f127e69e5f02f64692fca98a5a7572" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-dialog/dist/es2015/dialog/dialog-titlebar.component.d.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">The title of the close button</note>
+        <note priority="1" from="meaning">kendo.dialog.closeTitle</note>
+      </trans-unit>
+      <trans-unit id="bb50cb526949482fc976fd868573ab283580ee69" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-dialog/dist/es2015/window/window.component.d.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">The title of the close button</note>
+        <note priority="1" from="meaning">kendo.window.closeTitle</note>
+      </trans-unit>
+      <trans-unit id="9a9ce231f0396e40adcfa80bfa76e546e0085be0" datatype="html">
+        <source>Restore</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-dialog/dist/es2015/window/window.component.d.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">The title of the restore button</note>
+        <note priority="1" from="meaning">kendo.window.restoreTitle</note>
+      </trans-unit>
+      <trans-unit id="42bc654ef8767c5df5277aa88941b94f8d373b4d" datatype="html">
+        <source>Maximize</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-dialog/dist/es2015/window/window.component.d.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <note priority="1" from="description">The title of the maximize button</note>
+        <note priority="1" from="meaning">kendo.window.maximizeTitle</note>
+      </trans-unit>
+      <trans-unit id="7ca9f9b41a23760f7f74e91ee4c76d5a5f4a706c" datatype="html">
+        <source>Minimize</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-dialog/dist/es2015/window/window.component.d.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <note priority="1" from="description">The title of the minimize button</note>
+        <note priority="1" from="meaning">kendo.window.minimizeTitle</note>
+      </trans-unit>
+      <trans-unit id="4e9993e088a293543eb0c2801343518c115b6f20" datatype="html">
+        <source>NO DATA FOUND</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-dropdowns/dist/es2015/autocomplete.component.d.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">The text displayed in the popup when there are no items</note>
+        <note priority="1" from="meaning">kendo.autocomplete.noDataText</note>
+      </trans-unit>
+      <trans-unit id="7cf49cc2d50eebd29f8d61564512383caaaac7a6" datatype="html">
+        <source>clear</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-dropdowns/dist/es2015/autocomplete.component.d.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">The title of the clear button</note>
+        <note priority="1" from="meaning">kendo.autocomplete.clearTitle</note>
+      </trans-unit>
+      <trans-unit id="2b6e00c74a6d9c98c03a6274d0224e9bd457ff89" datatype="html">
+        <source>NO DATA FOUND</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-dropdowns/dist/es2015/combobox.component.d.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">The text displayed in the popup when there are no items</note>
+        <note priority="1" from="meaning">kendo.combobox.noDataText</note>
+      </trans-unit>
+      <trans-unit id="069e8fae80677e3e785861123bef446b3ff41ab4" datatype="html">
+        <source>clear</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-dropdowns/dist/es2015/combobox.component.d.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-dropdowns/dist/es2015/multiselect.component.d.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">The title of the clear button</note>
+        <note priority="1" from="meaning">kendo.combobox.clearTitle</note>
+      </trans-unit>
+      <trans-unit id="4fc2f70c9c8cf7b18affd6b938105996d6ac3306" datatype="html">
+        <source>NO DATA FOUND</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-dropdowns/dist/es2015/dropdownlist.component.d.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">The text displayed in the popup when there are no items</note>
+        <note priority="1" from="meaning">kendo.dropdownlist.noDataText</note>
+      </trans-unit>
+      <trans-unit id="3cc1323f79a5fe012960578e513f8a35b2af1e96" datatype="html">
+        <source>NO DATA FOUND</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-dropdowns/dist/es2015/multiselect.component.d.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">The text displayed in the popup when there are no items</note>
+        <note priority="1" from="meaning">kendo.multiselect.noDataText</note>
+      </trans-unit>
+      <trans-unit id="c19b9de1395639d8d6906083e06a682537d548b8" datatype="html">
+        <source>Center text</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that aligns text in the center.</note>
+        <note priority="1" from="meaning">kendo.editor.alignCenter</note>
+      </trans-unit>
+      <trans-unit id="6fd8af3052680f0e8af558f02aafbdae846763ad" datatype="html">
+        <source>Justify</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that justifies text both left and right.</note>
+        <note priority="1" from="meaning">kendo.editor.alignJustify</note>
+      </trans-unit>
+      <trans-unit id="0e6294e25d0445bf78814703fc3db0f9275cdfaf" datatype="html">
+        <source>Align text left</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that aligns text on the left.</note>
+        <note priority="1" from="meaning">kendo.editor.alignLeft</note>
+      </trans-unit>
+      <trans-unit id="e42635af2f5e2255fe4e5e4259139bed6771d5b0" datatype="html">
+        <source>Align text right</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that aligns text on the right.</note>
+        <note priority="1" from="meaning">kendo.editor.alignRight</note>
+      </trans-unit>
+      <trans-unit id="94feffd30b062ee0ef8aac49af5faebc986b79ee" datatype="html">
+        <source>Background color</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that changes the text background color.</note>
+        <note priority="1" from="meaning">kendo.editor.backColor</note>
+      </trans-unit>
+      <trans-unit id="e1a1b567ad44320e7949153f90b735a000e0dd54" datatype="html">
+        <source>Bold</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that makes text bold.</note>
+        <note priority="1" from="meaning">kendo.editor.bold</note>
+      </trans-unit>
+      <trans-unit id="6ee3ea0c48aeb94e9ed4b728391edc424c5b2b90" datatype="html">
+        <source>Clean formatting</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <note priority="1" from="description">The title of the Clean Formatting tool.</note>
+        <note priority="1" from="meaning">kendo.editor.cleanFormatting</note>
+      </trans-unit>
+      <trans-unit id="a0857ff55fd21727d74e873d164f6785c4a1d2a4" datatype="html">
+        <source>Insert link</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that creates hyperlinks.</note>
+        <note priority="1" from="meaning">kendo.editor.createLink</note>
+      </trans-unit>
+      <trans-unit id="0205d0783c43657539254c5d8cd37d4a88911f1d" datatype="html">
+        <source>Apply</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <note priority="1" from="description">The label of the **Apply** button in all editor dialogs.</note>
+        <note priority="1" from="meaning">kendo.editor.dialogApply</note>
+      </trans-unit>
+      <trans-unit id="62c847eb7dfe44fa70224659b77a69e04ad24e98" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <note priority="1" from="description">The label of the **Cancel** button in all editor dialogs.</note>
+        <note priority="1" from="meaning">kendo.editor.dialogCancel</note>
+      </trans-unit>
+      <trans-unit id="e2897c2d92e5b0f60dbc34568ea63ee29aac72b1" datatype="html">
+        <source>Insert</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <note priority="1" from="description">The label of the **Insert** button in all editor dialogs.</note>
+        <note priority="1" from="meaning">kendo.editor.dialogInsert</note>
+      </trans-unit>
+      <trans-unit id="da599b240288c66d5682ecf53647fae17b1f255d" datatype="html">
+        <source>Update</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <note priority="1" from="description">The label of the **Update** button in all editor dialogs.</note>
+        <note priority="1" from="meaning">kendo.editor.dialogUpdate</note>
+      </trans-unit>
+      <trans-unit id="b9e9c0726907339811d576fbecf9ee7ef25228dd" datatype="html">
+        <source>Text</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <note priority="1" from="description">The caption for the file text in the insertFile dialog.</note>
+        <note priority="1" from="meaning">kendo.editor.fileText</note>
+      </trans-unit>
+      <trans-unit id="773650e91245315dd99ba76678b651035d896449" datatype="html">
+        <source>Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+        <note priority="1" from="description">The caption for the file Title in the insertFile dialog.</note>
+        <note priority="1" from="meaning">kendo.editor.fileTitle</note>
+      </trans-unit>
+      <trans-unit id="920e262f27d93e37174869fe53fbda129edd6220" datatype="html">
+        <source>Web address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <note priority="1" from="description">The caption for the file URL in the insertFile dialog.</note>
+        <note priority="1" from="meaning">kendo.editor.fileWebAddress</note>
+      </trans-unit>
+      <trans-unit id="b3c7dd6b566ab94cbad12176f608f617394069a5" datatype="html">
+        <source>Select font family</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that changes the text font.</note>
+        <note priority="1" from="meaning">kendo.editor.fontFamily</note>
+      </trans-unit>
+      <trans-unit id="1e36b676782998a979c662191a815b60e212b1e4" datatype="html">
+        <source>Select font size</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that changes the text size.</note>
+        <note priority="1" from="meaning">kendo.editor.fontSize</note>
+      </trans-unit>
+      <trans-unit id="6b7246584279a0e44d9bd9cb953a0c701696d059" datatype="html">
+        <source>Color</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that changes the text color.</note>
+        <note priority="1" from="meaning">kendo.editor.foreColor</note>
+      </trans-unit>
+      <trans-unit id="27423769f36c1e1662739fe78b0a29f8449ca2ed" datatype="html">
+        <source>Format</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that lets users choose block formats.</note>
+        <note priority="1" from="meaning">kendo.editor.format</note>
+      </trans-unit>
+      <trans-unit id="588c2538a305890410558065bbb376099873f059" datatype="html">
+        <source>Alternate text</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <note priority="1" from="description">The caption for the image alternate text in the insertImage dialog.</note>
+        <note priority="1" from="meaning">kendo.editor.imageAltText</note>
+      </trans-unit>
+      <trans-unit id="1f22b7da203eebe3e1efd22cc86aa9b990b0c16f" datatype="html">
+        <source>Height (px)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <note priority="1" from="description">The caption for the image height in the insertImage dialog.</note>
+        <note priority="1" from="meaning">kendo.editor.imageHeight</note>
+      </trans-unit>
+      <trans-unit id="31537a903057886e7fb1a79cd5cde73a649a8ed6" datatype="html">
+        <source>Web address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+        <note priority="1" from="description">The caption for the image URL in the insertImage dialog.</note>
+        <note priority="1" from="meaning">kendo.editor.imageWebAddress</note>
+      </trans-unit>
+      <trans-unit id="4f26f47317f5b69c192fbc9cafecb432e8fa8ee5" datatype="html">
+        <source>Width (px)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+        <note priority="1" from="description">The caption for the image width in the insertImage dialog.</note>
+        <note priority="1" from="meaning">kendo.editor.imageWidth</note>
+      </trans-unit>
+      <trans-unit id="332319db3aabf32cd56e64e1569276c5f878fd5d" datatype="html">
+        <source>Indent</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that indents the content.</note>
+        <note priority="1" from="meaning">kendo.editor.indent</note>
+      </trans-unit>
+      <trans-unit id="f57591626833e959e88b177754c2e996119a3c1a" datatype="html">
+        <source>Insert file</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that inserts links to files.</note>
+        <note priority="1" from="meaning">kendo.editor.insertFile</note>
+      </trans-unit>
+      <trans-unit id="759c8463401821450bfa80fd9106314adab25ca3" datatype="html">
+        <source>Insert image</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that inserts images.</note>
+        <note priority="1" from="meaning">kendo.editor.insertImage</note>
+      </trans-unit>
+      <trans-unit id="9de4d5df2c52ec20dda585ddf9046b64042a63dc" datatype="html">
+        <source>Insert ordered list</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that inserts an ordered list.</note>
+        <note priority="1" from="meaning">kendo.editor.insertOrderedList</note>
+      </trans-unit>
+      <trans-unit id="2c56625f542e63a0fcb2cdfff32ac7958a773131" datatype="html">
+        <source>Insert unordered list</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that inserts an unordered list.</note>
+        <note priority="1" from="meaning">kendo.editor.insertUnorderedList</note>
+      </trans-unit>
+      <trans-unit id="0c2f657b2d63906813f0d999c34639d6703d29fe" datatype="html">
+        <source>Italic</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that makes text italicized.</note>
+        <note priority="1" from="meaning">kendo.editor.italic</note>
+      </trans-unit>
+      <trans-unit id="7ddbe5ff681ec56e0a1d47f55baf03aae43143f0" datatype="html">
+        <source>Open link in new window</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+        <note priority="1" from="description">The caption for the checkbox for opening the link in a new window in the createLink dialog.</note>
+        <note priority="1" from="meaning">kendo.editor.linkOpenInNewWindow</note>
+      </trans-unit>
+      <trans-unit id="bc5096e9fa3fd49769d041a4734d5d5d8e6fd0e9" datatype="html">
+        <source>Text</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+        <note priority="1" from="description">The caption for the link text in the createLink dialog.</note>
+        <note priority="1" from="meaning">kendo.editor.linkText</note>
+      </trans-unit>
+      <trans-unit id="e5c8208c08928222b713afcf80de78633236349d" datatype="html">
+        <source>Title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+        <note priority="1" from="description">The caption for the link title in the createLink dialog.</note>
+        <note priority="1" from="meaning">kendo.editor.linkTitle</note>
+      </trans-unit>
+      <trans-unit id="19f853c2933a9a1b71d96accf814e4f9e9e6e8dd" datatype="html">
+        <source>Web address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+        <note priority="1" from="description">The caption for the URL in the createLink dialog.</note>
+        <note priority="1" from="meaning">kendo.editor.linkWebAddress</note>
+      </trans-unit>
+      <trans-unit id="33a49dc9bce8c37c9c957a6cdb7fcd0b82b8bf58" datatype="html">
+        <source>Outdent</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that outdents the content.</note>
+        <note priority="1" from="meaning">kendo.editor.outdent</note>
+      </trans-unit>
+      <trans-unit id="117c237ef9fa6ff04fb4447fc233fe846ed366c1" datatype="html">
+        <source>Redo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">106</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that undos the last action.</note>
+        <note priority="1" from="meaning">kendo.editor.redo</note>
+      </trans-unit>
+      <trans-unit id="6e38a1450b5d50601f44a665fbb329feca31e97b" datatype="html">
+        <source>Strikethrough</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that strikes through text.</note>
+        <note priority="1" from="meaning">kendo.editor.strikethrough</note>
+      </trans-unit>
+      <trans-unit id="2bd31b9317a43ee8fb808b0c254b1bb200f908fa" datatype="html">
+        <source>Subscript</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">112</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that makes text subscript.</note>
+        <note priority="1" from="meaning">kendo.editor.subscript</note>
+      </trans-unit>
+      <trans-unit id="825050144d6680f962bf7ec296c42e08e6ac09d9" datatype="html">
+        <source>Superscript</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that makes text superscript.</note>
+        <note priority="1" from="meaning">kendo.editor.superscript</note>
+      </trans-unit>
+      <trans-unit id="67eb1cff18f5e9a2e7d47aae052c666583bab261" datatype="html">
+        <source>Underline</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that underlines text.</note>
+        <note priority="1" from="meaning">kendo.editor.underline</note>
+      </trans-unit>
+      <trans-unit id="ad3a3c5c713542df87373b77cae8a124edb29c22" datatype="html">
+        <source>Remove Link</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that removes hyperlinks.</note>
+        <note priority="1" from="meaning">kendo.editor.unlink</note>
+      </trans-unit>
+      <trans-unit id="18b488b145eeea939eecd65716bc3578939dcc0f" datatype="html">
+        <source>Undo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that undos the last action.</note>
+        <note priority="1" from="meaning">kendo.editor.undo</note>
+      </trans-unit>
+      <trans-unit id="3caea7fc81a53a3e225561af33a56902f642ac26" datatype="html">
+        <source>View source</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that shows the editor value as HTML.</note>
+        <note priority="1" from="meaning">kendo.editor.viewSource</note>
+      </trans-unit>
+      <trans-unit id="32de5e66d4b2073bded7114d8a1ea1411cd7ceec" datatype="html">
+        <source>Insert Table</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">130</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that inserts table.</note>
+        <note priority="1" from="meaning">kendo.editor.insertTable</note>
+      </trans-unit>
+      <trans-unit id="66c68280830690c0ebd374fd34dead01df2e7057" datatype="html">
+        <source>Add column before</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that adds new column before currently selected column.</note>
+        <note priority="1" from="meaning">kendo.editor.addColumnBefore</note>
+      </trans-unit>
+      <trans-unit id="24d531a9e3507a6ad02bff394c5030a25a731d66" datatype="html">
+        <source>Add column after</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">136</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that adds new column after currently selected column.</note>
+        <note priority="1" from="meaning">kendo.editor.addColumnAfter</note>
+      </trans-unit>
+      <trans-unit id="c42641b164ae5711cb01b88bcde664031cc230bf" datatype="html">
+        <source>Add row before</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that adds new row before currently selected row.</note>
+        <note priority="1" from="meaning">kendo.editor.addRowBefore</note>
+      </trans-unit>
+      <trans-unit id="c852853beee80e68e673421fd4bc57fa49d417d9" datatype="html">
+        <source>Add row after</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that adds new row after currently selected row.</note>
+        <note priority="1" from="meaning">kendo.editor.addRowAfter</note>
+      </trans-unit>
+      <trans-unit id="233fbf121ca8b9ea127211a83ab72f0daf01593a" datatype="html">
+        <source>Delete column</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">145</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that deletes a table column.</note>
+        <note priority="1" from="meaning">kendo.editor.deleteColumn</note>
+      </trans-unit>
+      <trans-unit id="a7bf50c04d3769d4bde61bab60e6aaa0e982a488" datatype="html">
+        <source>Delete row</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">148</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that deletes a table row.</note>
+        <note priority="1" from="meaning">kendo.editor.deleteRow</note>
+      </trans-unit>
+      <trans-unit id="2694410604d01084a49e5225a60fbe3eda3af5cc" datatype="html">
+        <source>Delete table</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">node_modules/@progress/kendo-angular-editor/dist/es2015/editor.component.d.ts</context>
+          <context context-type="linenumber">151</context>
+        </context-group>
+        <note priority="1" from="description">The title of the tool that deletes a table.</note>
+        <note priority="1" from="meaning">kendo.editor.deleteTable</note>
+      </trans-unit>
+      <trans-unit id="65ef322343dbe08caded4d8bdfc6a164996feb05" datatype="html">
+        <source>
+      Create monitor
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4cb5de0f85727429be8523629a468e6b0db92d40" datatype="html">
+        <source>
+              Informations
+              <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
+                description
+              <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="eec715de352a6b114713b30b640d319fa78207a0" datatype="html">
+        <source>Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cb9a59a125b8ee9826f54727626c6d1668fc0322" datatype="html">
+        <source>
+              Website and Contact
+              <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
+                important_devices
+              <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2028dc01e2263eb62bc0c4b647706bfe8441cf56" datatype="html">
+        <source>Receiver(s)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="214aa814bab03d1729a9390c30d2d6997f0c8760" datatype="html">
+        <source>
+              Configuration
+              <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
+                settings
+              <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1bb554e8fd30a9f1c4de94bc1ab4162c1298c543" datatype="html">
+        <source>Ping Timeout</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8c6068411485b4d4af0f747834bcd1c2a91537e0" datatype="html">
+        <source> seconds</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4f2d024ca8f16b110cadcecef5c6758a530b2f25" datatype="html">
+        <source>Monitor Interval </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d1d9eff37b4546cdafd07871b61906aa1120bca3" datatype="html">
+        <source>* in seconds</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="82d08a971a9c994b034b66d60771e9db5edc8dac" datatype="html">
+        <source>
+              Alert
+              <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>
+                mail_outline
+              <x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">106</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="17dc5dc6dda1a174f9cbe32b54c118a013952348" datatype="html">
+        <source>Customise email template </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="72fd0a862a7d0284078313e4fe3a6081425bf0d7" datatype="html">
+        <source>
+              choose
+              <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>keyboard_arrow_down<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a0e38ccc9ac2d8af3a07c325c40555231061428e" datatype="html">
+        <source>
+                default
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="804c9e7ed78795540f179ad47f2f798fbf164506" datatype="html">
+        <source>
+                custom
+              </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c03db026851e5c8e5eaf2bd6bbbbb1eaaed1af41" datatype="html">
+        <source>Start now </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="17a9d3860d9ad593dd09a9f934e03999d9e76a7a" datatype="html">
+        <source>
+            Cancel
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">165</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">128</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aeaf494b34ba6d6671879b71ce978da2c45ac710" datatype="html">
+        <source>
+            Submit!
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor/monitor.component.html</context>
+          <context context-type="linenumber">168</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1fa3588a9ada9c43527ab4ddedd4fce57d20048d" datatype="html">
+        <source>
+      Update monitor
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="38bd5794dbe84081cfa7867e876245e1ddae93e7" datatype="html">
+        <source>seconds</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dc55b5639dcfca88068a7762bd94a7503b10888a" datatype="html">
+        <source>Monitor Interval*</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2c1904658e8329f104dab2ddf9dc1fa029eb43b6" datatype="html">
+        <source>Edit or customize email template </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitor-edit/monitor-edit.component.html</context>
+          <context context-type="linenumber">112</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5ca707824ab93066c7d9b44e1b8bf216725c2c22" datatype="html">
+        <source>Filter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c8f32e27169d9dcdc3c08646cbd6750877af6c93" datatype="html">
+        <source>
+      <x id="START_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;i&gt;"/>add<x id="CLOSE_ITALIC_TEXT" ctype="x-i" equiv-text="&lt;/i&gt;"/>
+      Create Monitor
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="81b97b8ea996ad1e4f9fca8415021850214884b1" datatype="html">
+        <source>Status</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a762e269b2c4a8f718860ba1afda207e29683d7b" datatype="html">
+        <source>
+            Choose actions <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>more_vert<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4cace7c289176caa64c27952824301b9fc20e70d" datatype="html">
+        <source>
+              Edit
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2e96504c7c59bbf4862f1dea8d45282aa890c48c" datatype="html">
+        <source>
+              Show stats
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8288099989d962613bcc4594421f50b976c6fdb1" datatype="html">
+        <source>
+              Start
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c83c0f29a91e937703b645c3c50429ad49546e1e" datatype="html">
+        <source>
+              Stop
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a3cf13c419f9f37a2b338ed0617d72137051b910" datatype="html">
+        <source>
+              Delete
+            </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/monitors/monitors.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="039d175828a24c09f3658ebc5fef9fcde38c79e5" datatype="html">
+        <source>
+      <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/> report_problem<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+      Downtime stats for <x id="INTERPOLATION" equiv-text="{{ monitorName }}"/>
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d6ee7fade4642abd0e6c70f0b4ef914585a6c040" datatype="html">
+        <source>
+      <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/> keyboard_backspace<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+      Back
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="374e8e8a6060b0f9a625cbf5bca9eb273d06f53c" datatype="html">
+        <source>
+      <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/> get_app<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+      Export csv logs
+    </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7dd902083c37096d7611721d08fa8d6d88dc0eb3" datatype="html">
+        <source>Downtime on year</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2b7ce4213ed85e1bf5e2a64dba66acc86f665645" datatype="html">
+        <source>Latest Events</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2706b9bc84af2a5e1ae119253a61621e444401b5" datatype="html">
+        <source>Incident time</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/dashboard/downtime/downtime.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="65cc4ab3b4c438e07c89be2b677d08369fb62da2" datatype="html">
+        <source>Welcome</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="73c85a147bcc1b5f79ae10affa13f420fc99c2e9" datatype="html">
+        <source>
+          Log in
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="189b4b4fe578676e674d4f617fdc826204b552fc" datatype="html">
+        <source>
+          Register
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/login/login.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7975b3ca1d0f39cbc5cf8beb37294d12b5bfe1a9" datatype="html">
+        <source>Join us</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4fcb6dbd1b656de4f606e061af0ed606d3fdc547" datatype="html">
+        <source>User Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cfc2f436ec2beffb042e7511a73c89c372e86a6c" datatype="html">
+        <source>Register</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f093d9574ab746b231504bd2cbb65f04bd7b00db" datatype="html">
+        <source>Log in</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7b4a671d203d8239acb160ecb1eef12cd566cbc8" datatype="html">
+        <source>Panic controls your web site</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/landing/landing/landing.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="739bcfe0a667d51006c53a4aa4fd31f77eec3d64" datatype="html">
+        <source>Monitoring and Alerting application</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/landing/landing/landing.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="584a052336bca2e3156644a9fe4459f442f685a2" datatype="html">
+        <source>
+        Getting started
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/auth/landing/landing/landing.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

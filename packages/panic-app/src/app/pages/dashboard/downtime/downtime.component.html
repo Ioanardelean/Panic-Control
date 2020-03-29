@@ -1,0 +1,72 @@
+<div class="row" id="banner">
+  <div class="col-md-4 offset-md-4">
+    <h2 i18n>
+      <mat-icon> report_problem</mat-icon>
+      Downtime stats for {{ monitorName }}
+    </h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <button
+      i18n
+      id="back-button"
+      mat-raised-button
+      type="button"
+      [routerLink]="['/api/dashboard']"
+    >
+      <mat-icon> keyboard_backspace</mat-icon>
+      Back
+    </button>
+    <button i18n id="csv-button" mat-raised-button type="button" (click)="exportCsv()">
+      <mat-icon> get_app</mat-icon>
+      Export csv logs
+    </button>
+  </div>
+  <div class="row" id="chart">
+    <div class="col-md-6">
+      <h4 i18n>Downtime on year</h4>
+      <div class="chart-wrapper">
+        <canvas
+          baseChart
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins"
+        >
+        </canvas>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4 i18n>Latest Events</h4>
+      <div class="example-container mat-evaluation-z2">
+        <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z2">
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef i18n>Status</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.status }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="startedAt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>Incident time</th>
+            <td mat-cell *matCellDef="let element">{{ element.startedAt }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          [length]="100"
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25, 100]"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

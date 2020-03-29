@@ -1,0 +1,66 @@
+div.custom-cell {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+div.status {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background-color: grey;
+  display: inline-block;
+  margin-right: 5px;
+}
+div.status.up {
+  background-color: green;
+}
+div.status.down {
+  background-color: red;
+}
+.search {
+  font-size: 14px;
+  width: 20%;
+}
+#creation-button {
+  background-color: #59a259;
+  float: right;
+  margin-top: 20px;
+}
+.mat-form-field {
+  margin-top: 20px;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  tr {
+    td {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}
+.mat-raised-button {
+  color: white;
+  font-size: 16px;
+}
+.mat-header-cell {
+  font-size: 15px;
+}
+.mat-header-row {
+  background: #ffffff;
+}
+.mat-row {
+  background: #ffffff;
+}
+.label {
+  font-size: 20px;
+}
+
+mat-icon {
+  display: inline-flex;
+  vertical-align: middle;
+}

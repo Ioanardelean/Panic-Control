@@ -1,0 +1,38 @@
+:host {
+  .navbar {
+    background: #224d6e;
+  }
+  .panic-logo-official {
+    font-weight: 600;
+    margin: 5px 0px;
+    padding: 20px 15px;
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
+    // display: inline-block;
+    // height: 3.1rem;
+    // width: 10.4rem;
+    // max-width: 100%;
+    // background-size: 145%;
+    // background-repeat: no-repeat;
+    // background-position: center center;
+    // background-image: url('/assets/img/first.png');
+  }
+  span {
+    vertical-align: middle;
+    color: red;
+  }
+  #logout {
+    color: white;
+  }
+  #username {
+    color: white;
+  }
+}
+.navbar .navbar-brand {
+  font-weight: 600;
+  margin: 5px 0px;
+  font-size: 20px;
+  color: white;
+  text-transform: uppercase;
+}

@@ -1,0 +1,93 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style type="text/css">
+      #outlook a {
+        padding: 0;
+      }
+      body {
+        width: 100% !important;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #backgroundTable {
+        margin: 0;
+        padding: 0;
+        width: 100% !important;
+        line-height: 100% !important;
+        background: white;
+      }
+      p {
+        margin: 1em 0;
+      }
+
+      .td {
+        padding: 10px;
+      }
+      .td2 {
+        padding: 10px;
+        color: black;
+        font-weight: bold;
+        width: 200;
+      }
+      a {
+        color: #009bcd;
+      }
+      .first {
+        background-color: #ffffff;
+        padding: 10px;
+        border: 2px solid #b9292d;
+      }
+    </style>
+  </head>
+  <body>
+    <table cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+      <tr>
+        <td class="td">
+          <table class="first" cellpadding="0" cellspacing="0" border="0" align="center">
+            <tr>
+              <td class="td2">
+                <img
+                  src="https://raw.githubusercontent.com/Ioanardelean/PanicControl/master/project-resources/LogoMakr_2S2Yho.png"
+                  alt="panicLogo"
+                />
+
+                <br />
+                <br />
+                <p align="center"><%=data.ProjectName%> is Down !</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 10px">
+                Panic Control cannot reach
+                <a href="<%=data.ProjectUrl%>"><%=data.ProjectName%></a>
+                <p>
+                  Please do a manual check before you take any action.
+                </p>
+                <p>
+                  We will retest the website every 10 minutes, if you want stop this,
+                  click here
+                  <a href="http://localhost:3000/projects/"> Panic dashboard</a>
+                </p>
+              </td>
+            </tr>
+          </table>
+
+          <table cellpadding="0" cellspacing="0" border="0" align="center">
+            <tr>
+              <td style="padding: 10px; color: black; font-weight: bold; font-size: 14px">
+                This message was sent automatically by Panic control
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
