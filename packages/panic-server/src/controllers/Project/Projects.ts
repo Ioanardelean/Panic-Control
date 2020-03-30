@@ -128,7 +128,7 @@ export default class ProjectsController {
       } else {
         ctx.status = 204;
         ctx.body = {
-          error: `Url or email is wrong`,
+          error: `The email is wrong`,
         };
       }
     } catch (error) {

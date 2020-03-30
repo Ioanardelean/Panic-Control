@@ -9,7 +9,6 @@ import {
 export default class UsersController {
   @route('/profile', HttpMethod.GET, jwtAuth)
   async test(ctx: any) {
-    console.log('******', ctx.state.user);
     ctx.status = 200;
     ctx.body = {
       ...ctx.state.user,

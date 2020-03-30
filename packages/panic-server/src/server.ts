@@ -80,8 +80,6 @@ io.on('connection', (socket: any) => {
   });
 });
 
-console.log('var env ', process.env.PORT);
-
 server.listen(
   process.env.PORT || servers.http.port,
   servers.http.host,
