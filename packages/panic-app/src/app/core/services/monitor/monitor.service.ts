@@ -31,6 +31,10 @@ export class MonitorService {
     return this.httpClient.get<Project>(`${this.apiBaseUrl}/projects`);
   }
 
+  getCountProjects(): Observable<any> {
+    return this.httpClient.get(`${this.apiBaseUrl}/projects/count`);
+  }
+
   getProject(id: string): Observable<any> {
     return this.httpClient.get(`${this.apiBaseUrl}/projects/${id}`);
   }

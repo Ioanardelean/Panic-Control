@@ -4,6 +4,8 @@ import {
   addItem,
   deleteProjectById,
   getProjectById,
+  getProjectOnStatusActive,
+  getProjectOnStatusStopped,
   getProjects,
   updateProjectById,
 } from '../../helpers/ProjectServices/ProjectServices';
@@ -21,6 +23,25 @@ export default class ProjectsController {
       ctx.status = 200;
       ctx.body = {
         data: project,
+      };
+    } catch (error) {
+      ctx.status = 500;
+      ctx.body = {
+        message: error.message,
+      };
+    }
+  }
+
+  @route('/count', HttpMethod.GET, jwtAuth)
+  async getCountProject(ctx: any) {
+    try {
+      const userId = ctx.state.user.id;
+      const numberOfStopped = await getProjectOnStatusStopped(userId);
+      const numberOfActive = await getProjectOnStatusActive(userId);
+      ctx.status = 200;
+      ctx.body = {
+        stopped: numberOfStopped,
+        active: numberOfActive,
       };
     } catch (error) {
       ctx.status = 500;

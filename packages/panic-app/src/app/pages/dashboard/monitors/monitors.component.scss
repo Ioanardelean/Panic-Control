@@ -29,19 +29,19 @@ div.status.down {
 .mat-form-field {
   margin-top: 20px;
 }
-th.mat-sort-header-sorted {
-  color: black;
+
+.example-container {
+  position: relative;
+  min-height: 200px;
 }
 
+#example-table-container {
+  position: relative;
+  max-height: 400px;
+  overflow: auto;
+}
 table {
-  table-layout: fixed;
   width: 100%;
-  tr {
-    td {
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-  }
 }
 .mat-raised-button {
   color: white;
@@ -63,4 +63,31 @@ table {
 mat-icon {
   display: inline-flex;
   vertical-align: middle;
+}
+.circle {
+  border: 0.3em solid #224d6e;
+  border-radius: 100%;
+  height: 8em;
+  width: 8em;
+  text-align: center;
+  margin: auto;
+}
+
+.circle p {
+  margin-top: 20%;
+  font-size: 3em;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #224d6e;
+}
+mat-card {
+  margin: 20px;
+  // background-color: #4dd8ab;
+  background-color: whitesmoke;
+}
+
+p {
+  color: black;
+  font-size: medium;
+  text-align: center;
 }

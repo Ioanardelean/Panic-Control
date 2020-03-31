@@ -1,95 +1,128 @@
-<div class="col-md-10 offset-md-1" style="margin-top: 20px;">
-  <div class="example-header" fxLayout="row">
-    <mat-form-field class="search">
-      <mat-label i18n>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" />
-    </mat-form-field>
-    <button i18n id="creation-button" mat-raised-button [routerLink]="['/api/monitors']">
-      <i class="material-icons">add</i>
-      Create Monitor
-    </button>
+<div class="row">
+  <div class="col-md-2" id="count-monitors">
+    <mat-card>
+      <mat-card-title>
+        <p>Currently you have:</p>
+      </mat-card-title>
+      <mat-card-content i18n>
+        <div class="circle">
+          <p>{{ active }}</p>
+        </div>
+        <p>Active monitors</p>
+
+        <div class="circle">
+          <p>{{ stopped }}</p>
+        </div>
+        <p>Stopped monitors</p>
+      </mat-card-content>
+    </mat-card>
   </div>
 
-  <div class="example-container mat-evaluation-z2">
-    <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef i18n>Status</th>
-        <td mat-cell *matCellDef="let element">
-          <div class="custom-cell">
-            <div class="status {{ element.status }}" id="project-status-"></div>
-            {{ element.status }}
-          </div>
-        </td>
-      </ng-container>
+  <div class="col-md-10" style="margin-top: 20px;">
+    <div class="example-header" fxLayout="row">
+      <mat-form-field class="search">
+        <mat-label i18n>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Panic" />
+      </mat-form-field>
+      <button
+        i18n
+        id="creation-button"
+        mat-raised-button
+        [routerLink]="['/api/monitors']"
+      >
+        <i class="material-icons">add</i>
+        Create Monitor
+      </button>
+    </div>
 
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef i18n mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-      </ng-container>
+    <div class="mat-elevation-z2" id="example-table-container">
+      <table mat-table matSort [dataSource]="dataSource">
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef i18n>Status</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="custom-cell">
+              <div class="status {{ element.status }}" id="project-status-"></div>
+              <div>
+                {{ element.status }}
+              </div>
+            </div>
+          </td>
+        </ng-container>
 
-      <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef i18n mat-sort-header>Description</th>
-        <td mat-cell *matCellDef="let element">{{ element.description }}</td>
-      </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef i18n mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="url">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Url</th>
-        <td mat-cell *matCellDef="let element">
-          <a href="{{ element.url }}" target="_blank" rel="noopener noreferrer">{{
-            element.url
-          }}</a>
-        </td>
-      </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef i18n mat-sort-header>Description</th>
+          <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <td mat-cell *matCellDef="let element">
-          <button
-            i18n
-            id="action"
-            class="mat-button"
-            [matMenuTriggerFor]="menu"
-            aria-label="Example icon-button with a menu"
-          >
-            Choose actions <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <a id="edit" i18n mat-menu-item [routerLink]="['/api/monitors/', element.id]">
-              Edit
-            </a>
-            <a mat-menu-item i18n [routerLink]="['/api/downtime/', element.id]">
-              Show stats
-            </a>
-            <a
-              id="start"
+        <ng-container matColumnDef="url">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Url</th>
+          <td mat-cell *matCellDef="let element">
+            <a href="{{ element.url }}" target="_blank" rel="noopener noreferrer">{{
+              element.url
+            }}</a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <button
               i18n
-              *ngIf="element.status === 'stopped'"
-              mat-menu-item
-              (click)="startProject(element.id)"
+              id="action"
+              class="mat-button"
+              [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu"
             >
-              Start
-            </a>
-            <a
-              id="stop"
-              i18n
-              *ngIf="element.status === 'up' || element.status === 'down'"
-              mat-menu-item
-              (click)="stopProject(element.id)"
-            >
-              Stop
-            </a>
-            <a id="delete" i18n mat-menu-item (click)="deleteProject(element.id)">
-              Delete
-            </a>
-          </mat-menu>
-        </td>
-      </ng-container>
+              Choose actions <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <a
+                id="edit"
+                i18n
+                mat-menu-item
+                [routerLink]="['/api/monitors/', element.id]"
+              >
+                Edit
+              </a>
+              <a mat-menu-item i18n [routerLink]="['/api/downtime/', element.id]">
+                Show stats
+              </a>
+              <a
+                id="start"
+                i18n
+                *ngIf="element.testRunning === false"
+                mat-menu-item
+                (click)="startProject(element.id)"
+              >
+                Start
+              </a>
+              <a
+                id="stop"
+                i18n
+                *ngIf="element.testRunning === true"
+                mat-menu-item
+                (click)="stopProject(element.id)"
+              >
+                Stop
+              </a>
+              <a id="delete" i18n mat-menu-item (click)="deleteProject(element.id)">
+                Delete
+              </a>
+            </mat-menu>
+          </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
 
-    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
-    </mat-paginator>
+      <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+    </div>
   </div>
 </div>
