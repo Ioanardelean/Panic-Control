@@ -30,6 +30,20 @@ export async function getProjectById(id: string, userId: any) {
   });
 }
 
+export async function getProjectOnStatusStopped(userId: User) {
+  initialize();
+  return repository.findAndCount({
+    relations: ['user', 'histories'],
+    where: { user: userId, testRunning: 'false' },
+  });
+}
+export async function getProjectOnStatusActive(userId: User) {
+  initialize();
+  return repository.findAndCount({
+    relations: ['user', 'histories'],
+    where: { user: userId, testRunning: 'true' },
+  });
+}
 export async function updateProjectById(id: string, payload: any) {
   const project = await repository.findOne({ where: { id } });
   const projectToUpdate = repository.merge(project, payload);

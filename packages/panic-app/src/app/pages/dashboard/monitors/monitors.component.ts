@@ -24,6 +24,9 @@ export class MonitorsComponent implements OnInit {
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
+  stopped: number;
+  active: number;
+
   constructor(
     public monitorService: MonitorService,
     public router: Router,
@@ -31,6 +34,8 @@ export class MonitorsComponent implements OnInit {
     private socketService: SocketService
   ) {
     this.getAll();
+    this.countProjectStopped();
+    this.countProjectActive();
   }
 
   getAll() {
@@ -68,6 +73,7 @@ export class MonitorsComponent implements OnInit {
 
   startProject(id) {
     this.monitorService.startProject(id).subscribe(res => {
+      this.getAll();
       this.toastr.success(res.message);
     });
   }
@@ -76,6 +82,16 @@ export class MonitorsComponent implements OnInit {
     this.monitorService.stopProject(id).subscribe(res => {
       this.getAll();
       this.toastr.success(res.message);
+    });
+  }
+  countProjectStopped() {
+    this.monitorService.getCountProjects().subscribe(res => {
+      this.stopped = res.stopped[1];
+    });
+  }
+  countProjectActive() {
+    this.monitorService.getCountProjects().subscribe(res => {
+      this.active = res.active[1];
     });
   }
 }
