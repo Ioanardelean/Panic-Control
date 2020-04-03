@@ -8,7 +8,13 @@
     "app:build:dev": "cd packages/panic-app && npm run dev",
     "app:build:prod": "cd packages/panic-app && npm run build",
     "server:watch": "cd packages/panic-server && npm run server:watch",
-    "server:dev": "cd packages/panic-server && npm run dev"
+    "server:dev": "cd packages/panic-server && npm run dev",
+    "test": "npm run test:server && npm run test:app",
+    "test:server": "cd packages/panic-server && npm run test",
+    "test:app": "cd packages/panic-app && npm run test",
+    "install": "npm install install:server && install:app",
+    "install:server": "cd packages/panic-server && npm install",
+    "install:app": "cd packages/panic-app && npm install"
   },
   "author": "Ioana Ardelean",
   "license": "ISC"

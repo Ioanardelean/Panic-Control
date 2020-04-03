@@ -5,6 +5,7 @@ import {
   deleteProjectById,
   getProjectById,
   getProjectOnStatusActive,
+  getProjectOnStatusDown,
   getProjectOnStatusStopped,
   getProjects,
   updateProjectById,
@@ -38,10 +39,12 @@ export default class ProjectsController {
       const userId = ctx.state.user.id;
       const numberOfStopped = await getProjectOnStatusStopped(userId);
       const numberOfActive = await getProjectOnStatusActive(userId);
+      const numberOfDown = await getProjectOnStatusDown(userId);
       ctx.status = 200;
       ctx.body = {
         stopped: numberOfStopped,
         active: numberOfActive,
+        down: numberOfDown,
       };
     } catch (error) {
       ctx.status = 500;

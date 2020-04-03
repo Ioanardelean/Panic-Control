@@ -27,8 +27,8 @@ export class MonitorService {
     };
   }
 
-  getProjects(): Observable<Project> {
-    return this.httpClient.get<Project>(`${this.apiBaseUrl}/projects`);
+  getProjects(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiBaseUrl}/projects`);
   }
 
   getCountProjects(): Observable<any> {
@@ -67,9 +67,5 @@ export class MonitorService {
     return this.httpClient
       .post(`${this.apiBaseUrl}/projects/${id}/stop`, null)
       .pipe(catchError(this.handleError));
-  }
-
-  getHistory(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiBaseUrl}/history`);
   }
 }

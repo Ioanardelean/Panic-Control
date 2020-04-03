@@ -10,7 +10,6 @@ import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component'
 import { AuthModule } from './pages/auth/auth.module';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { TabsComponent } from './shared/components/tabs/tabs.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,7 +25,6 @@ import { MenuComponent } from './shared/components/menu/menu/menu.component';
     AuthLayoutComponent,
     FooterComponent,
     NavbarComponent,
-    TabsComponent,
     MenuComponent,
   ],
   imports: [
