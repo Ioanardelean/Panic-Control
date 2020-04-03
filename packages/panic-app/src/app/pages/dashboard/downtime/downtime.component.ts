@@ -5,7 +5,6 @@ import { Label, Color } from 'ng2-charts';
 import { MonitorService } from 'src/app/core/services/monitor/monitor.service';
 import { ActivatedRoute } from '@angular/router';
 import { History } from '../../../core/models/history';
-import * as moment from 'moment';
 import { CsvDataServiceService } from 'src/app/core/services/history/csv-data-service.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -55,7 +54,6 @@ export class DowntimeComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngOnInit(): void {
-    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
@@ -65,7 +63,7 @@ export class DowntimeComponent implements OnInit {
       res.data.histories.forEach(element => {
         const incident = element.status;
         if (incident === 'down') {
-          const time = moment(element.startedAt).format('lll');
+          const time = element.startedAt;
 
           this.downtime.push({
             status: incident,
@@ -74,6 +72,7 @@ export class DowntimeComponent implements OnInit {
         }
       });
       this.dataSource.data = this.downtime;
+      this.dataSource.paginator = this.paginator;
       this.monitorName = data.name;
       this.monitorUrl = data.url;
     });

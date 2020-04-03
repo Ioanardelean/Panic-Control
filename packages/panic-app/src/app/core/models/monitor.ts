@@ -1,3 +1,5 @@
+import { History } from './history';
+
 export enum Status {
   UP = 'up',
   DOWN = 'down',
@@ -14,4 +16,5 @@ export class Project {
   monitorInterval: number;
   testRunning: boolean;
   status: Status;
+  histories: History;
 }

@@ -8,6 +8,7 @@ import { SocketService } from 'src/app/core/services/socket/socket.service';
 import { Project } from 'src/app/core/models/monitor';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { CsvDataServiceService } from 'src/app/core/services/history/csv-data-service.service';
 
 @Component({
   selector: 'app-monitors',
@@ -15,10 +16,23 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./monitors.component.scss'],
 })
 export class MonitorsComponent implements OnInit {
-  disableSelect = new FormControl(false);
+  constructor(
+    public monitorService: MonitorService,
+    public router: Router,
+    private toastr: ToastrService,
+    private socketService: SocketService,
+    public csvService: CsvDataServiceService
+  ) {
+    this.getAll();
 
+    this.getHistory();
+    this.downtime = [];
+  }
+  disableSelect = new FormControl(false);
+  displayedColumn: string[] = ['name', 'status', 'startedAt'];
   displayedColumns: string[] = ['status', 'name', 'description', 'url', 'actions'];
   dataSource = new MatTableDataSource<Project>();
+  dataSourceEvents = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -26,28 +40,46 @@ export class MonitorsComponent implements OnInit {
 
   stopped: number;
   active: number;
-
-  constructor(
-    public monitorService: MonitorService,
-    public router: Router,
-    private toastr: ToastrService,
-    private socketService: SocketService
-  ) {
-    this.getAll();
-    this.countProjectStopped();
-    this.countProjectActive();
-  }
+  down: number;
+  numItem = 0;
+  pageSize = 1;
+  downtime: any[];
 
   getAll() {
     return this.monitorService.getProjects().subscribe((res: any) => {
       this.dataSource.data = res.data as Project[];
+      this.dataSource.paginator = this.paginator;
+    });
+  }
+  getHistory() {
+    return this.monitorService.getProjects().subscribe(res => {
+      res.data.forEach(element => {
+        element.histories.forEach(item => {
+          const incident = item.status;
+          const time = new Date(item.startedAt);
+          const month = time.getMonth() + 1;
+          const now = new Date();
+          const currentMonth = now.getMonth() + 1;
+
+          if (incident === 'down' && month === currentMonth) {
+            this.downtime.push({
+              name: element.name,
+              status: incident,
+              startedAt: time,
+            });
+          }
+        });
+        this.dataSourceEvents.data = this.downtime;
+      });
     });
   }
 
   ngOnInit(): void {
-    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.socketConnection();
+    this.countProjectStopped();
+    this.countProjectActive();
+    this.countProjectDown();
   }
   socketConnection() {
     this.socketService.setupSocketConnection();
@@ -84,8 +116,10 @@ export class MonitorsComponent implements OnInit {
       this.toastr.success(res.message);
     });
   }
+
   countProjectStopped() {
     this.monitorService.getCountProjects().subscribe(res => {
+      console.log(res);
       this.stopped = res.stopped[1];
     });
   }
@@ -93,5 +127,14 @@ export class MonitorsComponent implements OnInit {
     this.monitorService.getCountProjects().subscribe(res => {
       this.active = res.active[1];
     });
+  }
+  countProjectDown() {
+    this.monitorService.getCountProjects().subscribe(res => {
+      this.down = res.down[1];
+    });
+  }
+  exportCsv() {
+    const data = this.dataSourceEvents.data;
+    this.csvService.exportToCsv('events.csv', data);
   }
 }

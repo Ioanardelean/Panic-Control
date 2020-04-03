@@ -7,14 +7,6 @@ function initialize() {
   repository = getRepository(History);
 }
 
-export async function getHistorie() {
-  initialize();
-  return repository.find({
-    relations: ['project'],
-    where: { status: 'down' },
-  });
-}
-
 export async function addHistory(history: History, projectId: Project) {
   initialize();
   const createHistory = history;

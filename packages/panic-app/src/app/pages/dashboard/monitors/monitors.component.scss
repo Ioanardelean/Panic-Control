@@ -37,11 +37,14 @@ div.status.down {
 
 #example-table-container {
   position: relative;
-  max-height: 400px;
   overflow: auto;
 }
+
 table {
   width: 100%;
+  th {
+    color: white;
+  }
 }
 .mat-raised-button {
   color: white;
@@ -51,43 +54,116 @@ table {
   font-size: 15px;
 }
 .mat-header-row {
-  background: #ffffff;
+  background: #7f8fa6;
+  height: 40px;
 }
 .mat-row {
-  background: #ffffff;
+  background: #f5f6fa;
 }
 .label {
   font-size: 20px;
+}
+#downtime {
+  .mat-header-row {
+    background: #f5f6fa;
+    th {
+      color: black;
+    }
+  }
 }
 
 mat-icon {
   display: inline-flex;
   vertical-align: middle;
 }
-.circle {
-  border: 0.3em solid #224d6e;
-  border-radius: 100%;
-  height: 8em;
-  width: 8em;
-  text-align: center;
-  margin: auto;
-}
-
-.circle p {
-  margin-top: 20%;
-  font-size: 3em;
-  font-weight: bold;
-  font-family: sans-serif;
-  color: #224d6e;
-}
 mat-card {
-  margin: 20px;
-  // background-color: #4dd8ab;
-  background-color: whitesmoke;
+  background-color: #f5f6fa;
+  margin: 20px 20px 0px 0px;
+
+  width: 100%;
+  mat-card-title {
+    font-weight: 400;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    text-align: left;
+    color: #222;
+    font-size: 15px;
+    text-shadow: 0 1px 0 #fff;
+    span {
+      color: #868a98;
+    }
+  }
 }
 
-p {
-  color: black;
-  font-size: medium;
+.example-container {
+  height: 400px;
+  overflow: auto;
+}
+
+#downtime {
+  width: 100%;
+  table-layout: fixed;
+}
+
+// example de circles
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.card-circle {
   text-align: center;
+  background: #27496d;
+  border: 10px solid transparent;
+  color: #fff;
+  font-family: Montserrat;
+
+  border-radius: 50%;
+}
+.card-circle .card-title {
+  font-weight: 3em;
+  font-size: 15px;
+}
+
+.card-circle .card-text {
+  color: white;
+}
+.card-circle:nth-child(2) {
+  background: #142850;
+}
+.card-circle .btn {
+  background: transparent;
+  border: 1px solid #fff;
+  text-transform: uppercase;
+  padding: 5px 30px;
+  border-radius: 0px;
+}
+.card-circle .btn,
+.card-circle .card-icon i,
+.card-circle {
+  transition: all ease-in-out 0.2s;
+}
+.card-circle:hover .btn {
+  background: #33c08a;
+  color: #fff;
+  border: 1px solid transparent;
+}
+.card-circle .btn:hover {
+  transform: scale(1.1);
+}
+.card-circle:hover {
+  border: 10px solid #33c08a;
+}
+@media only screen and (min-width: 1200px) {
+  .card-circle:nth-child(3) {
+    margin-left: -15px;
+    z-index: 0;
+  }
+
+  .card-circle:nth-child(2) {
+    margin-left: -10px;
+    box-shadow: 1px 2px 20px 8px rgba(241, 235, 235, 0.12);
+    transform: scale(1.2);
+    z-index: 1;
+  }
 }

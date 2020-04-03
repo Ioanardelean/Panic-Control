@@ -34,16 +34,24 @@ export async function getProjectOnStatusStopped(userId: User) {
   initialize();
   return repository.findAndCount({
     relations: ['user', 'histories'],
-    where: { user: userId, testRunning: 'false' },
+    where: { user: userId, status: 'stopped' },
   });
 }
 export async function getProjectOnStatusActive(userId: User) {
   initialize();
   return repository.findAndCount({
     relations: ['user', 'histories'],
-    where: { user: userId, testRunning: 'true' },
+    where: { user: userId, status: 'up' },
   });
 }
+export async function getProjectOnStatusDown(userId: User) {
+  initialize();
+  return repository.findAndCount({
+    relations: ['user', 'histories'],
+    where: { user: userId, status: 'down' },
+  });
+}
+
 export async function updateProjectById(id: string, payload: any) {
   const project = await repository.findOne({ where: { id } });
   const projectToUpdate = repository.merge(project, payload);

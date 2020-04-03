@@ -3,9 +3,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { History } from './HistoryModel';
+import { Project } from './ProjectModel';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -43,4 +46,11 @@ export class User {
 
   @Column({ nullable: true })
   accessToken: string;
+
+  @OneToMany(
+    () => Project,
+    project => project.user,
+    { cascade: true }
+  )
+  projects: Project[];
 }

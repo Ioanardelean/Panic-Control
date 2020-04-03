@@ -1,3 +1,5 @@
+import { Project } from './monitor';
+
 export enum Status {
   UP = 'up',
   DOWN = 'down',
@@ -8,4 +10,5 @@ export class History {
   status: Status.DOWN;
   startedAt: string;
   uptime: number;
+  project: Project;
 }
