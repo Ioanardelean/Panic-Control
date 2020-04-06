@@ -1,11 +1,11 @@
-import bcrypt from 'bcryptjs';
 import * as EmailValidator from 'email-validator';
-import jwt from 'jsonwebtoken';
 import passport from 'passport';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
-import { createUser, updateToken } from '../../helpers/UserService/UserService';
+import { hashPassword } from '../../helpers/UserService/HashPassword';
+import { JwtSign } from '../../helpers/UserService/TokenGenerator';
+import { createUser } from '../../helpers/UserService/UserService';
 import { schema } from '../../modules/utils/password.validator';
-require('dotenv').config();
+
 @Controller('/auth')
 export default class AuthController {
   @route('/register', HttpMethod.POST)
@@ -16,7 +16,7 @@ export default class AuthController {
 
     try {
       if (EmailValidator.validate(email) && schema.validate(password)) {
-        password = await this.hashPassword(password);
+        password = await hashPassword(password);
         const newUser = await createUser({ ...payload, password });
         ctx.status = 201;
         ctx.body = {
@@ -37,23 +37,18 @@ export default class AuthController {
     }
   }
 
-  async hashPassword(password: string, saltRound = 10) {
-    return bcrypt.hash(password, saltRound);
-  }
-
   @route(
     '/login',
     HttpMethod.POST,
     passport.authenticate('local', { failureRedirect: '/auth/loginFail' })
   )
   async loginUser(ctx: any) {
-    ctx.login(ctx.state.user);
     const payload = ctx.request.body;
     const username = payload.username;
-    const accessToken = jwt.sign({ ...ctx.state.user }, process.env.JWT_SECRET, {
-      expiresIn: '1d',
-    });
-    await updateToken(ctx.state.user.id, accessToken);
+    const user = ctx.state.user;
+    ctx.login(user);
+    const accessToken = await JwtSign(user);
+
     ctx.status = 200;
     ctx.body = {
       token: accessToken,

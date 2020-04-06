@@ -7,7 +7,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { History } from './HistoryModel';
 import { Project } from './ProjectModel';
 
 export enum UserRole {
@@ -43,9 +42,6 @@ export class User {
   @Column()
   @UpdateDateColumn()
   updateAt: Date;
-
-  @Column({ nullable: true })
-  accessToken: string;
 
   @OneToMany(
     () => Project,

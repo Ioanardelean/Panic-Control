@@ -1,10 +1,12 @@
 import bcrypt from 'bcryptjs';
+import fs from 'fs';
 import passport from 'passport';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import LocalStrategy from 'passport-local';
 import { getUserById, getUserByName } from './helpers/UserService/UserService';
 import { User } from './models/UserModel';
 require('dotenv').config();
+const PRIV_KEY = fs.readFileSync(`./id_rsa_priv.pem`, 'utf8');
 async function validatePassword(userPassword: any, databasePassword: any) {
   return bcrypt.compare(userPassword, databasePassword);
 }
@@ -51,10 +53,10 @@ passport.use(
   new JwtStrategy(
     {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: process.env.JWT_SECRET,
+      secretOrKey: PRIV_KEY,
     },
-    (jwtPayload, done) => {
-      return done(null, jwtPayload);
+    async (jwtPayload, done) => {
+      done(null, jwtPayload);
     }
   )
 );

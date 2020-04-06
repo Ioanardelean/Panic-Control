@@ -8,3 +8,4 @@
 /docs
 /.env
 /logs/access.log
+/id_rsa_priv.pem

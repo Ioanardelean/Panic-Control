@@ -1,7 +1,7 @@
 <div class="login-page" [@routerTransition]>
   <div class="row justify-content-md-center">
-    <div class="col-md-4">
-      <h1 i18n>Join us</h1>
+    <div class="col-md-4" id="login-section">
+      <h1 i18n>Sign up</h1>
       <form role="form-register" [formGroup]="registerForm" (ngSubmit)="registerUser()">
         <div class="form-content">
           <div class="form-group">
@@ -49,7 +49,9 @@
         </div>
         <button type="submit" class="btn rounded-btn" id="signup" i18n>Register</button
         >&nbsp;
-        <button class="btn rounded-btn" [routerLink]="['/login']" i18n>Log in</button>
+        <button class="btn rounded-btn" [routerLink]="['/auth/login']" i18n>
+          Log in
+        </button>
       </form>
     </div>
   </div>

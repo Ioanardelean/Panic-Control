@@ -39,10 +39,6 @@ export async function updateUserById(id: string, payload: any) {
   return repository.save(userToUpdate);
 }
 
-export async function updateToken(id: string, payload: any) {
-  return repository.update(id, { accessToken: payload });
-}
-
 export async function deleteById(id: string) {
   const userToDelete = await repository.findOne({ where: { id } });
   return repository.remove(userToDelete);

@@ -15,8 +15,6 @@
       "runtimeExecutable": null,
       "skipFiles": ["<node_modules>/**"],
       "env": {
-        "NO_CLUSTER": "true",
-        "NODE_ENV": "developement",
         "DEBUG": "*"
       },
       "sourceMaps": true,

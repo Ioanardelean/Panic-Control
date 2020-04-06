@@ -10,13 +10,13 @@ import {
   getProjects,
   updateProjectById,
 } from '../../helpers/ProjectServices/ProjectServices';
-import { jwtAuth } from '../../helpers/UserService/UserService';
+import { jwtAuth, userMdw } from '../../helpers/UserService/UserService';
 import CheckHealth from '../../modules/health/MainCheckHealth';
 import { regex } from '../../modules/utils/email.validator';
 
 @Controller('/projects')
 export default class ProjectsController {
-  @route('/', HttpMethod.GET, jwtAuth)
+  @route('/', HttpMethod.GET, jwtAuth, userMdw)
   async getAllProjects(ctx: any) {
     try {
       const userId = ctx.state.user.id;

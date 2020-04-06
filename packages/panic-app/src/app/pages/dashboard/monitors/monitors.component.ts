@@ -52,9 +52,9 @@ export class MonitorsComponent implements OnInit {
     });
   }
   getHistory() {
-    return this.monitorService.getProjects().subscribe(res => {
-      res.data.forEach(element => {
-        element.histories.forEach(item => {
+    return this.monitorService.getProjects().subscribe((res) => {
+      res.data.forEach((element) => {
+        element.histories.forEach((item) => {
           const incident = item.status;
           const time = new Date(item.startedAt);
           const month = time.getMonth() + 1;
@@ -83,8 +83,8 @@ export class MonitorsComponent implements OnInit {
   }
   socketConnection() {
     this.socketService.setupSocketConnection();
-    this.socketService.statusMonitor$.subscribe(project => {
-      const objIndex = this.dataSource.data.findIndex(obj => obj.id === project.id);
+    this.socketService.statusMonitor$.subscribe((project) => {
+      const objIndex = this.dataSource.data.findIndex((obj) => obj.id === project.id);
       this.dataSource.data[objIndex] = project;
       this.dataSource.connect().next(this.dataSource.data);
     });
@@ -96,40 +96,38 @@ export class MonitorsComponent implements OnInit {
   }
 
   deleteProject(id: any) {
-    this.monitorService.deleteProject(id).subscribe(res => {
+    this.monitorService.deleteProject(id).subscribe((res) => {
       this.getAll();
-      console.log(res);
       this.toastr.success(res.message);
     });
   }
 
   startProject(id) {
-    this.monitorService.startProject(id).subscribe(res => {
+    this.monitorService.startProject(id).subscribe((res) => {
       this.getAll();
       this.toastr.success(res.message);
     });
   }
 
   stopProject(id) {
-    this.monitorService.stopProject(id).subscribe(res => {
+    this.monitorService.stopProject(id).subscribe((res) => {
       this.getAll();
       this.toastr.success(res.message);
     });
   }
 
   countProjectStopped() {
-    this.monitorService.getCountProjects().subscribe(res => {
-      console.log(res);
+    this.monitorService.getCountProjects().subscribe((res) => {
       this.stopped = res.stopped[1];
     });
   }
   countProjectActive() {
-    this.monitorService.getCountProjects().subscribe(res => {
+    this.monitorService.getCountProjects().subscribe((res) => {
       this.active = res.active[1];
     });
   }
   countProjectDown() {
-    this.monitorService.getCountProjects().subscribe(res => {
+    this.monitorService.getCountProjects().subscribe((res) => {
       this.down = res.down[1];
     });
   }

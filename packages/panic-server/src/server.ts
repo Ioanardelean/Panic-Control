@@ -16,26 +16,48 @@ import { load } from './core/DecoratorKoa';
 import DbConnect from './databases/DatabaseConnection';
 import CheckHealth from './modules/health/MainCheckHealth';
 
+/**
+ * Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
+ */
 require('dotenv').config();
 const cwd = process.cwd();
+
+const app = new Koa();
+/**
+ * logs output
+ */
 const accessLogStream = fs.createWriteStream(`${cwd}/src/logs/access.log`, {
   flags: 'a',
 });
-const app = new Koa();
-
 app.use(morgan('combined', { stream: accessLogStream }));
-app.use(helmet());
 
+app.use(helmet());
 app.proxy = true;
+
+/**
+ * required for signed cookie sessions
+ */
 app.keys = ['some secret'];
 app.use(KoaSession(app));
 
+/**
+ * init auth strategy
+ */
 require('./auth');
-
 app.use(passport.initialize());
 app.use(passport.session());
+
+/**
+ * Allows Angular application to make HTTP requests to koa application
+ */
+
 app.use(cors());
 app.use(koaBodyParser());
+
+/**
+ * check body._method first
+ * otherwise check X-HTTP-Method-Override header
+ */
 app.use(koaOverride());
 
 app.use(async (ctx: any, next) => {
@@ -46,11 +68,17 @@ app.use(async (ctx: any, next) => {
   };
   await next();
 });
+
+/**
+ * Where Angular builds to - In the ./angular/angular.json file, you will find this configuration
+ * at the property: projects.angular.architect.build.options.outputPath
+ * When you run `ng build`, the output will go to the ./public directory
+ */
 app.use(ServeStatic(`${__dirname}/public`));
 
 /**
- * Once data base loaded, load also api rest and monitoring test.
- * PostgresSQL data base configured into database folder, and called into server file.
+ * Configures the database and opens a global connection that can be used in any module with `typeorm.connection`
+ * Once data base loaded, load also controllers and monitoring test.
  * Specify the path to controllers and use that routes.
  * Monitoring heath check starter on all servers loaded.
  *
@@ -58,7 +86,6 @@ app.use(ServeStatic(`${__dirname}/public`));
 DbConnect.connectDB().subscribe(() => {
   const apiRouter = load(path.resolve(__dirname, 'controllers'));
   app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
-  // start Health
   CheckHealth.startHealthCheck();
 });
 
@@ -67,8 +94,8 @@ const servers = config.get('servers');
 const server = http.createServer(app.callback());
 
 /**
- * socket io server attach to the node serverr
- * created a gloabl variable for reuse in entire project
+ * socket io server attach to the node servers
+ * created a global variable for reuse in entire project
  */
 
 (global as any).socketMap = new Map();
