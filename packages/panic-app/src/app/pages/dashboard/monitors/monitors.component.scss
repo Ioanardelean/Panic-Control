@@ -58,14 +58,14 @@ table {
   height: 40px;
 }
 .mat-row {
-  background: #f5f6fa;
+  // background: #f5f6fa;
 }
 .label {
   font-size: 20px;
 }
 #downtime {
   .mat-header-row {
-    background: #f5f6fa;
+    background: white;
     th {
       color: black;
     }
@@ -77,7 +77,7 @@ mat-icon {
   vertical-align: middle;
 }
 mat-card {
-  background-color: #f5f6fa;
+  //background-color: #f5f6fa;
   margin: 20px 20px 0px 0px;
 
   width: 100%;

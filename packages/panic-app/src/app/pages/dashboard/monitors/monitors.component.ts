@@ -64,6 +64,7 @@ export class MonitorsComponent implements OnInit {
           if (incident === 'down' && month === currentMonth) {
             this.downtime.push({
               name: element.name,
+              url: element.url,
               status: incident,
               startedAt: time,
             });

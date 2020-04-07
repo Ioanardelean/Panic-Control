@@ -1,6 +1,44 @@
 <div class="row">
   <div class="col-md-6">
     <mat-card>
+      <mat-card-title>
+        Currently you have:
+      </mat-card-title>
+      <mat-card-content id="stats" i18n>
+        <div class="container">
+          <div class="row">
+            <div class="card card-circle">
+              <div class="card-body">
+                <h5 class="card-title">Up monitors</h5>
+                <p class="card-text">
+                  {{ active }}
+                </p>
+              </div>
+            </div>
+
+            <div class="card card-circle">
+              <div class="card-body">
+                <h5 class="card-title">Down monitors</h5>
+                <p class="card-text">
+                  {{ down }}
+                </p>
+              </div>
+            </div>
+
+            <div class="card card-circle">
+              <div class="card-body">
+                <h5 class="card-title">Stopped monitors</h5>
+                <p class="card-text">
+                  {{ stopped }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
       <mat-card-content>
         <div class="example-header">
           <mat-form-field class="search">
@@ -103,58 +141,13 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
           </table>
 
-          <mat-paginator
-            style="background-color: #f5f6fa;"
-            [length]=""
-            [pageSize]=""
-            [pageSizeOptions]="[5, 10, 25, 100]"
-          >
+          <mat-paginator [length]="" [pageSize]="" [pageSizeOptions]="[5, 10, 25, 100]">
           </mat-paginator>
         </div>
       </mat-card-content>
     </mat-card>
   </div>
   <div class="col-md-6" id="count-monitors">
-    <div class="row">
-      <mat-card>
-        <mat-card-title>
-          Currently you have:
-        </mat-card-title>
-        <mat-card-content id="stats" i18n>
-          <div class="container">
-            <div class="row">
-              <div class="card card-circle">
-                <div class="card-body">
-                  <h5 class="card-title">Up monitors</h5>
-                  <p class="card-text">
-                    {{ active }}
-                  </p>
-                </div>
-              </div>
-
-              <div class="card card-circle">
-                <div class="card-body">
-                  <h5 class="card-title">Down monitors</h5>
-                  <p class="card-text">
-                    {{ down }}
-                  </p>
-                </div>
-              </div>
-
-              <div class="card card-circle ">
-                <div class="card-body">
-                  <h5 class="card-title">Stopped monitors</h5>
-                  <p class="card-text">
-                    {{ stopped }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-
     <div class="row">
       <mat-card>
         <mat-card-title>

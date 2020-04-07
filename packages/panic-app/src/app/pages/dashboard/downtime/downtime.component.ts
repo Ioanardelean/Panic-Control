@@ -58,14 +58,16 @@ export class DowntimeComponent implements OnInit {
   }
 
   getProject(id) {
-    this.monitorService.getProject(id).subscribe(res => {
+    this.monitorService.getProject(id).subscribe((res) => {
       const data = res.data;
-      res.data.histories.forEach(element => {
+      res.data.histories.forEach((element) => {
+        const url = element.url;
         const incident = element.status;
         if (incident === 'down') {
           const time = element.startedAt;
 
           this.downtime.push({
+            url,
             status: incident,
             startedAt: time,
           });

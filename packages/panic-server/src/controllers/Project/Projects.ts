@@ -125,6 +125,7 @@ export default class ProjectsController {
     const id = ctx.params.id;
     const payload = ctx.request.body;
     const email = payload.receiver;
+    const url = payload.url;
     try {
       let validEmail = true;
 
@@ -141,7 +142,7 @@ export default class ProjectsController {
         };
       }
 
-      if (validEmail) {
+      if (validEmail && validUrl.isUri(url)) {
         const updated = await updateProjectById(id, payload);
         ctx.status = 200;
         ctx.body = {
@@ -182,6 +183,7 @@ export default class ProjectsController {
       };
     }
   }
+
   @route('/:id/start', HttpMethod.POST, jwtAuth)
   async start(ctx: any) {
     try {

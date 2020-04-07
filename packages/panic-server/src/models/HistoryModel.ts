@@ -20,6 +20,9 @@ export class History {
   @Column({ type: 'enum', enum: Status, default: Status.DOWN })
   status: Status;
 
+  @Column({ nullable: false, length: 2083 })
+  url: string;
+
   @Column({ default: 0 })
   uptime: number;
 

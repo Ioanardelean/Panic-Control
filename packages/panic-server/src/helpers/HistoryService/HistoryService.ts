@@ -7,10 +7,11 @@ function initialize() {
   repository = getRepository(History);
 }
 
-export async function addHistory(history: History, projectId: Project) {
+export async function addHistory(history: History, projectId: Project, projectUrl: any) {
   initialize();
   const createHistory = history;
   createHistory.project = projectId;
+  createHistory.url = projectUrl;
   await repository.save(createHistory);
   return createHistory.id;
 }

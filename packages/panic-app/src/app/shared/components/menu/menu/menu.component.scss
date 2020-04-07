@@ -1,10 +1,14 @@
-.navbar .navbar-brand {
-  font-weight: 600;
-  margin: 5px 0px;
-  font-size: 20px;
-  color: white;
-  text-transform: uppercase;
+.navbar {
+  margin: 0 50px 0 50px;
+  .navbar-brand {
+    font-weight: 600;
+    margin: 5px 0px;
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
+  }
 }
+
 li {
   margin: 10px;
 }

@@ -89,9 +89,8 @@ export class MonitorEditComponent implements OnInit {
   }
 
   getProject(id) {
-    this.monitorService.getProject(id).subscribe(res => {
+    this.monitorService.getProject(id).subscribe((res) => {
       const data = res.data;
-      this.updateForm.controls['url'].disable();
       this.emails = res.data.receiver.split(',');
       this.id = data.id;
       this.updateForm.setValue(data);
@@ -99,7 +98,7 @@ export class MonitorEditComponent implements OnInit {
   }
 
   updateProject() {
-    this.monitorService.updateProject(this.updateForm.value, this.id).subscribe(res => {
+    this.monitorService.updateProject(this.updateForm.value, this.id).subscribe((res) => {
       if (res.message) {
         this.toastr.success(res.message);
         this.router.navigate(['/api/dashboard']);

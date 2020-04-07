@@ -63,7 +63,7 @@ export default class HealthCheck {
         console.log(reachable);
         if (!reachable) {
           payloadHistory.status = Status.DOWN;
-          await addHistory(payloadHistory, this.project);
+          await addHistory(payloadHistory, this.project, this.project.url);
           await updateProjectById(this.project.id, { status: 'down' });
 
           if (socketClient) {
@@ -74,15 +74,15 @@ export default class HealthCheck {
           }
 
           this.sendEmail(this.project.receiver, this.project.emailTemplate);
-          this.stop();
+          // this.stop();
 
-          setTimeout(() => {
-            this.start();
-          }, 1000 * 60 * 10);
+          // setTimeout(() => {
+          //   this.start();
+          // }, 1000 * 60 * 10);
         } else {
           payloadHistory.status = Status.UP;
           payloadHistory.uptime = 1;
-          await addHistory(payloadHistory, this.project);
+          await addHistory(payloadHistory, this.project, this.project.url);
           await updateProjectById(this.project.id, { status: 'up' });
           if (socketClient) {
             socketClient.emit(`projectsUpdate-${this.project.user.id}`, {

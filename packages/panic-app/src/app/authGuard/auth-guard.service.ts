@@ -24,8 +24,8 @@ export class AuthGuardService implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.isLoggedIn !== true) {
-      this.route.navigate(['/login']);
-      this.toastr.error('Please login to acces the dashboard');
+      this.route.navigate(['/auth/login']);
+      this.toastr.error('Please login to access the dashboard');
     }
     return true;
   }
