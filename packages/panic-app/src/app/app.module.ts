@@ -16,6 +16,7 @@ import { Config } from './core/config/config';
 import { CustomConfig } from './core/config/customConfig';
 import { MatMenuModule } from '@angular/material/menu';
 import { MenuComponent } from './shared/components/menu/menu/menu.component';
+import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { MenuComponent } from './shared/components/menu/menu/menu.component';
     FooterComponent,
     NavbarComponent,
     MenuComponent,
+    AdminLayoutComponent,
   ],
   imports: [
     BrowserModule,

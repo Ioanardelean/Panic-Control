@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
-
-import { AuthGuardService } from './authGuard/auth-guard.service';
+import { AuthGuardService } from './authGuard/guard/auth-guard.service';
+import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { RoleGuardService } from './authGuard/roleGuard/role-guard.service';
 
 const routes: Routes = [
   {
@@ -19,14 +20,24 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
+          import('./pages/dashboard/dashboard.module').then((m) => m.DashboardModule),
       },
     ],
   },
   {
     path: 'auth',
     component: AuthLayoutComponent,
-    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
+    loadChildren: () => import('./pages/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'admin',
+    component: AdminLayoutComponent,
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: 'admin',
+    },
+    loadChildren: () =>
+      import('./pages/manage-panic/manage.module').then((m) => m.ManageModule),
   },
   {
     path: '',

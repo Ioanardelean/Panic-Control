@@ -2,7 +2,9 @@ import validUrl from 'valid-url';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import {
   addItem,
+  deleteProject,
   deleteProjectById,
+  getAll,
   getProjectById,
   getProjectOnStatusActive,
   getProjectOnStatusDown,
@@ -10,7 +12,7 @@ import {
   getProjects,
   updateProjectById,
 } from '../../helpers/ProjectServices/ProjectServices';
-import { jwtAuth, userMdw } from '../../helpers/UserService/UserService';
+import { adminMdw, jwtAuth, userMdw } from '../../helpers/UserService/UserService';
 import CheckHealth from '../../modules/health/MainCheckHealth';
 import { regex } from '../../modules/utils/email.validator';
 
@@ -32,8 +34,23 @@ export default class ProjectsController {
       };
     }
   }
+  @route('/admin', HttpMethod.GET, jwtAuth, adminMdw)
+  async admin(ctx: any) {
+    try {
+      const project: any[] = await getAll();
+      ctx.status = 200;
+      ctx.body = {
+        data: project,
+      };
+    } catch (error) {
+      ctx.status = 500;
+      ctx.body = {
+        message: error.message,
+      };
+    }
+  }
 
-  @route('/count', HttpMethod.GET, jwtAuth)
+  @route('/count', HttpMethod.GET, jwtAuth, userMdw)
   async getCountProject(ctx: any) {
     try {
       const userId = ctx.state.user.id;
@@ -54,7 +71,7 @@ export default class ProjectsController {
     }
   }
 
-  @route('/', HttpMethod.POST, jwtAuth)
+  @route('/', HttpMethod.POST, jwtAuth, userMdw)
   async create(ctx: any) {
     const payload = ctx.request.body;
     const userId = ctx.state.user.id;
@@ -100,7 +117,7 @@ export default class ProjectsController {
       };
     }
   }
-  @route('/:id/', HttpMethod.GET, jwtAuth)
+  @route('/:id/', HttpMethod.GET, jwtAuth, userMdw)
   async getProject(ctx: any) {
     try {
       const userId = ctx.state.user.id;
@@ -120,7 +137,7 @@ export default class ProjectsController {
     }
   }
 
-  @route('/:id/update', HttpMethod.PUT, jwtAuth)
+  @route('/:id/update', HttpMethod.PUT, jwtAuth, userMdw)
   async update(ctx: any) {
     const id = ctx.params.id;
     const payload = ctx.request.body;
@@ -164,17 +181,26 @@ export default class ProjectsController {
     }
   }
 
-  @route('/:id/delete', HttpMethod.DELETE, jwtAuth)
+  @route('/:id/delete', HttpMethod.DELETE, jwtAuth, adminMdw)
   async delete(ctx: any) {
     try {
       const userId = ctx.state.user.id;
       const id = ctx.params.id;
-      const removed = await deleteProjectById(id, userId);
-      ctx.status = 200;
-      ctx.body = {
-        data: removed,
-        message: 'Monitor has been deleted',
-      };
+      if (ctx.state.user.role === 'user') {
+        const removed = await deleteProjectById(id, userId);
+        ctx.status = 200;
+        ctx.body = {
+          data: removed,
+          message: 'Monitor has been deleted',
+        };
+      } else if (ctx.state.user.role === 'admin') {
+        const remove = await deleteProject(id);
+        ctx.status = 200;
+        ctx.body = {
+          data: remove,
+          message: 'Monitor has been deleted',
+        };
+      }
     } catch (error) {
       ctx.status = 403;
       console.log(error);

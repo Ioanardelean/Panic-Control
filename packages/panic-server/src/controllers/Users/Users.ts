@@ -1,12 +1,23 @@
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import {
+  adminMdw,
   deleteById,
+  getAllUsers,
   jwtAuth,
   updateUserById,
 } from '../../helpers/UserService/UserService';
 
 @Controller('/users')
 export default class UsersController {
+  @route('/', HttpMethod.GET, jwtAuth, adminMdw)
+  async users(ctx: any) {
+    ctx.status = 200;
+    const users = await getAllUsers();
+    ctx.body = {
+      data: users,
+      message: 'all users',
+    };
+  }
   @route('/profile', HttpMethod.GET, jwtAuth)
   async test(ctx: any) {
     ctx.status = 200;
@@ -39,7 +50,7 @@ export default class UsersController {
       await deleteById(id);
       ctx.status = 204;
       ctx.body = {
-        message: 'user hes been deleted',
+        message: 'User hes been deleted',
       };
     } catch (error) {
       ctx.body = {

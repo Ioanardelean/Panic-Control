@@ -13,7 +13,7 @@ export async function getProjects(userId: User) {
 }
 export async function getAll() {
   initialize();
-  return repository.find({ relations: ['user'] });
+  return repository.find({ relations: ['user', 'histories'] });
 }
 
 export async function addItem(project: Project, userId: User) {
@@ -58,10 +58,17 @@ export async function updateProjectById(id: string, payload: any) {
   return repository.save(projectToUpdate);
 }
 
-export async function deleteProjectById(id: string, userId: any) {
+export async function deleteProjectById(id: string, userId?: any) {
   const projectToRemove = await repository.findOne({
     where: { id, user: userId },
     relations: ['user', 'histories'],
+  });
+  return repository.remove(projectToRemove);
+}
+export async function deleteProject(id: string) {
+  const projectToRemove = await repository.findOne({
+    where: { id },
+    relations: ['histories'],
   });
   return repository.remove(projectToRemove);
 }

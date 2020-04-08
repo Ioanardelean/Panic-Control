@@ -12,6 +12,11 @@ export async function userMdw(ctx: any, next: any) {
     await next();
   }
 }
+export async function adminMdw(ctx: any, next: any) {
+  if (ctx.isAuthenticated() && ctx.state.user.role === 'admin') {
+    await next();
+  }
+}
 export async function getAllUsers() {
   initialize();
   return repository.find();
