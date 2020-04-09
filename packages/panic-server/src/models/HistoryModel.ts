@@ -7,15 +7,12 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Project } from './ProjectModel';
+import { Status } from './Status';
 
-export enum Status {
-  DOWN = 'down',
-  UP = 'up',
-}
 @Entity()
 export class History {
-  @PrimaryGeneratedColumn()
-  id: string;
+  @PrimaryGeneratedColumn({ type: 'bigint' })
+  id: number;
 
   @Column({ type: 'enum', enum: Status, default: Status.DOWN })
   status: Status;
@@ -26,14 +23,14 @@ export class History {
   @Column({ default: 0 })
   uptime: number;
 
-  @Column()
+  @Column({ nullable: false })
   @CreateDateColumn()
   startedAt: Date;
 
   @ManyToOne(
     () => Project,
     (project: Project) => project.histories,
-    { onDelete: 'CASCADE', onUpdate: 'CASCADE' }
+    { onDelete: 'CASCADE', onUpdate: 'CASCADE', nullable: false }
   )
   @JoinColumn({ name: 'project_id' })
   project: Project;

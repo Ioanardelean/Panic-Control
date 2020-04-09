@@ -2,7 +2,6 @@ import validUrl from 'valid-url';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import {
   addItem,
-  deleteProject,
   deleteProjectById,
   getAll,
   getProjectById,
@@ -181,26 +180,17 @@ export default class ProjectsController {
     }
   }
 
-  @route('/:id/delete', HttpMethod.DELETE, jwtAuth, adminMdw)
+  @route('/:id/delete', HttpMethod.DELETE, jwtAuth, userMdw)
   async delete(ctx: any) {
     try {
       const userId = ctx.state.user.id;
       const id = ctx.params.id;
-      if (ctx.state.user.role === 'user') {
-        const removed = await deleteProjectById(id, userId);
-        ctx.status = 200;
-        ctx.body = {
-          data: removed,
-          message: 'Monitor has been deleted',
-        };
-      } else if (ctx.state.user.role === 'admin') {
-        const remove = await deleteProject(id);
-        ctx.status = 200;
-        ctx.body = {
-          data: remove,
-          message: 'Monitor has been deleted',
-        };
-      }
+      const removed = await deleteProjectById(id, userId);
+      ctx.status = 200;
+      ctx.body = {
+        data: removed,
+        message: 'Monitor has been deleted',
+      };
     } catch (error) {
       ctx.status = 403;
       console.log(error);

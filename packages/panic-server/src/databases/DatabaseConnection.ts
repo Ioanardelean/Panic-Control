@@ -1,27 +1,15 @@
 import config from 'config';
 import { Observable, Subscriber } from 'rxjs';
-import { ConnectionOptions, createConnection } from 'typeorm';
-require('dotenv').config();
+import { createConnection } from 'typeorm';
+import { connectionOpts } from './OrmConfig';
+
 export default class DbConnect {
-  static connectionOpts: ConnectionOptions = {
-    name: 'default',
-    type: 'postgres',
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
-    username: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    entities: [`src/models/*.ts`],
-    synchronize: true,
-    logging: false,
-    ssl: false,
-  };
   static config: any = config.get('postgres');
 
   static connectDB(): Observable<any> {
     return Observable.create(async (observer: Subscriber<any>) => {
       try {
-        const connection = await createConnection(this.connectionOpts);
+        const connection = await createConnection(connectionOpts);
         console.log('connection to database ok');
         observer.next(connection);
       } catch (error) {

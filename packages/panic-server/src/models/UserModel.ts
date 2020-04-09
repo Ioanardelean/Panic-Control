@@ -1,4 +1,3 @@
-import { IsEmail, IsNotEmpty } from 'class-validator';
 import {
   Column,
   CreateDateColumn,
@@ -15,31 +14,26 @@ export enum UserRole {
 }
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: string;
+  @PrimaryGeneratedColumn({ type: 'bigint' })
+  id: number;
 
   @Column({ nullable: false, unique: true, length: 255 })
-  @IsNotEmpty()
   username: string;
 
   @Column({ nullable: false, unique: true, length: 255 })
-  @IsEmail()
-  @IsNotEmpty()
   email: string;
 
   @Column({ nullable: false, length: 100 })
-  @IsNotEmpty()
   password: string;
 
-  @Column({ type: 'enum', enum: UserRole, default: UserRole.USER })
-  @IsNotEmpty()
+  @Column({ nullable: false, type: 'enum', enum: UserRole, default: UserRole.USER })
   role: UserRole;
 
-  @Column()
+  @Column({ nullable: false })
   @CreateDateColumn()
   createdAt: Date;
 
-  @Column()
+  @Column({ nullable: false })
   @UpdateDateColumn()
   updateAt: Date;
 

@@ -23,7 +23,7 @@ export async function addItem(project: Project, userId: User) {
   return proj.id;
 }
 
-export async function getProjectById(id: string, userId: any) {
+export async function getProjectById(id: number, userId: any) {
   return repository.findOne({
     where: { id, user: userId },
     relations: ['user', 'histories'],
@@ -52,20 +52,20 @@ export async function getProjectOnStatusDown(userId: User) {
   });
 }
 
-export async function updateProjectById(id: string, payload: any) {
+export async function updateProjectById(id: number, payload: any) {
   const project = await repository.findOne({ where: { id } });
   const projectToUpdate = repository.merge(project, payload);
   return repository.save(projectToUpdate);
 }
 
-export async function deleteProjectById(id: string, userId?: any) {
+export async function deleteProjectById(id: number, userId: any) {
   const projectToRemove = await repository.findOne({
     where: { id, user: userId },
     relations: ['user', 'histories'],
   });
   return repository.remove(projectToRemove);
 }
-export async function deleteProject(id: string) {
+export async function deleteProject(id: number) {
   const projectToRemove = await repository.findOne({
     where: { id },
     relations: ['histories'],

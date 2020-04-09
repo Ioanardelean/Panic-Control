@@ -38,13 +38,13 @@ export async function getUserByName(username: string) {
   return repository.findOne({ where: { username } });
 }
 
-export async function updateUserById(id: string, payload: any) {
+export async function updateUserById(id: number, payload: any) {
   const user = await repository.findOne({ where: { id } });
   const userToUpdate = repository.merge(user, payload);
   return repository.save(userToUpdate);
 }
 
-export async function deleteById(id: string) {
+export async function deleteById(id: number) {
   const userToDelete = await repository.findOne({ where: { id } });
   return repository.remove(userToDelete);
 }

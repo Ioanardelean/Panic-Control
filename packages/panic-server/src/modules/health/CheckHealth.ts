@@ -4,8 +4,9 @@ import { MailerTransport } from 'lib/mailer/mailerTransport';
 import { template } from 'lodash';
 import { addHistory } from '../../helpers/HistoryService/HistoryService';
 import { updateProjectById } from '../../helpers/ProjectServices/ProjectServices';
-import { History, Status } from '../../models/HistoryModel';
+import { History } from '../../models/HistoryModel';
 import { Project } from '../../models/ProjectModel';
+import { Status } from '../../models/Status';
 
 const cwd = process.cwd();
 const panicMailTpl = fs.readFileSync(

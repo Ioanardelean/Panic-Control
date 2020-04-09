@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from '../../models/user';
 import { ToastrService } from 'ngx-toastr';
+import decode from 'jwt-decode';
 import { Config } from '../../config/config';
 
 @Injectable({
@@ -61,6 +62,30 @@ export class AuthService {
 
   getUser(): Observable<any> {
     return this.httpClient.get(`${this.apiBaseUrl}/users/profile`);
+  }
+
+  getTokenExpirationDate(token: string): Date {
+    const decoded = decode(token);
+
+    if (decoded.exp === undefined) {
+      return null;
+    }
+
+    const date = new Date(0);
+    date.setUTCSeconds(decoded.exp);
+    return date;
+  }
+
+  isTokenExpired(token?: string): boolean {
+    if (!token) {
+      token = this.getAccessToken();
+      return true;
+    }
+    const date = this.getTokenExpirationDate(token);
+    if (date === undefined) {
+      return false;
+    }
+    return !(date.valueOf() > new Date().valueOf());
   }
 
   handleError(error: HttpErrorResponse) {

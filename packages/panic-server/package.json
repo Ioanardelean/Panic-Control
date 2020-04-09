@@ -92,7 +92,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage:watch": "jest --watch --coverage",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "typeorm:cli": "ts-node-dev ./node_modules/typeorm/cli -f ./src/databases/OrmConfig.ts"
   },
   "jest": {
     "transform": {

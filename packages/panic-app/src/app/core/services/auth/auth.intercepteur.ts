@@ -21,6 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const accessToken = this.authService.getAccessToken();
+
     request = request.clone({
       setHeaders: {
         'Content-Type': 'application/json',
@@ -30,7 +31,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((err) => {
-        if (err.status === 401) {
+        if (err.status === 401 && this.authService.isTokenExpired()) {
+          this.toastr.warning('Session Timed Out! Please Login');
           this.route.navigate(['/auth/login']);
         }
         const error = err.error.message || err.statusText;
