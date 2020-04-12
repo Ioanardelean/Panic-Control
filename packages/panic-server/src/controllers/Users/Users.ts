@@ -10,7 +10,7 @@ import {
 @Controller('/users')
 export default class UsersController {
   @route('/', HttpMethod.GET, jwtAuth, adminMdw)
-  async users(ctx: any) {
+  async getUsers(ctx: any) {
     ctx.status = 200;
     const users = await getAllUsers();
     ctx.body = {
@@ -19,7 +19,7 @@ export default class UsersController {
     };
   }
   @route('/profile', HttpMethod.GET, jwtAuth)
-  async test(ctx: any) {
+  async getUserProfile(ctx: any) {
     ctx.status = 200;
     ctx.body = {
       ...ctx.state.user,

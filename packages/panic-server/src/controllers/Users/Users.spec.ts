@@ -17,6 +17,8 @@ describe('test user api', () => {
     request: {
       body: {},
     },
+    status: 200,
+    body: {},
   };
 
   it('should update a user profile', async () => {
@@ -28,5 +30,16 @@ describe('test user api', () => {
     spyOn(userService, 'deleteById').and.returnValue({});
     await users.delete(ctx);
     expect(userService.deleteById).toHaveBeenCalled();
+  });
+
+  it('should get all user', async () => {
+    spyOn(userService, 'getAllUsers').and.returnValue({});
+    await users.getUsers(ctx);
+    expect(userService.getAllUsers).toHaveBeenCalled();
+  });
+
+  it('should get user profile', async () => {
+    await users.getUserProfile(ctx);
+    expect(ctx.status).toBe(200);
   });
 });

@@ -1,8 +1,9 @@
-import * as bcrypt from 'bcryptjs';
 import EmailValidator from 'email-validator';
 import * as userService from '../../helpers/UserService/UserService';
+
+import * as util from '../../helpers/UserService/HashPassword';
 import AuthController from './Auth';
-describe('should test the auth controller', () => {
+describe('should test the authentication controller', () => {
   let auth = new AuthController();
 
   const ctx: any = {
@@ -28,14 +29,6 @@ describe('should test the auth controller', () => {
     auth = new AuthController();
   });
 
-  it('should call hash password', async () => {
-    const password = '';
-    const saltRound = 1;
-    spyOn(bcrypt, 'hash').and.returnValue(true);
-    await auth.hashPassword(password, saltRound);
-    expect(bcrypt.hash).not.toHaveBeenCalled();
-  });
-
   it('should logout user', async () => {
     spyOn(ctx, 'isAuthenticated').and.returnValue(true);
     spyOn(ctx, 'logout').and.returnValue({});
@@ -44,20 +37,19 @@ describe('should test the auth controller', () => {
     expect(ctx.isAuthenticated).toHaveBeenCalled();
   });
 
-  it('should can register the user', async () => {
+  it('should register the new user', async () => {
+    const payload = {};
     const password = '';
-    const saltRound = 1;
     spyOn(EmailValidator, 'validate').and.returnValue(true);
     spyOn(userService, 'createUser').and.returnValue({});
-    spyOn(auth, 'hashPassword').and.returnValue({});
+    spyOn(util, 'hashPassword').and.returnValue({});
     await auth.registerUser(newUser);
-
+    expect(util.hashPassword).not.toHaveBeenCalled();
     expect(EmailValidator.validate).toBeTruthy();
-    expect(auth.hashPassword).not.toHaveBeenCalledWith(password, saltRound);
-    expect(userService.createUser).not.toHaveBeenCalled();
+    expect(userService.createUser).not.toHaveBeenCalledWith(payload, password);
   });
 
-  it('should fail when register user with wrong credentials', async () => {
+  it('should fail when registering the new user with wrong credentials', async () => {
     const wrongUser = {
       body: { error: 'Email or password is invalid' },
       request: {
@@ -75,7 +67,7 @@ describe('should test the auth controller', () => {
   });
 
   it('should be a successful login', async () => {
-    const ctx: any = {
+    const loginCtx: any = {
       request: {
         body: {
           username: 'test',
@@ -86,24 +78,21 @@ describe('should test the auth controller', () => {
       state: { user: { id: 23 } },
       status: 200,
     };
-    spyOn(userService, 'updateToken').and.returnValue({});
-    spyOn(ctx, 'login').and.returnValue({});
-    await auth.loginUser(ctx);
-    expect(userService.updateToken).toHaveBeenCalled();
-    expect(ctx.login).toHaveBeenCalled();
+
+    spyOn(loginCtx, 'login').and.returnValue({});
+    await auth.loginUser(loginCtx);
+    expect(loginCtx.login).toHaveBeenCalledWith(loginCtx.state.user);
   });
 
   it('should login fail', async () => {
-    const ctx = {
+    const failCtx = {
       status: 401,
       body: {
-        error: 'fail fail fail',
+        error: `Bad username or passwords don't match`,
       },
     };
-    spyOn(auth, 'loginFail').and.returnValue({});
-    await auth.loginFail(ctx);
-    expect(auth.loginFail).toBeCalled();
-    expect(ctx.status).toBe(401);
-    expect(ctx.body.error).toBe('fail fail fail');
+    await auth.loginFail(failCtx);
+    expect(failCtx.status).toBe(401);
+    expect(failCtx.body.error).toBe(`Bad username or passwords don't match`);
   });
 });

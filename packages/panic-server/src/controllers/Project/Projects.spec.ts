@@ -62,7 +62,7 @@ describe('should get a CRUD project ', () => {
     spyOn(ValidUrl, 'isUri').and.returnValue(true);
     spyOn(projectService, 'updateProjectById').and.returnValue(Promise.resolve({}));
     await project.update(ctx);
-    expect(ValidUrl.isUri).not.toHaveBeenCalled();
+    expect(ValidUrl.isUri).toHaveBeenCalled();
     expect(projectService.updateProjectById).toHaveBeenCalled();
   });
 
@@ -81,5 +81,22 @@ describe('should get a CRUD project ', () => {
     spyOn(CheckHealth, 'stopTestByProjectId');
     await project.stop(ctx);
     expect(CheckHealth.stopTestByProjectId).not.toHaveBeenCalledWith(ctx.params.id);
+  });
+
+  it('should count project on their status', async () => {
+    const userId = 23;
+    spyOn(projectService, 'getProjectOnStatusActive').and.returnValue({});
+    spyOn(projectService, 'getProjectOnStatusDown').and.returnValue({});
+    spyOn(projectService, 'getProjectOnStatusStopped').and.returnValue({});
+    await project.getCountProject(ctx);
+    expect(projectService.getProjectOnStatusActive).toHaveBeenCalledWith(userId);
+    expect(projectService.getProjectOnStatusDown).toHaveBeenCalledWith(userId);
+    expect(projectService.getProjectOnStatusStopped).toHaveBeenCalledWith(userId);
+  });
+
+  it('should get all project the admin user ', async () => {
+    spyOn(projectService, 'getAll').and.returnValue({});
+    await project.admin(ctx);
+    expect(projectService.getAll).toHaveBeenCalled();
   });
 });
