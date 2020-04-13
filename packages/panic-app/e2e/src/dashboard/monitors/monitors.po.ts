@@ -2,7 +2,7 @@ import { browser, element, by } from 'protractor';
 
 export class MonitorsPage {
   navigateTo(): Promise<unknown> {
-    return browser.get('/api/dashboard') as Promise<unknown>;
+    return browser.get('/dashboard') as Promise<unknown>;
   }
 
   creationMonitorButton() {

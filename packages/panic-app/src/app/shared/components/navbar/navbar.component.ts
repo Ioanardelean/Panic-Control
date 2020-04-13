@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { User } from 'src/app/core/models/user';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,6 +11,8 @@ export class NavbarComponent implements OnInit {
   public isMenuCollapsed = true;
   username: string;
   emailAddress: string;
+
+  admin: string;
 
   constructor(public router: Router, public authService: AuthService) {}
 
@@ -22,9 +25,10 @@ export class NavbarComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.authService.getUser().subscribe((user: any) => {
+    this.authService.getUser().subscribe((user: User) => {
       this.username = user.username;
       this.emailAddress = user.email;
+      this.admin = user.role;
     });
   }
 }

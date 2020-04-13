@@ -35,7 +35,6 @@ export class ManagePanicComponent implements OnInit {
   }
   getAll() {
     return this.adminService.getAdminInterface().subscribe((res: any) => {
-      console.log(res);
       this.dataSource.data = res.data as Project[];
       this.dataSource.paginator = this.paginator;
     });
@@ -68,7 +67,7 @@ export class ManagePanicComponent implements OnInit {
     });
   }
   deleteProject(id: any) {
-    this.monitorService.deleteProject(id).subscribe((res) => {
+    this.adminService.deleteProject(id).subscribe((res) => {
       this.getAll();
       this.toastr.success(res.message);
     });

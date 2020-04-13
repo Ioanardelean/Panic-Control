@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm ">
+<nav class="navbar navbar-expand-sm">
   <a class="navbar-brand" [routerLink]="['/']">
     Panic control
   </a>
@@ -17,8 +17,16 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" (click)="isMenuCollapsed = true" id="username">
-          Hello, {{ emailAddress }}</a
+          Hello, {{ username }}</a
         >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/dashboard'" *ngIf="admin === 'admin'"
+          >Dashboard</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/admin'" *ngIf="admin === 'admin'">Admin</a>
       </li>
       <li class="nav-item">
         <a

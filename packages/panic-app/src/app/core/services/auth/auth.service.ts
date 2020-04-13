@@ -36,8 +36,12 @@ export class AuthService {
         if (user) {
           localStorage.setItem('access_token', data.token);
           if (data.token !== undefined) {
-            this.router.navigate(['api/dashboard']);
+            this.router.navigate(['/dashboard']);
             this.toastr.success(data.message);
+            const tokenPayload = decode(data.token);
+            if (tokenPayload.role === 'admin') {
+              this.router.navigate(['/admin']);
+            }
           } else {
             this.toastr.error(data.error);
           }
@@ -55,7 +59,8 @@ export class AuthService {
   }
 
   logout() {
-    if (localStorage.removeItem('access_token') == null) {
+    const removeToken = localStorage.removeItem('access_token');
+    if (removeToken == null) {
       this.router.navigate(['auth/landing']);
     }
   }

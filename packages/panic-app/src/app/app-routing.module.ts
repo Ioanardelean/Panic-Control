@@ -13,7 +13,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'api',
+    path: 'dashboard',
     component: ContentLayoutComponent,
     canActivate: [AuthGuardService],
     children: [

@@ -11,13 +11,13 @@ import {
   getProjects,
   updateProjectById,
 } from '../../helpers/ProjectServices/ProjectServices';
-import { adminMdw, jwtAuth, userMdw } from '../../helpers/UserService/UserService';
+import { adminMdw, jwtAuth } from '../../helpers/UserService/UserService';
 import CheckHealth from '../../modules/health/MainCheckHealth';
 import { regex } from '../../modules/utils/email.validator';
 
 @Controller('/projects')
 export default class ProjectsController {
-  @route('/', HttpMethod.GET, jwtAuth, userMdw)
+  @route('/', HttpMethod.GET, jwtAuth)
   async getAllProjects(ctx: any) {
     try {
       const userId = ctx.state.user.id;
@@ -33,23 +33,8 @@ export default class ProjectsController {
       };
     }
   }
-  @route('/admin', HttpMethod.GET, jwtAuth, adminMdw)
-  async admin(ctx: any) {
-    try {
-      const project: any[] = await getAll();
-      ctx.status = 200;
-      ctx.body = {
-        data: project,
-      };
-    } catch (error) {
-      ctx.status = 500;
-      ctx.body = {
-        message: error.message,
-      };
-    }
-  }
 
-  @route('/count', HttpMethod.GET, jwtAuth, userMdw)
+  @route('/count', HttpMethod.GET, jwtAuth)
   async getCountProject(ctx: any) {
     try {
       const userId = ctx.state.user.id;
@@ -70,7 +55,7 @@ export default class ProjectsController {
     }
   }
 
-  @route('/', HttpMethod.POST, jwtAuth, userMdw)
+  @route('/', HttpMethod.POST, jwtAuth)
   async create(ctx: any) {
     const payload = ctx.request.body;
     const userId = ctx.state.user.id;
@@ -116,7 +101,7 @@ export default class ProjectsController {
       };
     }
   }
-  @route('/:id/', HttpMethod.GET, jwtAuth, userMdw)
+  @route('/:id/', HttpMethod.GET, jwtAuth)
   async getProject(ctx: any) {
     try {
       const userId = ctx.state.user.id;
@@ -136,7 +121,7 @@ export default class ProjectsController {
     }
   }
 
-  @route('/:id/update', HttpMethod.PUT, jwtAuth, userMdw)
+  @route('/:id/update', HttpMethod.PUT, jwtAuth)
   async update(ctx: any) {
     const id = ctx.params.id;
     const payload = ctx.request.body;
@@ -180,7 +165,7 @@ export default class ProjectsController {
     }
   }
 
-  @route('/:id/delete', HttpMethod.DELETE, jwtAuth, userMdw)
+  @route('/:id/delete', HttpMethod.DELETE, jwtAuth)
   async delete(ctx: any) {
     try {
       const userId = ctx.state.user.id;

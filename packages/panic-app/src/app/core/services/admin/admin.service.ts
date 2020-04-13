@@ -25,7 +25,12 @@ export class AdminService {
   }
   getAdminInterface(): Observable<any> {
     return this.httpClient
-      .get<any>(`${this.apiBaseUrl}/projects/admin`)
+      .get<any>(`${this.apiBaseUrl}/admin/projects`)
+      .pipe(catchError(this.handleError));
+  }
+  deleteProject(id: string): Observable<any> {
+    return this.httpClient
+      .delete(`${this.apiBaseUrl}/admin/projects/${id}/delete`)
       .pipe(catchError(this.handleError));
   }
   getUsers(): Observable<any> {

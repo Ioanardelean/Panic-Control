@@ -13,11 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(
-    private authService: AuthService,
-    public route: Router,
-    private toastr: ToastrService
-  ) {}
+  constructor(private authService: AuthService, public route: Router) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const accessToken = this.authService.getAccessToken();
@@ -31,9 +27,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(request).pipe(
       catchError((err) => {
-        if (err.status === 401 && this.authService.isTokenExpired()) {
-          this.toastr.warning('Session Timed Out! Please Login');
+        if (err.status === 401) {
           this.route.navigate(['/auth/login']);
+        }
+        if (err.status === 403) {
+          this.route.navigate(['/dashboard']);
         }
         const error = err.error.message || err.statusText;
         return throwError(error);

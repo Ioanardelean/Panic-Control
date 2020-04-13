@@ -8,22 +8,22 @@ import { DowntimeComponent } from './downtime/downtime.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'api/dashboard',
+    redirectTo: '/dashboard',
     pathMatch: 'full',
   },
   {
     path: '',
     children: [
       {
-        path: 'dashboard',
+        path: '',
         component: MonitorsComponent,
       },
       {
-        path: 'monitors',
+        path: 'monitor',
         component: MonitorComponent,
       },
       {
-        path: 'monitors/:id',
+        path: 'monitor/:id',
         component: MonitorEditComponent,
       },
       {

@@ -11,7 +11,7 @@ export class MonitorPage {
   };
 
   navigateTo(): Promise<unknown> {
-    return browser.get('/api/monitors') as Promise<unknown>;
+    return browser.get('/dashboard/monitor') as Promise<unknown>;
   }
 
   getTitleText(): Promise<string> {

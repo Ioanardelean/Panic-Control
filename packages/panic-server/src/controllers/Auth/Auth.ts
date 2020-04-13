@@ -24,14 +24,14 @@ export default class AuthController {
           message: 'You have been registered',
         };
       } else {
-        ctx.status = 400;
         ctx.body = {
+          status: 400,
           error: `Email or password is invalid`,
         };
       }
     } catch (error) {
-      ctx.status = 500;
       ctx.body = {
+        status: 500,
         error: error.detail,
       };
     }
@@ -57,8 +57,8 @@ export default class AuthController {
   }
   @route('/loginFail', HttpMethod.GET)
   async loginFail(ctx: any) {
-    ctx.status = 401;
     ctx.body = {
+      status: 401,
       error: `Bad username or passwords don't match`,
     };
   }
@@ -69,8 +69,8 @@ export default class AuthController {
       ctx.status = 200;
       ctx.logout();
     } else {
-      ctx.status = 500;
       ctx.body = {
+        status: 500,
         message: 'Something go wrong',
       };
     }

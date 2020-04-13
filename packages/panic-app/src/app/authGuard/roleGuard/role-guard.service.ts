@@ -21,12 +21,12 @@ export class RoleGuardService implements CanActivate {
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     const expectedRole = route.data.expectedRole;
     const token = localStorage.getItem('access_token');
-    // decode the token to get its payload
     const tokenPayload = decode(token);
     if (!this.auth.isLoggedIn || tokenPayload.role !== expectedRole) {
-      this.router.navigate(['api/dashboard']);
+      this.router.navigate(['/dashboard/']);
       return false;
     }
+
     return true;
   }
 }

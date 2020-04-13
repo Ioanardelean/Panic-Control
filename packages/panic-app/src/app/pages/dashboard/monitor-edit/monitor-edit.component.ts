@@ -101,7 +101,7 @@ export class MonitorEditComponent implements OnInit {
     this.monitorService.updateProject(this.updateForm.value, this.id).subscribe((res) => {
       if (res.message) {
         this.toastr.success(res.message);
-        this.router.navigate(['/api/dashboard']);
+        this.router.navigate(['/dashboard']);
       } else if (res.error) {
         this.toastr.error(res.error);
       }

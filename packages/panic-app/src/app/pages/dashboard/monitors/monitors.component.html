@@ -49,7 +49,7 @@
             i18n
             id="creation-button"
             mat-raised-button
-            [routerLink]="['/api/monitors']"
+            [routerLink]="['/dashboard/monitor']"
           >
             <i class="material-icons">add</i>
             Create Monitor
@@ -105,11 +105,15 @@
                     id="edit"
                     i18n
                     mat-menu-item
-                    [routerLink]="['/api/monitors/', element.id]"
+                    [routerLink]="['/dashboard/monitor/', element.id]"
                   >
                     Edit
                   </a>
-                  <a mat-menu-item i18n [routerLink]="['/api/downtime/', element.id]">
+                  <a
+                    mat-menu-item
+                    i18n
+                    [routerLink]="['/dashboard/downtime/', element.id]"
+                  >
                     Show stats
                   </a>
                   <a

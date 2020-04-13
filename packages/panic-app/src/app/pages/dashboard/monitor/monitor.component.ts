@@ -94,11 +94,11 @@ export class MonitorComponent implements OnInit {
   }
 
   createProject() {
-    this.monitorService.addProject(this.createForm.value).subscribe(res => {
+    this.monitorService.addProject(this.createForm.value).subscribe((res) => {
       if (res.data) {
         this.createForm.reset();
         this.toastr.success(res.message);
-        this.router.navigate(['/api/dashboard']);
+        this.router.navigate(['/dashboard']);
       } else {
         this.toastr.error(res.error);
       }
