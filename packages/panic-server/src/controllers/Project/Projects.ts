@@ -3,7 +3,6 @@ import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import {
   addItem,
   deleteProjectById,
-  getAll,
   getProjectById,
   getProjectOnStatusActive,
   getProjectOnStatusDown,
@@ -11,7 +10,7 @@ import {
   getProjects,
   updateProjectById,
 } from '../../helpers/ProjectServices/ProjectServices';
-import { adminMdw, jwtAuth } from '../../helpers/UserService/UserService';
+import { jwtAuth } from '../../helpers/UserService/UserService';
 import CheckHealth from '../../modules/health/MainCheckHealth';
 import { regex } from '../../modules/utils/email.validator';
 
@@ -27,8 +26,8 @@ export default class ProjectsController {
         data: project,
       };
     } catch (error) {
-      ctx.status = 500;
       ctx.body = {
+        status: 500,
         message: error.message,
       };
     }
@@ -48,8 +47,8 @@ export default class ProjectsController {
         down: numberOfDown,
       };
     } catch (error) {
-      ctx.status = 500;
       ctx.body = {
+        status: 500,
         message: error.message,
       };
     }
@@ -89,14 +88,14 @@ export default class ProjectsController {
           message: `${name} has been created`,
         };
       } else {
-        ctx.status = 400;
         ctx.body = {
+          status: 400,
           error: `Url or email is wrong`,
         };
       }
     } catch (error) {
-      ctx.status = 500;
       ctx.body = {
+        status: 500,
         error: error.detail,
       };
     }
@@ -114,8 +113,8 @@ export default class ProjectsController {
         data: project,
       };
     } catch (error) {
-      ctx.status = 403;
       ctx.body = {
+        status: 403,
         error: error.detail,
       };
     }
@@ -152,14 +151,14 @@ export default class ProjectsController {
         };
         CheckHealth.startHealthCheck();
       } else {
-        ctx.status = 204;
         ctx.body = {
+          status: 400,
           error: `The email is wrong`,
         };
       }
     } catch (error) {
-      ctx.status = 500;
       ctx.body = {
+        status: 500,
         error: error.detail,
       };
     }
@@ -177,9 +176,9 @@ export default class ProjectsController {
         message: 'Monitor has been deleted',
       };
     } catch (error) {
-      ctx.status = 403;
       console.log(error);
       ctx.body = {
+        status: 403,
         error,
       };
     }
