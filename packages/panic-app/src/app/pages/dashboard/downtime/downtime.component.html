@@ -34,18 +34,16 @@
       <mat-card>
         <mat-card-title>
           <h4 i18n>Downtime Events</h4>
-
-          <a [routerLink]="'.'" style="float: right;" (click)="exportCsv()"
-            >export logs</a
-          >
         </mat-card-title>
-        <div class="row">
-          <p style="margin: 10px;">
-            Report of downtime events since the creation of the monitor
-            {{ monitorName }}
-          </p>
-        </div>
+
         <mat-card-content>
+          <div class="row">
+            <div class="col-md-12">
+              Report of downtime events since the creation of the monitor
+              {{ monitorName }}
+              <a id="csv" [routerLink]="'.'" (click)="exportCsv()">Export Logs</a>
+            </div>
+          </div>
           <div class="example-container mat-evaluation-z2">
             <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z2">
               <ng-container matColumnDef="status">

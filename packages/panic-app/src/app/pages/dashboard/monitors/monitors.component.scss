@@ -57,9 +57,6 @@ table {
   background: #7f8fa6;
   height: 40px;
 }
-.mat-row {
-  // background: #f5f6fa;
-}
 .label {
   font-size: 20px;
 }
@@ -77,12 +74,8 @@ mat-icon {
   vertical-align: middle;
 }
 mat-card {
-  //background-color: #f5f6fa;
   margin: 20px 20px 0px 0px;
-
   width: 100%;
-  mat-card-title {
-  }
 }
 
 .example-container {
@@ -168,8 +161,6 @@ mat-card {
   .latest-title {
     color: #4dd8ab;
   }
-  // box-shadow: 5px 5px #27496d;
-  /// #4dd8ab
 }
 #csv {
   float: right;

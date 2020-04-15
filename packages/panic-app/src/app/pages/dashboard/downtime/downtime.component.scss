@@ -19,16 +19,20 @@ table {
   table-layout: fixed;
   overflow-x: scroll;
   width: 100%;
-
+  th {
+    color: black;
+  }
   tr {
     td {
       text-overflow: ellipsis;
       overflow: hidden;
+      color: black;
     }
   }
 }
 .example-container {
   overflow: auto;
+  border-top: grey solid 1px;
 }
 #back-button {
   margin-left: 19px;
@@ -59,4 +63,8 @@ mat-card-title {
 }
 #chart {
   width: 100%;
+}
+#csv {
+  float: right;
+  padding-bottom: 10px;
 }
