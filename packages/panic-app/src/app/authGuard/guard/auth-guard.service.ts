@@ -22,10 +22,16 @@ export class AuthGuardService implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
+    const token = localStorage.getItem('access_token');
     if (this.authService.isLoggedIn !== true) {
       this.route.navigate(['/auth/login']);
       this.toastr.error('Please login to access the dashboard');
     }
+    if (this.authService.isTokenExpired(token)) {
+      this.authService.logout();
+      this.toastr.warning('Session Timed Out! Please Login');
+    }
+
     return true;
   }
 }

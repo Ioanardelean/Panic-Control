@@ -114,7 +114,7 @@
                     i18n
                     [routerLink]="['/dashboard/downtime/', element.id]"
                   >
-                    Show stats
+                    Stats
                   </a>
                   <a
                     id="start"
@@ -155,20 +155,51 @@
     <div class="row">
       <mat-card>
         <mat-card-title>
-          Latest events
-          <span>(down)</span>
-          <a [routerLink]="'.'" style="float: right;" (click)="exportCsv()"
-            >export logs</a
-          >
-          <div>
-            <p style="margin: 10px 0 10px 0;">
-              Here you can find the latest events of the month of all the monitors, for
-              individual statistics, go to the specific monitor's
-              <strong> choose action </strong>
-            </p>
-          </div>
+          <mat-icon class="material-icons">pie_chart</mat-icon>
+          Quick stats
         </mat-card-title>
         <mat-card-content i18n>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="latest-content">
+                <div class="latest-title">
+                  <h6>
+                    Stats Info
+                  </h6>
+                </div>
+                <p>
+                  Here you can find the latest events of the month of all the monitors,
+                  for individual statistics, go to the specific monitor's
+                  <strong> choose action </strong>
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="latest-content">
+                <div class="latest-title">
+                  <h6>
+                    Latest downtime
+                  </h6>
+                </div>
+                <p>
+                  It was recorded (for the monitor panic) on 2019-10-07 17:43:49 and the
+                  downtime lasted for 1 hrs, 10 mins.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              Latest Events For All Monitors (down)
+              <a
+                id="csv"
+                [routerLink]="'.'"
+                style="float: right; padding-bottom: 10px;"
+                (click)="exportCsv()"
+                >Export Logs</a
+              >
+            </div>
+          </div>
           <div class="example-container">
             <table id="downtime" mat-table matSort [dataSource]="dataSourceEvents">
               <ng-container matColumnDef="name">

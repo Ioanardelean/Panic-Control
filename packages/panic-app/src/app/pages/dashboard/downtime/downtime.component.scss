@@ -4,7 +4,6 @@ h2 {
   margin-top: 10px;
   margin-bottom: 10px;
   font-family: 'Open Sans Condensed', sans-serif;
-  text-transform: uppercase;
 }
 h4 {
   margin-top: 10px;
@@ -29,21 +28,35 @@ table {
   }
 }
 .example-container {
-  height: 500px;
   overflow: auto;
 }
 #back-button {
-  margin-left: 10px;
+  margin-left: 19px;
   background: lightgrey;
   margin-bottom: 20px;
 }
 #csv-button {
   float: right;
+  margin-right: 22px;
 }
 #banner {
   margin-bottom: 10px;
-  background-color: rgb(233, 233, 233);
 }
 #chart {
   margin: 20px;
+}
+mat-card-title {
+  font-weight: 400;
+  padding-top: 3px;
+  padding-bottom: 4px;
+  text-align: left;
+  color: #222;
+  font-size: 15px;
+  text-shadow: 0 1px 0 #fff;
+  span {
+    color: #868a98;
+  }
+}
+#chart {
+  width: 100%;
 }

@@ -14,20 +14,34 @@
 
   <!-- Step 2: Add the ngbCollapse directive to the element below. -->
   <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+    <ul class="navbar-nav" style="margin-left: 20px;">
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/dashboard'" routerLinkActive="active"
+          >Dashboard</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="'/another'" routerLinkActive="active"
+          >Profile</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="'/admin'"
+          routerLinkActive="active"
+          *ngIf="admin === 'admin'"
+          >Admin</a
+        >
+      </li>
+    </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" (click)="isMenuCollapsed = true" id="username">
           Hello, {{ username }}</a
         >
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="'/dashboard'" *ngIf="admin === 'admin'"
-          >Dashboard</a
-        >
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="'/admin'" *ngIf="admin === 'admin'">Admin</a>
-      </li>
+
       <li class="nav-item">
         <a
           [routerLink]="'.'"

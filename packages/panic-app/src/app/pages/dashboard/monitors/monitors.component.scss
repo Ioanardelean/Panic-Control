@@ -82,22 +82,13 @@ mat-card {
 
   width: 100%;
   mat-card-title {
-    font-weight: 400;
-    padding-top: 3px;
-    padding-bottom: 4px;
-    text-align: left;
-    color: #222;
-    font-size: 15px;
-    text-shadow: 0 1px 0 #fff;
-    span {
-      color: #868a98;
-    }
   }
 }
 
 .example-container {
   height: 400px;
   overflow: auto;
+  border-top: grey solid 1px;
 }
 
 #downtime {
@@ -105,7 +96,7 @@ mat-card {
   table-layout: fixed;
 }
 
-// example de circles
+//example de circles
 .container {
   display: flex;
   align-items: center;
@@ -166,4 +157,21 @@ mat-card {
     transform: scale(1.2);
     z-index: 1;
   }
+}
+.latest-content {
+  background-color: #27496d;
+  color: white;
+  max-height: 110px;
+  padding: 15px;
+  margin: 20px 0 50px 0;
+  border: #27496d solid 1px;
+  .latest-title {
+    color: #4dd8ab;
+  }
+  // box-shadow: 5px 5px #27496d;
+  /// #4dd8ab
+}
+#csv {
+  float: right;
+  padding-bottom: 10px;
 }

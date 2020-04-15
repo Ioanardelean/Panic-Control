@@ -13,11 +13,14 @@ import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService, public route: Router) {}
+  constructor(
+    private authService: AuthService,
+    public route: Router,
+    public toastr: ToastrService
+  ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const accessToken = this.authService.getAccessToken();
-
     request = request.clone({
       setHeaders: {
         'Content-Type': 'application/json',
