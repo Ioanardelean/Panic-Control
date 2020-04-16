@@ -13,7 +13,7 @@ export class SignupPage {
     password: 'Atest123',
   };
   navigateTo(): Promise<unknown> {
-    return browser.get('auth/singup') as Promise<unknown>;
+    return browser.get('auth/signup') as Promise<unknown>;
   }
 
   getTitleText(): Promise<string> {

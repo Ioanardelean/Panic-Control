@@ -52,7 +52,7 @@ describe('workspace simulation user experience', () => {
     expect(signupPage.getTitleText()).toEqual('Join us');
   });
 
-  it('when user trying to singup with wrong credentials he should stay on “signup” page and see error notification', () => {
+  it('when user trying to signup with wrong credentials he should stay on “signup” page and see error notification', () => {
     signupPage.navigateTo();
     signupPage.fillCredentials(wrongCredentiasR);
     expect(signupPage.getTitleText()).toEqual('Join us');
@@ -167,10 +167,7 @@ describe('workspace simulation user experience', () => {
   });
 
   afterEach(async () => {
-    const logs = await browser
-      .manage()
-      .logs()
-      .get(logging.Type.BROWSER);
+    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
     expect(logs).not.toContain(
       jasmine.objectContaining({
         level: logging.Level.SEVERE,

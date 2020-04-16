@@ -18,10 +18,12 @@
         <a href="" class="nav-link">Contact</a>
       </li>
       <li class="nav-item">
-        <a [routerLink]="['/dashboard']" class="nav-link">Dashboard</a>
+        <a [routerLink]="['/dashboard']" class="nav-link" *ngIf="currentUser"
+          >Dashboard</a
+        >
       </li>
       <li class="nav-item">
-        <button class="btn" [routerLink]="['/auth/singup']">
+        <button class="btn" [routerLink]="['/auth/signup']">
           Sign up
         </button>
       </li>

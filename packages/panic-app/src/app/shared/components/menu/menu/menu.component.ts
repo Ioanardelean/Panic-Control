@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { User } from 'src/app/core/models/user';
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   public isMenuCollapsed = true;
-  constructor() {}
 
-  ngOnInit(): void {}
+  currentUser: User;
+  constructor(public authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.getCurrentUser();
+  }
+
+  getCurrentUser() {
+    if (this.authService.isLoggedIn) {
+      this.authService.getUser().subscribe((user: User) => {
+        this.currentUser = user;
+      });
+    }
+  }
 }
