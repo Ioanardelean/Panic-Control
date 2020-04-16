@@ -15,7 +15,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { EditorModule } from '@progress/kendo-angular-editor';
 import { MatMenuModule } from '@angular/material/menu';
 import { SocketService } from 'src/app/core/services/socket/socket.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -23,6 +22,7 @@ import { ChartsModule } from 'ng2-charts';
 import { DowntimeComponent } from './downtime/downtime.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { JoditAngularModule } from 'jodit-angular';
 @NgModule({
   declarations: [
     MonitorComponent,
@@ -46,12 +46,12 @@ import { MatSortModule } from '@angular/material/sort';
     MatSelectModule,
     MatSliderModule,
     MatSlideToggleModule,
-    EditorModule,
     MatMenuModule,
     MatCheckboxModule,
     ChartsModule,
     MatPaginatorModule,
     MatSortModule,
+    JoditAngularModule,
   ],
   exports: [],
   providers: [SocketService],

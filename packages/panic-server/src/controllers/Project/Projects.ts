@@ -144,12 +144,12 @@ export default class ProjectsController {
 
       if (validEmail && validUrl.isUri(url)) {
         const updated = await updateProjectById(id, payload);
+        CheckHealth.startHealthCheck();
         ctx.status = 200;
         ctx.body = {
           data: updated,
           message: 'Monitor has been successfully updated',
         };
-        CheckHealth.startHealthCheck();
       } else {
         ctx.body = {
           status: 400,

@@ -39,15 +39,13 @@
               required
             />
           </div>
-          <small>
-            <span class="material-icons">
-              report_problem
-            </span>
+          <small i18n>
+            <img src="./assets/icons/report_problem.png" alt="report problem icon" />
             Your password must be at least 8 characters long, a mixture of numbers and
             letters and contain a mix of upper/lower case letters
           </small>
         </div>
-        <button type="submit" class="btn rounded-btn" id="signup" i18n>Register</button
+        <button type="submit" class="btn rounded-btn" id="signup" i18n>Sign up</button
         >&nbsp;
         <button class="btn rounded-btn" [routerLink]="['/auth/login']" i18n>
           Log in

@@ -17,6 +17,7 @@ import { CustomConfig } from './core/config/customConfig';
 import { MatMenuModule } from '@angular/material/menu';
 import { MenuComponent } from './shared/components/menu/menu/menu.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+
 @NgModule({
   declarations: [
     AppComponent,

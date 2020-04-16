@@ -9,19 +9,21 @@
           <div class="col-md-6">
             <h5 i18n title="Name must be unique, choose a friendly name">
               Information
-              <span class="material-icons">
-                description
-              </span>
             </h5>
             <mat-form-field class="example-chip-list">
               <mat-label i18n>Name</mat-label>
-              <input matInput placeholder="Ex. DoITnow" formControlName="name" required />
+              <input
+                matInput
+                placeholder="Ex. Panic Control"
+                formControlName="name"
+                required
+              />
             </mat-form-field>
             <mat-form-field class="example-chip-list">
               <mat-label i18n>Description</mat-label>
               <input
                 matInput
-                placeholder="Ex.my precios website"
+                placeholder="Ex.my precious website"
                 formControlName="description"
               />
             </mat-form-field>
@@ -29,9 +31,6 @@
           <div class="col-md-6">
             <h5 i18n title="Url must be valid and http(s) only">
               Website and Contact
-              <span class="material-icons">
-                important_devices
-              </span>
             </h5>
             <mat-form-field class="example-chip-list">
               <mat-label>URL</mat-label>
@@ -70,9 +69,6 @@
               title="Ping Timeout in seconds after which a request is considered failed and interval is the frequency of uptime tests "
             >
               Configuration
-              <span class="material-icons">
-                settings
-              </span>
             </h5>
             <mat-form-field class="example-chip-list">
               <mat-label i18n>Ping Timeout</mat-label>
@@ -102,11 +98,8 @@
           <div class="col-md-6" id="alerting">
             <h5 i18n title="Custom email template is a choice, check default template">
               Alert
-              <span class="material-icons">
-                mail_outline
-              </span>
             </h5>
-            <mat-label i18n>Customise email template </mat-label>
+            <mat-label i18n>Customize email template </mat-label>
             <button
               i18n
               class="mat-button"
@@ -127,11 +120,10 @@
             </mat-menu>
 
             <div *ngIf="isShowDivIf">
-              <kendo-editor
+              <jodit-editor
+                [config]="{ buttons: 'bold' }"
                 formControlName="emailTemplate"
-                [value]="value"
-                style="height: 300px;"
-              ></kendo-editor>
+              ></jodit-editor>
             </div>
 
             <div *ngIf="isShowNextDivIf">

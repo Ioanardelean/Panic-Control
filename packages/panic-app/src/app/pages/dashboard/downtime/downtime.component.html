@@ -1,7 +1,7 @@
 <div class="row" id="banner">
   <div class="col-md-4 offset-md-4">
     <h2 i18n>
-      <mat-icon> report_problem</mat-icon>
+      <img src="./assets/icons/report_problem.png" alt="report problem icon" />
       Downtime stats for {{ monitorName }}
     </h2>
   </div>
@@ -39,8 +39,10 @@
         <mat-card-content>
           <div class="row">
             <div class="col-md-12">
-              Report of downtime events since the creation of the monitor
-              {{ monitorName }}
+              <p class="report-stats" i18n>
+                Report of downtime events since the creation of the monitor
+                {{ monitorName }}
+              </p>
               <a id="csv" [routerLink]="'.'" (click)="exportCsv()">Export Logs</a>
             </div>
           </div>

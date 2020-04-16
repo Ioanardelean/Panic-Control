@@ -1,15 +1,15 @@
 <div class="row">
   <div class="col-md-6">
     <mat-card>
-      <mat-card-title>
+      <mat-card-title i18n>
         Currently you have:
       </mat-card-title>
-      <mat-card-content id="stats" i18n>
+      <mat-card-content id="stats">
         <div class="container">
           <div class="row">
             <div class="card card-circle">
               <div class="card-body">
-                <h5 class="card-title">Up monitors</h5>
+                <h5 class="card-title" i18n>Up monitors</h5>
                 <p class="card-text">
                   {{ active }}
                 </p>
@@ -18,7 +18,7 @@
 
             <div class="card card-circle">
               <div class="card-body">
-                <h5 class="card-title">Down monitors</h5>
+                <h5 class="card-title" i18n>Down monitors</h5>
                 <p class="card-text">
                   {{ down }}
                 </p>
@@ -27,7 +27,7 @@
 
             <div class="card card-circle">
               <div class="card-body">
-                <h5 class="card-title">Stopped monitors</h5>
+                <h5 class="card-title" i18n>Stopped monitors</h5>
                 <p class="card-text">
                   {{ stopped }}
                 </p>
@@ -51,7 +51,7 @@
             mat-raised-button
             [routerLink]="['/dashboard/monitor']"
           >
-            <i class="material-icons">add</i>
+            <img src="./assets/icons/add.png" alt="add icon" />
             Create Monitor
           </button>
         </div>
@@ -114,7 +114,7 @@
                     i18n
                     [routerLink]="['/dashboard/downtime/', element.id]"
                   >
-                    Stats
+                    Show Stats
                   </a>
                   <a
                     id="start"
@@ -154,20 +154,20 @@
   <div class="col-md-6" id="count-monitors">
     <div class="row">
       <mat-card>
-        <mat-card-title>
+        <mat-card-title i18n>
           <mat-icon class="material-icons">pie_chart</mat-icon>
           Quick stats
         </mat-card-title>
-        <mat-card-content i18n>
+        <mat-card-content>
           <div class="row">
             <div class="col-md-6">
               <div class="latest-content">
                 <div class="latest-title">
-                  <h6>
+                  <h6 i18n>
                     Stats Info
                   </h6>
                 </div>
-                <p>
+                <p i18n>
                   Here you can find the latest events of the month of all the monitors,
                   for individual statistics, go to the specific monitor's
                   <strong> choose action </strong>
@@ -177,11 +177,11 @@
             <div class="col-md-6">
               <div class="latest-content">
                 <div class="latest-title">
-                  <h6>
+                  <h6 i18n>
                     Latest downtime
                   </h6>
                 </div>
-                <p>
+                <p i18n>
                   It was recorded (for the monitor panic) on 2019-10-07 17:43:49 and the
                   downtime lasted for 1 hrs, 10 mins.
                 </p>
@@ -190,27 +190,30 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              Latest Events For All Monitors (down)
+              <p class="events" i18n>
+                Latest Events For All Monitors (down)
+              </p>
+
               <a id="csv" [routerLink]="'.'" (click)="exportCsv()">Export Logs</a>
             </div>
           </div>
           <div class="example-container">
             <table id="downtime" mat-table matSort [dataSource]="dataSourceEvents">
               <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef>Monitor's name</th>
+                <th mat-header-cell *matHeaderCellDef i18n>Monitor's name</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.name }}
                 </td>
               </ng-container>
               <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef>Event</th>
+                <th mat-header-cell *matHeaderCellDef i18n>Event</th>
                 <td mat-cell *matCellDef="let element">
                   {{ element.status | uppercase }}
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="startedAt">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header i18n>
                   Date-time
                 </th>
                 <td mat-cell *matCellDef="let element">

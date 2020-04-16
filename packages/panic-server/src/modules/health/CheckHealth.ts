@@ -31,13 +31,13 @@ export default class HealthCheck {
     this.init();
   }
   /**
-   * @function isRechable check avaibility of servers
-   * @param {string} url the target of methode
-   * @param {number} ping in miliseconds.
-   * @param {number} monitorInterval in miliseconds.
+   * @function isReachable check availability of servers
+   * @param {string} url the target of methods
+   * @param {number} ping in milliseconds.
+   * @param {number} monitorInterval in milliseconds.
    * @returns {boolean} response.
    *
-   * @remarks insert incident stat into database with addHistory methode
+   * @remarks insert incident stat into database with addHistory method
    * @param {History} payloadHistory.
    * @param {Project}  projectId;
    *
@@ -75,11 +75,11 @@ export default class HealthCheck {
           }
 
           this.sendEmail(this.project.receiver, this.project.emailTemplate);
-          // this.stop();
+          this.stop();
 
-          // setTimeout(() => {
-          //   this.start();
-          // }, 1000 * 60 * 10);
+          setTimeout(() => {
+            this.start();
+          }, 1000 * 60 * 5);
         } else {
           payloadHistory.status = Status.UP;
           payloadHistory.uptime = 1;
@@ -91,8 +91,8 @@ export default class HealthCheck {
               status: 'up',
             });
           }
-          this.init();
         }
+        this.init();
       }
     }, monitorInterval);
   }
