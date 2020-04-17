@@ -36,6 +36,7 @@
             ],
             "scripts": []
           },
+
           "configurations": {
             "production": {
               "fileReplacements": [
@@ -65,65 +66,10 @@
                 }
               ]
             },
-            "production-fr": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "outputPath": "dist/my-project-fr/",
-              "i18nFile": "src/locale/messages.fr.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "fr",
-              "i18nMissingTranslation": "error"
-            },
             "fr": {
-              "aot": true,
-              "outputPath": "dist/my-project-fr/",
-              "i18nFile": "src/locale/messages.fr.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "fr",
-              "i18nMissingTranslation": "error"
-            },
-            "production-ro": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "outputPath": "dist/my-project-ro/",
-              "i18nFile": "src/locale/messages.ro.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "ro",
-              "i18nMissingTranslation": "error"
-            },
-            "ro": {
-              "aot": true,
-              "outputPath": "dist/my-project-ro/",
-              "i18nFile": "src/locale/messages.ro.xlf",
-              "i18nFormat": "xlf",
-              "i18nLocale": "ro",
-              "i18nMissingTranslation": "error"
+              "i18nMissingTranslation": "error",
+              "progress": false,
+              "localize": ["fr"]
             }
           }
         },
@@ -138,9 +84,6 @@
             },
             "fr": {
               "browserTarget": "panic-app:build:fr"
-            },
-            "ro": {
-              "browserTarget": "panic-app:build:ro"
             }
           }
         },

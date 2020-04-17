@@ -182,7 +182,7 @@
                   </h6>
                 </div>
                 <p i18n>
-                  It was recorded (for the monitor panic) on 2019-10-07 17:43:49 and the
+                  It was recorded (for the monitor panic) on 2020-04-16 17:43:49 and the
                   downtime lasted for 1 hrs, 10 mins.
                 </p>
               </div>
@@ -192,9 +192,8 @@
             <div class="col-md-12">
               <p class="events" i18n>
                 Latest Events For All Monitors (down)
+                <a id="csv" [routerLink]="'.'" (click)="exportCsv()">Export Logs</a>
               </p>
-
-              <a id="csv" [routerLink]="'.'" (click)="exportCsv()">Export Logs</a>
             </div>
           </div>
           <div class="example-container">

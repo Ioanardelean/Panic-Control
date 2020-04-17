@@ -7,7 +7,7 @@
       <form class="example-form" [formGroup]="createForm" (ngSubmit)="createProject()">
         <div class="row" style="margin: 20px 20px;">
           <div class="col-md-6">
-            <h5 i18n title="Name must be unique, choose a friendly name">
+            <h5 i18n i18n-title title="Name must be unique, choose a friendly name">
               Information
             </h5>
             <mat-form-field class="example-chip-list">
@@ -29,7 +29,7 @@
             </mat-form-field>
           </div>
           <div class="col-md-6">
-            <h5 i18n title="Url must be valid and http(s) only">
+            <h5 i18n i18n-title title="Url must be valid and http(s) only">
               Website and Contact
             </h5>
             <mat-form-field class="example-chip-list">
@@ -66,6 +66,7 @@
           <div class="col-md-6">
             <h5
               i18n
+              i18n-title
               title="Ping Timeout in seconds after which a request is considered failed and interval is the frequency of uptime tests "
             >
               Configuration
@@ -96,7 +97,11 @@
             </mat-slider>
           </div>
           <div class="col-md-6" id="alerting">
-            <h5 i18n title="Custom email template is a choice, check default template">
+            <h5
+              i18n
+              i18n-title
+              title="Custom email template is a choice, check default template"
+            >
               Alert
             </h5>
             <mat-label i18n>Customize email template </mat-label>
