@@ -8,18 +8,18 @@
       "type": "node",
       "request": "launch",
       "smartStep": true,
-      "cwd": "${workspaceFolder}/packages/panic-server",
-      "outFiles": ["${workspaceFolder}/packages/panic-server/dist/**/*.js"],
+      "cwd": "${workspaceRoot}/packages/panic-server",
+      "outFiles": ["${workspaceRoot}/packages/panic-server/dist/**/*.js"],
       "name": "node server",
-      "runtimeArgs": ["--nolazy"],
-      "runtimeExecutable": null,
-      "skipFiles": ["<node_modules>/**"],
       "env": {
-        "DEBUG": "*"
+        "DEBUG": "*",
+        "NODE_ENV": "local",
+        "NO_CLUSTER": "true"
       },
       "sourceMaps": true,
       "program": "${workspaceFolder}/packages/panic-server/src/server.ts",
-      "stopOnEntry": false
+      "stopOnEntry": false,
+      "preLaunchTask": "server:build:dev"
     }
   ]
 }

@@ -1,13 +1,14 @@
 {
-  "name": "paniccontrol",
+  "name": "panic-control",
   "version": "1.2.0",
   "description": "Monitoring and alerting application",
-  "main": "index.js",
+  "main": "",
   "scripts": {
     "app:watch": "cd packages/panic-app && npm run start",
     "app:build:dev": "cd packages/panic-app && npm run dev",
     "app:build:prod": "cd packages/panic-app && npm run build",
     "server:watch": "cd packages/panic-server && npm run server:watch",
+    "server:build:dev": "cd packages/panic-server && npm run build:dev",
     "server:dev": "cd packages/panic-server && npm run dev",
     "test": "npm run test:server && npm run test:app",
     "test:server": "cd packages/panic-server && npm run test",

@@ -1,15 +1,26 @@
 import config from 'config';
 import { Observable, Subscriber } from 'rxjs';
 import { createConnection } from 'typeorm';
-import { connectionOpts } from './OrmConfig';
 
 export default class DbConnect {
   static config: any = config.get('postgres');
 
   static connectDB(): Observable<any> {
+    const isDevMode = process.env.NODE_ENV === 'development';
+
     return Observable.create(async (observer: Subscriber<any>) => {
       try {
-        const connection = await createConnection(connectionOpts);
+        const connection = await createConnection({
+          ...this.config,
+          type: 'postgres',
+          entities: [...(isDevMode ? ['src/models/**/*.ts'] : ['dist/models/**/*.js'])],
+          synchronize: true,
+          logging: false,
+          ssl: false,
+          cli: {
+            migrationsDir: 'src/databases/migrations',
+          },
+        });
         console.log('connection to database ok');
         observer.next(connection);
       } catch (error) {

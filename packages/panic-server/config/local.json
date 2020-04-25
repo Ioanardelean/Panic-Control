@@ -1,0 +1,32 @@
+{
+  "postgres": {
+    "host": "localhost",
+    "port": "5432",
+    "database": "panic_server",
+    "user": "ioana",
+    "password": "admin"
+  },
+  "mailer": {
+    "host": "smtp.gmail.com",
+    "port": 465,
+    "secure": true,
+    "tls": {
+      "rejectUnauthorized": false
+    },
+    "auth": {
+      "user": "panic.control.all@gmail.com",
+      "pass": "Ardeleanioana1994"
+    }
+  },
+  "servers": {
+    "http": {
+      "host": "localhost",
+      "port": "3000"
+    },
+    "https": {
+      "host": "localhost",
+      "port": "3001"
+    }
+  },
+  "tokenLife": 1800
+}

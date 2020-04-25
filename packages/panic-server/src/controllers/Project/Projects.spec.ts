@@ -93,10 +93,4 @@ describe('should get a CRUD project ', () => {
     expect(projectService.getProjectOnStatusDown).toHaveBeenCalledWith(userId);
     expect(projectService.getProjectOnStatusStopped).toHaveBeenCalledWith(userId);
   });
-
-  it('should get all project the admin user ', async () => {
-    spyOn(projectService, 'getAll').and.returnValue({});
-    await project.admin(ctx);
-    expect(projectService.getAll).toHaveBeenCalled();
-  });
 });
