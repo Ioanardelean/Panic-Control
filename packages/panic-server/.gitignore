@@ -8,5 +8,5 @@
 /docs
 /.env
 /logs/access.log
-/id_rsa_priv.pem
-/id_rsa_pub.pem
+/private.key
+/public.key

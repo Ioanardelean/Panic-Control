@@ -6,7 +6,7 @@ import LocalStrategy from 'passport-local';
 import { getUserById, getUserByName } from './helpers/UserService/UserService';
 import { User } from './models/UserModel';
 require('dotenv').config();
-const PRIV_KEY = fs.readFileSync(`./id_rsa_priv.pem`, 'utf8');
+const PRIV_KEY = fs.readFileSync(`./private.key`, 'utf8');
 async function validatePassword(userPassword: any, databasePassword: any) {
   return bcrypt.compare(userPassword, databasePassword);
 }
@@ -53,7 +53,7 @@ passport.use(
   new JwtStrategy(
     {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: PRIV_KEY,
+      secretOrKey: PRIV_KEY || 'secret',
     },
     async (jwtPayload, done) => {
       done(null, jwtPayload);
