@@ -19,6 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { SocketService } from 'src/app/core/services/socket/socket.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ChartsModule } from 'ng2-charts';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { DowntimeComponent } from './downtime/downtime.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -52,6 +53,7 @@ import { JoditAngularModule } from 'jodit-angular';
     MatPaginatorModule,
     MatSortModule,
     JoditAngularModule,
+    MatTooltipModule,
   ],
   exports: [],
   providers: [SocketService],

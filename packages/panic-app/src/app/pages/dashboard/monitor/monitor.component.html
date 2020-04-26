@@ -7,7 +7,14 @@
       <form class="example-form" [formGroup]="createForm" (ngSubmit)="createProject()">
         <div class="row" style="margin: 20px 20px;">
           <div class="col-md-6">
-            <h5 i18n i18n-title title="Name must be unique, choose a friendly name">
+            <h5 i18n>
+              <mat-icon
+                class="material-icons"
+                matTooltip="Name must be unique, choose a friendly name"
+                aria-label="Icon that displays a tooltip when focused or hovered over"
+              >
+                help_outline
+              </mat-icon>
               Information
             </h5>
             <mat-form-field class="example-chip-list">
@@ -29,7 +36,14 @@
             </mat-form-field>
           </div>
           <div class="col-md-6">
-            <h5 i18n i18n-title title="Url must be valid and http(s) only">
+            <h5 i18n>
+              <mat-icon
+                class="material-icons"
+                matTooltip="Url must be valid and http(s) only"
+                aria-label="Icon that displays a tooltip when focused or hovered over"
+              >
+                help_outline
+              </mat-icon>
               Website and Contact
             </h5>
             <mat-form-field class="example-chip-list">
@@ -64,11 +78,14 @@
 
         <div class="row" style="margin: 20px 20px;">
           <div class="col-md-6">
-            <h5
-              i18n
-              i18n-title
-              title="Ping Timeout in seconds after which a request is considered failed and interval is the frequency of uptime tests "
-            >
+            <h5 i18n>
+              <mat-icon
+                class="material-icons"
+                matTooltip="Ping Timeout in seconds after which a request is considered failed and interval is the frequency of uptime tests"
+                aria-label="Icon that displays a tooltip when focused or hovered over"
+              >
+                help_outline
+              </mat-icon>
               Configuration
             </h5>
             <mat-form-field class="example-chip-list">
@@ -97,11 +114,14 @@
             </mat-slider>
           </div>
           <div class="col-md-6" id="alerting">
-            <h5
-              i18n
-              i18n-title
-              title="Custom email template is a choice, check default template"
-            >
+            <h5 i18n>
+              <mat-icon
+                class="material-icons"
+                matTooltip="Custom email template is a choice, check default template"
+                aria-label="Icon that displays a tooltip when focused or hovered over"
+              >
+                help_outline
+              </mat-icon>
               Alert
             </h5>
             <mat-label i18n>Customize email template </mat-label>

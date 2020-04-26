@@ -1,155 +1,160 @@
 <div class="row">
   <div class="col-md-6">
-    <mat-card>
-      <mat-card-title i18n>
-        Currently you have:
-      </mat-card-title>
-      <mat-card-content id="stats">
-        <div class="container">
-          <div class="row">
-            <div class="card card-circle">
-              <div class="card-body">
-                <h5 class="card-title" i18n>Up monitors</h5>
-                <p class="card-text">
-                  {{ active }}
-                </p>
+    <div class="row">
+      <mat-card>
+        <mat-card-title i18n>
+          Currently you have:
+        </mat-card-title>
+        <mat-card-content id="stats">
+          <div class="container">
+            <div class="row">
+              <div class="card card-circle">
+                <div class="card-body">
+                  <h5 class="card-title" i18n>Up monitors</h5>
+                  <p class="card-text">
+                    {{ active }}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div class="card card-circle">
-              <div class="card-body">
-                <h5 class="card-title" i18n>Down monitors</h5>
-                <p class="card-text">
-                  {{ down }}
-                </p>
+              <div class="card card-circle">
+                <div class="card-body">
+                  <h5 class="card-title" i18n>Down monitors</h5>
+                  <p class="card-text">
+                    {{ down }}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div class="card card-circle">
-              <div class="card-body">
-                <h5 class="card-title" i18n>Stopped monitors</h5>
-                <p class="card-text">
-                  {{ stopped }}
-                </p>
+              <div class="card card-circle">
+                <div class="card-body">
+                  <h5 class="card-title" i18n>Stopped monitors</h5>
+                  <p class="card-text">
+                    {{ stopped }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card>
-      <mat-card-content>
-        <div class="example-header">
-          <mat-form-field class="search">
-            <mat-label i18n>Filter</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Panic" />
-          </mat-form-field>
-          <button
-            i18n
-            id="creation-button"
-            mat-raised-button
-            [routerLink]="['/dashboard/monitor']"
-          >
-            <img src="./assets/icons/add.png" alt="add icon" />
-            Create Monitor
-          </button>
-        </div>
-        <div id="example-table-container">
-          <table mat-table matSort [dataSource]="dataSource">
-            <ng-container matColumnDef="status">
-              <th mat-header-cell *matHeaderCellDef i18n>Status</th>
-              <td mat-cell *matCellDef="let element">
-                <div class="custom-cell">
-                  <div class="status {{ element.status }}" id="project-status-"></div>
-                  <div>
-                    {{ element.status }}
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="row">
+      <mat-card>
+        <mat-card-content>
+          <div class="example-header">
+            <mat-form-field class="search">
+              <mat-label i18n>Filter</mat-label>
+              <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Panic" />
+            </mat-form-field>
+            <button
+              i18n
+              id="creation-button"
+              mat-raised-button
+              [routerLink]="['/dashboard/monitor']"
+            >
+              <img src="./assets/icons/add.png" alt="add icon" />
+              Create Monitor
+            </button>
+          </div>
+          <div id="example-table-container">
+            <table mat-table matSort [dataSource]="dataSource">
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef i18n>Status</th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="custom-cell">
+                    <div class="status {{ element.status }}" id="project-status-"></div>
+                    <div>
+                      {{ element.status }}
+                    </div>
                   </div>
-                </div>
-              </td>
-            </ng-container>
+                </td>
+              </ng-container>
 
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef i18n mat-sort-header>Name</th>
-              <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-            </ng-container>
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef i18n mat-sort-header>Name</th>
+                <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+              </ng-container>
 
-            <ng-container matColumnDef="description">
-              <th mat-header-cell *matHeaderCellDef i18n mat-sort-header>Description</th>
-              <td mat-cell *matCellDef="let element">{{ element.description }}</td>
-            </ng-container>
+              <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef i18n mat-sort-header>
+                  Description
+                </th>
+                <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+              </ng-container>
 
-            <ng-container matColumnDef="url">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Url</th>
-              <td mat-cell *matCellDef="let element">
-                <a href="{{ element.url }}" target="_blank" rel="noopener noreferrer">{{
-                  element.url
-                }}</a>
-              </td>
-            </ng-container>
+              <ng-container matColumnDef="url">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Url</th>
+                <td mat-cell *matCellDef="let element">
+                  <a href="{{ element.url }}" target="_blank" rel="noopener noreferrer">{{
+                    element.url
+                  }}</a>
+                </td>
+              </ng-container>
 
-            <ng-container matColumnDef="actions">
-              <th mat-header-cell *matHeaderCellDef>Actions</th>
-              <td mat-cell *matCellDef="let element">
-                <button
-                  i18n
-                  id="action"
-                  class="mat-button"
-                  [matMenuTriggerFor]="menu"
-                  aria-label="Example icon-button with a menu"
-                >
-                  Choose actions <mat-icon>more_vert</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu">
-                  <a
-                    id="edit"
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let element">
+                  <button
                     i18n
-                    mat-menu-item
-                    [routerLink]="['/dashboard/monitor/', element.id]"
+                    id="action"
+                    class="mat-button"
+                    [matMenuTriggerFor]="menu"
+                    aria-label="Example icon-button with a menu"
                   >
-                    Edit
-                  </a>
-                  <a
-                    mat-menu-item
-                    i18n
-                    [routerLink]="['/dashboard/downtime/', element.id]"
-                  >
-                    Show Stats
-                  </a>
-                  <a
-                    id="start"
-                    i18n
-                    *ngIf="element.testRunning === false"
-                    mat-menu-item
-                    (click)="startProject(element.id)"
-                  >
-                    Start
-                  </a>
-                  <a
-                    id="stop"
-                    i18n
-                    *ngIf="element.testRunning === true"
-                    mat-menu-item
-                    (click)="stopProject(element.id)"
-                  >
-                    Stop
-                  </a>
-                  <a id="delete" i18n mat-menu-item (click)="deleteProject(element.id)">
-                    Delete
-                  </a>
-                </mat-menu>
-              </td>
-            </ng-container>
+                    Choose actions <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                    <a
+                      id="edit"
+                      i18n
+                      mat-menu-item
+                      [routerLink]="['/dashboard/monitor/', element.id]"
+                    >
+                      Edit
+                    </a>
+                    <a
+                      mat-menu-item
+                      i18n
+                      [routerLink]="['/dashboard/downtime/', element.id]"
+                    >
+                      Show Stats
+                    </a>
+                    <a
+                      id="start"
+                      i18n
+                      *ngIf="element.testRunning === false"
+                      mat-menu-item
+                      (click)="startProject(element.id)"
+                    >
+                      Start
+                    </a>
+                    <a
+                      id="stop"
+                      i18n
+                      *ngIf="element.testRunning === true"
+                      mat-menu-item
+                      (click)="stopProject(element.id)"
+                    >
+                      Stop
+                    </a>
+                    <a id="delete" i18n mat-menu-item (click)="deleteProject(element.id)">
+                      Delete
+                    </a>
+                  </mat-menu>
+                </td>
+              </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-          </table>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
 
-          <mat-paginator [length]="" [pageSize]="" [pageSizeOptions]="[5, 10, 25, 100]">
-          </mat-paginator>
-        </div>
-      </mat-card-content>
-    </mat-card>
+            <mat-paginator [length]="" [pageSize]="" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
   <div class="col-md-6" id="count-monitors">
     <div class="row">

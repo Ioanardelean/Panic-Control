@@ -74,7 +74,7 @@ mat-icon {
   vertical-align: middle;
 }
 mat-card {
-  margin: 20px 20px 0px 0px;
+  margin: 20px;
   width: 100%;
 }
 
@@ -100,7 +100,7 @@ mat-card {
   background: #27496d;
   border: 10px solid transparent;
   color: #fff;
-  font-family: Montserrat;
+  font-family: 'Montserrat', sans-serif;
 
   border-radius: 50%;
 }
@@ -165,7 +165,4 @@ mat-card {
 #csv {
   float: right;
   padding-bottom: 10px;
-}
-h5 {
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
