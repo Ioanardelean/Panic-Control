@@ -1,23 +1,23 @@
 pipeline {
   agent any
-
+tools {nodejs "node"}
 
   stages {
 
-    stage('Git') {
+    stage('Clonig Git') {
       steps {
         git 'https://github.com/Ioanardelean/Panic-Control.git'
       }
     }
 
-    stage('Build') {
+    stage('Install dependencies') {
       steps {
         sh 'npm install'
       }
     }
 
 
-    stage('Unit test for server and app') {
+    stage('Unit test for server') {
       steps {
         sh 'npm test'
       }
