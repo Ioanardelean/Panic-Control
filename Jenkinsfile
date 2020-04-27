@@ -4,10 +4,11 @@ pipeline {
   stages {
 
     stage('Clonig Git') {
-      deleteDir()
+
       steps {
+        deleteDir()
         git 'https://github.com/Ioanardelean/Panic-Control.git'
-        git branch: 'develop'
+
       }
     }
 
