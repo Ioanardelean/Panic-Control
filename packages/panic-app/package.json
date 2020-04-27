@@ -5,8 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "start:fr": "ng serve --configuration=fr",
-    "build": "ng build",
-    "test": "ng test",
+    "build": "ng build --prod --no-progress",
+    "dev": "ng build",
+    "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
