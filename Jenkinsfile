@@ -7,21 +7,21 @@ pipeline {
 
       steps {
         deleteDir()
-        git 'https://github.com/Ioanardelean/Panic-Control.git'
+        git([url: 'https://github.com/Ioanardelean/Panic-Control.git', branch: 'develop'])
 
       }
     }
 
     stage('Build') {
       steps {
-        sh 'npm install'
+        bat 'npm install'
       }
     }
 
 
     stage('Unit test for server') {
       steps {
-        sh 'npm test'
+        bat 'npm test'
       }
     }
   }
