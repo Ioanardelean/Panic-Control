@@ -1,5 +1,4 @@
 import bcrypt from 'bcryptjs';
-import fs from 'fs';
 import passport from 'passport';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import LocalStrategy from 'passport-local';
