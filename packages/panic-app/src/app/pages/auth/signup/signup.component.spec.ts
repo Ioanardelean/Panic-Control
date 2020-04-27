@@ -3,6 +3,11 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SignupComponent } from './signup.component';
+import { FormBuilder } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ToastrModule } from 'ngx-toastr';
+import { Config } from 'src/app/core/config/config';
 
 describe('SignupComponent', () => {
   let component: SignupComponent;
@@ -10,7 +15,13 @@ describe('SignupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, BrowserAnimationsModule],
+      imports: [
+        RouterTestingModule,
+        BrowserAnimationsModule,
+        HttpClientTestingModule,
+        ToastrModule.forRoot(),
+      ],
+      providers: [FormBuilder, AuthService, Config],
     }).compileComponents();
   }));
 
