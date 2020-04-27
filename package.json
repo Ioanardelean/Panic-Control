@@ -13,7 +13,7 @@
     "test": "npm run test:server && npm run test:app",
     "test:server": "cd packages/panic-server && npm run test",
     "test:app": "cd packages/panic-app && npm run test",
-    "install": "npm run install:server && install:app",
+    "install": "npm run install:server && npm run install:app",
     "install:server": "cd packages/panic-server && npm install",
     "install:app": "cd packages/panic-app && npm install"
   },
