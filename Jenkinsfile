@@ -1,25 +1,26 @@
 pipeline {
   agent any
 
-
   stages {
 
     stage('Clonig Git') {
+      deleteDir()
       steps {
         git 'https://github.com/Ioanardelean/Panic-Control.git'
+        git branch: 'develop'
       }
     }
 
-    stage('Install dependencies') {
+    stage('Build') {
       steps {
-        bat 'npm install'
+        sh 'npm install'
       }
     }
 
 
     stage('Unit test for server') {
       steps {
-        bat 'npm test'
+        sh 'npm test'
       }
     }
   }
