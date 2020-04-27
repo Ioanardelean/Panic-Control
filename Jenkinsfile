@@ -12,16 +12,25 @@ pipeline {
       }
     }
 
-    stage('Build') {
+    stage('Install dependencies') {
       steps {
-        bat 'npm install'
+        bat ' npm run install:server'
+      }
+    }
+
+     stage('Build dist') {
+      steps {
+        bat ' npm run server:build:dev '
       }
     }
 
 
+
     stage('Unit test for server') {
+
       steps {
-        bat 'npm test'
+
+        bat 'npm run test:server'
       }
     }
   }

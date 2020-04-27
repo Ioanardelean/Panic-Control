@@ -29,7 +29,7 @@ const app = new Koa();
 const accessLogStream = fs.createWriteStream(`${cwd}/src/logs/access.log`, {
   flags: 'a',
 });
-// app.use(morgan('combined', { stream: accessLogStream }));
+app.use(morgan('combined', { stream: accessLogStream }));
 
 app.use(helmet());
 app.proxy = true;
