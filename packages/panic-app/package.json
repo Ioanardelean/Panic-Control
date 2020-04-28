@@ -7,7 +7,8 @@
     "start:fr": "ng serve --configuration=fr",
     "build": "ng build --prod --no-progress",
     "dev": "ng build",
-    "test": "ng test --watch=false --browsers=ChromeHeadless",
+    "test": "ng test",
+    "testProd": "karma start karma.conf.js",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
