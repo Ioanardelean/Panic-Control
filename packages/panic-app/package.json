@@ -7,7 +7,7 @@
     "start:fr": "ng serve --configuration=fr",
     "build": "ng build --prod --no-progress",
     "dev": "ng build",
-    "test": "ng test",
+    "test": "ng test --karma-config karma.conf.js",
     "testProd": "karma start karma.conf.js",
     "lint": "ng lint",
     "e2e": "ng e2e"
