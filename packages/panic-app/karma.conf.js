@@ -32,8 +32,6 @@ module.exports = function (config) {
     singleRun: true,
     restartOnFileChange: true,
     concurrency: Infinity,
-    browserDisconnectTimeout: 10000,
-    browserDisconnectTolerance: 3,
     browserNoActivityTimeout: 60000,
     browsers: [chromeHeadlessSupported ? 'ChromeHeadless' : 'Chrome'],
     customLaunchers: {

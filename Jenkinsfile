@@ -19,20 +19,26 @@ pipeline {
       }
     }
 
-     stage('Build dist') {
+       stage('lint') {
+
       steps {
-        bat ' npm run server:build:dev '
-        bat ' npm run app:build:prod'
+        bat 'npm run lint'
+
       }
     }
 
-
-
-    stage('Unit test') {
+    stage('Unit tests') {
 
       steps {
         bat 'npm run test:server'
         bat 'npm run test:app'
+      }
+    }
+
+     stage('Build') {
+      steps {
+        bat ' npm run server:build:dev '
+        bat ' npm run app:build:dev'
       }
     }
   }
