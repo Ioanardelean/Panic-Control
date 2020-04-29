@@ -22,7 +22,7 @@ export class MonitorEditComponent implements OnInit {
     public route: ActivatedRoute,
     private toastr: ToastrService
   ) {
-    this.getProject(this.route.snapshot.params['id']);
+    this.getProject(this.route.snapshot.params.id);
     this.updateForm = this.formBuilder.group({
       id: [''],
       name: [''],
@@ -73,7 +73,7 @@ export class MonitorEditComponent implements OnInit {
     if (input) {
       input.value = '';
     }
-    this.updateForm.controls['receiver'].setValue(this.emails.toString());
+    this.updateForm.controls.receiver.setValue(this.emails.toString());
     this.emailCtrl.setValue(null);
   }
 

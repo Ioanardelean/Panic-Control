@@ -77,7 +77,7 @@ export class MonitorComponent implements OnInit {
     if (input) {
       input.value = '';
     }
-    this.createForm.controls['receiver'].setValue(this.emails.toString());
+    this.createForm.controls.receiver.setValue(this.emails.toString());
     this.emailCtrl.setValue(null);
   }
 

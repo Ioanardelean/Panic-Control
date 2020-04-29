@@ -47,7 +47,7 @@ export class DowntimeComponent implements OnInit {
     public route: ActivatedRoute,
     public csvService: CsvDataServiceService
   ) {
-    this.getProject(this.route.snapshot.params['id']);
+    this.getProject(this.route.snapshot.params.id);
     this.downtime = [];
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;

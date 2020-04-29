@@ -22,7 +22,8 @@
     "test:watch": "jest --watch",
     "test:coverage:watch": "jest --watch --coverage",
     "test:coverage": "jest --coverage",
-    "typeorm:cli": "ts-node-dev ./node_modules/typeorm/cli -f ./src/databases/OrmConfig.ts"
+    "typeorm:cli": "ts-node-dev ./node_modules/typeorm/cli -f ./src/databases/OrmConfig.ts",
+    "tslint": "tslint -c tslint.json -p tsconfig.json"
   },
   "dependencies": {
     "@koa/cors": "^2.2.3",

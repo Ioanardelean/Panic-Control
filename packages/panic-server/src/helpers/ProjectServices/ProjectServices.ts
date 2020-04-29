@@ -37,6 +37,7 @@ export async function getProjectOnStatusStopped(userId: User) {
     where: { user: userId, status: 'stopped' },
   });
 }
+// tslint:disable-next-line: no-identical-functions
 export async function getProjectOnStatusActive(userId: User) {
   initialize();
   return repository.findAndCount({
@@ -44,6 +45,7 @@ export async function getProjectOnStatusActive(userId: User) {
     where: { user: userId, status: 'up' },
   });
 }
+// tslint:disable-next-line: no-identical-functions
 export async function getProjectOnStatusDown(userId: User) {
   initialize();
   return repository.findAndCount({
