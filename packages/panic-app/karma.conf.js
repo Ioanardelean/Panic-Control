@@ -28,13 +28,10 @@ module.exports = function (config) {
     singleRun: true,
     restartOnFileChange: true,
     concurrency: Infinity,
+    browsers: ['Chrome'],
+    browserDisconnectTimeout: 10000,
+    browserDisconnectTolerance: 3,
     browserNoActivityTimeout: 60000,
-    browsers: ['ChromeHeadlessNoSandbox'],
-    customLaunchers: {
-      ChromeHeadlessNoSandbox: {
-        base: 'ChromeHeadless',
-        flags: ['--no-sandbox', '--disable-setuid-sandbox'],
-      },
-    },
+    flags: ['--disable-web-security', '--disable-gpu', '--no-sandbox'],
   });
 };
