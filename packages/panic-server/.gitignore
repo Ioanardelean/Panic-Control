@@ -8,5 +8,4 @@
 /docs
 /.env
 /logs/access.log
-/private.key
-/public.key
+

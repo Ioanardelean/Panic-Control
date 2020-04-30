@@ -12,18 +12,21 @@
     "rimraf": "rimraf",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "copy:dev": "node ./scripts/copy.js -e dev",
+    "copy:prod": "node ./scripts/copy.js -e prod",
     "doc:build": "node ./scripts/typedoc.js",
     "typedoc": "typedoc --out ./docs --exclude **/node_modules/** --mode modules --excludeExternals --excludeNotExported --excludePrivate --excludeProtected ./src",
     "clean:dist": "rimraf ./dist",
     "tsc:prod": "tsc --sourcemap false",
     "tsc:dev": "tsc",
     "build:dev": "npm run clean:dist && npm run tsc:dev && npm run copy:dev",
+    "build:prod": "npm run clean:dist && npm run tsc:prod && npm run copy:dev",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage:watch": "jest --watch --coverage",
     "test:coverage": "jest --coverage",
     "typeorm:cli": "ts-node-dev ./node_modules/typeorm/cli -f ./src/databases/OrmConfig.ts",
-    "tslint": "tslint -c tslint.json -p tsconfig.json"
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "lint": "node ./scripts/linter.js"
   },
   "dependencies": {
     "@koa/cors": "^2.2.3",

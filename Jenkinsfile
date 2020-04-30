@@ -19,7 +19,7 @@ pipeline {
       }
     }
 
-       stage('lint') {
+       stage('Linter') {
 
       steps {
         bat 'npm run lint'
@@ -27,7 +27,7 @@ pipeline {
       }
     }
 
-    stage('Unit tests') {
+    stage('Tests') {
 
       steps {
         bat 'npm run test:server'
