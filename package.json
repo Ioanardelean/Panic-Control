@@ -6,7 +6,7 @@
   "scripts": {
     "app:watch": "cd packages/panic-app && npm run start",
     "app:build:dev": "cd packages/panic-app && npm run build",
-    "app:build:prod": "cd packages/panic-app && npm run build;prod",
+    "app:build:prod": "cd packages/panic-app && npm run build:prod",
     "server:watch": "cd packages/panic-server && npm run server:watch",
     "server:build:dev": "cd packages/panic-server && npm run build:dev",
     "server:dev": "cd packages/panic-server && npm run dev",
