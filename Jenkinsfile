@@ -14,8 +14,8 @@ pipeline {
 
     stage('Install dependencies') {
       steps {
-        bat ' npm run install:server'
-        bat ' npm run install:app'
+        bat ' npm run install'
+
       }
     }
 
@@ -28,8 +28,7 @@ pipeline {
     }
      stage('Build') {
       steps {
-        bat ' npm run server:build:dev '
-        bat ' npm run app:build:dev'
+        bat ' npm run build '
       }
     }
 
@@ -37,7 +36,6 @@ pipeline {
 
       steps {
         bat 'npm run test:server'
-        bat 'npm run test:app'
       }
     }
   }

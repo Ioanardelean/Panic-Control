@@ -5,6 +5,7 @@
   "main": "",
   "scripts": {
     "app:watch": "cd packages/panic-app && npm run start",
+    "build": " npm run server:build:dev && npm run app:build:dev",
     "app:build:dev": "cd packages/panic-app && npm run build",
     "app:build:prod": "cd packages/panic-app && npm run build:prod",
     "server:watch": "cd packages/panic-server && npm run server:watch",
