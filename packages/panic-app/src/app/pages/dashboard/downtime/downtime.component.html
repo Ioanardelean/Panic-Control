@@ -44,8 +44,8 @@
               <p class="report-stats" i18n>
                 Report of downtime events since the creation of the monitor
                 {{ monitorName }}
+                <a id="csv" [routerLink]="'.'" (click)="exportCsv()">Export Logs</a>
               </p>
-              <a id="csv" [routerLink]="'.'" (click)="exportCsv()">Export Logs</a>
             </div>
           </div>
           <div class="example-container mat-evaluation-z2">

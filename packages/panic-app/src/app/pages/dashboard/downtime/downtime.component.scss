@@ -1,14 +1,15 @@
 h2 {
-  color: red;
+  color: #455a64;
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
+  font-weight: 400;
 }
 h4 {
   margin-top: 10px;
   margin-bottom: 10px;
 
-  color: black;
+  color: #455a64;
 }
 p {
   font-size: large;
@@ -18,29 +19,24 @@ table {
   overflow-x: scroll;
   width: 100%;
   th {
-    color: black;
+    color: #455a64;
   }
   tr {
     td {
       text-overflow: ellipsis;
       overflow: hidden;
-      color: black;
+      color: #455a64;
     }
   }
+}
+.mat-header-cell {
+  font-size: 1rem;
 }
 .example-container {
   overflow: auto;
   border-top: grey solid 1px;
 }
-#back-button {
-  margin-left: 19px;
-  background: lightgrey;
-  margin-bottom: 20px;
-}
-#csv-button {
-  float: right;
-  margin-right: 22px;
-}
+
 #banner {
   margin-bottom: 10px;
 }
@@ -52,9 +48,7 @@ mat-card-title {
   padding-top: 3px;
   padding-bottom: 4px;
   text-align: left;
-  color: #222;
-  font-size: 15px;
-  text-shadow: 0 1px 0 #fff;
+  color: #455a64;
   span {
     color: #868a98;
   }
@@ -63,6 +57,10 @@ mat-card-title {
   width: 100%;
 }
 #csv {
+  font-size: 1rem;
   float: right;
   padding-bottom: 10px;
+}
+.report-stats {
+  font-size: 1rem;
 }

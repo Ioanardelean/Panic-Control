@@ -7,15 +7,15 @@ div.status {
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  background-color: grey;
+  background-color: #9e9e9e;
   display: inline-block;
   margin-right: 5px;
 }
 div.status.up {
-  background-color: green;
+  background-color: #388e3c;
 }
 div.status.down {
-  background-color: red;
+  background-color: #f44336;
 }
 #example-table-container {
   position: relative;
@@ -24,10 +24,20 @@ div.status.down {
 
 table {
   width: 100%;
+  th {
+    color: #424242;
+  }
+  td {
+    color: #455a64;
+  }
 }
 
 h2 {
   margin-top: 10px;
   margin-bottom: 10px;
-  color: black;
+  color: #607d8b;
+  font-weight: 400;
+}
+#delete {
+  color: #f44336;
 }

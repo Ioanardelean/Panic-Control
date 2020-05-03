@@ -1,60 +1,30 @@
-$body-width: 1000px;
-$nav-height: 60px;
+$body-width: 62.5rem;
 $primary: #0a2d48;
 $secondary: #4dd8ab;
-$accent: complement($primary);
-$accent2: complement($secondary);
-
-html,
-body {
-  color: #333;
-  font-size: 16px;
-}
-
-p {
-  line-height: 1.6;
-  max-width: 50em;
-}
-
-button,
-input {
-  font-size: 1rem;
-  outline: none;
-}
 
 .wrap {
   margin: 0 auto;
   max-width: $body-width;
 }
-
-.mobile-open {
-  display: block;
+h2 {
+  color: #455a64;
 }
-
 .hero {
   position: relative;
   z-index: 1;
-  background: #0a2d48;
+  background: $primary;
   height: 100vh;
-  max-height: 1080px;
-  background-attachment: fixed;
-  background-position: center;
+  max-height: 67.5rem;
   color: #fff;
   display: table;
   width: 100%;
   text-align: center;
-  text-shadow: 1px 2px 4px rgba(#000, 0.2);
-
-  h1 {
-    font-size: 4em;
-    margin-bottom: 1rem;
-  }
   p {
-    font-size: 2em;
+    font-size: 2rem;
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
-    font-weight: 300;
+    font-weight: 400;
   }
   .content {
     display: table-cell;
@@ -62,28 +32,9 @@ input {
 
     #presentation {
       border: white solid 2px;
-      margin: 50px;
-      padding: 50px;
+      margin: 3.125rem;
+      padding: 3.125rem;
     }
-  }
-}
-
-h1,
-h2,
-p {
-  margin: 1em 0;
-}
-
-h2 {
-  font-size: 2rem;
-  line-height: 0.5;
-}
-
-a {
-  color: $secondary;
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
   }
 }
 
@@ -95,7 +46,7 @@ a {
   }
 }
 
-.row,
+.row-land,
 .tab-row {
   @extend %clearfix;
   display: block;
@@ -110,25 +61,22 @@ a {
 
 .main {
   background: #f8f8f8;
-  .row,
-  .tab-row {
-    min-height: 200px;
-    &:before,
-    &:after {
-      content: '';
-      display: table;
-    }
-  }
   section {
     padding: 0 1rem;
-    min-height: 400px;
-    height: 62vh;
+    min-height: 54vh;
+    #feature {
+      padding: 7.813rem 1.25rem 0 1.25rem;
+    }
+    .feat-1 {
+      color: #263238;
+      min-width: 12.5rem;
+    }
   }
 }
 
 .footer {
-  background: #75889b;
-  color: #ddd;
+  background: #607d8b;
+  color: #f5f5f5;
   padding: 2rem;
   li {
     line-height: 1.5;
@@ -140,7 +88,7 @@ a {
     max-width: $body-width;
     border: 0;
     height: 1px;
-    background: neutral($primary, 2);
+    background: #f5f5f5;
   }
 }
 
@@ -157,23 +105,16 @@ a {
   }
 }
 
-.col-4 {
-  @extend %col;
-  @media screen and (min-width: 640px) {
-    width: 33%;
-  }
-}
-
 .col-6 {
   @extend %col;
   @media screen and (min-width: 640px) {
     width: 50%;
   }
+  max-width: 100%;
 }
 
 .col-12 {
   @extend %col;
-  //width: 100%;
 }
 
 button.cta {
@@ -182,11 +123,8 @@ button.cta {
   color: black;
   border: none;
   cursor: pointer;
-  transition: 200ms ease;
-  box-shadow: 0 1px 2px rgba(black, 0.2);
-  border-radius: 2px;
+
   &:hover {
     color: white;
-    box-shadow: 0 0.25em 10px rgba(black, 0.2);
   }
 }
