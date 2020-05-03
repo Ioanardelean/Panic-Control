@@ -1,8 +1,8 @@
 .navbar {
-  margin: 0 50px 0 50px;
+  padding: 1rem 2rem;
+  background: #0a2d48;
   .navbar-brand {
     font-weight: 600;
-    margin: 5px 0px;
     font-size: 20px;
     color: white;
     text-transform: uppercase;
@@ -10,63 +10,27 @@
 }
 
 li {
-  margin: 10px;
+  margin: 0.625rem;
 }
-.navbar .nav-link i {
-  font-size: 16px;
-  position: relative;
-  top: 4px;
-  right: 3px;
-}
-.navbar .nav-link [class^='fa'] {
-  top: 2px;
-}
-.navbar .nav-link p {
-  margin: 5px;
-  color: white !important;
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 1.5em;
-  padding: 15px 0;
-}
-.navbar .nav-link p:hover {
-  color: #403d39 !important;
-}
-.navbar .navbar-nav .nav-item .nav-link {
-  line-height: 1.6;
-  margin: 15px 0px;
-  padding: 10px 15px;
-  opacity: 0.8;
-  font-size: 12px;
-  text-transform: uppercase;
-  font-weight: 600;
+
+.navbar-toggler {
   color: white;
 }
-.navbar .navbar-nav .nav-item .nav-link.btn {
-  margin: 15px 3px;
-  padding: 9px;
+
+.navbar .navbar-nav .nav-item .nav-link {
+  line-height: 1.6;
+  opacity: 0.8;
+  font-size: 1.063rem;
+  font-weight: 400;
+  color: white;
 }
-.navbar .navbar-nav .dropdown-menu {
-  border-radius: 12px;
-  margin-top: 1px;
-}
-.navbar .navbar-collapse .nav-item .nav-link p {
-  display: inline;
-}
-.navbar .navbar-collapse .nav-item .dropdown-item i {
-  margin: 0 10px;
-  margin: 0 10px 0px 5px;
-  font-size: 18px;
-  position: relative;
-  top: 3px;
-}
+
 .navbar .navbar-collapse.show .navbar-nav .nav-item {
-  padding-right: 10px;
+  padding: 0;
+  margin: 0;
 }
 
 .navbar .btn {
-  margin: 15px 3px;
-  font-size: 12px;
+  font-size: 1.063rem;
   background: #4dd8ab;
 }

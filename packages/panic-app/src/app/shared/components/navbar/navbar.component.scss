@@ -1,23 +1,17 @@
 :host {
   .navbar {
     background: #0a2d48;
+    .navbar-brand {
+      font-weight: 600;
+      font-size: 20px;
+      color: white;
+      text-transform: uppercase;
+    }
   }
-  .panic-logo-official {
-    font-weight: 600;
-    margin: 5px 0px;
-    padding: 20px 15px;
-    font-size: 20px;
+  .navbar-toggler {
     color: white;
-    text-transform: uppercase;
-    // display: inline-block;
-    // height: 3.1rem;
-    // width: 10.4rem;
-    // max-width: 100%;
-    // background-size: 145%;
-    // background-repeat: no-repeat;
-    // background-position: center center;
-    // background-image: url('/assets/img/first.png');
   }
+
   span {
     vertical-align: middle;
     color: red;
@@ -30,16 +24,10 @@
   }
   li,
   a {
+    font-size: 1.063rem;
     color: white;
   }
 }
-.navbar .navbar-brand {
-  font-weight: 600;
-  margin: 5px 0px;
-  font-size: 20px;
-  color: white;
-  text-transform: uppercase;
-}
-.active {
+.navbar .active {
   color: #4dd8ab !important;
 }

@@ -4,27 +4,28 @@ div.custom-cell {
   align-items: center;
 }
 div.status {
-  height: 12px;
-  width: 12px;
+  height: 0.75rem;
+  width: 0.75rem;
   border-radius: 50%;
-  background-color: grey;
+  background-color: #9e9e9e;
   display: inline-block;
   margin-right: 5px;
 }
 div.status.up {
-  background-color: green;
+  background-color: #388e3c;
 }
 div.status.down {
-  background-color: red;
+  background-color: #f44336;
 }
 .search {
-  font-size: 14px;
+  font-size: 0.875rem;
   width: 20%;
 }
 #creation-button {
-  background-color: #59a259;
+  background-color: #388e3c;
   float: right;
   margin-top: 20px;
+  cursor: pointer;
 }
 .mat-form-field {
   margin-top: 20px;
@@ -43,30 +44,40 @@ div.status.down {
 table {
   width: 100%;
   th {
-    color: white;
+    color: #455a64;
+  }
+  td {
+    color: #455a64;
   }
 }
 .mat-raised-button {
   color: white;
-  font-size: 16px;
+  font-size: 1rem;
 }
 .mat-header-cell {
-  font-size: 15px;
+  font-size: 1rem;
+}
+#delete {
+  color: #f44336;
 }
 .mat-header-row {
-  background: #7f8fa6;
+  background: #eceff1;
   height: 40px;
 }
 .label {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 #downtime {
   .mat-header-row {
     background: white;
     th {
-      color: black;
+      color: #455a64;
     }
   }
+}
+.events {
+  color: #455a64;
+  font-size: 1rem;
 }
 
 mat-icon {
@@ -74,14 +85,19 @@ mat-icon {
   vertical-align: middle;
 }
 mat-card {
-  margin: 20px;
+  margin: 1.25rem;
   width: 100%;
+  mat-card-title {
+    font-size: 1.25rem;
+    color: #607d8b;
+    font-weight: 400;
+  }
 }
 
 .example-container {
   height: 400px;
   overflow: auto;
-  border-top: grey solid 1px;
+  border-top: #9e9e9e solid 1px;
 }
 
 #downtime {
@@ -104,10 +120,6 @@ mat-card {
 
   border-radius: 50%;
 }
-.card-circle .card-title {
-  font-weight: 3em;
-  font-size: 15px;
-}
 
 .card-circle .card-text {
   color: white;
@@ -122,11 +134,7 @@ mat-card {
   padding: 5px 30px;
   border-radius: 0px;
 }
-.card-circle .btn,
-.card-circle .card-icon i,
-.card-circle {
-  transition: all ease-in-out 0.2s;
-}
+
 .card-circle:hover .btn {
   background: #33c08a;
   color: #fff;
