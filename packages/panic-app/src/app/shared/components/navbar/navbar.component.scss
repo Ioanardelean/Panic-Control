@@ -1,11 +1,13 @@
 :host {
   .navbar {
     background: #0a2d48;
-    .navbar-brand {
-      font-weight: 600;
-      font-size: 20px;
-      color: white;
-      text-transform: uppercase;
+    .container {
+      width: 200px;
+      height: 60px;
+      img {
+        width: 100%;
+        height: auto;
+      }
     }
   }
   .navbar-toggler {

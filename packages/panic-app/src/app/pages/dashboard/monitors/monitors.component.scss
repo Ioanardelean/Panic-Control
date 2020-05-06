@@ -95,7 +95,7 @@ mat-card {
 }
 
 .example-container {
-  height: 400px;
+  max-height: 400px;
   overflow: auto;
   border-top: #9e9e9e solid 1px;
 }
@@ -173,4 +173,10 @@ mat-card {
 #csv {
   float: right;
   padding-bottom: 10px;
+}
+.no-data {
+  margin: 0 auto;
+  width: 200px;
+  font-size: 1rem;
+  color: #607d8b;
 }

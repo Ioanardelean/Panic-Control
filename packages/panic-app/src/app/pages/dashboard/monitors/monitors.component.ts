@@ -33,7 +33,6 @@ export class MonitorsComponent implements OnInit {
   displayedColumns: string[] = ['status', 'name', 'description', 'url', 'actions'];
   dataSource = new MatTableDataSource<Project>();
   dataSourceEvents = new MatTableDataSource<any>();
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   @ViewChild(MatSort, { static: true }) sort: MatSort;
