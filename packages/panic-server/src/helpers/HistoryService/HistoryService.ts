@@ -15,3 +15,12 @@ export async function addHistory(history: History, projectId: Project, projectUr
   await repository.save(createHistory);
   return createHistory.id;
 }
+export async function getLastEvent() {
+  initialize();
+
+  return repository.findOne({
+    relations: ['project'],
+    where: { status: 'down' },
+    order: { id: 'DESC' },
+  });
+}

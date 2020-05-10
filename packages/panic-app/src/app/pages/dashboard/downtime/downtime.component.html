@@ -1,5 +1,5 @@
 <div class="row" id="banner">
-  <div class="col-md-4 offset-md-4">
+  <div class="col-md-12">
     <h2 i18n>
       <span class="material-icons">
         warning
@@ -16,18 +16,8 @@
           <h4 i18n>Downtime on year</h4>
         </mat-card-title>
         <mat-card-content>
-          <div class="chart-wrapper">
-            <canvas
-              baseChart
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="lineChartOptions"
-              [colors]="lineChartColors"
-              [legend]="lineChartLegend"
-              [chartType]="lineChartType"
-              [plugins]="lineChartPlugins"
-            >
-            </canvas>
+          <div *ngIf="chart">
+            <canvas id="canvas">{{ chart }}</canvas>
           </div>
         </mat-card-content>
       </mat-card>

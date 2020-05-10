@@ -37,6 +37,7 @@ export async function getProjectOnStatusStopped(userId: User) {
     where: { user: userId, status: 'stopped' },
   });
 }
+
 // tslint:disable-next-line: no-identical-functions
 export async function getProjectOnStatusActive(userId: User) {
   initialize();
@@ -73,4 +74,32 @@ export async function deleteProject(id: number) {
     relations: ['histories'],
   });
   return repository.remove(projectToRemove);
+}
+
+export async function getDowntimeOnYear(userId: User, id: number) {
+  return repository.query(`SELECT project.id,user_id, name, "startedAt", history.status, history.uptime
+	FROM project
+	INNER JOIN history ON history.project_id = project.id
+	inner join user on project.user_id= ${userId}
+  WHERE EXTRACT(year FROM "startedAt") = extract (year FROM CURRENT_DATE)
+  and project.id = ${id}
+  order by "startedAt" asc
+ `);
+}
+
+export async function getDowntimeOnMonth(userId: User) {
+  return repository.query(`SELECT project.id, user_id, name, "startedAt", history.status
+	FROM project
+	INNER JOIN history ON history.project_id = project.id
+	inner join user on project.user_id= ${userId}
+  WHERE EXTRACT(month FROM "startedAt") = extract (month FROM CURRENT_DATE)
+  and  history.status = 'down'`);
+}
+export async function getDowntimeSinceCreation(userId: User, id: number) {
+  return repository.query(`SELECT project.id,user_id, name, project.url, "startedAt", history.status
+	FROM project
+	INNER JOIN history ON history.project_id = project.id
+	inner join user on project.user_id= ${userId}
+  WHERE  project.id = ${id}
+  and  history.status = 'down'`);
 }

@@ -21,6 +21,7 @@ export default class ProjectsController {
     try {
       const userId = ctx.state.user.id;
       const project: any[] = await getProjects(userId);
+
       ctx.status = 200;
       ctx.body = {
         data: project,

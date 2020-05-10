@@ -22,5 +22,6 @@
     "lint:server": "cd packages/panic-app && npm run lint"
   },
   "author": "Ioana Ardelean",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }

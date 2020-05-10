@@ -9,7 +9,8 @@ import { Project } from 'src/app/core/models/monitor';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { CsvDataServiceService } from 'src/app/core/services/history/csv-data-service.service';
-
+import { HistoryService } from 'src/app/core/services/history/history.service';
+import { Chart } from 'chart.js';
 @Component({
   selector: 'app-monitors',
   templateUrl: './monitors.component.html',
@@ -18,14 +19,14 @@ import { CsvDataServiceService } from 'src/app/core/services/history/csv-data-se
 export class MonitorsComponent implements OnInit {
   constructor(
     public monitorService: MonitorService,
+    public historyService: HistoryService,
     public router: Router,
     private toastr: ToastrService,
     private socketService: SocketService,
     public csvService: CsvDataServiceService
   ) {
     this.getAll();
-
-    this.getHistory();
+    this.lastEvent();
     this.downtime = [];
   }
   disableSelect = new FormControl(false);
@@ -44,42 +45,22 @@ export class MonitorsComponent implements OnInit {
   pageSize = 1;
   downtime: any[];
 
+  lastEventMonitor: string;
+  lastEventTime: any;
+
   getAll() {
     return this.monitorService.getProjects().subscribe((res: any) => {
       this.dataSource.data = res.data as Project[];
       this.dataSource.paginator = this.paginator;
     });
   }
-  getHistory() {
-    return this.monitorService.getProjects().subscribe((res) => {
-      res.data.forEach((element) => {
-        element.histories.forEach((item) => {
-          const incident = item.status;
-          const time = new Date(item.startedAt);
-          const month = time.getMonth() + 1;
-          const now = new Date();
-          const currentMonth = now.getMonth() + 1;
-
-          if (incident === 'down' && month === currentMonth) {
-            this.downtime.push({
-              name: element.name,
-              url: element.url,
-              status: incident,
-              startedAt: time,
-            });
-          }
-        });
-        this.dataSourceEvents.data = this.downtime;
-      });
-    });
-  }
-
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
     this.socketConnection();
     this.countProjectStopped();
     this.countProjectActive();
     this.countProjectDown();
+    this.latestEvents();
   }
   socketConnection() {
     this.socketService.setupSocketConnection();
@@ -117,7 +98,7 @@ export class MonitorsComponent implements OnInit {
   }
 
   countProjectStopped() {
-    this.monitorService.getCountProjects().subscribe((res) => {
+    return this.monitorService.getCountProjects().subscribe((res) => {
       this.stopped = res.stopped[1];
     });
   }
@@ -134,5 +115,19 @@ export class MonitorsComponent implements OnInit {
   exportCsv() {
     const data = this.dataSourceEvents.data;
     this.csvService.exportToCsv('events.csv', data);
+  }
+
+  lastEvent() {
+    this.historyService.getLastEvent().subscribe((res) => {
+      const data = res.data;
+      this.lastEventMonitor = data.project.name;
+      this.lastEventTime = data.startedAt;
+    });
+  }
+
+  latestEvents() {
+    this.historyService.getMonthlyEvents().subscribe((res) => {
+      this.dataSourceEvents.data = res.data;
+    });
   }
 }

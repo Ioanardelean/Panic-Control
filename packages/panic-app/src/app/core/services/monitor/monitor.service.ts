@@ -31,6 +31,10 @@ export class MonitorService {
     return this.httpClient.get<any>(`${this.apiBaseUrl}/projects`);
   }
 
+  getLastEvent(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiBaseUrl}/history/last`);
+  }
+
   getCountProjects(): Observable<any> {
     return this.httpClient.get(`${this.apiBaseUrl}/projects/count`);
   }
@@ -67,5 +71,9 @@ export class MonitorService {
     return this.httpClient
       .post(`${this.apiBaseUrl}/projects/${id}/stop`, null)
       .pipe(catchError(this.handleError));
+  }
+
+  getMonthlyEvents(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiBaseUrl}/history/downtime-month`);
   }
 }

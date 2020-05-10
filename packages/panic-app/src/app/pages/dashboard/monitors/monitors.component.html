@@ -186,8 +186,9 @@
                   </h6>
                 </div>
                 <p i18n>
-                  It was recorded (for the monitor panic) on 2020-04-16 17:43:49 and the
-                  downtime lasted for 1 hrs, 10 mins.
+                  It was recorded (for the monitor {{ lastEventMonitor }}) on
+                  {{ lastEventTime | date: 'medium' }} and the downtime lasted unknown
+                  time.
                 </p>
               </div>
             </div>
