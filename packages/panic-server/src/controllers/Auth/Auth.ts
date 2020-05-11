@@ -10,29 +10,29 @@ import { schema } from '../../modules/utils/password.validator';
 export default class AuthController {
   @route('/register', HttpMethod.POST)
   async registerUser(ctx: any) {
-    const payload = ctx.request.body;
-    const email = payload.email;
-    let password = payload.password;
+    // tslint:disable-next-line: prefer-const
+    let { email, username, password } = ctx.request.body;
+    if (!username) ctx.throw(422, 'Username required.');
 
     try {
       if (EmailValidator.validate(email) && schema.validate(password)) {
         password = await hashPassword(password);
-        const newUser = await createUser({ ...payload, password });
+        const newUser = await createUser({ ...ctx.request.body, password });
         ctx.status = 201;
         ctx.body = {
           data: newUser,
-          message: 'You have been registered',
+          message: 'You have been registered!',
         };
       } else {
         ctx.body = {
           status: 400,
-          error: `Email or password is invalid`,
+          error: `Email or/and password is invalid`,
         };
       }
     } catch (error) {
       ctx.body = {
         status: 500,
-        error: error.detail,
+        error: `Username or/and email address already exist`,
       };
     }
   }
@@ -43,8 +43,7 @@ export default class AuthController {
     passport.authenticate('local', { failureRedirect: '/auth/loginFail' })
   )
   async loginUser(ctx: any) {
-    const payload = ctx.request.body;
-    const username = payload.username;
+    const { username } = ctx.request.body;
     const user = ctx.state.user;
     ctx.login(user);
     const accessToken = await JwtSign(user);
@@ -52,14 +51,14 @@ export default class AuthController {
     ctx.status = 200;
     ctx.body = {
       token: accessToken,
-      message: `Welcome, ${username}`,
+      message: `Welcome, ${username}!`,
     };
   }
   @route('/loginFail', HttpMethod.GET)
   async loginFail(ctx: any) {
     ctx.body = {
       status: 401,
-      error: `Bad username or passwords don't match`,
+      error: `You have entered an invalid username or password`,
     };
   }
 
@@ -71,7 +70,7 @@ export default class AuthController {
     } else {
       ctx.body = {
         status: 500,
-        message: 'Something go wrong',
+        error: 'Something go wrong',
       };
     }
   }

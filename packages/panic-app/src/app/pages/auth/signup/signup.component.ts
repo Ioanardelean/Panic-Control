@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -13,22 +13,29 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SignupComponent implements OnInit {
   registerForm: FormGroup;
+  isSubmitted = false;
   constructor(
     public formBuilder: FormBuilder,
     public authService: AuthService,
     public router: Router,
     public toastr: ToastrService
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      username: [''],
-      email: [''],
-      password: [''],
+      username: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
-
-  ngOnInit() {}
-
+  get formControls() {
+    return this.registerForm.controls;
+  }
   registerUser() {
+    this.isSubmitted = true;
+    if (this.registerForm.invalid) {
+      return;
+    }
     this.authService.register(this.registerForm.value).subscribe((res) => {
       if (res.data) {
         this.registerForm.reset();

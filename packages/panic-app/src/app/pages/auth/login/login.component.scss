@@ -14,7 +14,9 @@ $topnav-background-color: #0a2d48;
   color: #fff;
   padding: 3em;
   #login-section {
-    padding-top: 100px;
+    margin-top: 100px;
+    padding: 40px;
+    border: white 2px solid;
   }
   .input-lg {
     height: 46px;
@@ -85,5 +87,9 @@ $topnav-background-color: #0a2d48;
   }
   .form-content {
     padding: 40px 0;
+  }
+  .help-block {
+    color: #f44336;
+    float: right;
   }
 }

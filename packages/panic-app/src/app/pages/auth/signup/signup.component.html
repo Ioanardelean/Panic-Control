@@ -11,9 +11,15 @@
               id="username"
               formControlName="username"
               i18n-placeholder
-              placeholder="User Name"
-              required
+              placeholder="Username"
+              [ngClass]="{ 'has-error': isSubmitted && formControls.username.errors }"
             />
+
+            <div *ngIf="isSubmitted && formControls.username.errors" class="help-block">
+              <div *ngIf="formControls.username.errors.required">
+                Username is required and must be unique!
+              </div>
+            </div>
           </div>
 
           <div class="form-group">
@@ -24,8 +30,12 @@
               formControlName="email"
               i18n-placeholder
               placeholder="Email"
-              required
+              [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }"
             />
+
+            <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+              <div *ngIf="formControls.email.errors.required">Email is required!</div>
+            </div>
           </div>
 
           <div class="form-group">
@@ -36,8 +46,13 @@
               formControlName="password"
               i18n-placeholder
               placeholder="Password"
-              required
+              [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }"
             />
+            <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+              <div *ngIf="formControls.password.errors.required">
+                Password is required
+              </div>
+            </div>
           </div>
           <small i18n>
             <img src="./assets/icons/report_problem.png" alt="report problem icon" />

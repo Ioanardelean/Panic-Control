@@ -57,11 +57,8 @@ export default class ProjectsController {
 
   @route('/', HttpMethod.POST, jwtAuth)
   async create(ctx: any) {
-    const payload = ctx.request.body;
+    const { email, url, name } = ctx.request.body;
     const userId = ctx.state.user.id;
-    const email = payload.receiver;
-    const url = payload.url;
-    const name = payload.name;
 
     try {
       let validEmail = true;
@@ -81,11 +78,11 @@ export default class ProjectsController {
       }
 
       if (validUrl.isUri(url) && validEmail) {
-        await addItem(payload, userId);
+        const newProject = await addItem(ctx.request.body, userId);
         CheckHealth.startHealthCheck();
         ctx.status = 201;
         ctx.body = {
-          data: payload,
+          data: newProject,
           message: `${name} has been created`,
         };
       } else {

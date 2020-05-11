@@ -69,6 +69,16 @@ app.use(async (ctx: any, next) => {
   await next();
 });
 
+app.use(async (ctx, next) => {
+  try {
+    await next();
+    if (ctx.status === 404) ctx.throw(404);
+  } catch (err) {
+    ctx.status = err.status || 500;
+    ctx.body = err.message;
+    ctx.app.emit('error', err, ctx);
+  }
+});
 /**
  * Where Angular builds to - In the ./angular/angular.json file, you will find this configuration
  * at the property: projects.angular.architect.build.options.outputPath

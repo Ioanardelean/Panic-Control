@@ -13,19 +13,27 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  isSubmitted = false;
   constructor(
     public formBuilder: FormBuilder,
     public authService: AuthService,
     public router: Router
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
-
-  ngOnInit() {}
+  get formControls() {
+    return this.loginForm.controls;
+  }
   loginUser() {
+    this.isSubmitted = true;
+    if (this.loginForm.invalid) {
+      return;
+    }
     this.authService.login(this.loginForm.value);
   }
 }
