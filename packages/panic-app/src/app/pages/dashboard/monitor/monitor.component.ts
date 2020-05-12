@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MonitorService } from 'src/app/core/services/monitor/monitor.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 export interface Ping {
   ping: number;
+}
+
+export interface Interval {
+  monitorInterval: number;
 }
 @Component({
   selector: 'app-monitor',
@@ -20,34 +24,46 @@ export class MonitorComponent implements OnInit {
     public monitorService: MonitorService,
     public router: Router,
     private toastr: ToastrService
-  ) {
-    this.createForm = this.formBuilder.group({
-      name: [''],
-      description: [''],
-      url: [''],
-      receiver: [this.emails],
-      ping: [''],
-      monitorInterval: [''],
-      emailTemplate: [''],
-      testRunning: [''],
-    });
-  }
+  ) {}
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
+  isSubmitted = false;
   emails: string[] = [];
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   createForm: FormGroup;
-  emailCtrl = new FormControl();
-  public value = '';
 
   pings: Ping[] = [{ ping: 10 }, { ping: 20 }, { ping: 30 }, { ping: 60 }];
+  intervals: Interval[] = [
+    { monitorInterval: 1 },
+    { monitorInterval: 5 },
+    { monitorInterval: 10 },
+    { monitorInterval: 15 },
+    { monitorInterval: 30 },
+    { monitorInterval: 45 },
+    { monitorInterval: 60 },
+  ];
 
   isShowDivIf = false;
   isShowNextDivIf = false;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.creationForm();
+  }
+
+  creationForm() {
+    this.createForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      description: [''],
+      url: ['', [Validators.required]],
+      receiver: [this.emails, [Validators.required]],
+      ping: ['', [Validators.required]],
+      monitorInterval: ['', [Validators.required]],
+      emailTemplate: [''],
+      testRunning: [''],
+    });
+  }
 
   toggleDisplayDivIf() {
     this.isShowDivIf = true;
@@ -56,14 +72,6 @@ export class MonitorComponent implements OnInit {
   toggleDisplayNextDivIf() {
     this.isShowDivIf = false;
     this.isShowNextDivIf = true;
-  }
-
-  formatLabel(value: number) {
-    if (value >= 120) {
-      return Math.round(value / 1000) + '';
-    }
-
-    return value;
   }
 
   add(event: MatChipInputEvent): void {
@@ -78,7 +86,6 @@ export class MonitorComponent implements OnInit {
       input.value = '';
     }
     this.createForm.controls.receiver.setValue(this.emails.toString());
-    this.emailCtrl.setValue(null);
   }
 
   remove(email: string): void {
@@ -90,10 +97,18 @@ export class MonitorComponent implements OnInit {
   }
 
   onChange() {
-    //
+    console.log();
   }
+  public errorHandling = (control: string, error: string) => {
+    return this.createForm.controls[control].hasError(error);
+  };
 
   createProject() {
+    this.isSubmitted = true;
+    if (this.createForm.invalid) {
+      console.log('*******************');
+      return;
+    }
     this.monitorService.addProject(this.createForm.value).subscribe((res) => {
       if (res.data) {
         this.createForm.reset();

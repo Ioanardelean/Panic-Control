@@ -23,8 +23,11 @@
                 matInput
                 placeholder="Ex. Panic Control"
                 formControlName="name"
-                required
+                [ngClass]="{ 'has-error': isSubmitted }"
               />
+              <mat-error *ngIf="errorHandling('name', 'required')">
+                You must provide a<strong> friendly Name </strong>
+              </mat-error>
             </mat-form-field>
             <mat-form-field class="example-chip-list">
               <mat-label i18n>Description</mat-label>
@@ -48,7 +51,15 @@
             </h5>
             <mat-form-field class="example-chip-list">
               <mat-label>URL</mat-label>
-              <input matInput placeholder="Ex. https://" formControlName="url" />
+              <input
+                matInput
+                placeholder="Ex. https://"
+                formControlName="url"
+                [ngClass]="{ 'has-error': isSubmitted }"
+              />
+              <mat-error *ngIf="errorHandling('url', 'required')">
+                You must provide a<strong> Url </strong>
+              </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-chip-list">
@@ -65,12 +76,11 @@
                 </mat-chip>
                 <input
                   type="email"
-                  formControlName="receiver"
-                  [formControl]="emailCtrl"
                   [matChipInputFor]="chipList"
                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                   [matChipInputAddOnBlur]="addOnBlur"
                   (matChipInputTokenEnd)="add($event)"
+                  [ngClass]="{ 'has-error': isSubmitted }"
                 />
               </mat-chip-list>
             </mat-form-field>
@@ -97,21 +107,23 @@
                 </mat-option>
               </mat-select>
               <mat-hint i18n>seconds</mat-hint>
+              <mat-error *ngIf="errorHandling('ping', 'required')">
+                You must provide a<strong> Ping threshold </strong>
+              </mat-error>
             </mat-form-field>
 
-            <mat-label i18n>Monitor Interval*</mat-label>
-            <mat-slider
-              color="primary"
-              formControlName="monitorInterval"
-              [value]="value"
-              thumbLabel
-              [displayWith]="formatLabel"
-              tickInterval="10"
-              min="1"
-              max="12O"
-              required
-            >
-            </mat-slider>
+            <mat-form-field class="example-chip-list">
+              <mat-label i18n>Monitor Interval</mat-label>
+              <mat-select formControlName="monitorInterval" required>
+                <mat-option *ngFor="let item of intervals" [value]="item.monitorInterval">
+                  {{ item.monitorInterval }}
+                </mat-option>
+              </mat-select>
+              <mat-hint i18n> minutes</mat-hint>
+              <mat-error *ngIf="errorHandling('monitorInterval', 'required')">
+                You must provide a<strong> Monitor Interval </strong>
+              </mat-error>
+            </mat-form-field>
           </div>
           <div class="col-md-6">
             <h5 i18n>

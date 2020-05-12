@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MonitorService } from 'src/app/core/services/monitor/monitor.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Interval } from '../monitor/monitor.component';
 
 export interface Ping {
   ping: number;
@@ -23,14 +24,43 @@ export class MonitorEditComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.getProject(this.route.snapshot.params.id);
+  }
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
+  emails: string[] = [];
+
+  isSubmitted = false;
+  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+  updateForm: FormGroup;
+  id: string;
+
+  pings: Ping[] = [{ ping: 10 }, { ping: 20 }, { ping: 30 }, { ping: 60 }];
+  intervals: Interval[] = [
+    { monitorInterval: 1 },
+    { monitorInterval: 5 },
+    { monitorInterval: 10 },
+    { monitorInterval: 15 },
+    { monitorInterval: 30 },
+    { monitorInterval: 45 },
+    { monitorInterval: 60 },
+  ];
+  isShowDivIf = true;
+
+  ngOnInit(): void {
+    this.update();
+  }
+
+  update() {
     this.updateForm = this.formBuilder.group({
       id: [''],
-      name: [''],
+      name: ['', [Validators.required]],
       description: [''],
-      url: [''],
-      receiver: [this.emails],
-      ping: [''],
-      monitorInterval: [''],
+      url: ['', [Validators.required]],
+      receiver: [this.emails, [Validators.required]],
+      ping: ['', [Validators.required]],
+      monitorInterval: ['', [Validators.required]],
       emailTemplate: [''],
       testRunning: [''],
       status: null,
@@ -38,30 +68,6 @@ export class MonitorEditComponent implements OnInit {
       histories: [''],
     });
   }
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  emails: string[] = [];
-  emailCtrl = new FormControl();
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  updateForm: FormGroup;
-  id: string;
-  public value = '';
-
-  pings: Ping[] = [{ ping: 10 }, { ping: 20 }, { ping: 30 }, { ping: 60 }];
-  isShowDivIf = true;
-
-  ngOnInit(): void {}
-
-  formatLabel(value: number) {
-    if (value >= 120) {
-      return Math.round(value / 1000) + '';
-    }
-
-    return value;
-  }
-
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
@@ -74,7 +80,6 @@ export class MonitorEditComponent implements OnInit {
       input.value = '';
     }
     this.updateForm.controls.receiver.setValue(this.emails.toString());
-    this.emailCtrl.setValue(null);
   }
 
   remove(email: string): void {
@@ -98,6 +103,10 @@ export class MonitorEditComponent implements OnInit {
   }
 
   updateProject() {
+    this.isSubmitted = true;
+    if (this.updateForm.invalid) {
+      return;
+    }
     this.monitorService.updateProject(this.updateForm.value, this.id).subscribe((res) => {
       if (res.message) {
         this.toastr.success(res.message);
@@ -107,4 +116,7 @@ export class MonitorEditComponent implements OnInit {
       }
     });
   }
+  public errorHandling = (control: string, error: string) => {
+    return this.updateForm.controls[control].hasError(error);
+  };
 }

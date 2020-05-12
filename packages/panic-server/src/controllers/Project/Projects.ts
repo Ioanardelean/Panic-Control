@@ -126,6 +126,7 @@ export default class ProjectsController {
     const url = payload.url;
     try {
       let validEmail = true;
+      const updated = await updateProjectById(id, payload);
 
       if (email) {
         const emails = email.replace(/\s/g, '').split(',');
@@ -141,7 +142,6 @@ export default class ProjectsController {
       }
 
       if (validEmail && validUrl.isUri(url)) {
-        const updated = await updateProjectById(id, payload);
         CheckHealth.startHealthCheck();
         ctx.status = 200;
         ctx.body = {
@@ -151,7 +151,7 @@ export default class ProjectsController {
       } else {
         ctx.body = {
           status: 400,
-          error: `The email is wrong`,
+          error: `The email or Url is wrong`,
         };
       }
     } catch (error) {

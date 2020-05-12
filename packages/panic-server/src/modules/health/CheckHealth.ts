@@ -53,7 +53,7 @@ export default class HealthCheck {
   init() {
     const payloadHistory = new History();
     const socketClient = (global as any).socketMap[this.project.user.id];
-    const monitorInterval = this.project.monitorInterval * 1000;
+    const monitorInterval = this.project.monitorInterval * 10000;
     const ping = this.project.ping * 1000;
 
     this.timer = setTimeout(async () => {
