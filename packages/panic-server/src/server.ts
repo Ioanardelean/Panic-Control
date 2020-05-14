@@ -2,6 +2,7 @@ import cors from '@koa/cors';
 import config from 'config';
 import fs from 'fs';
 import http from 'http';
+import * as HttpStatus from 'http-status-codes';
 import https from 'https';
 import Koa from 'koa';
 import koaBodyParser from 'koa-bodyparser';
@@ -14,6 +15,7 @@ import ServeStatic from 'koa-static';
 import path from 'path';
 import { load } from './core/DecoratorKoa';
 import DbConnect from './databases/DatabaseConnection';
+import errorHandler from './middleware/errorHandler';
 import CheckHealth from './modules/health/MainCheckHealth';
 
 /**
@@ -23,6 +25,11 @@ require('dotenv').config();
 const cwd = process.cwd();
 
 const app = new Koa();
+
+// Generic error handling middleware.
+app.use(errorHandler());
+
+
 /**
  * logs output
  */
@@ -69,16 +76,6 @@ app.use(async (ctx: any, next) => {
   await next();
 });
 
-app.use(async (ctx, next) => {
-  try {
-    await next();
-    if (ctx.status === 404) ctx.throw(404);
-  } catch (err) {
-    ctx.status = err.status || 500;
-    ctx.body = err.message;
-    ctx.app.emit('error', err, ctx);
-  }
-});
 /**
  * Where Angular builds to - In the ./angular/angular.json file, you will find this configuration
  * at the property: projects.angular.architect.build.options.outputPath

@@ -1,39 +1,32 @@
 import * as EmailValidator from 'email-validator';
+import * as HttpStatus from 'http-status-codes';
 import passport from 'passport';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
+import { UnprocessableEntity } from '../../helpers/errors';
 import { hashPassword } from '../../helpers/UserService/HashPassword';
 import { JwtSign } from '../../helpers/UserService/TokenGenerator';
 import { createUser } from '../../helpers/UserService/UserService';
 import { schema } from '../../modules/utils/password.validator';
-
 @Controller('/auth')
 export default class AuthController {
   @route('/register', HttpMethod.POST)
   async registerUser(ctx: any) {
     // tslint:disable-next-line: prefer-const
     let { email, username, password } = ctx.request.body;
-    if (!username) ctx.throw(422, 'Username required.');
+    if (!username) {
+      throw new UnprocessableEntity('Username is required ');
+    }
 
-    try {
-      if (EmailValidator.validate(email) && schema.validate(password)) {
-        password = await hashPassword(password);
-        const newUser = await createUser({ ...ctx.request.body, password });
-        ctx.status = 201;
-        ctx.body = {
-          data: newUser,
-          message: 'You have been registered!',
-        };
-      } else {
-        ctx.body = {
-          status: 400,
-          error: `Email or/and password is invalid`,
-        };
-      }
-    } catch (error) {
+    if (EmailValidator.validate(email) && schema.validate(password)) {
+      password = await hashPassword(password);
+      const newUser = await createUser({ ...ctx.request.body, password });
+      ctx.status = 201;
       ctx.body = {
-        status: 500,
-        error: `Username or/and email address already exist`,
+        data: newUser,
+        message: 'You have been registered!',
       };
+    } else {
+      ctx.throw(HttpStatus.BAD_REQUEST);
     }
   }
 
@@ -47,8 +40,6 @@ export default class AuthController {
     const user = ctx.state.user;
     ctx.login(user);
     const accessToken = await JwtSign(user);
-
-    ctx.status = 200;
     ctx.body = {
       token: accessToken,
       message: `Welcome, ${username}!`,
@@ -56,22 +47,15 @@ export default class AuthController {
   }
   @route('/loginFail', HttpMethod.GET)
   async loginFail(ctx: any) {
-    ctx.body = {
-      status: 401,
-      error: `You have entered an invalid username or password`,
-    };
+    ctx.throw(HttpStatus.UNAUTHORIZED);
   }
 
   @route('/logout', HttpMethod.GET)
   async logoutUser(ctx: any) {
     if (ctx.isAuthenticated()) {
-      ctx.status = 200;
       ctx.logout();
     } else {
-      ctx.body = {
-        status: 500,
-        error: 'Something go wrong',
-      };
+      ctx.throw(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 }

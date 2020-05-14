@@ -16,17 +16,13 @@ class MainCheckHealth {
     this.mailerTransport = new MailerTransport(configMailer);
   }
   async startHealthCheck() {
-    try {
-      const projects = await getAll();
-      projects.forEach(async (project: any) => {
-        this.projectsTest.push({
-          id: project.id,
-          healthCheck: new HealthCheck(project, this.mailerTransport),
-        });
+    const projects = await getAll();
+    projects.forEach(async (project: any) => {
+      this.projectsTest.push({
+        id: project.id,
+        healthCheck: new HealthCheck(project, this.mailerTransport),
       });
-    } catch (error) {
-      //
-    }
+    });
   }
 
   stopTestByProjectId(projectId: string) {

@@ -30,11 +30,16 @@ export async function createUser(user: User) {
   return newUser.id;
 }
 
-export async function getUserById(id: any) {
+export async function findUserById(id: any) {
   initialize();
   return repository.findOne({ where: { id } });
 }
-export async function getUserByName(username: string) {
+export async function findUserByEmail(email: any) {
+  initialize();
+  return repository.findOne({ where: { email } });
+}
+
+export async function findUserByName(username: string) {
   initialize();
   return repository.findOne({ where: { username } });
 }
@@ -45,8 +50,8 @@ export async function updateUserById(id: number, payload: any) {
   return repository.save(userToUpdate);
 }
 
-export async function deleteById(id: number) {
-  const userToDelete = await repository.findOne({ where: { id } });
+export async function deleteById(userToDelete: any) {
   return repository.remove(userToDelete);
 }
+
 export const jwtAuth = passport.authenticate('jwt', { session: false });

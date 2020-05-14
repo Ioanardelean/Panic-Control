@@ -35,12 +35,12 @@ export class AdminService {
   }
   getUsers(): Observable<any> {
     return this.httpClient
-      .get<any>(`${this.apiBaseUrl}/users/`)
+      .get<any>(`${this.apiBaseUrl}/admin/users`)
       .pipe(catchError(this.handleError));
   }
   deleteUser(id: string): Observable<any> {
     return this.httpClient
-      .delete(`${this.apiBaseUrl}/users/${id}/delete`)
+      .delete(`${this.apiBaseUrl}/admin/users/${id}/delete`)
       .pipe(catchError(this.handleError));
   }
 }

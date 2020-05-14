@@ -1,40 +1,43 @@
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import { deleteProject, getAll } from '../../helpers/ProjectServices/ProjectServices';
-import { adminMdw, jwtAuth } from '../../helpers/UserService/UserService';
+import {
+  adminMdw,
+  deleteById,
+  findUserById,
+  getAllUsers,
+  jwtAuth,
+} from '../../helpers/UserService/UserService';
 
 @Controller('/admin')
 export default class AdminDashboardController {
   @route('/projects', HttpMethod.GET, jwtAuth, adminMdw)
   async admin(ctx: any) {
-    try {
-      const project: any[] = await getAll();
-      ctx.status = 200;
-      ctx.body = {
-        data: project,
-      };
-    } catch (error) {
-      ctx.status = 500;
-      ctx.body = {
-        message: error.message,
-      };
-    }
+    const project: any[] = await getAll();
+    ctx.body = {
+      data: project,
+    };
   }
   @route('/projects/:id/delete', HttpMethod.DELETE, jwtAuth)
   async delete(ctx: any) {
-    try {
-      const id = ctx.params.id;
-      const removed = await deleteProject(id);
-      ctx.status = 200;
-      ctx.body = {
-        data: removed,
-        message: 'Monitor has been deleted',
-      };
-    } catch (error) {
-      ctx.status = 403;
-      console.log(error);
-      ctx.body = {
-        error,
-      };
-    }
+    const id = ctx.params.id;
+    const removed = await deleteProject(id);
+    ctx.body = {
+      data: removed,
+      message: 'Monitor has been deleted',
+    };
+  }
+  @route('/users', HttpMethod.GET, jwtAuth, adminMdw)
+  async getUsers(ctx: any) {
+    const users = await getAllUsers();
+
+    ctx.body = {
+      data: users,
+    };
+  }
+  @route('/users/:id/delete', HttpMethod.DELETE, jwtAuth, adminMdw)
+  async deleteUser(ctx: any) {
+    const id = ctx.params.id;
+    const userToRemove = await findUserById(+id || 0);
+    await deleteById(userToRemove);
   }
 }

@@ -33,7 +33,6 @@ export async function getProjectById(id: number, userId: any) {
 export async function getProjectOnStatusStopped(userId: User) {
   initialize();
   return repository.findAndCount({
-    relations: ['user', 'histories'],
     where: { user: userId, status: 'stopped' },
   });
 }
@@ -42,7 +41,6 @@ export async function getProjectOnStatusStopped(userId: User) {
 export async function getProjectOnStatusActive(userId: User) {
   initialize();
   return repository.findAndCount({
-    relations: ['user', 'histories'],
     where: { user: userId, status: 'up' },
   });
 }
@@ -50,7 +48,6 @@ export async function getProjectOnStatusActive(userId: User) {
 export async function getProjectOnStatusDown(userId: User) {
   initialize();
   return repository.findAndCount({
-    relations: ['user', 'histories'],
     where: { user: userId, status: 'down' },
   });
 }

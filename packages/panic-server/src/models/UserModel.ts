@@ -2,11 +2,9 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Project } from './ProjectModel';
 
 export enum UserRole {
   ADMIN = 'admin',
@@ -36,11 +34,4 @@ export class User {
   @Column({ nullable: false })
   @UpdateDateColumn()
   updateAt: Date;
-
-  @OneToMany(
-    () => Project,
-    project => project.user,
-    { cascade: true }
-  )
-  projects: Project[];
 }

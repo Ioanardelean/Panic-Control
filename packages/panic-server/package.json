@@ -48,6 +48,7 @@
     "email-validator": "^2.0.4",
     "file-system": "^2.2.2",
     "http": "0.0.0",
+    "http-status-codes": "^1.4.0",
     "is-reachable": "^3.1.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.7.0",

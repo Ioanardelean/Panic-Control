@@ -1,61 +1,46 @@
+import * as HttpStatus from 'http-status-codes';
+import { Equal } from 'typeorm';
+import { Not } from 'typeorm/find-options/operator/Not';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import {
-  adminMdw,
   deleteById,
-  getAllUsers,
+  findUserById,
   jwtAuth,
   updateUserById,
 } from '../../helpers/UserService/UserService';
+import { User } from '../../models/UserModel';
 
 @Controller('/users')
 export default class UsersController {
-  @route('/', HttpMethod.GET, jwtAuth, adminMdw)
-  async getUsers(ctx: any) {
-    ctx.status = 200;
-    const users = await getAllUsers();
-    ctx.body = {
-      data: users,
-      message: 'all users',
-    };
-  }
   @route('/profile', HttpMethod.GET, jwtAuth)
   async getUserProfile(ctx: any) {
-    ctx.status = 200;
+    const currentUser = await findUserById(ctx.state.user.id);
     ctx.body = {
-      ...ctx.state.user,
-      message: 'Current user',
+      currentUser,
     };
   }
 
-  @route('/:id/update', HttpMethod.PUT)
-  async update(ctx: any) {
+  @route('/:id', HttpMethod.PUT, jwtAuth)
+  async updateUser(ctx: any) {
     const id = ctx.params.id;
     const payload = ctx.request.body;
-    try {
+    const user = findUserById({ id: Not(Equal(payload.id)), email: payload.email });
+
+    if (user) {
+      ctx.throw(HttpStatus.BAD_REQUEST);
+    } else {
       await updateUserById(id, payload);
-      ctx.status = 201;
-      ctx.body = {
-        message: 'User has been successfully updated',
-      };
-    } catch (error) {
-      ctx.body = {
-        error: error && error.message,
-      };
     }
   }
-  @route('/:id/delete', HttpMethod.DELETE)
-  async delete(ctx: any) {
-    const id = ctx.params.id;
-    try {
-      await deleteById(id);
-      ctx.status = 204;
-      ctx.body = {
-        message: 'User hes been deleted',
-      };
-    } catch (error) {
-      ctx.body = {
-        error,
-      };
+  @route('/:id', HttpMethod.DELETE, jwtAuth)
+  async deleteUser(ctx: any) {
+    const userToRemove: User | undefined = await findUserById(+ctx.params.id || 0);
+    if (!userToRemove) {
+      ctx.throw(HttpStatus.BAD_REQUEST);
+    } else if (ctx.state.user.email !== userToRemove.email) {
+      ctx.throw(HttpStatus.UNAUTHORIZED);
+    } else {
+      await deleteById(userToRemove);
     }
   }
 }

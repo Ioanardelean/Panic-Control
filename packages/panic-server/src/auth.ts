@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import passport from 'passport';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import LocalStrategy from 'passport-local';
-import { getUserById, getUserByName } from './helpers/UserService/UserService';
+import { findUserById, findUserByName } from './helpers/UserService/UserService';
 import { User } from './models/UserModel';
 require('dotenv').config();
 
@@ -16,7 +16,7 @@ passport.serializeUser((user: any, done) => {
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await getUserById(id);
+    const user = await findUserById(id);
     done(null, user);
   } catch (error) {
     done(error);
@@ -27,7 +27,7 @@ passport.use(
   new LocalStrategy.Strategy(async (username, password, done) => {
     try {
       const searchUser = new User();
-      const user = await getUserByName(username);
+      const user = await findUserByName(username);
 
       if (!user) {
         done(null, false);

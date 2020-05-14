@@ -112,15 +112,11 @@ export default class HealthCheck {
       });
     }
 
-    try {
-      await this.mailerTransport.sendEmail({
-        from: 'panic.control.all@gmail.com',
-        to,
-        subject: 'test uptime',
-        html,
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    await this.mailerTransport.sendEmail({
+      from: 'panic.control.all@gmail.com',
+      to,
+      subject: 'test uptime',
+      html,
+    });
   }
 }

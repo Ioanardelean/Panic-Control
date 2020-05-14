@@ -1,3 +1,4 @@
+import * as HttpStatus from 'http-status-codes';
 import validUrl from 'valid-url';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import {
@@ -18,41 +19,24 @@ import { regex } from '../../modules/utils/email.validator';
 export default class ProjectsController {
   @route('/', HttpMethod.GET, jwtAuth)
   async getAllProjects(ctx: any) {
-    try {
-      const userId = ctx.state.user.id;
-      const project: any[] = await getProjects(userId);
-
-      ctx.status = 200;
-      ctx.body = {
-        data: project,
-      };
-    } catch (error) {
-      ctx.body = {
-        status: 500,
-        message: error.message,
-      };
-    }
+    const userId = ctx.state.user.id;
+    const project: any[] = await getProjects(userId);
+    ctx.body = {
+      data: project,
+    };
   }
 
   @route('/count', HttpMethod.GET, jwtAuth)
   async getCountProject(ctx: any) {
-    try {
-      const userId = ctx.state.user.id;
-      const numberOfStopped = await getProjectOnStatusStopped(userId);
-      const numberOfActive = await getProjectOnStatusActive(userId);
-      const numberOfDown = await getProjectOnStatusDown(userId);
-      ctx.status = 200;
-      ctx.body = {
-        stopped: numberOfStopped,
-        active: numberOfActive,
-        down: numberOfDown,
-      };
-    } catch (error) {
-      ctx.body = {
-        status: 500,
-        message: error.message,
-      };
-    }
+    const userId = ctx.state.user.id;
+    const numberOfStopped = await getProjectOnStatusStopped(userId);
+    const numberOfActive = await getProjectOnStatusActive(userId);
+    const numberOfDown = await getProjectOnStatusDown(userId);
+    ctx.body = {
+      stopped: numberOfStopped,
+      active: numberOfActive,
+      down: numberOfDown,
+    };
   }
 
   @route('/', HttpMethod.POST, jwtAuth)
@@ -60,62 +44,40 @@ export default class ProjectsController {
     const { email, url, name } = ctx.request.body;
     const userId = ctx.state.user.id;
 
-    try {
-      let validEmail = true;
-
-      if (email) {
-        const emails = email.replace(/\s/g, '').split(',');
-
-        for (const address of emails) {
-          if (address === '' || !regex.test(address)) {
-            validEmail = false;
-          }
+    let validEmail = true;
+    if (email) {
+      const emails = email.replace(/\s/g, '').split(',');
+      for (const address of emails) {
+        if (address === '' || !regex.test(address)) {
+          validEmail = false;
         }
-      } else {
-        ctx.body = {
-          error: 'invalid email',
-        };
       }
-
-      if (validUrl.isUri(url) && validEmail) {
-        const newProject = await addItem(ctx.request.body, userId);
-        CheckHealth.startHealthCheck();
-        ctx.status = 201;
-        ctx.body = {
-          data: newProject,
-          message: `${name} has been created`,
-        };
-      } else {
-        ctx.body = {
-          status: 400,
-          error: `Url or email is wrong`,
-        };
-      }
-    } catch (error) {
+    } else {
       ctx.body = {
-        status: 500,
-        error: error.detail,
+        error: 'invalid email',
       };
+    }
+    if (validUrl.isUri(url) && validEmail) {
+      const newProject = await addItem(ctx.request.body, userId);
+      CheckHealth.startHealthCheck();
+      ctx.body = {
+        data: newProject,
+        message: `${name} has been created`,
+      };
+    } else {
+      ctx.throw(HttpStatus.BAD_REQUEST);
     }
   }
   @route('/:id/', HttpMethod.GET, jwtAuth)
   async getProject(ctx: any) {
-    try {
-      const userId = ctx.state.user.id;
-      const project = await getProjectById(ctx.params.id, userId);
-      if (userId !== project.user.id) {
-        ctx.status = 403;
-      }
-      ctx.status = 200;
-      ctx.body = {
-        data: project,
-      };
-    } catch (error) {
-      ctx.body = {
-        status: 403,
-        error: error.detail,
-      };
+    const userId = ctx.state.user.id;
+    const project = await getProjectById(ctx.params.id, userId);
+    if (userId !== project.user.id) {
+      ctx.throw(HttpStatus.UNAUTHORIZED);
     }
+    ctx.body = {
+      data: project,
+    };
   }
 
   @route('/:id/update', HttpMethod.PUT, jwtAuth)
@@ -124,99 +86,69 @@ export default class ProjectsController {
     const payload = ctx.request.body;
     const email = payload.receiver;
     const url = payload.url;
-    try {
-      let validEmail = true;
-      const updated = await updateProjectById(id, payload);
 
-      if (email) {
-        const emails = email.replace(/\s/g, '').split(',');
-        for (const address of emails) {
-          if (address === '' || !regex.test(address)) {
-            validEmail = false;
-          }
+    let validEmail = true;
+    const updated = await updateProjectById(id, payload);
+
+    if (email) {
+      const emails = email.replace(/\s/g, '').split(',');
+      for (const address of emails) {
+        if (address === '' || !regex.test(address)) {
+          validEmail = false;
         }
-      } else {
-        ctx.body = {
-          error: 'invalid email',
-        };
       }
-
-      if (validEmail && validUrl.isUri(url)) {
-        CheckHealth.startHealthCheck();
-        ctx.status = 200;
-        ctx.body = {
-          data: updated,
-          message: 'Monitor has been successfully updated',
-        };
-      } else {
-        ctx.body = {
-          status: 400,
-          error: `The email or Url is wrong`,
-        };
-      }
-    } catch (error) {
+    } else {
       ctx.body = {
-        status: 500,
-        error: error.detail,
+        error: 'invalid email',
       };
+    }
+    if (validEmail && validUrl.isUri(url)) {
+      CheckHealth.startHealthCheck();
+      ctx.status = 200;
+      ctx.body = {
+        data: updated,
+        message: 'Monitor has been successfully updated',
+      };
+    } else {
+      ctx.throw(HttpStatus.BAD_REQUEST);
     }
   }
 
   @route('/:id/delete', HttpMethod.DELETE, jwtAuth)
   async delete(ctx: any) {
-    try {
-      const userId = ctx.state.user.id;
-      const id = ctx.params.id;
-      const removed = await deleteProjectById(id, userId);
-      ctx.status = 200;
-      ctx.body = {
-        data: removed,
-        message: 'Monitor has been deleted',
-      };
-    } catch (error) {
-      console.log(error);
-      ctx.body = {
-        status: 403,
-        error,
-      };
-    }
+    const userId = ctx.state.user.id;
+    const id = ctx.params.id;
+    const removed = await deleteProjectById(id, userId);
+
+    ctx.body = {
+      data: removed,
+      message: 'Monitor has been deleted',
+    };
   }
 
   @route('/:id/start', HttpMethod.POST, jwtAuth)
   async start(ctx: any) {
-    try {
-      const id = ctx.params.id;
-      const started = await updateProjectById(id, { testRunning: true });
-      CheckHealth.startTestByProjectId(id);
-      ctx.status = 200;
-      ctx.body = {
-        data: started,
-        message: 'Monitor has been started',
-      };
-    } catch (error) {
-      ctx.body = {
-        error,
-      };
-    }
+    const id = ctx.params.id;
+    const started = await updateProjectById(id, { testRunning: true });
+    CheckHealth.startTestByProjectId(id);
+
+    ctx.body = {
+      data: started,
+      message: 'Monitor has been started',
+    };
   }
   @route('/:id/stop', HttpMethod.POST, jwtAuth)
   async stop(ctx: any) {
-    try {
-      const id = ctx.params.id;
-      const stopped = await updateProjectById(id, {
-        testRunning: false,
-        status: 'stopped',
-      });
-      CheckHealth.stopTestByProjectId(id);
-      ctx.status = 200;
-      ctx.body = {
-        data: stopped,
-        message: 'Monitor has been stopped',
-      };
-    } catch (error) {
-      ctx.body = {
-        error,
-      };
-    }
+    const id = ctx.params.id;
+    const stopped = await updateProjectById(id, {
+      testRunning: false,
+      status: 'stopped',
+    });
+    CheckHealth.stopTestByProjectId(id);
+
+    ctx.body = {
+      data: stopped,
+      message: 'Monitor has been stopped',
+    };
   }
 }

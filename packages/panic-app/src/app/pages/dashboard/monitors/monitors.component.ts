@@ -119,9 +119,11 @@ export class MonitorsComponent implements OnInit {
 
   lastEvent() {
     this.historyService.getLastEvent().subscribe((res) => {
-      const data = res.data;
-      this.lastEventMonitor = data.project.name;
-      this.lastEventTime = data.startedAt;
+      if (res.data) {
+        const data = res.data;
+        this.lastEventMonitor = data.project.name;
+        this.lastEventTime = data.startedAt;
+      }
     });
   }
 

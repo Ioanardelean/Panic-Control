@@ -25,10 +25,10 @@ export class NavbarComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.authService.getUser().subscribe((user: User) => {
-      this.username = user.username;
-      this.emailAddress = user.email;
-      this.admin = user.role;
+    this.authService.getUser().subscribe((res) => {
+      this.username = res.currentUser.username;
+      this.emailAddress = res.currentUser.email;
+      this.admin = res.currentUser.role;
     });
   }
 }
