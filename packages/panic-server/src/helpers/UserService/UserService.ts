@@ -1,43 +1,36 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository } from 'typeorm';
 import { User } from '../../models/User';
 
-let repository = new Repository<User>();
-function initialize() {
-  repository = getRepository(User);
-}
+export class UserService {
+  repo = getRepository(User);
+  async getAllUsers() {
+    return this.repo.find();
+  }
 
-export async function getAllUsers() {
-  initialize();
-  return repository.find();
-}
+  async createUser(user: User) {
+    const newUser = user;
+    await this.repo.save(newUser);
+    return newUser.id;
+  }
 
-export async function createUser(user: User) {
-  initialize();
-  const newUser = user;
-  await repository.save(newUser);
-  return newUser.id;
-}
+  async findUserById(id: any) {
+    return this.repo.findOne({ where: { id } });
+  }
+  async findUserByEmail(email: any) {
+    return this.repo.findOne({ where: { email } });
+  }
 
-export async function findUserById(id: any) {
-  initialize();
-  return repository.findOne({ where: { id } });
-}
-export async function findUserByEmail(email: any) {
-  initialize();
-  return repository.findOne({ where: { email } });
-}
+  async findUserByName(username: string) {
+    return this.repo.findOne({ where: { username } });
+  }
 
-export async function findUserByName(username: string) {
-  initialize();
-  return repository.findOne({ where: { username } });
-}
+  async updateUserById(id: number, payload: any) {
+    const user = await this.repo.findOne({ where: { id } });
+    const userToUpdate = this.repo.merge(user, payload);
+    return this.repo.save(userToUpdate);
+  }
 
-export async function updateUserById(id: number, payload: any) {
-  const user = await repository.findOne({ where: { id } });
-  const userToUpdate = repository.merge(user, payload);
-  return repository.save(userToUpdate);
-}
-
-export async function deleteById(userToDelete: any) {
-  return repository.remove(userToDelete);
+  async deleteById(userToDelete: any) {
+    return this.repo.remove(userToDelete);
+  }
 }

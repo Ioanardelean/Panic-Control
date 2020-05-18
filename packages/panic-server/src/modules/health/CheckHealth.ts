@@ -2,8 +2,9 @@ import fs from 'fs';
 import isReachable = require('is-reachable');
 import { MailerTransport } from 'lib/mailer/mailerTransport';
 import { template } from 'lodash';
-import { addHistory } from '../../helpers/HistoryService/HistoryService';
-import { updateProjectById } from '../../helpers/ProjectServices/ProjectServices';
+import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
+
+import { HistoryService } from '../../helpers/HistoryService/HistoryService';
 import { History } from '../../models/History';
 import { Project } from '../../models/Project';
 import { Status } from '../../models/Status';
@@ -16,6 +17,9 @@ const panicMailTpl = fs.readFileSync(
 
 export default class HealthCheck {
   mailerTransport: MailerTransport;
+
+  projectService = new ProjectService();
+  historyService = new HistoryService();
 
   project: Project;
 
@@ -64,8 +68,14 @@ export default class HealthCheck {
         console.log(reachable);
         if (!reachable) {
           payloadHistory.status = Status.DOWN;
-          await addHistory(payloadHistory, this.project, this.project.url);
-          await updateProjectById(this.project.id, { status: 'down' });
+          await this.historyService.addHistory(
+            payloadHistory,
+            this.project,
+            this.project.url
+          );
+          await this.projectService.updateProjectById(this.project.id, {
+            status: 'down',
+          });
 
           if (socketClient) {
             socketClient.emit(`projectsUpdate-${this.project.user.id}`, {
@@ -83,8 +93,12 @@ export default class HealthCheck {
         } else {
           payloadHistory.status = Status.UP;
           payloadHistory.uptime = 1;
-          await addHistory(payloadHistory, this.project, this.project.url);
-          await updateProjectById(this.project.id, { status: 'up' });
+          await this.historyService.addHistory(
+            payloadHistory,
+            this.project,
+            this.project.url
+          );
+          await this.projectService.updateProjectById(this.project.id, { status: 'up' });
           if (socketClient) {
             socketClient.emit(`projectsUpdate-${this.project.user.id}`, {
               ...this.project,

@@ -1,18 +1,16 @@
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
-import { addHistory, getLastEvent } from '../../helpers/HistoryService/HistoryService';
-import {
-  getDowntimeOnMonth,
-  getDowntimeOnYear,
-  getDowntimeSinceCreation,
-} from '../../helpers/ProjectServices/ProjectServices';
+import { HistoryService } from '../../helpers/HistoryService/HistoryService';
+import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
 import { jwtAuth } from '../../middleware/authorization';
 
 @Controller('/history')
 export default class HistoryController {
+  projectService = new ProjectService();
+  historyService = new HistoryService();
   @route('/', HttpMethod.POST, jwtAuth)
   async addHistory(ctx: any) {
     const payload = ctx.request.body;
-    await addHistory(payload, payload.projectId, payload.projectUrl);
+    await this.historyService.addHistory(payload, payload.projectId, payload.projectUrl);
     ctx.body = {
       data: payload,
     };
@@ -20,7 +18,7 @@ export default class HistoryController {
 
   @route('/last', HttpMethod.GET, jwtAuth)
   async getLastEvents(ctx: any) {
-    const lastDown = await getLastEvent();
+    const lastDown = await this.historyService.getLastEvent();
     ctx.body = {
       data: lastDown,
     };
@@ -29,7 +27,7 @@ export default class HistoryController {
   async getEventOnYear(ctx: any) {
     const currentUser = ctx.state.user.id;
     const projectId = ctx.params.id;
-    const yearStats = await getDowntimeOnYear(currentUser, projectId);
+    const yearStats = await this.projectService.getDowntimeOnYear(currentUser, projectId);
     ctx.body = {
       data: yearStats,
     };
@@ -37,7 +35,7 @@ export default class HistoryController {
   @route('/downtime-month', HttpMethod.GET, jwtAuth)
   async getEventOnMonth(ctx: any) {
     const currentUser = ctx.state.user.id;
-    const monthStats = await getDowntimeOnMonth(currentUser);
+    const monthStats = await this.projectService.getDowntimeOnMonth(currentUser);
     ctx.body = {
       data: monthStats,
     };
@@ -46,7 +44,10 @@ export default class HistoryController {
   async getEventsOnProject(ctx: any) {
     const currentUser = ctx.state.user.id;
     const projectId = ctx.params.id;
-    const allDowntime = await getDowntimeSinceCreation(currentUser, projectId);
+    const allDowntime = await this.projectService.getDowntimeSinceCreation(
+      currentUser,
+      projectId
+    );
     ctx.body = {
       data: allDowntime,
     };

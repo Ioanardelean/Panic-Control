@@ -1,27 +1,19 @@
 import * as HttpStatus from 'http-status-codes';
 import validUrl from 'valid-url';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
-import {
-  addItem,
-  deleteProjectById,
-  getProjectById,
-  getProjectOnStatusActive,
-  getProjectOnStatusDown,
-  getProjectOnStatusStopped,
-  getProjects,
-  updateProjectById,
-} from '../../helpers/ProjectServices/ProjectServices';
 
+import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
 import { jwtAuth } from '../../middleware/authorization';
 import CheckHealth from '../../modules/health/MainCheckHealth';
 import { regex } from '../../modules/utils/email.validator';
 
 @Controller('/projects')
 export default class ProjectController {
+  projectService = new ProjectService();
   @route('/', HttpMethod.GET, jwtAuth)
   async getAllProjects(ctx: any) {
     const userId = ctx.state.user.id;
-    const project: any[] = await getProjects(userId);
+    const project: any[] = await this.projectService.getProjects(userId);
     ctx.body = {
       data: project,
     };
@@ -30,9 +22,9 @@ export default class ProjectController {
   @route('/count', HttpMethod.GET, jwtAuth)
   async getCountProject(ctx: any) {
     const userId = ctx.state.user.id;
-    const numberOfStopped = await getProjectOnStatusStopped(userId);
-    const numberOfActive = await getProjectOnStatusActive(userId);
-    const numberOfDown = await getProjectOnStatusDown(userId);
+    const numberOfStopped = await this.projectService.getProjectOnStatusStopped(userId);
+    const numberOfActive = await this.projectService.getProjectOnStatusActive(userId);
+    const numberOfDown = await this.projectService.getProjectOnStatusDown(userId);
     ctx.body = {
       stopped: numberOfStopped,
       active: numberOfActive,
@@ -59,7 +51,7 @@ export default class ProjectController {
       };
     }
     if (validUrl.isUri(url) && validEmail) {
-      const newProject = await addItem(ctx.request.body, userId);
+      const newProject = await this.projectService.addItem(ctx.request.body, userId);
       CheckHealth.startHealthCheck();
       ctx.body = {
         data: newProject,
@@ -72,7 +64,7 @@ export default class ProjectController {
   @route('/:id/', HttpMethod.GET, jwtAuth)
   async getProject(ctx: any) {
     const userId = ctx.state.user.id;
-    const project = await getProjectById(ctx.params.id, userId);
+    const project = await this.projectService.getProjectById(ctx.params.id, userId);
     if (userId !== project.user.id) {
       ctx.throw(HttpStatus.UNAUTHORIZED);
     }
@@ -89,7 +81,7 @@ export default class ProjectController {
     const url = payload.url;
 
     let validEmail = true;
-    const updated = await updateProjectById(id, payload);
+    const updated = await this.projectService.updateProjectById(id, payload);
 
     if (email) {
       const emails = email.replace(/\s/g, '').split(',');
@@ -119,7 +111,7 @@ export default class ProjectController {
   async delete(ctx: any) {
     const userId = ctx.state.user.id;
     const id = ctx.params.id;
-    const removed = await deleteProjectById(id, userId);
+    const removed = await this.projectService.deleteProjectById(id, userId);
 
     ctx.body = {
       data: removed,
@@ -130,7 +122,9 @@ export default class ProjectController {
   @route('/:id/start', HttpMethod.POST, jwtAuth)
   async start(ctx: any) {
     const id = ctx.params.id;
-    const started = await updateProjectById(id, { testRunning: true });
+    const started = await this.projectService.updateProjectById(id, {
+      testRunning: true,
+    });
     CheckHealth.startTestByProjectId(id);
 
     ctx.body = {
@@ -141,7 +135,7 @@ export default class ProjectController {
   @route('/:id/stop', HttpMethod.POST, jwtAuth)
   async stop(ctx: any) {
     const id = ctx.params.id;
-    const stopped = await updateProjectById(id, {
+    const stopped = await this.projectService.updateProjectById(id, {
       testRunning: false,
       status: 'stopped',
     });

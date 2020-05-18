@@ -1,10 +1,11 @@
 import config from 'config';
-import { getAll } from '../../helpers/ProjectServices/ProjectServices';
+import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
 import { MailerTransport } from '../../lib/mailer/mailerTransport';
 import HealthCheck from './CheckHealth';
 
 class MainCheckHealth {
   mailerTransport: MailerTransport;
+
   projectsTest: any[];
 
   constructor() {
@@ -16,7 +17,8 @@ class MainCheckHealth {
     this.mailerTransport = new MailerTransport(configMailer);
   }
   async startHealthCheck() {
-    const projects = await getAll();
+    const projectService = new ProjectService();
+    const projects = await projectService.getAll();
     projects.forEach(async (project: any) => {
       this.projectsTest.push({
         id: project.id,
