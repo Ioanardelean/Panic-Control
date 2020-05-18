@@ -6,7 +6,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Project } from './ProjectModel';
+import { Project } from './Project';
 import { Status } from './Status';
 
 @Entity()

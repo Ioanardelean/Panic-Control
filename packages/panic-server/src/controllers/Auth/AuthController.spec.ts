@@ -2,7 +2,7 @@ import EmailValidator from 'email-validator';
 import * as userService from '../../helpers/UserService/UserService';
 
 import * as util from '../../helpers/UserService/HashPassword';
-import AuthController from './Auth';
+import AuthController from './AuthController';
 describe('should test the authentication controller', () => {
   let auth = new AuthController();
 

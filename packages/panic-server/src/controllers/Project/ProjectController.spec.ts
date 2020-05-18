@@ -1,10 +1,10 @@
 import ValidUrl from 'valid-url';
 import * as projectService from '../../helpers/ProjectServices/ProjectServices';
 import CheckHealth from '../../modules/health/MainCheckHealth';
-import ProjectsController from './Projects';
+import ProjectController from './ProjectController';
 
 describe('should get a CRUD project ', () => {
-  let project: ProjectsController;
+  let project: ProjectController;
 
   const ctx: any = {
     state: {
@@ -23,7 +23,7 @@ describe('should get a CRUD project ', () => {
   };
 
   beforeAll(() => {
-    project = new ProjectsController();
+    project = new ProjectController();
   });
 
   it('to be defined', () => {

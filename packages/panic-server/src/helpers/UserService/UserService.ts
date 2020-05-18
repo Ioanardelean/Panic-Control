@@ -1,57 +1,47 @@
-import passport from 'passport';
-import { getRepository, Repository } from 'typeorm';
-import { User } from '../../models/UserModel';
+import { getRepository } from 'typeorm';
+import { User } from '../../models/User';
+import { UserCreateDto } from '../../models/UserCreateDto';
+import { hashPassword } from './HashPassword';
 
-let repository = new Repository<User>();
-function initialize() {
-  repository = getRepository(User);
-}
+export class UserService {
+  repo = getRepository(User);
+  async createUser(user: UserCreateDto) {
+    const password = await hashPassword(user.password);
+    const dto: UserCreateDto = {
+      email: user.email,
+      username: user.username,
+      password,
+    };
+    return this.repo.save(dto);
+  }
 
-export async function userMdw(ctx: any, next: any) {
-  if (ctx.isAuthenticated() && ctx.state.user.role === 'user') {
-    await next();
+  async findAll() {
+    return this.repo.find();
+  }
+
+  async findUserById(id: any) {
+    return this.repo.findOne({ where: { id } });
+  }
+
+  async findUserByEmail(email: any) {
+    return this.repo.findOne({ where: { email } });
+  }
+
+  async findUserByName(username: string) {
+    return this.repo.findOne({ where: { username } });
+  }
+
+  async updateUserById(id: number, payload: any) {
+    const user = await this.repo.findOne({ where: { id } });
+    const userToUpdate = this.repo.merge(user, payload);
+    return this.repo.save(userToUpdate);
+  }
+
+  async deleteById(userToDelete: any) {
+    return this.repo.remove(userToDelete);
+  }
+  async deleteUser(id: number) {
+    const userToDelete = await this.repo.findOne({ where: { id } });
+    return this.repo.remove(userToDelete);
   }
 }
-// tslint:disable-next-line: no-identical-functions
-export async function adminMdw(ctx: any, next: any) {
-  if (ctx.isAuthenticated() && ctx.state.user.role === 'admin') {
-    await next();
-  }
-}
-export async function getAllUsers() {
-  initialize();
-  return repository.find();
-}
-
-export async function createUser(user: User) {
-  initialize();
-  const newUser = user;
-  await repository.save(newUser);
-  return newUser.id;
-}
-
-export async function findUserById(id: any) {
-  initialize();
-  return repository.findOne({ where: { id } });
-}
-export async function findUserByEmail(email: any) {
-  initialize();
-  return repository.findOne({ where: { email } });
-}
-
-export async function findUserByName(username: string) {
-  initialize();
-  return repository.findOne({ where: { username } });
-}
-
-export async function updateUserById(id: number, payload: any) {
-  const user = await repository.findOne({ where: { id } });
-  const userToUpdate = repository.merge(user, payload);
-  return repository.save(userToUpdate);
-}
-
-export async function deleteById(userToDelete: any) {
-  return repository.remove(userToDelete);
-}
-
-export const jwtAuth = passport.authenticate('jwt', { session: false });

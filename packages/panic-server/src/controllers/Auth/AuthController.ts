@@ -3,23 +3,21 @@ import * as HttpStatus from 'http-status-codes';
 import passport from 'passport';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import { UnprocessableEntity } from '../../helpers/errors';
-import { hashPassword } from '../../helpers/UserService/HashPassword';
-import { JwtSign } from '../../helpers/UserService/TokenGenerator';
-import { createUser } from '../../helpers/UserService/UserService';
+import { UserService } from '../../helpers/UserService/UserService';
 import { schema } from '../../modules/utils/password.validator';
 @Controller('/auth')
 export default class AuthController {
+  userService = new UserService();
+
   @route('/register', HttpMethod.POST)
   async registerUser(ctx: any) {
-    // tslint:disable-next-line: prefer-const
-    let { email, username, password } = ctx.request.body;
+    const { email, username, password } = ctx.request.body;
     if (!username) {
       throw new UnprocessableEntity('Username is required ');
     }
 
     if (EmailValidator.validate(email) && schema.validate(password)) {
-      password = await hashPassword(password);
-      const newUser = await createUser({ ...ctx.request.body, password });
+      const newUser = await this.userService.createUser(ctx.request.body);
       ctx.status = 201;
       ctx.body = {
         data: newUser,

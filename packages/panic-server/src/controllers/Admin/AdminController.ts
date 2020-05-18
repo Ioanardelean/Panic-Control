@@ -1,15 +1,11 @@
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import { deleteProject, getAll } from '../../helpers/ProjectServices/ProjectServices';
-import {
-  adminMdw,
-  deleteById,
-  findUserById,
-  getAllUsers,
-  jwtAuth,
-} from '../../helpers/UserService/UserService';
+import { adminMdw, jwtAuth } from '../../helpers/UserService/AuthorizationMiddleware';
+import { UserService } from '../../helpers/UserService/UserService';
 
 @Controller('/admin')
 export default class AdminDashboardController {
+  userService = new UserService();
   @route('/projects', HttpMethod.GET, jwtAuth, adminMdw)
   async admin(ctx: any) {
     const project: any[] = await getAll();
@@ -28,7 +24,7 @@ export default class AdminDashboardController {
   }
   @route('/users', HttpMethod.GET, jwtAuth, adminMdw)
   async getUsers(ctx: any) {
-    const users = await getAllUsers();
+    const users = await this.userService.findAll();
 
     ctx.body = {
       data: users,
@@ -37,7 +33,7 @@ export default class AdminDashboardController {
   @route('/users/:id/delete', HttpMethod.DELETE, jwtAuth, adminMdw)
   async deleteUser(ctx: any) {
     const id = ctx.params.id;
-    const userToRemove = await findUserById(+id || 0);
-    await deleteById(userToRemove);
+    await this.userService.deleteUser(id);
+    ctx.status = 204;
   }
 }

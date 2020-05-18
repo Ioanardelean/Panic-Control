@@ -1,5 +1,5 @@
-import * as userService from '../../helpers/UserService/UserService';
-import UsersController from './Users';
+import * as userService from '../../helpers/UserService/AuthorizationMiddleware';
+import UsersController from './UserController';
 describe('test user api', () => {
   let users: UsersController;
   beforeAll(() => {
@@ -23,21 +23,14 @@ describe('test user api', () => {
 
   it('should update a user profile', async () => {
     spyOn(userService, 'updateUserById').and.returnValue({});
-    await users.update(ctx);
+    await users.updateUser(ctx);
     expect(userService.updateUserById).toHaveBeenCalled();
   });
   it('should delete a user', async () => {
     spyOn(userService, 'deleteById').and.returnValue({});
-    await users.delete(ctx);
+    await users.deleteUser(ctx);
     expect(userService.deleteById).toHaveBeenCalled();
   });
-
-  it('should get all user', async () => {
-    spyOn(userService, 'getAllUsers').and.returnValue({});
-    await users.getUsers(ctx);
-    expect(userService.getAllUsers).toHaveBeenCalled();
-  });
-
   it('should get user profile', async () => {
     await users.getUserProfile(ctx);
     expect(ctx.status).toBe(200);

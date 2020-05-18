@@ -11,12 +11,12 @@ import {
   getProjects,
   updateProjectById,
 } from '../../helpers/ProjectServices/ProjectServices';
-import { jwtAuth } from '../../helpers/UserService/UserService';
+import { jwtAuth } from '../../helpers/UserService/AuthorizationMiddleware';
 import CheckHealth from '../../modules/health/MainCheckHealth';
 import { regex } from '../../modules/utils/email.validator';
 
 @Controller('/projects')
-export default class ProjectsController {
+export default class ProjectController {
   @route('/', HttpMethod.GET, jwtAuth)
   async getAllProjects(ctx: any) {
     const userId = ctx.state.user.id;

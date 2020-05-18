@@ -1,12 +1,10 @@
-import {  Repository } from 'typeorm';
-import { Project } from '../../models/ProjectModel';
-
-
+import { Repository } from 'typeorm';
+import { Project } from '../../models/Project';
 
 describe('should get a CRUD project ', () => {
-   const repository = new Repository<Project>();
+  const repository = new Repository<Project>();
 
-    it('should initialise the repository', async() => {
-        expect(repository).toBeDefined();
-    });
+  it('should initialise the repository', async () => {
+    expect(repository).toBeDefined();
+  });
 });

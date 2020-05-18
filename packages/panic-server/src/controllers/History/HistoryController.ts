@@ -5,7 +5,7 @@ import {
   getDowntimeOnYear,
   getDowntimeSinceCreation,
 } from '../../helpers/ProjectServices/ProjectServices';
-import { jwtAuth } from '../../helpers/UserService/UserService';
+import { jwtAuth } from '../../helpers/UserService/AuthorizationMiddleware';
 
 @Controller('/history')
 export default class HistoryController {

@@ -6,9 +6,9 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { History } from './HistoryModel';
+import { History } from './History';
 import { Status } from './Status';
-import { User } from './UserModel';
+import { User } from './User';
 
 @Entity()
 export class Project {
