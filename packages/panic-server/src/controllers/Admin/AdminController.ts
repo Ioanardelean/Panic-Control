@@ -1,12 +1,11 @@
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import { deleteProject, getAll } from '../../helpers/ProjectServices/ProjectServices';
 import {
-  adminMdw,
   deleteById,
   findUserById,
   getAllUsers,
-  jwtAuth,
 } from '../../helpers/UserService/UserService';
+import { adminMdw, jwtAuth } from '../../middleware/authorization';
 
 @Controller('/admin')
 export default class AdminDashboardController {

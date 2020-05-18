@@ -3,7 +3,7 @@ import passport from 'passport';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import LocalStrategy from 'passport-local';
 import { findUserById, findUserByName } from './helpers/UserService/UserService';
-import { User } from './models/UserModel';
+import { User } from './models/User';
 require('dotenv').config();
 
 async function validatePassword(userPassword: any, databasePassword: any) {

@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
-import { Project } from '../../models/ProjectModel';
-import { User } from '../../models/UserModel';
+import { Project } from '../../models/Project';
+import { User } from '../../models/User';
 
 let repository = new Repository<Project>();
 function initialize() {

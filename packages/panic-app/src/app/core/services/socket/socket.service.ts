@@ -19,7 +19,6 @@ export class SocketService {
   setupSocketConnection() {
     this.socket = io(this.apiBaseUrl);
     this.authService.getUser().subscribe((user: any) => {
-      console.log(user.currentUser.id);
       this.socket.emit('init', user.currentUser.id);
       this.socket.on(`projectsUpdate-${user.currentUser.id}`, (data) => {
         this.statusMonitor$.next(data);

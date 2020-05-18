@@ -1,5 +1,5 @@
 import * as historyService from '../../helpers/HistoryService/HistoryService';
-import HistoryController from './History';
+import HistoryController from './HistoryController';
 
 describe('should get a CRUD project ', () => {
   let history: HistoryController;

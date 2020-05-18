@@ -5,13 +5,13 @@ import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import {
   deleteById,
   findUserById,
-  jwtAuth,
   updateUserById,
 } from '../../helpers/UserService/UserService';
-import { User } from '../../models/UserModel';
+import { jwtAuth } from '../../middleware/authorization';
+import { User } from '../../models/User';
 
 @Controller('/users')
-export default class UsersController {
+export default class UserController {
   @route('/profile', HttpMethod.GET, jwtAuth)
   async getUserProfile(ctx: any) {
     const currentUser = await findUserById(ctx.state.user.id);
