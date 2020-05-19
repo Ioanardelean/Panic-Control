@@ -1,15 +1,16 @@
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
-import { deleteProject, getAll } from '../../helpers/ProjectServices/ProjectServices';
+import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
 import { UserService } from '../../helpers/UserService/UserService';
 import { adminMdw, jwtAuth } from '../../middleware/authorization';
 
 @Controller('/admin')
 export default class AdminDashboardController {
   userService = new UserService();
+  projectService = new ProjectService();
 
   @route('/projects', HttpMethod.GET, jwtAuth, adminMdw)
   async admin(ctx: any) {
-    const project: any[] = await getAll();
+    const project: any[] = await this.projectService.getAll();
     ctx.body = {
       data: project,
     };
@@ -17,7 +18,7 @@ export default class AdminDashboardController {
   @route('/projects/:id/delete', HttpMethod.DELETE, jwtAuth)
   async delete(ctx: any) {
     const id = ctx.params.id;
-    const removed = await deleteProject(id);
+    const removed = await this.projectService.deleteProject(id);
     ctx.body = {
       data: removed,
       message: 'Monitor has been deleted',

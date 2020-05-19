@@ -1,0 +1,17 @@
+import {
+  ValidationArguments,
+  ValidatorConstraint,
+  ValidatorConstraintInterface,
+} from 'class-validator';
+
+@ValidatorConstraint()
+export class ValidPassword implements ValidatorConstraintInterface {
+  validate(text: string, args: ValidationArguments): boolean {
+    const passwordReqEx: RegExp = new RegExp(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/);
+    return passwordReqEx.test(text);
+  }
+
+  defaultMessage(args: ValidationArguments): string {
+    return 'Password must contain at least one number, one uppercase letter, and one lowercase letter';
+  }
+}

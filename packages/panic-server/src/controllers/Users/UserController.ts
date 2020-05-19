@@ -1,9 +1,8 @@
 import * as HttpStatus from 'http-status-codes';
-import { Equal } from 'typeorm';
-import { Not } from 'typeorm/find-options/operator/Not';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import { UserService } from '../../helpers/UserService/UserService';
 import { jwtAuth } from '../../middleware/authorization';
+import { UpdateUserDto } from '../../models/Dtos/UpdateUserDto';
 import { User } from '../../models/User';
 
 @Controller('/users')
@@ -21,16 +20,14 @@ export default class UserController {
   @route('/:id', HttpMethod.PUT, jwtAuth)
   async updateUser(ctx: any) {
     const id = ctx.params.id;
-    const payload = ctx.request.body;
-    const user = this.userService.findUserById({
-      id: Not(Equal(payload.id)),
-      email: payload.email,
-    });
-
-    if (user) {
-      ctx.throw(HttpStatus.BAD_REQUEST);
-    } else {
-      await this.userService.updateUserById(id, payload);
+    if (id === ctx.state.user.id) {
+      const userDto = new UpdateUserDto();
+      userDto.username = ctx.request.body.username;
+      userDto.email = ctx.request.body.email;
+      const updated = await this.userService.updateUserById(id, userDto);
+      ctx.body = {
+        updated,
+      };
     }
   }
   @route('/:id', HttpMethod.DELETE, jwtAuth)
@@ -44,6 +41,7 @@ export default class UserController {
       ctx.throw(HttpStatus.UNAUTHORIZED);
     } else {
       await this.userService.deleteById(userToRemove);
+      ctx.throw(HttpStatus.NO_CONTENT);
     }
   }
 }

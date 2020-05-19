@@ -2,7 +2,6 @@ import cors from '@koa/cors';
 import config from 'config';
 import fs from 'fs';
 import http from 'http';
-import * as HttpStatus from 'http-status-codes';
 import https from 'https';
 import Koa from 'koa';
 import koaBodyParser from 'koa-bodyparser';
@@ -15,6 +14,7 @@ import ServeStatic from 'koa-static';
 import path from 'path';
 import { load } from './core/DecoratorKoa';
 import DbConnect from './databases/DatabaseConnection';
+import currentUser from './middleware/currentUser';
 import errorHandler from './middleware/errorHandler';
 import CheckHealth from './modules/health/MainCheckHealth';
 
@@ -28,7 +28,6 @@ const app = new Koa();
 
 // Generic error handling middleware.
 app.use(errorHandler());
-
 
 /**
  * logs output
@@ -67,14 +66,10 @@ app.use(koaBodyParser());
  */
 app.use(koaOverride());
 
-app.use(async (ctx: any, next) => {
-  ctx.state = {
-    ...ctx.state,
-    path: ctx.request.path,
-    user: ctx.state.user || null,
-  };
-  await next();
-});
+/**
+ * current user middleware
+ */
+app.use(currentUser());
 
 /**
  * Where Angular builds to - In the ./angular/angular.json file, you will find this configuration

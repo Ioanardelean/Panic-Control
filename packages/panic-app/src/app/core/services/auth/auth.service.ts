@@ -37,7 +37,7 @@ export class AuthService {
           localStorage.setItem('access_token', data.token);
           if (data.token !== undefined) {
             this.router.navigate(['/dashboard']);
-            this.toastr.success(data.message);
+            this.toastr.success('Welcome');
             const tokenPayload = decode(data.token);
             if (tokenPayload.role === 'admin') {
               this.router.navigate(['/admin']);
