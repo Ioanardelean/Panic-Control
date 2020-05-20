@@ -1,4 +1,8 @@
+import { validate, ValidationError } from 'class-validator';
 import { getRepository } from 'typeorm';
+import { BadRequest } from '../../helpers/errors';
+import { CreateProjectDto } from '../../models/Dtos/CreateProjectDto';
+import { UpdateProjectDto } from '../../models/Dtos/UpdateProjectDto';
 import { Project } from '../../models/Project';
 import { User } from '../../models/User';
 
@@ -12,11 +16,23 @@ export class ProjectService {
     return this.repo.find({ relations: ['user', 'histories'] });
   }
 
-  async addItem(project: Project, userId: User) {
-    const proj = project;
-    proj.user = userId;
-    await this.repo.save(proj);
-    return proj.id;
+  async createProject(project: CreateProjectDto, userId: User) {
+    const dto: CreateProjectDto = {
+      name: project.name,
+      description: project.description,
+      url: project.url,
+      receiver: project.receiver,
+      ping: project.ping,
+      monitorInterval: project.monitorInterval,
+      user: userId,
+    };
+    const errors: ValidationError[] = await validate(project);
+    if (errors.length > 0) {
+      throw new BadRequest(errors);
+    } else {
+      await this.repo.save(dto);
+      return dto;
+    }
   }
 
   async getProjectById(id: number, userId: any) {
@@ -46,7 +62,17 @@ export class ProjectService {
     });
   }
 
-  async updateProjectById(id: number, payload: any) {
+  async updateProjectById(id: number, data: UpdateProjectDto) {
+    const project = await this.repo.findOne({ where: { id } });
+    const projectToUpdate = this.repo.merge(project, data);
+    const errors: ValidationError[] = await validate(data);
+    if (errors.length > 0) {
+      throw new BadRequest(errors);
+    } else {
+      return this.repo.save(projectToUpdate);
+    }
+  }
+  async changeStatus(id: number, payload: any) {
     const project = await this.repo.findOne({ where: { id } });
     const projectToUpdate = this.repo.merge(project, payload);
     return this.repo.save(projectToUpdate);

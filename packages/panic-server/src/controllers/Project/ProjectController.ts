@@ -1,11 +1,9 @@
-import * as HttpStatus from 'http-status-codes';
-import validUrl from 'valid-url';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
-
 import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
 import { jwtAuth } from '../../middleware/authorization';
+import { CreateProjectDto } from '../../models/Dtos/CreateProjectDto';
+import { UpdateProjectDto } from '../../models/Dtos/UpdateProjectDto';
 import CheckHealth from '../../modules/health/MainCheckHealth';
-import { regex } from '../../modules/utils/email.validator';
 
 @Controller('/projects')
 export default class ProjectController {
@@ -34,40 +32,26 @@ export default class ProjectController {
 
   @route('/', HttpMethod.POST, jwtAuth)
   async create(ctx: any) {
-    const { email, url, name } = ctx.request.body;
     const userId = ctx.state.user.id;
+    const project = new CreateProjectDto();
+    project.name = ctx.request.body.name;
+    project.description = ctx.request.body.description;
+    project.url = ctx.request.body.url;
+    project.receiver = ctx.request.body.receiver;
+    project.ping = ctx.request.body.ping;
+    project.monitorInterval = ctx.request.body.monitorInterval;
 
-    let validEmail = true;
-    if (email) {
-      const emails = email.replace(/\s/g, '').split(',');
-      for (const address of emails) {
-        if (address === '' || !regex.test(address)) {
-          validEmail = false;
-        }
-      }
-    } else {
-      ctx.body = {
-        error: 'invalid email',
-      };
-    }
-    if (validUrl.isUri(url) && validEmail) {
-      const newProject = await this.projectService.addItem(ctx.request.body, userId);
-      CheckHealth.startHealthCheck();
-      ctx.body = {
-        data: newProject,
-        message: `${name} has been created`,
-      };
-    } else {
-      ctx.throw(HttpStatus.BAD_REQUEST);
-    }
+    const newProject = await this.projectService.createProject(project, userId);
+    CheckHealth.startHealthCheck();
+    ctx.body = {
+      data: newProject,
+      message: `${project.name} has been created`,
+    };
   }
   @route('/:id/', HttpMethod.GET, jwtAuth)
   async getProject(ctx: any) {
     const userId = ctx.state.user.id;
     const project = await this.projectService.getProjectById(ctx.params.id, userId);
-    if (userId !== project.user.id) {
-      ctx.throw(HttpStatus.UNAUTHORIZED);
-    }
     ctx.body = {
       data: project,
     };
@@ -76,35 +60,22 @@ export default class ProjectController {
   @route('/:id/update', HttpMethod.PUT, jwtAuth)
   async update(ctx: any) {
     const id = ctx.params.id;
-    const payload = ctx.request.body;
-    const email = payload.receiver;
-    const url = payload.url;
+    const project = new UpdateProjectDto();
+    project.name = ctx.request.body.name;
+    project.description = ctx.request.body.description;
+    project.url = ctx.request.body.url;
+    project.receiver = ctx.request.body.receiver;
+    project.ping = ctx.request.body.ping;
+    project.monitorInterval = ctx.request.body.monitorInterval;
 
-    let validEmail = true;
-    const updated = await this.projectService.updateProjectById(id, payload);
+    const updated = await this.projectService.updateProjectById(id, project);
 
-    if (email) {
-      const emails = email.replace(/\s/g, '').split(',');
-      for (const address of emails) {
-        if (address === '' || !regex.test(address)) {
-          validEmail = false;
-        }
-      }
-    } else {
-      ctx.body = {
-        error: 'invalid email',
-      };
-    }
-    if (validEmail && validUrl.isUri(url)) {
-      CheckHealth.startHealthCheck();
-      ctx.status = 200;
-      ctx.body = {
-        data: updated,
-        message: 'Monitor has been successfully updated',
-      };
-    } else {
-      ctx.throw(HttpStatus.BAD_REQUEST);
-    }
+    CheckHealth.startHealthCheck();
+    ctx.status = 200;
+    ctx.body = {
+      data: updated,
+      message: 'Monitor has been successfully updated',
+    };
   }
 
   @route('/:id/delete', HttpMethod.DELETE, jwtAuth)
@@ -122,7 +93,7 @@ export default class ProjectController {
   @route('/:id/start', HttpMethod.POST, jwtAuth)
   async start(ctx: any) {
     const id = ctx.params.id;
-    const started = await this.projectService.updateProjectById(id, {
+    const started = await this.projectService.changeStatus(id, {
       testRunning: true,
     });
     CheckHealth.startTestByProjectId(id);
@@ -135,7 +106,7 @@ export default class ProjectController {
   @route('/:id/stop', HttpMethod.POST, jwtAuth)
   async stop(ctx: any) {
     const id = ctx.params.id;
-    const stopped = await this.projectService.updateProjectById(id, {
+    const stopped = await this.projectService.changeStatus(id, {
       testRunning: false,
       status: 'stopped',
     });

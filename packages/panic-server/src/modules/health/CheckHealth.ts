@@ -73,7 +73,7 @@ export default class HealthCheck {
             this.project,
             this.project.url
           );
-          await this.projectService.updateProjectById(this.project.id, {
+          await this.projectService.changeStatus(this.project.id, {
             status: 'down',
           });
 
@@ -98,7 +98,7 @@ export default class HealthCheck {
             this.project,
             this.project.url
           );
-          await this.projectService.updateProjectById(this.project.id, { status: 'up' });
+          await this.projectService.changeStatus(this.project.id, { status: 'up' });
           if (socketClient) {
             socketClient.emit(`projectsUpdate-${this.project.user.id}`, {
               ...this.project,
