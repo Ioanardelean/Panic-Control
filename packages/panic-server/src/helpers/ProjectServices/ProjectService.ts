@@ -1,8 +1,8 @@
 import { validate, ValidationError } from 'class-validator';
 import { getRepository } from 'typeorm';
 import { BadRequest } from '../../helpers/errors';
-import { CreateProjectDto } from '../../models/Dtos/CreateProjectDto';
-import { UpdateProjectDto } from '../../models/Dtos/UpdateProjectDto';
+import { CreateProjectDto } from '../../models/dtos/CreateProjectDto';
+import { UpdateProjectDto } from '../../models/dtos/UpdateProjectDto';
 import { Project } from '../../models/Project';
 import { User } from '../../models/User';
 

@@ -2,7 +2,7 @@ import * as HttpStatus from 'http-status-codes';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import { UserService } from '../../helpers/UserService/UserService';
 import { jwtAuth } from '../../middleware/authorization';
-import { UpdateUserDto } from '../../models/Dtos/UpdateUserDto';
+import { UpdateUserDto } from '../../models/dtos/UpdateUserDto';
 import { User } from '../../models/User';
 
 @Controller('/users')

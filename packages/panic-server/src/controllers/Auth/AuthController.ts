@@ -3,7 +3,7 @@ import passport from 'passport';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import { AuthService } from '../../helpers/UserService/AuthService';
 import { UserService } from '../../helpers/UserService/UserService';
-import { CreateUserDto } from '../../models/Dtos/CreateUserDto';
+import { CreateUserDto } from '../../models/dtos/CreateUserDto';
 
 @Controller('/auth')
 export default class AuthController {

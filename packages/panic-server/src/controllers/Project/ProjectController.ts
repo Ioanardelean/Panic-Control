@@ -1,8 +1,8 @@
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
 import { jwtAuth } from '../../middleware/authorization';
-import { CreateProjectDto } from '../../models/Dtos/CreateProjectDto';
-import { UpdateProjectDto } from '../../models/Dtos/UpdateProjectDto';
+import { CreateProjectDto } from '../../models/dtos/CreateProjectDto';
+import { UpdateProjectDto } from '../../models/dtos/UpdateProjectDto';
 import CheckHealth from '../../modules/health/MainCheckHealth';
 
 @Controller('/projects')
