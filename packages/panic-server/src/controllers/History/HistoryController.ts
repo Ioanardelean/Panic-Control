@@ -2,6 +2,7 @@ import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import { HistoryService } from '../../helpers/HistoryService/HistoryService';
 import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
 import { jwtAuth } from '../../middleware/authorization';
+import { History } from '../../models/History';
 
 @Controller('/history')
 export default class HistoryController {
@@ -18,7 +19,8 @@ export default class HistoryController {
 
   @route('/last', HttpMethod.GET, jwtAuth)
   async getLastEvents(ctx: any) {
-    const lastDown = await this.historyService.getLastEvent();
+    const lastDown = await this.historyService.getLastEvent(ctx.state.user.id);
+
     ctx.body = {
       data: lastDown,
     };
