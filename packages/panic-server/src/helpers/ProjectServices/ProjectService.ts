@@ -92,34 +92,4 @@ export class ProjectService {
     });
     return this.repo.remove(projectToRemove);
   }
-
-  async getDowntimeOnYear(userId: User, id: number) {
-    return this.repo
-      .query(`SELECT project.id,user_id, name, "startedAt", history.status, history.uptime
-    FROM project
-    INNER JOIN history ON history.project_id = project.id
-    inner join user on project.user_id= ${userId}
-    WHERE EXTRACT(year FROM "startedAt") = extract (year FROM CURRENT_DATE)
-    and project.id = ${id}
-    order by "startedAt" asc
-   `);
-  }
-
-  async getDowntimeOnMonth(userId: User) {
-    return this.repo.query(`SELECT project.id, user_id, name, "startedAt", history.status
-    FROM project
-    INNER JOIN history ON history.project_id = project.id
-    inner join user on project.user_id= ${userId}
-    WHERE EXTRACT(month FROM "startedAt") = extract (month FROM CURRENT_DATE)
-    and  history.status = 'down'`);
-  }
-  async getDowntimeSinceCreation(userId: User, id: number) {
-    return this.repo
-      .query(`SELECT project.id,user_id, name, project.url, "startedAt", history.status
-    FROM project
-    INNER JOIN history ON history.project_id = project.id
-    inner join user on project.user_id= ${userId}
-    WHERE  project.id = ${id}
-    and  history.status = 'down'`);
-  }
 }
