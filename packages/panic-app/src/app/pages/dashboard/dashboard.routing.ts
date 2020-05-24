@@ -4,6 +4,7 @@ import { MonitorsComponent } from './monitors/monitors.component';
 import { MonitorComponent } from './monitor/monitor.component';
 import { MonitorEditComponent } from './monitor-edit/monitor-edit.component';
 import { DowntimeComponent } from './downtime/downtime.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: 'downtime/:id',
         component: DowntimeComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
       },
     ],
   },

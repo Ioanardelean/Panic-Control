@@ -24,12 +24,14 @@ import { DowntimeComponent } from './downtime/downtime.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { JoditAngularModule } from 'jodit-angular';
+import { ProfileComponent } from './profile/profile.component';
 @NgModule({
   declarations: [
     MonitorComponent,
     MonitorEditComponent,
     MonitorsComponent,
     DowntimeComponent,
+    ProfileComponent,
   ],
   imports: [
     DashboardRoutingModule,

@@ -17,8 +17,17 @@ export default class ProjectController {
     };
   }
 
-  @route('/count', HttpMethod.GET, jwtAuth)
+  @route('/count-monitors', HttpMethod.GET, jwtAuth)
   async getCountProject(ctx: any) {
+    const userId = ctx.state.user.id;
+    const numberOfMonitors = await this.projectService.countAll(userId);
+    ctx.body = {
+      data: numberOfMonitors,
+    };
+  }
+
+  @route('/count-status', HttpMethod.GET, jwtAuth)
+  async getProjectOnStatus(ctx: any) {
     const userId = ctx.state.user.id;
     const numberOfStopped = await this.projectService.getProjectOnStatusStopped(userId);
     const numberOfActive = await this.projectService.getProjectOnStatusActive(userId);

@@ -41,6 +41,8 @@ export class MonitorsComponent implements OnInit {
   stopped: number;
   active: number;
   down: number;
+
+  all: number;
   numItem = 0;
   pageSize = 1;
   downtime: any[];
@@ -61,6 +63,7 @@ export class MonitorsComponent implements OnInit {
     this.countProjectActive();
     this.countProjectDown();
     this.latestEvents();
+    this.countAll();
   }
   socketConnection() {
     this.socketService.setupSocketConnection();
@@ -98,18 +101,25 @@ export class MonitorsComponent implements OnInit {
   }
 
   countProjectStopped() {
-    return this.monitorService.getCountProjects().subscribe((res) => {
+    return this.monitorService.getCountProjectsOnStatus().subscribe((res) => {
       this.stopped = res.stopped[1];
     });
   }
   countProjectActive() {
-    this.monitorService.getCountProjects().subscribe((res) => {
+    this.monitorService.getCountProjectsOnStatus().subscribe((res) => {
       this.active = res.active[1];
     });
   }
   countProjectDown() {
-    this.monitorService.getCountProjects().subscribe((res) => {
+    this.monitorService.getCountProjectsOnStatus().subscribe((res) => {
       this.down = res.down[1];
+    });
+  }
+
+  countAll() {
+    this.monitorService.getCountProjects().subscribe((res) => {
+      console.log(res);
+      this.all = res.data[1];
     });
   }
   exportCsv() {

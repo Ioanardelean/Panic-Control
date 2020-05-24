@@ -35,8 +35,12 @@ export class MonitorService {
     return this.httpClient.get<any>(`${this.apiBaseUrl}/history/last`);
   }
 
+  getCountProjectsOnStatus(): Observable<any> {
+    return this.httpClient.get(`${this.apiBaseUrl}/projects/count-status`);
+  }
+
   getCountProjects(): Observable<any> {
-    return this.httpClient.get(`${this.apiBaseUrl}/projects/count`);
+    return this.httpClient.get(`${this.apiBaseUrl}/projects/count-monitors`);
   }
 
   getProject(id: string): Observable<any> {

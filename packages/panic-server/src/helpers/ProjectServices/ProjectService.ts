@@ -16,6 +16,9 @@ export class ProjectService {
     return this.repo.find({ relations: ['user', 'histories'] });
   }
 
+  async countAll(userId: User) {
+    return this.repo.findAndCount({where:{user: userId}})
+  }
   async createProject(project: CreateProjectDto, userId: User) {
     const dto: CreateProjectDto = {
       name: project.name,
