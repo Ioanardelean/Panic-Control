@@ -118,7 +118,6 @@ export class MonitorsComponent implements OnInit {
 
   countAll() {
     this.monitorService.getCountProjects().subscribe((res) => {
-      console.log(res);
       this.all = res.data[1];
     });
   }

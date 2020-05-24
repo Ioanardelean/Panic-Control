@@ -45,7 +45,6 @@ export class DowntimeComponent implements OnInit {
       const data = res.data;
       this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
-      console.log(data);
     });
   }
   getProjectDetail(id) {
@@ -63,6 +62,7 @@ export class DowntimeComponent implements OnInit {
 
   getDowntimeOnYear(id) {
     this.historyService.getYearDowntimeOnProject(id).subscribe((res) => {
+      console.log(res);
       const uptime = res['data'].map((res) => res.uptime);
       const allDates = res['data'].map((res) => res.startedAt);
 

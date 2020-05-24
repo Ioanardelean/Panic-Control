@@ -26,9 +26,9 @@ export default class HistoryController {
   }
   @route('/:id/downtime-year', HttpMethod.GET, jwtAuth)
   async getEventOnYear(ctx: any) {
-    const currentUser = ctx.state.user.id;
     const projectId = ctx.params.id;
     const yearStats = await this.historyService.getDowntimeOnYear(projectId);
+
     ctx.body = {
       data: yearStats,
     };

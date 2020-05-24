@@ -50,6 +50,7 @@ export class HistoryService {
       .andWhere(
         `month.startedAt BETWEEN '${firstDay.toUTCString()}' AND '${lastDay.toUTCString()}'`
       )
+      .orderBy('month.startedAt', 'DESC')
       .getMany();
   }
 
@@ -62,8 +63,9 @@ export class HistoryService {
       .innerJoinAndSelect('project.user', 'user')
       .where('project.id=:id', { id: projectId })
       .andWhere(
-        `year.startedAt BETWEEN '${lastDayOfPassedYear.toUTCString()}' AND '${now.toUTCString()}'`
+        `year.startedAt BETWEEN '${lastDayOfPassedYear.toLocaleString()}' AND '${now.toLocaleString()}'`
       )
+      .orderBy('year.startedAt', 'ASC')
       .getMany();
   }
 }
