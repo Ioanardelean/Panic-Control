@@ -63,7 +63,7 @@ export class HistoryService {
       .innerJoinAndSelect('project.user', 'user')
       .where('project.id=:id', { id: projectId })
       .andWhere(
-        `year.startedAt BETWEEN '${lastDayOfPassedYear.toLocaleString()}' AND '${now.toLocaleString()}'`
+        `year.startedAt BETWEEN '${lastDayOfPassedYear.toLocaleString()}' AND '${now.toUTCString()}'`
       )
       .orderBy('year.startedAt', 'ASC')
       .getMany();
