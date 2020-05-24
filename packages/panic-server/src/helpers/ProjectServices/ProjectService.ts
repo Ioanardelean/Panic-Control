@@ -13,11 +13,11 @@ export class ProjectService {
     return this.repo.find({ relations: ['user', 'histories'], where: { user: userId } });
   }
   async getAll() {
-    return this.repo.find({ relations: ['user', 'histories'] });
+    return this.repo.find({ relations: ['user'] });
   }
 
   async countAll(userId: User) {
-    return this.repo.findAndCount({where:{user: userId}})
+    return this.repo.findAndCount({ where: { user: userId } });
   }
   async createProject(project: CreateProjectDto, userId: User) {
     const dto: CreateProjectDto = {

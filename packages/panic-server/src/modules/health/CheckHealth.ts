@@ -1,10 +1,9 @@
 import fs from 'fs';
-import isReachable = require('is-reachable');
+import isReachable from 'is-reachable';
 import { MailerTransport } from 'lib/mailer/mailerTransport';
 import { template } from 'lodash';
-import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
-
 import { HistoryService } from '../../helpers/HistoryService/HistoryService';
+import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
 import { History } from '../../models/History';
 import { Project } from '../../models/Project';
 import { Status } from '../../models/Status';
@@ -57,7 +56,9 @@ export default class HealthCheck {
   init() {
     const payloadHistory = new History();
     const socketClient = (global as any).socketMap[this.project.user.id];
-    const monitorInterval = this.project.monitorInterval * 10000;
+    const monitorInterval = this.convertMinutesToMilliseconds(
+      this.project.monitorInterval
+    );
     const ping = this.project.ping * 1000;
 
     this.timer = setTimeout(async () => {
@@ -68,14 +69,8 @@ export default class HealthCheck {
         console.log(reachable);
         if (!reachable) {
           payloadHistory.status = Status.DOWN;
-          await this.historyService.addHistory(
-            payloadHistory,
-            this.project,
-            this.project.url
-          );
-          await this.projectService.changeStatus(this.project.id, {
-            status: 'down',
-          });
+          this.getHistory(payloadHistory);
+          this.monitorStatus('down');
 
           if (socketClient) {
             socketClient.emit(`projectsUpdate-${this.project.user.id}`, {
@@ -89,16 +84,12 @@ export default class HealthCheck {
 
           setTimeout(() => {
             this.start();
-          }, 1000 * 60 * 5);
+          }, 1000 * 60 * 10);
         } else {
           payloadHistory.status = Status.UP;
           payloadHistory.uptime = 1;
-          await this.historyService.addHistory(
-            payloadHistory,
-            this.project,
-            this.project.url
-          );
-          await this.projectService.changeStatus(this.project.id, { status: 'up' });
+          this.getHistory(payloadHistory);
+          this.monitorStatus('up');
           if (socketClient) {
             socketClient.emit(`projectsUpdate-${this.project.user.id}`, {
               ...this.project,
@@ -109,6 +100,17 @@ export default class HealthCheck {
         this.init();
       }
     }, monitorInterval);
+  }
+  convertMinutesToMilliseconds(minutes: any) {
+    return Math.floor(minutes * 60 * 1000);
+  }
+
+  async monitorStatus(stat: string) {
+    await this.projectService.changeStatus(this.project.id, { status: stat });
+  }
+
+  async getHistory(payload: any) {
+    await this.historyService.addHistory(payload, this.project, this.project.url);
   }
   stop() {
     clearTimeout(this.timer);
@@ -129,7 +131,7 @@ export default class HealthCheck {
     await this.mailerTransport.sendEmail({
       from: 'panic.control.all@gmail.com',
       to,
-      subject: 'test uptime',
+      subject: 'Downtime alert',
       html,
     });
   }
