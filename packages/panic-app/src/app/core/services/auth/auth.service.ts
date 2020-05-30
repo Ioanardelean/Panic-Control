@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { ToastrService } from 'ngx-toastr';
 import decode from 'jwt-decode';
@@ -24,9 +23,7 @@ export class AuthService {
   }
 
   register(user: User): Observable<any> {
-    return this.httpClient
-      .post(`${this.apiBaseUrl}/auth/register`, user)
-      .pipe(catchError(this.handleError));
+    return this.httpClient.post(`${this.apiBaseUrl}/auth/register`, user);
   }
 
   login(user: User) {
@@ -37,7 +34,7 @@ export class AuthService {
           localStorage.setItem('access_token', data.token);
           if (data.token !== undefined) {
             this.router.navigate(['/dashboard']);
-            this.toastr.success('Welcome');
+            this.toastr.success(`Welcome, ${user.username}`);
             const tokenPayload = decode(data.token);
             if (tokenPayload.role === 'admin') {
               this.router.navigate(['/admin']);
@@ -92,16 +89,7 @@ export class AuthService {
     }
     return !(date.valueOf() > new Date().valueOf());
   }
-
-  handleError(error: HttpErrorResponse) {
-    let msg = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      msg = error.error.message;
-    } else {
-      // server-side error
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(msg);
+  checkUsernameNoTaken(username: string) {
+    return this.httpClient.post(`${this.apiBaseUrl}/users/checkUsername`, username);
   }
 }

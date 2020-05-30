@@ -28,17 +28,6 @@ export class AuthInterceptor implements HttpInterceptor {
       },
     });
 
-    return next.handle(request).pipe(
-      catchError((err) => {
-        if (err.status === 401) {
-          this.route.navigate(['/auth/login']);
-        }
-        if (err.status === 403) {
-          this.route.navigate(['/dashboard']);
-        }
-        const error = err.error.message || err.statusText;
-        return throwError(error);
-      })
-    );
+    return next.handle(request);
   }
 }

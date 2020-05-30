@@ -29,7 +29,9 @@ export class AuthGuardService implements CanActivate {
     }
     if (this.authService.isTokenExpired(token)) {
       this.authService.logout();
-      this.toastr.warning($localize`Session Timed Out! Please Login`);
+      this.toastr.warning(
+        $localize`You have been automatically logged out for security reasons! To continue the session, please login`
+      );
     }
 
     return true;

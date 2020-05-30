@@ -17,6 +17,7 @@ import { CustomConfig } from './core/config/customConfig';
 import { MatMenuModule } from '@angular/material/menu';
 import { MenuComponent } from './shared/components/menu/menu/menu.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
+import { ErrorIntercept } from './core/services/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,11 @@ import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.compone
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorIntercept,
       multi: true,
     },
   ],
