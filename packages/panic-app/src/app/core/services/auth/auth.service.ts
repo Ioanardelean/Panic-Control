@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import decode from 'jwt-decode';
 import { Config } from '../../config/config';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -39,10 +40,10 @@ export class AuthService {
             if (tokenPayload.role === 'admin') {
               this.router.navigate(['/admin']);
             }
-          } else {
-            this.toastr.error(data.error);
           }
         }
+      }, (error: any) => {
+        this.toastr.error($localize`Incorrect username / password`);
       });
   }
 
@@ -89,7 +90,5 @@ export class AuthService {
     }
     return !(date.valueOf() > new Date().valueOf());
   }
-  checkUsernameNoTaken(username: string) {
-    return this.httpClient.post(`${this.apiBaseUrl}/users/checkUsername`, username);
-  }
+
 }

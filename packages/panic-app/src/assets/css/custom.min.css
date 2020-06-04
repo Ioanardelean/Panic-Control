@@ -1719,7 +1719,7 @@ a:focus {
   padding: 4px 6px;
 }
 footer {
-  background: #fff;
+ 
   padding: 10px 20px;
   display: block;
 }
@@ -2492,11 +2492,7 @@ span.right {
   white-space: nowrap;
   position: relative;
 }
-@media (min-width: 992px) {
-  footer {
-    margin-left: 230px;
-  }
-}
+
 @media (min-width: 992px) {
   .tile_count .tile_stats_count {
     margin-bottom: 10px;

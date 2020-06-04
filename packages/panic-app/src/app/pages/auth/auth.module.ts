@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { LandingComponent } from './landing/landing/landing.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [LoginComponent, SignupComponent, LandingComponent],
@@ -15,8 +16,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AuthRoutingModule,
     ReactiveFormsModule,
     CommonModule,
+    MatFormFieldModule,
     NgbModule,
     ToastrModule.forRoot(),
   ],
 })
-export class AuthModule {}
+export class AuthModule { }

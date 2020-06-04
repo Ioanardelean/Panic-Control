@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AsyncValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import * as data from 'src/app/core/validators/account.message.json';
 
 @Component({
   selector: 'app-signup',
@@ -14,18 +15,32 @@ import { ToastrService } from 'ngx-toastr';
 export class SignupComponent implements OnInit {
   registerForm: FormGroup;
   isSubmitted = false;
+  list = [];
+  accountValidationMessages = (data as any).default;
   constructor(
     public formBuilder: FormBuilder,
+
     public authService: AuthService,
     public router: Router,
     public toastr: ToastrService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+
+      username: ['',
+        Validators.compose([Validators.required, Validators.minLength(2)])
+      ],
+      email: ['',
+        Validators.compose([Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
+        )
+      ],
+      password: ['', Validators.compose([
+        Validators.minLength(8),
+        Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+      ])],
     });
   }
   get formControls() {
@@ -37,13 +52,14 @@ export class SignupComponent implements OnInit {
       return;
     }
     this.authService.register(this.registerForm.value).subscribe((res) => {
-      if (res.data) {
-        this.registerForm.reset();
-        this.router.navigate(['login']);
-        this.toastr.success(res.message);
-      } else {
-        this.toastr.error(res.error);
-      }
+      this.registerForm.reset();
+      this.router.navigate(['auth/login']);
+      this.toastr.success(res.message);
+
+    }, error => {
+      this.toastr.error($localize`Username or email has already taken`);
     });
   }
+
+
 }
