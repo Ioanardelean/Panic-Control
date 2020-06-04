@@ -6,10 +6,12 @@ import { UpdateUserDto } from '../../models/dtos/UpdateUserDto';
 import { User } from '../../models/User';
 import { AuthService } from './AuthService';
 
+
+
 export class UserService {
   repo = getRepository(User);
   authsrv = new AuthService();
-  async getAllUsers() {
+  async getAllUsers(): Promise<User[]> {
     return this.repo.find();
   }
 
@@ -20,23 +22,32 @@ export class UserService {
       email: user.email,
       password,
     };
-    const errors: ValidationError[] = await validate(user);
-    if (errors.length > 0) {
-      throw new BadRequest(errors);
+    const usernameExist = await this.findUserByName(user.username);
+
+    if (usernameExist) {
+      throw new BadRequest('User already exist');
     } else {
-      await this.repo.save(dto);
-      return dto;
+      const errors: ValidationError[] = await validate(user);
+      if (errors.length > 0) {
+        throw new BadRequest(errors);
+      } else {
+        await this.repo.save(dto);
+        return dto;
+      }
     }
+
   }
   async findUserById(id: any) {
-    return this.repo.findOne({ where: { id } });
+    return this.repo.findOne({
+      where: { id },
+    });
   }
   async findUserByEmail(email: any) {
     return this.repo.findOne(email);
   }
 
-  async findUserByName(username: string) {
-    return this.repo.findOne({ where: { username } });
+  async findUserByName(username: any) {
+    return this.repo.findOne({ where: { username }, select: ['password', 'username', 'id', 'role'] });
   }
 
   async updateUserById(id: number, data: UpdateUserDto) {
@@ -53,4 +64,5 @@ export class UserService {
   async deleteById(userToDelete: any) {
     return this.repo.remove(userToDelete);
   }
+
 }
