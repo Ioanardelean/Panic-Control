@@ -25,6 +25,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { JoditAngularModule } from 'jodit-angular';
 import { ProfileComponent } from './profile/profile.component';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [
     MonitorComponent,
@@ -56,8 +57,9 @@ import { ProfileComponent } from './profile/profile.component';
     MatSortModule,
     JoditAngularModule,
     MatTooltipModule,
+    TranslateModule,
   ],
   exports: [],
   providers: [SocketService],
 })
-export class DashboardModule {}
+export class DashboardModule { }

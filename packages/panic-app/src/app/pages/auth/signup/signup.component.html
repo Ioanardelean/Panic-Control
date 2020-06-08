@@ -3,7 +3,8 @@
   <div class="row justify-content-md-center">
     <div class="col-md-4"
          id="login-section">
-      <h1 i18n>Sign up</h1>
+
+      <h1>{{'SIGNUP' | translate}}</h1>
       <form role="form-register"
             [formGroup]="registerForm"
             (ngSubmit)="registerUser()">
@@ -13,12 +14,11 @@
                    class="form-control input-underline input-lg"
                    id="username"
                    formControlName="username"
-                   i18n-placeholder
-                   placeholder="Username" />
+                   placeholder="{{'USERNAME' | translate}}" />
             <mat-error *ngFor="let validation of accountValidationMessages.username">
               <mat-error class="error-message"
                          *ngIf="registerForm.get('username').hasError(validation.type) &&  (registerForm.get('username').dirty || registerForm.get('username').touched)">
-                {{validation.message}}</mat-error>
+                {{validation.message | translate}}</mat-error>
             </mat-error>
 
 
@@ -29,12 +29,11 @@
                    class="form-control input-underline input-lg"
                    id="email"
                    formControlName="email"
-                   i18n-placeholder
-                   placeholder="Email" />
+                   placeholder="{{'EMAIL' | translate}}" />
             <mat-error *ngFor="let validation of accountValidationMessages.email">
               <mat-error class="error-message"
                          *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
-                {{validation.message}}</mat-error>
+                {{validation.message | translate}}</mat-error>
             </mat-error>
           </div>
 
@@ -43,32 +42,28 @@
                    class="form-control input-underline input-lg"
                    id="password"
                    formControlName="password"
-                   i18n-placeholder
-                   placeholder="Password" />
+                   placeholder="{{'PASSWORD' | translate}}" />
 
             <mat-error *ngFor="let validation of accountValidationMessages.password">
               <mat-error class="error-message"
                          *ngIf="registerForm.get('password').hasError(validation.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
-                {{validation.message}}</mat-error>
+                {{validation.message | translate}}</mat-error>
             </mat-error>
 
           </div>
-          <small i18n>
+          <small>
             <img src="./assets/icons/report_problem.png"
                  alt="report problem icon" />
-            Your password must be at least 8 characters long, a mixture of numbers and
-            letters and contain a mix of upper/lower case letters
+            {{'PWD_VALIDATION' | translate}}
 
           </small>
         </div>
         <button type="submit"
                 class="btn rounded-btn"
-                id="signup"
-                i18n>Sign up</button>&nbsp;
+                id="signup">{{'SIGNUP' | translate}}</button>&nbsp;
         <button class="btn rounded-btn"
-                [routerLink]="['/auth/login']"
-                i18n>
-          Log in
+                [routerLink]="['/auth/login']">
+          {{'LOGIN' |translate}}
         </button>
       </form>
     </div>

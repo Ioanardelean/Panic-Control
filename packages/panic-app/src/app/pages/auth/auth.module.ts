@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { LandingComponent } from './landing/landing/landing.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [LoginComponent, SignupComponent, LandingComponent],
@@ -18,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     CommonModule,
     MatFormFieldModule,
     NgbModule,
+    TranslateModule,
     ToastrModule.forRoot(),
   ],
 })

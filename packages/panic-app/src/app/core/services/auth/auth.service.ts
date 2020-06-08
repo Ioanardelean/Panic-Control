@@ -6,6 +6,7 @@ import { User } from '../../models/user';
 import { ToastrService } from 'ngx-toastr';
 import decode from 'jwt-decode';
 import { Config } from '../../config/config';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Injectable({
@@ -18,7 +19,9 @@ export class AuthService {
     private httpClient: HttpClient,
     public router: Router,
     private toastr: ToastrService,
-    public config: Config
+    public config: Config,
+    public translate: TranslateService
+
   ) {
     this.apiBaseUrl = config.apiBaseUrl;
   }
@@ -35,7 +38,7 @@ export class AuthService {
           localStorage.setItem('access_token', data.token);
           if (data.token !== undefined) {
             this.router.navigate(['/dashboard']);
-            this.toastr.success(`Welcome, ${user.username}`);
+            this.toastr.success(this.translate.instant('WELCOME', { value: user.username }));
             const tokenPayload = decode(data.token);
             if (tokenPayload.role === 'admin') {
               this.router.navigate(['/admin']);
@@ -43,7 +46,7 @@ export class AuthService {
           }
         }
       }, (error: any) => {
-        this.toastr.error($localize`Incorrect username / password`);
+        this.toastr.error(this.translate.instant('INVALID'));
       });
   }
 
