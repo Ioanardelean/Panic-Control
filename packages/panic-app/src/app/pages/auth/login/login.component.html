@@ -3,7 +3,7 @@
   <div class="row justify-content-md-center">
     <div class="col-md-4"
          id="login-section">
-      <h1 i18n>Login</h1>
+      <h1>{{'LOGIN' | translate}}</h1>
       <form role="form"
             [formGroup]="loginForm"
             (ngSubmit)="loginUser()">
@@ -13,12 +13,11 @@
                    ng-model="name"
                    class="form-control input-underline input-lg"
                    formControlName="username"
-                   i18n-placeholder
-                   placeholder="Username" />
+                   placeholder="{{'USERNAME' | translate}}" />
             <mat-error *ngFor="let validation of accountValidationMessages.username">
               <mat-error class="error-message"
                          *ngIf="loginForm.get('username').hasError(validation.type) && (loginForm.get('username').dirty || loginForm.get('username').touched)">
-                {{validation.message}}</mat-error>
+                {{validation.message | translate }}</mat-error>
             </mat-error>
 
           </div>
@@ -27,27 +26,24 @@
             <input type="password"
                    class="form-control input-underline input-lg"
                    formControlName="password"
-                   i18n-placeholder
-                   placeholder="Password" />
+                   placeholder="{{'PASSWORD' | translate}}" />
             <mat-error *ngFor="let validation of accountValidationMessages.password">
               <mat-error class="error-message"
                          *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
-                {{validation.message}}</mat-error>
+                {{validation.message | translate}}</mat-error>
             </mat-error>
           </div>
         </div>
-        <button i18n
-                class="btn rounded-btn"
+        <button class="btn rounded-btn"
                 id="login"
                 type="submit">
-          Log in
+          {{'LOGIN' | translate}}
         </button>
         &nbsp;
-        <button i18n
-                class="btn rounded-btn"
+        <button class="btn rounded-btn"
                 id="signup"
                 [routerLink]="['/auth/signup']">
-          Sign up
+          {{'SIGNUP' | translate}}
         </button>
       </form>
     </div>

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../../router.animations';
-import { FormBuilder, FormGroup, Validators, AsyncValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import * as data from 'src/app/core/validators/account.message.json';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +23,8 @@ export class SignupComponent implements OnInit {
 
     public authService: AuthService,
     public router: Router,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -43,9 +45,6 @@ export class SignupComponent implements OnInit {
       ])],
     });
   }
-  get formControls() {
-    return this.registerForm.controls;
-  }
   registerUser() {
     this.isSubmitted = true;
     if (this.registerForm.invalid) {
@@ -57,7 +56,7 @@ export class SignupComponent implements OnInit {
       this.toastr.success(res.message);
 
     }, error => {
-      this.toastr.error($localize`Username or email has already taken`);
+      this.toastr.error(this.translate.instant('USER'));
     });
   }
 

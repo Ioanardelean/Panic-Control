@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { User } from 'src/app/core/models/user';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslateCacheService } from 'ngx-translate-cache';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -14,7 +16,12 @@ export class NavbarComponent implements OnInit {
 
   admin: string;
 
-  constructor(public router: Router, public authService: AuthService) {}
+  constructor(public router: Router, public authService: AuthService, public translate: TranslateService,
+    translateCacheService: TranslateCacheService) {
+    translate.addLangs(['en', 'fr']);
+    translate.setDefaultLang('en');
+    translateCacheService.init();
+  }
 
   ngOnInit(): void {
     this.getUserInfo();
@@ -30,5 +37,9 @@ export class NavbarComponent implements OnInit {
       this.emailAddress = res.currentUser.email;
       this.admin = res.currentUser.role;
     });
+  }
+
+  switchLang(lang: string) {
+    this.translate.use(lang);
   }
 }

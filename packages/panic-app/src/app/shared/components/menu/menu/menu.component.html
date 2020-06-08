@@ -1,40 +1,57 @@
 <nav class="navbar navbar-expand-sm fixed-top navbar">
   <div class="container">
     <a [routerLink]="['/']">
-      <img src="/assets/img/panic.png" alt="" />
+      <img src="/assets/img/panic.png"
+           alt="" />
     </a>
   </div>
   <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
-  <button
-    class="navbar-toggler"
-    type="button"
-    (click)="isMenuCollapsed = !isMenuCollapsed"
-  >
+  <button class="navbar-toggler"
+          type="button"
+          (click)="isMenuCollapsed = !isMenuCollapsed">
     &#9776;
   </button>
 
-  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+  <div [ngbCollapse]="isMenuCollapsed"
+       class="collapse navbar-collapse">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a href="" class="nav-link">About</a>
+        <a href=""
+           class="nav-link"> {{'ABOUT'| translate}}</a>
       </li>
       <li class="nav-item">
-        <a href="" class="nav-link">Contact</a>
+        <a href=""
+           class="nav-link"> {{'CONTACT'| translate}}</a>
       </li>
       <li class="nav-item">
-        <a [routerLink]="['/dashboard']" class="nav-link" *ngIf="currentUser"
-          >Dashboard</a
-        >
+        <a [routerLink]="['/dashboard']"
+           class="nav-link"
+           *ngIf="currentUser"> {{'DASHBOARD'| translate}}</a>
       </li>
       <li class="nav-item">
-        <button class="btn" [routerLink]="['/auth/signup']" i18n>
-          Sign up
+        <button class="btn"
+                [routerLink]="['/auth/signup']">
+          {{'SIGNUP'| translate}}
         </button>
       </li>
       <li class="nav-item">
-        <button class="btn" [routerLink]="['/auth/login']" i18n>
-          Login
+        <button class="btn"
+                [routerLink]="['/auth/login']">
+          {{'LOGIN'| translate}}
         </button>
+      </li>
+      <li class="nav-item">
+
+        <select class="btn"
+                id="lang"
+                #selectedLang
+                (change)="switchLang(selectedLang.value)">
+          <option *ngFor="let language of translate.getLangs()"
+                  [value]="language"
+                  [selected]="language === translate.currentLang">
+            {{ language }}
+          </option>
+        </select>
       </li>
     </ul>
   </div>

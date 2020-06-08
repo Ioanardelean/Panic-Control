@@ -2,35 +2,35 @@
   "username": [
     {
       "type": "required",
-      "message": "Username is required"
+      "message": "ERROR.required_username"
     },
     {
       "type": "minlength",
-      "message": "Username must be at least 2 characters long"
+      "message": "ERROR.minlength_username"
     }
   ],
   "email": [
     {
       "type": "required",
-      "message": "Email is required"
+      "message": "ERROR.required_email"
     },
     {
       "type": "pattern",
-      "message": "Enter a valid email"
+      "message": "ERROR.pattern_email"
     }
   ],
   "password": [
     {
       "type": "required",
-      "message": "Password is required"
+      "message": "ERROR.required_password"
     },
     {
       "type": "minlength",
-      "message": "Password must be at least 8 characters long"
+      "message": "ERROR.minlength_password"
     },
     {
       "type": "pattern",
-      "message": "Your password must contain at least one uppercase, one lowercase, and one number"
+      "message": "ERROR.pattern_password"
     }
   ]
 }
