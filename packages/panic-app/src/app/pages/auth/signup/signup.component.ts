@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit {
     this.authService.register(this.registerForm.value).subscribe((res) => {
       this.registerForm.reset();
       this.router.navigate(['auth/login']);
-      this.toastr.success(res.message);
+      this.toastr.success(this.translate.instant('SUCCESS'));
 
     }, error => {
       this.toastr.error(this.translate.instant('USER'));

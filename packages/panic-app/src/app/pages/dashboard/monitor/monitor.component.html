@@ -24,10 +24,11 @@
               <input matInput
                      placeholder="Ex. Panic Control"
                      formControlName="name"
-                     required
-                     [ngClass]="{ 'has-error': isSubmitted }" />
-              <mat-error *ngIf="errorHandling('name', 'required')">
-                You must provide a<strong> friendly name</strong>
+                     required />
+              <mat-error *ngFor="let validation of monitorValidationMessages.name">
+                <mat-error class="error-message"
+                           *ngIf="createForm.get('name').hasError(validation.type) &&  (createForm.get('name').dirty || createForm.get('name').touched)">
+                  {{validation.message | translate}}</mat-error>
               </mat-error>
             </mat-form-field>
             <mat-form-field class="example-chip-list">
@@ -51,10 +52,11 @@
               <input matInput
                      required
                      placeholder="Ex. https://"
-                     formControlName="url"
-                     [ngClass]="{ 'has-error': isSubmitted }" />
-              <mat-error *ngIf="errorHandling('url', 'required')">
-                You must provide the most important item<strong> the URL</strong>
+                     formControlName="url" />
+              <mat-error *ngFor="let validation of monitorValidationMessages.url">
+                <mat-error class="error-message"
+                           *ngIf="createForm.get('url').hasError(validation.type) &&  (createForm.get('url').dirty || createForm.get('url').touched)">
+                  {{validation.message | translate}}</mat-error>
               </mat-error>
             </mat-form-field>
 
@@ -76,6 +78,7 @@
                        [matChipInputAddOnBlur]="addOnBlur"
                        (matChipInputTokenEnd)="add($event)" />
               </mat-chip-list>
+              <mat-error>{{'ERROR_MONITOR.required_receiver' | translate}}</mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -101,8 +104,10 @@
                 </mat-option>
               </mat-select>
               <mat-hint> seconds</mat-hint>
-              <mat-error *ngIf="errorHandling('ping', 'required')">
-                You must provide a<strong> ping thresholds </strong>
+              <mat-error *ngFor="let validation of monitorValidationMessages.ping">
+                <mat-error class="error-message"
+                           *ngIf="createForm.get('ping').hasError(validation.type) &&  (createForm.get('ping').dirty || createForm.get('ping').touched)">
+                  {{validation.message | translate}}</mat-error>
               </mat-error>
             </mat-form-field>
             <mat-form-field class="example-chip-list">
@@ -115,8 +120,11 @@
                 </mat-option>
               </mat-select>
               <mat-hint> minutes</mat-hint>
-              <mat-error *ngIf="errorHandling('monitorInterval', 'required')">
-                You must provide a<strong> Monitor Interval </strong>
+              <mat-error
+                         *ngFor="let validation of monitorValidationMessages.monitorInterval">
+                <mat-error class="error-message"
+                           *ngIf="createForm.get('monitorInterval').hasError(validation.type) &&  (createForm.get('monitorInterval').dirty || createForm.get('monitorInterval').touched)">
+                  {{validation.message | translate}}</mat-error>
               </mat-error>
             </mat-form-field>
           </div>

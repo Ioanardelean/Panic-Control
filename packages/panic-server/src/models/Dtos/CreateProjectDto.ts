@@ -41,5 +41,7 @@ export class CreateProjectDto {
   @Max(60)
   monitorInterval: number;
 
+  @IsOptional()
+  emailTemplate: string;
   user: User;
 }

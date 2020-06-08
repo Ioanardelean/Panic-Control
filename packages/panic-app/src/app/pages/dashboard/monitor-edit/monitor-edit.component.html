@@ -26,8 +26,10 @@
                      placeholder="Ex. Panic Control"
                      formControlName="name"
                      [ngClass]="{ 'has-error': isSubmitted }" />
-              <mat-error *ngIf="errorHandling('name', 'required')">
-                You must provide a<strong> friendly Name </strong>
+              <mat-error *ngFor="let validation of monitorValidationMessages.name">
+                <mat-error class="error-message"
+                           *ngIf="updateForm.get('name').hasError(validation.type) &&  (updateForm.get('name').dirty || updateForm.get('name').touched)">
+                  {{validation.message | translate}}</mat-error>
               </mat-error>
             </mat-form-field>
             <mat-form-field class="example-chip-list">
@@ -53,8 +55,10 @@
                      placeholder="Ex. https://"
                      formControlName="url"
                      [ngClass]="{ 'has-error': isSubmitted }" />
-              <mat-error *ngIf="errorHandling('url', 'required')">
-                You must provide a<strong> Url </strong>
+              <mat-error *ngFor="let validation of monitorValidationMessages.url">
+                <mat-error class="error-message"
+                           *ngIf="updateForm.get('url').hasError(validation.type) &&  (updateForm.get('url').dirty || updateForm.get('url').touched)">
+                  {{validation.message | translate}}</mat-error>
               </mat-error>
             </mat-form-field>
 
@@ -78,6 +82,7 @@
                        (matChipInputTokenEnd)="add($event)"
                        [ngClass]="{ 'has-error': isSubmitted }" />
               </mat-chip-list>
+              <mat-error>{{'ERROR_MONITOR.required_receiver' | translate}}</mat-error>
             </mat-form-field>
           </div>
         </div>
@@ -103,9 +108,6 @@
                 </mat-option>
               </mat-select>
               <mat-hint>seconds</mat-hint>
-              <mat-error *ngIf="errorHandling('ping', 'required')">
-                You must provide a<strong> Ping threshold </strong>
-              </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-chip-list">
@@ -118,9 +120,6 @@
                 </mat-option>
               </mat-select>
               <mat-hint> minutes</mat-hint>
-              <mat-error *ngIf="errorHandling('monitorInterval', 'required')">
-                You must provide a<strong> Monitor Interval </strong>
-              </mat-error>
             </mat-form-field>
           </div>
           <div class="col-md-6">

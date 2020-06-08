@@ -10,10 +10,12 @@
   "ABOUT": "About",
   "CONTACT": "Contact",
   "EMAIL": "Email",
+  "DELETE": "User has been deleted",
   "SESSION": "You have been automatically logged out for security reasons! To continue the session, please login",
   "ACCESS": "Please login to access the dashboard",
   "INVALID": "Incorrect username / password",
   "USER": "Username or email has already taken",
+  "SUCCESS": "You have been registered!",
   "PWD_VALIDATION": "Your password must be at least 8 characters long, a mixture of numbers and letters and contain a mix of upper/lower case letters",
   "ERROR": {
     "required_username": "Username is required",
@@ -23,6 +25,15 @@
     "required_password": "Password is required",
     "pattern_password": "Your password must contain at least one uppercase, one lowercase, and one number",
     "minlength_password": "Password must be at least 8 characters long"
+  },
+  "ERROR_MONITOR": {
+    "required_name": "Name is required",
+    "minlength_name": "Name must be at least 2 characters long",
+    "required_url": "URL is required",
+    "pattern_url": "Enter a valid Url, must be Http(s)",
+    "required_ping": "Ping timeout is required",
+    "required_interval": "Monitor interval is required",
+    "required_receiver": "At least 1 email address need to be added"
   },
   "LANDING": {
     "title": "PANIC CONTROLs your web site",
@@ -69,7 +80,13 @@
     "event": "Event",
     "time": "Date-time",
     "url": "Url",
-    "no_event": " No events this month!"
+    "no_event": " No events this month!",
+    "created_monitor": "Monitor has been created",
+    "stop_monitor": "Monitor has been stopped",
+    "start_monitor": "Monitor has been started",
+    "delete_monitor": "Monitor has been deleted",
+    "update_monitor": "Monitor has been successfully updated",
+    "exists": "Url and/or Name already exist"
   },
   "MONITOR": {
     "update_title": "Update Monitor",
@@ -97,5 +114,10 @@
     "year": "Downtime on year",
     "event": "Downtime Events",
     "rapport": "Report of downtime events since the creation of the monitor"
+  },
+  "ADMIN": {
+    "monitors": "Manage monitors",
+    "users": "Manage users",
+    "role": "Role"
   }
 }

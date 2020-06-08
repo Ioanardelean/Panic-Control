@@ -49,6 +49,7 @@ export default class ProjectController {
     project.receiver = ctx.request.body.receiver;
     project.ping = ctx.request.body.ping;
     project.monitorInterval = ctx.request.body.monitorInterval;
+    project.emailTemplate = ctx.request.body.emailTemplate;
 
     const newProject = await this.projectService.createProject(project, userId);
     CheckHealth.startHealthCheck();
@@ -76,6 +77,7 @@ export default class ProjectController {
     project.receiver = ctx.request.body.receiver;
     project.ping = ctx.request.body.ping;
     project.monitorInterval = ctx.request.body.monitorInterval;
+    project.emailTemplate = ctx.request.body.emailTemplate;
 
     const updated = await this.projectService.updateProjectById(id, project);
 

@@ -11,6 +11,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { ManagePanicComponent } from './manage-panic.component';
 import { ManageRoutingModule } from './manage.routing';
+import { TranslateModule } from '@ngx-translate/core';
 @NgModule({
   declarations: [ManagePanicComponent],
   imports: [
@@ -25,8 +26,9 @@ import { ManageRoutingModule } from './manage.routing';
     MatMenuModule,
     MatPaginatorModule,
     MatSortModule,
+    TranslateModule
   ],
   exports: [],
   providers: [SocketService],
 })
-export class ManageModule {}
+export class ManageModule { }

@@ -10,6 +10,8 @@
   "GREETING": "Salut",
   "WELCOME": "Bienvenue, {{value}}",
   "LOGOUT": "Déconnexion",
+  "DELETE": "L'utilisateur a été supprimé",
+  "SUCCESS": "Vous avez été enregistré!",
   "SESSION": "Vous avez été automatiquement déconnecté pour des raisons de sécurité! Pour continuer la session, veuillez vous connecter",
   "ACCESS": "Veuillez vous connecter pour accéder au tableau de bord",
   "INVALID": "Nom d'utilisateur / mot de passe invalides",
@@ -17,12 +19,21 @@
   "PWD_VALIDATION": "Votre mot de passe doit comporter au moins 8 caractères, un mélange de chiffres et lettres et contiennent un mélange de lettres majuscules / minuscules",
   "ERROR": {
     "required_username": "Le nom d'utilisateur est obligatoire",
-    "minlength_username": "Le nom doit contenir au minimum 2 characters",
+    "minlength_username": "Le nom doit contenir au minimum 2 caractères",
     "required_email": "L'email est obligatoire",
     "pattern_email": "Entrez une address email valid",
     "required_password": "Le mot de passe est obligatoire",
     "pattern_password": "Votre mot de passe doit comporter un mélange de chiffres et  lettres et contiennent un mélange de lettres majuscules / minuscules",
     "minlength_password": "Votre mot de passe doit comporter au moins 8 caractères"
+  },
+  "ERROR_MONITOR": {
+    "required_name": "Le nom est obligatoire",
+    "minlength_name": "Le nom doit contenir au minimum 2 caractères",
+    "required_url": "URL est obligatoire",
+    "pattern_url": "Entrez un URL valide, de type Http(s)",
+    "required_ping": "Le délai de ping  est obligatoire",
+    "required_interval": "L'interval de surveillance est obligatoire",
+    "required_receiver": "Au moins 1 adresse e-mail doit être ajoutée"
   },
   "LANDING": {
     "title": "PANIC CONTROLs votre site web",
@@ -69,7 +80,13 @@
     "event": "Événement",
     "time": "Date-heure",
     "url": "Url",
-    "no_event": " Aucun événement ce mois-ci!"
+    "no_event": " Aucun événement ce mois-ci!",
+    "created_monitor": "Le monitor a été crée",
+    "stop_monitor": "Le moniteur a été arrêté",
+    "start_monitor": "Le moniteur a été démarré",
+    "delete_monitor": "Le moniteur a été supprimé",
+    "update_monitor": "Le moniteur a été mis à jour avec succès",
+    "exists": "Url et/ou le Nom est déjà utilisée "
   },
   "MONITOR": {
     "update_title": "Éditer le monitor",
@@ -97,5 +114,10 @@
     "year": "Les incidents sur l'année",
     "event": "Événements",
     "rapport": "Rapport des événements d'indisponibilité depuis la création du moniteur "
+  },
+  "ADMIN": {
+    "monitors": "Gérer les moniteurs",
+    "users": "Gérer les utilisateurs",
+    "role": "Rôle"
   }
 }

@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Project } from 'src/app/core/models/monitor';
 import { MatPaginator } from '@angular/material/paginator';
 import { AdminService } from 'src/app/core/services/admin/admin.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-manage-panic',
@@ -18,7 +19,8 @@ export class ManagePanicComponent implements OnInit {
 
     public monitorService: MonitorService,
     public router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translate: TranslateService
   ) {
     this.getAll();
     this.listOfUsers();
@@ -43,21 +45,21 @@ export class ManagePanicComponent implements OnInit {
   deleteUser(id: any) {
     this.adminService.deleteUser(id).subscribe((res) => {
       this.getAll();
-      this.toastr.success(res.message);
+      this.toastr.success(this.translate.instant('DELETE'));
     });
   }
 
   startProject(id) {
     this.monitorService.startProject(id).subscribe((res) => {
       this.getAll();
-      this.toastr.success(res.message);
+      this.toastr.success(this.translate.instant('MONITORS.start_monitor'));
     });
   }
 
   stopProject(id) {
     this.monitorService.stopProject(id).subscribe((res) => {
       this.getAll();
-      this.toastr.success(res.message);
+      this.toastr.success(this.translate.instant('MONITORS.stop_monitor'));
     });
   }
 
@@ -69,7 +71,7 @@ export class ManagePanicComponent implements OnInit {
   deleteProject(id: any) {
     this.adminService.deleteProject(id).subscribe((res) => {
       this.getAll();
-      this.toastr.success(res.message);
+      this.toastr.success(this.translate.instant('MONITORS.delete_monitor'));
     });
   }
 }

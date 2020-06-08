@@ -10,7 +10,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { CsvDataServiceService } from 'src/app/core/services/history/csv-data-service.service';
 import { HistoryService } from 'src/app/core/services/history/history.service';
-import { Chart } from 'chart.js';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-monitors',
   templateUrl: './monitors.component.html',
@@ -23,7 +23,10 @@ export class MonitorsComponent implements OnInit {
     public router: Router,
     private toastr: ToastrService,
     private socketService: SocketService,
-    public csvService: CsvDataServiceService
+    public csvService: CsvDataServiceService,
+
+    private translate: TranslateService
+
   ) {
     this.getAll();
     this.lastEvent();
@@ -82,21 +85,21 @@ export class MonitorsComponent implements OnInit {
   deleteProject(id: any) {
     this.monitorService.deleteProject(id).subscribe((res) => {
       this.getAll();
-      this.toastr.success(res.message);
+      this.toastr.success(this.translate.instant('MONITORS.delete_monitor'));
     });
   }
 
   startProject(id) {
     this.monitorService.startProject(id).subscribe((res) => {
       this.getAll();
-      this.toastr.success(res.message);
+      this.toastr.success(this.translate.instant('MONITORS.start_monitor'));
     });
   }
 
   stopProject(id) {
     this.monitorService.stopProject(id).subscribe((res) => {
       this.getAll();
-      this.toastr.success(res.message);
+      this.toastr.success(this.translate.instant('MONITORS.stop_monitor'));
     });
   }
 
