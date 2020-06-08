@@ -1,0 +1,34 @@
+{
+  "name": [
+    {
+      "type": "required",
+      "message": "ERROR_MONITOR.required_name"
+    },
+    {
+      "type": "minlength",
+      "message": "ERROR_MONITOR.minlength_name"
+    }
+  ],
+  "url": [
+    {
+      "type": "required",
+      "message": "ERROR_MONITOR.required_url"
+    },
+    {
+      "type": "pattern",
+      "message": "ERROR_MONITOR.pattern_url"
+    }
+  ],
+  "ping": [
+    {
+      "type": "required",
+      "message": "ERROR_MONITOR.required_ping"
+    }
+  ],
+  "monitorInterval": [
+    {
+      "type": "required",
+      "message": "ERROR_MONITOR.required_interval"
+    }
+  ]
+}

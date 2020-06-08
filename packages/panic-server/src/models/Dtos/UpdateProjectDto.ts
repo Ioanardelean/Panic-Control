@@ -39,4 +39,6 @@ export class UpdateProjectDto {
   @Min(1)
   @Max(60)
   monitorInterval: number;
+  @IsOptional()
+  emailTemplate: string;
 }

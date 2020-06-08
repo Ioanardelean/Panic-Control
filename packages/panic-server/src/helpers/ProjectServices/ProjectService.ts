@@ -27,6 +27,7 @@ export class ProjectService {
       receiver: project.receiver,
       ping: project.ping,
       monitorInterval: project.monitorInterval,
+      emailTemplate: project.emailTemplate,
       user: userId,
     };
     const errors: ValidationError[] = await validate(project);

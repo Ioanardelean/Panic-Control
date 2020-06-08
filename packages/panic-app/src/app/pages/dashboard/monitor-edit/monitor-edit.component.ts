@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
 import { MonitorService } from 'src/app/core/services/monitor/monitor.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Interval } from '../monitor/monitor.component';
+import * as data from 'src/app/core/validators/monitor.message.json';
+import { CustomValidators } from 'src/app/core/validators/custom.validators';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface Ping {
   ping: number;
@@ -16,12 +19,15 @@ export interface Ping {
   styleUrls: ['./monitor-edit.component.scss'],
 })
 export class MonitorEditComponent implements OnInit {
+  monitorValidationMessages = (data as any).default;
+  @ViewChild('chipList') chipList: MatChipList;
   constructor(
     public formBuilder: FormBuilder,
     public monitorService: MonitorService,
     public router: Router,
     public route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translate: TranslateService
   ) {
     this.getProject(this.route.snapshot.params.id);
   }
@@ -50,15 +56,23 @@ export class MonitorEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.update();
+    this.updateForm.get('receiver').statusChanges.subscribe(
+      status => this.chipList.errorState = status === 'INVALID'
+    );
   }
 
   update() {
     this.updateForm = this.formBuilder.group({
       id: [''],
-      name: ['', [Validators.required]],
+      name: ['',
+        Validators.compose([Validators.required, Validators.minLength(2)])
+      ],
       description: [''],
-      url: ['', [Validators.required]],
-      receiver: [this.emails, [Validators.required]],
+      url: ['',
+        Validators.compose([Validators.required,
+        Validators.pattern('^https?:\/\/(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$')],
+        )],
+      receiver: [this.emails, [Validators.required, CustomValidators.validateArrayNotEmpty]],
       ping: ['', [Validators.required]],
       monitorInterval: ['', [Validators.required]],
       emailTemplate: [''],
@@ -109,14 +123,12 @@ export class MonitorEditComponent implements OnInit {
     }
     this.monitorService.updateProject(this.updateForm.value, this.id).subscribe((res) => {
       if (res.message) {
-        this.toastr.success(res.message);
+        this.toastr.success(this.translate.instant('MONITORS.update_monitor'));
         this.router.navigate(['/dashboard']);
       } else if (res.error) {
         this.toastr.error(res.error);
       }
     });
   }
-  public errorHandling = (control: string, error: string) => {
-    return this.updateForm.controls[control].hasError(error);
-  };
+
 }

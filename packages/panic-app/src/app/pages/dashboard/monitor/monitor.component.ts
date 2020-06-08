@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { MonitorService } from 'src/app/core/services/monitor/monitor.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import * as data from 'src/app/core/validators/monitor.message.json';
+import { CustomValidators } from 'src/app/core/validators/custom.validators';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface Ping {
   ping: number;
@@ -19,18 +22,21 @@ export interface Interval {
   styleUrls: ['./monitor.component.scss'],
 })
 export class MonitorComponent implements OnInit {
+  @ViewChild('chipList') chipList: MatChipList;
   constructor(
     public formBuilder: FormBuilder,
     public monitorService: MonitorService,
     public router: Router,
-    private toastr: ToastrService
-  ) {}
+    private toastr: ToastrService,
+    private translate: TranslateService
+  ) { }
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
   isSubmitted = false;
   emails: string[] = [];
+  monitorValidationMessages = (data as any).default;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   createForm: FormGroup;
 
@@ -50,14 +56,23 @@ export class MonitorComponent implements OnInit {
 
   ngOnInit(): void {
     this.creationForm();
+    this.createForm.get('receiver').statusChanges.subscribe(
+      status => this.chipList.errorState = status === 'INVALID'
+    );
   }
 
   creationForm() {
     this.createForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
+      name: ['',
+        Validators.compose([Validators.required, Validators.minLength(2)])
+      ],
       description: [''],
-      url: ['', [Validators.required]],
-      receiver: [this.emails, [Validators.required]],
+      url: ['',
+        Validators.compose([Validators.required,
+        Validators.pattern('^https?:\/\/(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$')],
+        )
+      ],
+      receiver: [this.emails, [Validators.required, CustomValidators.validateArrayNotEmpty]],
       ping: ['', [Validators.required]],
       monitorInterval: ['', [Validators.required]],
       emailTemplate: [''],
@@ -95,13 +110,9 @@ export class MonitorComponent implements OnInit {
       this.emails.splice(index, 1);
     }
   }
-
   onChange() {
     console.log();
   }
-  public errorHandling = (control: string, error: string) => {
-    return this.createForm.controls[control].hasError(error);
-  };
 
   createProject() {
     this.isSubmitted = true;
@@ -111,11 +122,15 @@ export class MonitorComponent implements OnInit {
     this.monitorService.addProject(this.createForm.value).subscribe((res) => {
       if (res.data) {
         this.createForm.reset();
-        this.toastr.success(res.message);
+        this.toastr.success(this.translate.instant('MONITORS.created_monitor'));
         this.router.navigate(['/dashboard']);
       } else {
         this.toastr.error(res.error);
       }
-    });
+    },
+      error => {
+        this.toastr.error(this.translate.instant('MONITORS.exists'));
+      }
+    );
   }
 }
