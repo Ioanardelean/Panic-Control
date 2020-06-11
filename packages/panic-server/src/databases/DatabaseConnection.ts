@@ -3,13 +3,15 @@ import { Observable, Subscriber } from 'rxjs';
 import { createConnection } from 'typeorm';
 
 export default class DbConnect {
-  static config: any = config.get('postgres');
+  config: any = config.get('database');
 
-  static connectDB(): Observable<any> {
+  connectDB(): Observable<any> {
+
     const isDevMode = process.env.NODE_ENV === 'development';
 
     return Observable.create(async (observer: Subscriber<any>) => {
       try {
+
         const connection = await createConnection({
           ...this.config,
           type: 'postgres',
@@ -21,10 +23,11 @@ export default class DbConnect {
             migrationsDir: 'src/databases/migrations',
           },
         });
+
         console.log('connection to database ok');
         observer.next(connection);
       } catch (error) {
-        console.log('Error', error);
+        console.log('Error *******************', error);
         observer.error(error);
       } finally {
         observer.complete();
