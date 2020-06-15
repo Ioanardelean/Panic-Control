@@ -114,11 +114,8 @@ export function route(url: string, method?: HttpMethod, ...middleware: Middlewar
 
 export function load(controllersDir: string): Router {
   getFiles(controllersDir).forEach(async file => {
-    try {
-      await import(file);
-    } catch (error) {
-      //
-    }
+    await import(file);
   });
+
   return router;
 }

@@ -20,7 +20,7 @@
     "tsc:dev": "tsc",
     "build:dev": "npm run clean:dist && npm run tsc:dev && npm run copy:dev",
     "build:prod": "npm run clean:dist && npm run tsc:prod && npm run copy:dev",
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:watch": "jest --watch",
     "test:coverage:watch": "jest --watch --coverage",
     "test:coverage": "jest --coverage",
@@ -41,6 +41,7 @@
     "@types/pg-connection-string": "^2.0.0",
     "bcryptjs": "^2.4.3",
     "caporal": "^1.4.0",
+    "chai": "^4.2.0",
     "class-validator": "^0.10.2",
     "colors": "^1.4.0",
     "config": "^3.3.1",
@@ -65,6 +66,7 @@
     "koa-views": "^6.2.3",
     "lodash": "^4.17.15",
     "lodash-decorators": "^6.0.1",
+    "mocha": "^7.2.0",
     "moment": "^2.26.0",
     "nodemailer": "^6.4.6",
     "passport": "^0.4.1",
@@ -78,6 +80,7 @@
     "rxjs": "^6.5.5",
     "shelljs": "^0.8.4",
     "socket.io": "^2.3.0",
+    "supertest": "^4.0.2",
     "tslint-sonarts": "^1.9.0",
     "valid-url": "^1.0.9"
   },
@@ -88,6 +91,7 @@
     "@types/koa-views": "^2.0.4",
     "@types/nodemailer": "^6.4.0",
     "@types/passport-local": "^1.0.33",
+    "@types/supertest": "^2.0.9",
     "inversify": "^5.0.1",
     "jest": "^26.0.1",
     "nodemon": "^1.19.4",
@@ -115,6 +119,9 @@
       "node"
     ],
     "collectCoverage": true,
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/test/integration/setupTests.ts"
+    ],
     "coverageReporters": [
       "html",
       "json"

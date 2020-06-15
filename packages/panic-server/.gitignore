@@ -8,4 +8,5 @@
 /docs
 /.env
 /logs/access.log
-
+/config/local.json
+/config/local-test.json

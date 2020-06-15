@@ -1,19 +1,22 @@
 import config from 'config';
-import { Observable, Subscriber } from 'rxjs';
+
 import { createConnection } from 'typeorm';
 
 export default class DbConnect {
-  static config: any = config.get('postgres');
-
-  static connectDB(): Observable<any> {
-    const isDevMode = process.env.NODE_ENV === 'development';
-
-    return Observable.create(async (observer: Subscriber<any>) => {
+  config: any = config.get('database');
+  // options: any = config.get('options');
+  async start() {
+    await this.connectDB();
+  }
+  async connectDB(): Promise<any> {
+    return new Promise(async (resolve, reject) => {
       try {
+        const isDevMode = process.env.NODE_ENV === 'development';
+        const isTestMode = process.env.NODE_ENV === 'test';
         const connection = await createConnection({
           ...this.config,
           type: 'postgres',
-          entities: [...(isDevMode ? ['src/models/**/*.ts'] : ['dist/models/**/*.js'])],
+          entities: [...(isDevMode || isTestMode ? ['src/models/**/*.ts'] : ['dist/models/**/*.js'])],
           synchronize: true,
           logging: false,
           ssl: false,
@@ -21,13 +24,14 @@ export default class DbConnect {
             migrationsDir: 'src/databases/migrations',
           },
         });
+
         console.log('connection to database ok');
-        observer.next(connection);
+        resolve(connection);
       } catch (error) {
         console.log('Error', error);
-        observer.error(error);
+        reject(error);
       } finally {
-        observer.complete();
+        resolve();
       }
     });
   }

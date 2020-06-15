@@ -2,11 +2,12 @@
   "database": {
     "host": "localhost",
     "port": "5432",
-    "database": "panic_server",
-    "username": "postgres",
-    "password": "admin"
+    "database": "panic_server_test",
+    "username": "panic-test",
+    "password": "panictest"
   },
   "options": {
+    "dropSchema": false,
     "type": "postgres",
     "synchronize": true,
     "entities": [

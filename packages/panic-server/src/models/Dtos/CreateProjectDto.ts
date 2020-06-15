@@ -2,13 +2,14 @@ import {
   IsInt,
   IsNotEmpty,
   IsOptional,
-  IsUrl,
+
   Length,
   Max,
   Min,
   Validate,
 } from 'class-validator';
 import { ValidEmail } from '../../modules/utils/emailValidator';
+import { ValidUrl } from '../../modules/utils/urlValid';
 import { User } from '../User';
 
 export class CreateProjectDto {
@@ -20,9 +21,7 @@ export class CreateProjectDto {
   description: string;
 
   @IsNotEmpty()
-  @IsUrl({
-    require_tld: false,
-  })
+  @Validate(ValidUrl)
   url: string;
 
   @IsNotEmpty()

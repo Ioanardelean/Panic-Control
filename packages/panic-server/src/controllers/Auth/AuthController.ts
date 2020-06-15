@@ -30,7 +30,7 @@ export default class AuthController {
   )
   async loginUser(ctx: any) {
     const user = ctx.state.user;
-    ctx.login(user);
+    await ctx.login(user);
     const accessToken = this.authService.generateToken(user);
     ctx.body = {
       token: accessToken,
@@ -38,13 +38,13 @@ export default class AuthController {
   }
   @route('/loginFail', HttpMethod.GET)
   async loginFail(ctx: any) {
-    ctx.throw(HttpStatus.UNAUTHORIZED);
+    await ctx.throw(HttpStatus.UNAUTHORIZED);
   }
 
   @route('/logout', HttpMethod.GET)
   async logoutUser(ctx: any) {
     if (ctx.isAuthenticated()) {
-      ctx.logout();
+      await ctx.logout();
     } else {
       ctx.throw(HttpStatus.INTERNAL_SERVER_ERROR);
     }
