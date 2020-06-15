@@ -15,7 +15,7 @@ export default class AdminDashboardController {
       data: project,
     };
   }
-  @route('/projects/:id/delete', HttpMethod.DELETE, jwtAuth)
+  @route('/projects/:id/delete', HttpMethod.DELETE, jwtAuth, adminMdw)
   async delete(ctx: any) {
     const id = ctx.params.id;
     const removed = await this.projectService.deleteProject(id);

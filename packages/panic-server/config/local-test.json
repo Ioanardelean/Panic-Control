@@ -1,11 +1,20 @@
 {
   "database": {
-    "name": "test",
     "host": "localhost",
     "port": "5432",
     "database": "panic_server_test",
-    "username": "postgres",
-    "password": "admin"
+    "username": "panic-test",
+    "password": "panictest"
+  },
+  "options": {
+    "dropSchema": false,
+    "type": "postgres",
+    "synchronize": true,
+    "entities": [
+      "src/models/**/*.ts"
+    ],
+    "logging": false,
+    "ssl": false
   },
   "mailer": {
     "host": "smtp.gmail.com",

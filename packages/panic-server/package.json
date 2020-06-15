@@ -20,7 +20,7 @@
     "tsc:dev": "tsc",
     "build:dev": "npm run clean:dist && npm run tsc:dev && npm run copy:dev",
     "build:prod": "npm run clean:dist && npm run tsc:prod && npm run copy:dev",
-    "test": "jest",
+    "test": "jest --runInBand",
     "test:watch": "jest --watch",
     "test:coverage:watch": "jest --watch --coverage",
     "test:coverage": "jest --coverage",
@@ -119,6 +119,9 @@
       "node"
     ],
     "collectCoverage": true,
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/test/integration/setupTests.ts"
+    ],
     "coverageReporters": [
       "html",
       "json"

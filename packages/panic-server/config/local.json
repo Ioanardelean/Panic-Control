@@ -1,11 +1,19 @@
 {
   "database": {
-    "name": "default",
     "host": "localhost",
     "port": "5432",
     "database": "panic_server",
     "username": "postgres",
     "password": "admin"
+  },
+  "options": {
+    "type": "postgres",
+    "synchronize": true,
+    "entities": [
+      "src/models/**/*.ts"
+    ],
+    "logging": false,
+    "ssl": false
   },
   "mailer": {
     "host": "smtp.gmail.com",

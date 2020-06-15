@@ -1,21 +1,22 @@
 import config from 'config';
-import { Observable, Subscriber } from 'rxjs';
+
 import { createConnection } from 'typeorm';
 
 export default class DbConnect {
   config: any = config.get('database');
-
-  connectDB(): Observable<any> {
-
-    const isDevMode = process.env.NODE_ENV === 'development';
-
-    return Observable.create(async (observer: Subscriber<any>) => {
+  // options: any = config.get('options');
+  async start() {
+    await this.connectDB();
+  }
+  async connectDB(): Promise<any> {
+    return new Promise(async (resolve, reject) => {
       try {
-
+        const isDevMode = process.env.NODE_ENV === 'development';
+        const isTestMode = process.env.NODE_ENV === 'test';
         const connection = await createConnection({
           ...this.config,
           type: 'postgres',
-          entities: [...(isDevMode ? ['src/models/**/*.ts'] : ['dist/models/**/*.js'])],
+          entities: [...(isDevMode || isTestMode ? ['src/models/**/*.ts'] : ['dist/models/**/*.js'])],
           synchronize: true,
           logging: false,
           ssl: false,
@@ -25,12 +26,12 @@ export default class DbConnect {
         });
 
         console.log('connection to database ok');
-        observer.next(connection);
+        resolve(connection);
       } catch (error) {
-        console.log('Error *******************', error);
-        observer.error(error);
+        console.log('Error', error);
+        reject(error);
       } finally {
-        observer.complete();
+        resolve();
       }
     });
   }

@@ -14,7 +14,7 @@ import DbConnect from './databases/DatabaseConnection';
 import currentUser from './middleware/currentUser';
 import errorHandler from './middleware/errorHandler';
 import CheckHealth from './modules/health/MainCheckHealth';
-import Router from 'koa-router';
+
 
 
 
@@ -88,19 +88,13 @@ app.use(ServeStatic(`${__dirname}/public`));
  *
  */
 
-let db = new DbConnect()
-db.connectDB().subscribe(() => {
+const db = new DbConnect();
+db.start().then(() => {
   const apiRouter = load(path.resolve(__dirname, 'controllers'));
   app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
   CheckHealth.startHealthCheck();
 });
-const router = new Router();
 
-router.get('/', (ctx: any) => {
-  ctx.body = 'Hello World';
-});
-
-app.use(router.routes());
 
 
 export default app;
