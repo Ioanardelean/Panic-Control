@@ -113,7 +113,20 @@
     "title": "Statistiques des incidents pour",
     "year": "Les incidents sur l'année",
     "event": "Événements",
-    "rapport": "Rapport des événements d'indisponibilité depuis la création du moniteur "
+    "rapport": "Rapport des événements d'indisponibilité depuis la création du moniteur ",
+    "jan": "Janvier",
+    "feb": "Fevrier",
+    "mar": "Mars",
+    "apr": "Avril",
+    "may": "Mai",
+    "jun": "Juin",
+    "jul": "Juillet",
+    "aug": "Août",
+    "sep": "Septembre",
+    "oct": "Octobre",
+    "nov": "Novembre",
+    "dec": "Decembre",
+    "label": "La moyenne des responses par mois"
   },
   "ADMIN": {
     "monitors": "Gérer les moniteurs",

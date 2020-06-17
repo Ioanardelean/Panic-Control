@@ -18,9 +18,18 @@
           <h4> {{'DOWNTIME.year' | translate}}</h4>
         </mat-card-title>
         <mat-card-content>
-          <div *ngIf="chart">
-            <canvas id="canvas">{{ chart }}</canvas>
+          <div class="chart-wrapper">
+            <canvas baseChart
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [options]="lineChartOptions"
+                    [colors]="lineChartColors"
+                    [legend]="lineChartLegend"
+                    [chartType]="lineChartType"
+                    [plugins]="lineChartPlugins">
+            </canvas>
           </div>
+
         </mat-card-content>
       </mat-card>
     </div>

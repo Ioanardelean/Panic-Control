@@ -7,7 +7,9 @@ import { CsvDataServiceService } from 'src/app/core/services/history/csv-data-se
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { HistoryService } from 'src/app/core/services/history/history.service';
-import { Chart } from 'chart.js';
+import { ChartDataSets } from 'chart.js';
+import { Label, Color } from 'ng2-charts';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-downtime',
@@ -17,7 +19,7 @@ import { Chart } from 'chart.js';
 export class DowntimeComponent implements OnInit {
   displayedColumns: string[] = ['status', 'startedAt'];
   dataSource = new MatTableDataSource<History>();
-  chart: any;
+
 
   monitorName: string;
   monitorUrl: string;
@@ -26,15 +28,34 @@ export class DowntimeComponent implements OnInit {
     public monitorService: MonitorService,
     public route: ActivatedRoute,
     public csvService: CsvDataServiceService,
-    public historyService: HistoryService
+    public historyService: HistoryService,
+    private translate: TranslateService
   ) {
     this.getProject(this.route.snapshot.params.id);
     this.getDowntimeOnYear(this.route.snapshot.params.id);
-    this.chart = [];
+
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  lineChartData: ChartDataSets[] = [{ data: [], label: '' }];
 
+  lineChartLabels: Label[] = [];
+
+  lineChartOptions = {
+    responsive: true,
+  };
+
+  lineChartColors: Color[] = [
+    {
+      borderWidth: 1,
+      borderColor: '#0a2d48',
+      backgroundColor: 'rgba(77, 216, 171, 0.3)'
+    },
+  ];
+
+  lineChartLegend = true;
+  lineChartPlugins = [];
+  lineChartType = 'line';
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
     this.getProjectDetail(this.route.snapshot.params.id);
@@ -61,47 +82,48 @@ export class DowntimeComponent implements OnInit {
   }
 
   getDowntimeOnYear(id) {
-    this.historyService.getYearDowntimeOnProject(id).subscribe((res) => {
-      console.log(res);
-      const uptime = res['data'].map((res) => res.uptime);
-      const allDates = res['data'].map((res) => res.startedAt);
+    this.historyService.getYearDowntimeOnProject(id).subscribe((res: any) => {
+      const monthNames = [this.translate.instant('DOWNTIME.jan'),
+      this.translate.instant('DOWNTIME.feb'),
+      this.translate.instant('DOWNTIME.mar'),
+      this.translate.instant('DOWNTIME.apr'),
+      this.translate.instant('DOWNTIME.may'),
+      this.translate.instant('DOWNTIME.jun'),
+      this.translate.instant('DOWNTIME.jul'),
+      this.translate.instant('DOWNTIME.aug'),
+      this.translate.instant('DOWNTIME.sep'),
+      this.translate.instant('DOWNTIME.oct'),
+      this.translate.instant('DOWNTIME.nov'),
+      this.translate.instant('DOWNTIME.dec'),
+      ];
 
-      const dates = [];
-      allDates.forEach((res) => {
-        const date = new Date(res);
-        dates.push(date.toLocaleDateString('en', { year: 'numeric', month: 'short' }));
+      const groupByMonth = (jsonData, keyToGroup) => {
+
+        return jsonData.reduce((array, item) => {
+
+          const itemDate = new Date(item[keyToGroup]);
+          const itemMonth = monthNames[itemDate.getMonth()];
+          (array[itemMonth] = array[itemMonth] || []).push(item);
+          return array;
+        }, {});
+      };
+
+
+      const groupedByMonth = groupByMonth(res.data, 'startedAt');
+      const arrTotals = [];
+      Object.keys(groupedByMonth).forEach((key) => {
+        let monthTotal = 0;
+        let avg = 0;
+        Object.keys(groupedByMonth[key]).forEach((subKey) => {
+          monthTotal += groupedByMonth[key][subKey].uptime;
+          avg = monthTotal / groupedByMonth[key].length;
+
+        });
+        arrTotals.push(avg);
+
       });
-      this.chart = new Chart('canvas', {
-        type: 'line',
-        data: {
-          labels: dates,
-          datasets: [
-            {
-              data: uptime,
-              borderColor: '#4dd8ab',
-              backgroundColor: '#cfd8dc',
-              fill: false,
-            },
-          ],
-        },
-        options: {
-          legend: {
-            display: false,
-          },
-          scales: {
-            xAxes: [
-              {
-                display: true,
-              },
-            ],
-            yAxes: [
-              {
-                display: true,
-              },
-            ],
-          },
-        },
-      });
+      this.lineChartData = [{ data: arrTotals, label: this.translate.instant('DOWNTIME.label') }];
+      this.lineChartLabels = Object.keys(groupedByMonth);
     });
   }
 }

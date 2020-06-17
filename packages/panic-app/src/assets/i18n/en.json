@@ -113,7 +113,20 @@
     "title": "Downtime stats for",
     "year": "Downtime on year",
     "event": "Downtime Events",
-    "rapport": "Report of downtime events since the creation of the monitor"
+    "rapport": "Report of downtime events since the creation of the monitor",
+    "jan": "January",
+    "feb": "February",
+    "mar": "March",
+    "apr": "April",
+    "may": "May",
+    "jun": "June",
+    "jul": "July",
+    "aug": "August",
+    "sep": "September",
+    "oct": "October",
+    "nov": "November",
+    "dec": "December",
+    "label": "Average of responses on month"
   },
   "ADMIN": {
     "monitors": "Manage monitors",
