@@ -9,6 +9,7 @@ import { MatSort } from '@angular/material/sort';
 import { HistoryService } from 'src/app/core/services/history/history.service';
 import { ChartDataSets } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-downtime',
@@ -27,7 +28,8 @@ export class DowntimeComponent implements OnInit {
     public monitorService: MonitorService,
     public route: ActivatedRoute,
     public csvService: CsvDataServiceService,
-    public historyService: HistoryService
+    public historyService: HistoryService,
+    private translate: TranslateService
   ) {
     this.getProject(this.route.snapshot.params.id);
     this.getDowntimeOnYear(this.route.snapshot.params.id);
@@ -81,8 +83,18 @@ export class DowntimeComponent implements OnInit {
 
   getDowntimeOnYear(id) {
     this.historyService.getYearDowntimeOnProject(id).subscribe((res: any) => {
-      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'
+      const monthNames = [this.translate.instant('DOWNTIME.jan'),
+      this.translate.instant('DOWNTIME.feb'),
+      this.translate.instant('DOWNTIME.mar'),
+      this.translate.instant('DOWNTIME.apr'),
+      this.translate.instant('DOWNTIME.may'),
+      this.translate.instant('DOWNTIME.jun'),
+      this.translate.instant('DOWNTIME.jul'),
+      this.translate.instant('DOWNTIME.aug'),
+      this.translate.instant('DOWNTIME.sep'),
+      this.translate.instant('DOWNTIME.oct'),
+      this.translate.instant('DOWNTIME.nov'),
+      this.translate.instant('DOWNTIME.dec'),
       ];
 
       const groupByMonth = (jsonData, keyToGroup) => {
@@ -98,7 +110,6 @@ export class DowntimeComponent implements OnInit {
 
 
       const groupedByMonth = groupByMonth(res.data, 'startedAt');
-
       const arrTotals = [];
       Object.keys(groupedByMonth).forEach((key) => {
         let monthTotal = 0;
@@ -111,7 +122,7 @@ export class DowntimeComponent implements OnInit {
         arrTotals.push(avg);
 
       });
-      this.lineChartData = [{ data: arrTotals, label: 'Average of responses on month' }];
+      this.lineChartData = [{ data: arrTotals, label: this.translate.instant('DOWNTIME.label') }];
       this.lineChartLabels = Object.keys(groupedByMonth);
     });
   }
