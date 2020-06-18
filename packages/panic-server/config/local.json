@@ -4,7 +4,7 @@
     "port": "5432",
     "database": "panic_server",
     "username": "postgres",
-    "password": "admin"
+    "password": "[[PASSWORD]]"
   },
   "options": {
     "type": "postgres",
@@ -24,7 +24,7 @@
     },
     "auth": {
       "user": "panic.control.all@gmail.com",
-      "pass": "Ardeleanioana1994"
+      "pass": "[[PASSWORD]]"
     }
   },
   "servers": {
@@ -37,5 +37,5 @@
       "port": "3001"
     }
   },
-  "tokenLife": "8h"
+  "tokenLife": "1800s"
 }

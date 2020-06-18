@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import decode from 'jwt-decode';
 import { Config } from '../../config/config';
 import { TranslateService } from '@ngx-translate/core';
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 @Injectable({
@@ -20,7 +22,8 @@ export class AuthService {
     public router: Router,
     private toastr: ToastrService,
     public config: Config,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private cookieService: CookieService
 
   ) {
     this.apiBaseUrl = config.apiBaseUrl;
@@ -35,7 +38,8 @@ export class AuthService {
       .post<any>(`${this.apiBaseUrl}/auth/login`, user)
       .subscribe((data: any) => {
         if (user) {
-          localStorage.setItem('access_token', data.token);
+          this.cookieService.set('access_token', data.token, this.getTokenExpirationDate(data.token), '/', 'localhost', false, 'Lax');
+
           if (data.token !== undefined) {
             this.router.navigate(['/dashboard']);
             this.toastr.success(this.translate.instant('WELCOME', { value: user.username }));
@@ -51,16 +55,18 @@ export class AuthService {
   }
 
   getAccessToken() {
-    return localStorage.getItem('access_token');
+    return this.cookieService.get('access_token');
   }
 
   get isLoggedIn(): boolean {
-    const authToken = localStorage.getItem('access_token');
-    return authToken !== null ? true : false;
+    const authToken = this.getAccessToken();
+    return authToken !== '' || null ? true : false;
   }
 
+
+
   logout() {
-    const removeToken = localStorage.removeItem('access_token');
+    const removeToken = this.cookieService.delete('access_token', '/', 'localhost');
     if (removeToken == null) {
       this.router.navigate(['auth/landing']);
     }
@@ -82,9 +88,9 @@ export class AuthService {
     return date;
   }
 
-  isTokenExpired(token?: string): boolean {
+  isTokenExpired(token?: any): boolean {
     if (!token) {
-      token = this.getAccessToken();
+      token = this.cookieService.check('access_token');
       return true;
     }
     const date = this.getTokenExpirationDate(token);
