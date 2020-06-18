@@ -29,6 +29,7 @@ export class MenuComponent implements OnInit {
   }
 
   getCurrentUser() {
+
     if (this.authService.isLoggedIn) {
       this.authService.getUser().subscribe((user: User) => {
         this.currentUser = user;

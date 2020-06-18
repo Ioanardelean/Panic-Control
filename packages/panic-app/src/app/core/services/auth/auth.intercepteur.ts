@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
     private authService: AuthService,
     public route: Router,
     public toastr: ToastrService
-  ) {}
+  ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const accessToken = this.authService.getAccessToken();

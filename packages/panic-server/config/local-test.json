@@ -4,7 +4,7 @@
     "port": "5432",
     "database": "panic_server_test",
     "username": "panic-test",
-    "password": "panictest"
+    "password": "[[PASSWORD]]"
   },
   "options": {
     "dropSchema": false,
@@ -25,7 +25,7 @@
     },
     "auth": {
       "user": "panic.control.all@gmail.com",
-      "pass": "Ardeleanioana1994"
+      "pass": "[[PASSWORD]]"
     }
   },
   "servers": {
