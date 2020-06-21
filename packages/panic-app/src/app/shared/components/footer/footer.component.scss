@@ -1,13 +1,13 @@
 :host {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  margin-top: 3rem;
-  display: block;
-  font-size: 1.063rem;
-  text-align: center;
   footer {
     color: grey;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin-top: 3rem;
+    display: flex;
+    font-size: 1.063rem;
+    text-align: center;
   }
 }
