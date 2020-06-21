@@ -21,10 +21,18 @@ export class MonitorsPage {
     return element(by.css('#stop')).click();
   }
 
+  getDowntimeStats() {
+    return element(by.css('#stats')).click();
+  }
+
   getMenuItemDelete() {
     return element(by.css('#delete')).click();
   }
   getMenuItemEdit() {
     return element(by.css('#edit')).click();
+  }
+
+  getCSVFile() {
+    return element(by.css('#csv')).click();
   }
 }

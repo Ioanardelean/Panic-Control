@@ -10,8 +10,6 @@ describe('test for monitor creation', () => {
     description: 'test application',
     url: 'test/url',
     receiver: 'test.com',
-    ping: 20,
-    monitorInterval: 10,
   };
   beforeEach(() => {
     monitor = new MonitorPage();
@@ -23,26 +21,24 @@ describe('test for monitor creation', () => {
     expect(browser.getCurrentUrl()).not.toEqual(browser.baseUrl);
   });
 
-  it('should display form card title', () => {
-    monitor.navigateTo();
-    expect(monitor.getTitleText()).toEqual('Create monitor');
-  });
-
   it('should cancel form creation', () => {
     monitor.navigateTo();
     monitor.cancelButton();
     expect(browser.getCurrentUrl()).not.toEqual(browser.baseUrl);
   });
 
-  it('should create basic monitor successful', () => {
-    monitor.navigateTo();
-    monitor.monitorCreation();
-    expect(browser.getCurrentUrl()).not.toEqual(browser.baseUrl);
-  });
-
   it('should display error notification when got wrong url or email address', () => {
     monitor.navigateTo();
     monitor.monitorCreation(wrongFields);
-    expect(monitor.getErrorMessage()).toEqual('Url or email is wrong');
+    browser.sleep(5000);
+    const form = monitor.getForm().getAttribute('class');
+    expect(form).toContain('ng-invalid');
+  });
+
+  it('should create basic monitor successful', () => {
+    monitor.navigateTo();
+    monitor.monitorCreation();
+    browser.sleep(5000);
+    expect(browser.getCurrentUrl()).not.toEqual(browser.baseUrl);
   });
 });
