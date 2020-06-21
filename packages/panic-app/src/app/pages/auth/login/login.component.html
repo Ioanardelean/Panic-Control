@@ -5,11 +5,13 @@
          id="login-section">
       <h1>{{'LOGIN' | translate}}</h1>
       <form role="form"
+            id="form"
             [formGroup]="loginForm"
             (ngSubmit)="loginUser()">
         <div class="form-content">
           <div class="form-group">
             <input type="text"
+                   id="username"
                    ng-model="name"
                    class="form-control input-underline input-lg"
                    formControlName="username"
@@ -24,6 +26,7 @@
 
           <div class="form-group">
             <input type="password"
+                   id="password"
                    class="form-control input-underline input-lg"
                    formControlName="password"
                    placeholder="{{'PASSWORD' | translate}}" />

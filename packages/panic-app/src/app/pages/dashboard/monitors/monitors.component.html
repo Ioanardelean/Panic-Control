@@ -1,30 +1,36 @@
 <div class="row">
   <div class="tile_count">
     <div class="col-md-3 tile_stats_count">
-      <span class="count_top"> {{'MONITORS.status_up' | translate}}</span>
+      <span class="count_top"> {{ 'MONITORS.status_up' | translate }}</span>
       <div class="count">{{ active }}</div>
-      <span class="count_bottom"> {{'MONITORS.show' | translate}} <i
-           class="green">{{'MONITORS.up' | translate}}
-        </i>{{'MONITORS.monitors' | translate}}</span>
+      <span class="count_bottom">
+        {{ 'MONITORS.show' | translate }}
+        <i class="green">{{ 'MONITORS.up' | translate }} </i
+        >{{ 'MONITORS.monitors' | translate }}</span
+      >
     </div>
     <div class="col-md-3 tile_stats_count">
-      <span class="count_top">{{'MONITORS.status_down' | translate}} </span>
+      <span class="count_top">{{ 'MONITORS.status_down' | translate }} </span>
       <div class="count green">{{ down }}</div>
-      <span class="count_bottom">{{'MONITORS.show' | translate}} <i
-           class="green">{{'MONITORS.down' | translate}}</i>
-        {{'MONITORS.monitors' | translate}}</span>
+      <span class="count_bottom"
+        >{{ 'MONITORS.show' | translate }}
+        <i class="green">{{ 'MONITORS.down' | translate }}</i>
+        {{ 'MONITORS.monitors' | translate }}</span
+      >
     </div>
     <div class="col-md-3 tile_stats_count">
-      <span class="count_top"> {{'MONITORS.status_stopped' | translate}}</span>
+      <span class="count_top"> {{ 'MONITORS.status_stopped' | translate }}</span>
       <div class="count">{{ stopped }}</div>
-      <span class="count_bottom"> {{'MONITORS.show' | translate}} <i
-           class="green">{{'MONITORS.stopped' | translate}}
-        </i>{{'MONITORS.monitors' | translate}}</span>
+      <span class="count_bottom">
+        {{ 'MONITORS.show' | translate }}
+        <i class="green">{{ 'MONITORS.stopped' | translate }} </i
+        >{{ 'MONITORS.monitors' | translate }}</span
+      >
     </div>
     <div class="col-md-3 tile_stats_count">
-      <span class="count_top"> {{'MONITORS.all' | translate}} </span>
+      <span class="count_top"> {{ 'MONITORS.all' | translate }} </span>
       <div class="count">{{ all }}</div>
-      <span class="count_bottom">{{'MONITORS.all_text' | translate}}</span>
+      <span class="count_bottom">{{ 'MONITORS.all_text' | translate }}</span>
     </div>
   </div>
 </div>
@@ -32,42 +38,36 @@
   <div class="col-md-6">
     <div class="row x_title">
       <div class="col-md-6">
-
         <h3>
           <mat-icon class="material-icons">
             cast
-          </mat-icon> {{'MONITORS.monitors' | translate}}
+          </mat-icon>
+          {{ 'MONITORS.monitors' | translate }}
         </h3>
       </div>
     </div>
     <div class="col-md-12">
       <div class="example-header">
         <mat-form-field class="search">
-          <mat-label>{{'MONITORS.filter' | translate}}</mat-label>
-          <input matInput
-                 (keyup)="applyFilter($event)"
-                 placeholder="Ex. Panic" />
+          <mat-label>{{ 'MONITORS.filter' | translate }}</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Panic" />
         </mat-form-field>
-        <button id="creation-button"
-                mat-raised-button
-                [routerLink]="['/dashboard/monitor']">
-          <img src="./assets/icons/add.png"
-               alt="add icon" />
-          {{'MONITORS.button' | translate}}
+        <button
+          id="creation-button"
+          mat-raised-button
+          [routerLink]="['/dashboard/monitor']"
+        >
+          <img src="./assets/icons/add.png" alt="add icon" />
+          {{ 'MONITORS.button' | translate }}
         </button>
       </div>
       <div id="example-table-container">
-        <table mat-table
-               matSort
-               [dataSource]="dataSource">
+        <table mat-table matSort [dataSource]="dataSource">
           <ng-container matColumnDef="status">
-            <th mat-header-cell
-                *matHeaderCellDef>{{ 'MONITORS.status' | translate}}</th>
-            <td mat-cell
-                *matCellDef="let element">
+            <th mat-header-cell *matHeaderCellDef>{{ 'MONITORS.status' | translate }}</th>
+            <td mat-cell *matCellDef="let element">
               <div class="custom-cell">
-                <div class="status {{ element.status }}"
-                     id="project-status-"></div>
+                <div class="status {{ element.status }}" id="project-status-"></div>
                 <div>
                   {{ element.status }}
                 </div>
@@ -76,87 +76,85 @@
           </ng-container>
 
           <ng-container matColumnDef="name">
-            <th mat-header-cell
-                *matHeaderCellDef
-                mat-sort-header>{{ 'MONITORS.name' | translate}}</th>
-            <td mat-cell
-                *matCellDef="let element">{{ element.name }}</td>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'MONITORS.name' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
           </ng-container>
 
           <ng-container matColumnDef="description">
-            <th mat-header-cell
-                *matHeaderCellDef
-                mat-sort-header>
-              {{ 'MONITORS.description' | translate}}
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'MONITORS.description' | translate }}
             </th>
-            <td mat-cell
-                *matCellDef="let element">{{ element.description }}</td>
+            <td mat-cell *matCellDef="let element">{{ element.description }}</td>
           </ng-container>
 
           <ng-container matColumnDef="url">
-            <th mat-header-cell
-                *matHeaderCellDef
-                mat-sort-header>{{ 'MONITORS.url' | translate}}</th>
-            <td mat-cell
-                *matCellDef="let element">
-              <a href="{{ element.url }}"
-                 target="_blank"
-                 rel="noopener noreferrer">{{
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'MONITORS.url' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <a href="{{ element.url }}" target="_blank" rel="noopener noreferrer">{{
                 element.url
               }}</a>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="actions">
-            <th mat-header-cell
-                *matHeaderCellDef>{{ 'MONITORS.actions' | translate}}</th>
-            <td mat-cell
-                *matCellDef="let element">
-              <button id="action"
-                      class="mat-button"
-                      [matMenuTriggerFor]="menu"
-                      aria-label="Example icon-button with a menu">
-                {{ 'MONITORS.button_actions' | translate}} <mat-icon>more_vert</mat-icon>
+            <th mat-header-cell *matHeaderCellDef>
+              {{ 'MONITORS.actions' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                id="action"
+                class="mat-button"
+                [matMenuTriggerFor]="menu"
+                aria-label="Example icon-button with a menu"
+              >
+                {{ 'MONITORS.button_actions' | translate }} <mat-icon>more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu">
-                <a id="edit"
-                   mat-menu-item
-                   [routerLink]="['/dashboard/monitor/', element.id]">
-                  {{ 'MONITORS.edit' | translate}}
+                <a
+                  id="edit"
+                  mat-menu-item
+                  [routerLink]="['/dashboard/monitor/', element.id]"
+                >
+                  {{ 'MONITORS.edit' | translate }}
                 </a>
-                <a mat-menu-item
-                   [routerLink]="['/dashboard/downtime/', element.id]">
-                  {{ 'MONITORS.show_stats' | translate}}
+                <a
+                  id="stats"
+                  mat-menu-item
+                  [routerLink]="['/dashboard/downtime/', element.id]"
+                >
+                  {{ 'MONITORS.show_stats' | translate }}
                 </a>
-                <a id="start"
-                   *ngIf="element.testRunning === false"
-                   mat-menu-item
-                   (click)="startProject(element.id)">
-                  {{ 'MONITORS.start' | translate}}
+                <a
+                  id="start"
+                  *ngIf="element.testRunning === false"
+                  mat-menu-item
+                  (click)="startProject(element.id)"
+                >
+                  {{ 'MONITORS.start' | translate }}
                 </a>
-                <a id="stop"
-                   *ngIf="element.testRunning === true"
-                   mat-menu-item
-                   (click)="stopProject(element.id)">
-                  {{ 'MONITORS.stop' | translate}}
+                <a
+                  id="stop"
+                  *ngIf="element.testRunning === true"
+                  mat-menu-item
+                  (click)="stopProject(element.id)"
+                >
+                  {{ 'MONITORS.stop' | translate }}
                 </a>
-                <a id="delete"
-                   mat-menu-item
-                   (click)="deleteProject(element.id)">
-                  {{ 'MONITORS.delete' | translate}}
+                <a id="delete" mat-menu-item (click)="deleteProject(element.id)">
+                  {{ 'MONITORS.delete' | translate }}
                 </a>
               </mat-menu>
             </td>
           </ng-container>
 
-          <tr mat-header-row
-              *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row
-              *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
-        <mat-paginator [length]=""
-                       [pageSize]=""
-                       [pageSizeOptions]="[5, 10, 25, 100]">
+        <mat-paginator [length]="" [pageSize]="" [pageSizeOptions]="[5, 10, 25, 100]">
         </mat-paginator>
       </div>
     </div>
@@ -166,78 +164,74 @@
       <div class="col-md-6">
         <h3>
           <mat-icon class="material-icons">pie_chart</mat-icon>
-          {{ 'MONITORS.quick_stats' | translate}}
+          {{ 'MONITORS.quick_stats' | translate }}
         </h3>
       </div>
     </div>
-    <div class="row"
-         style="margin-top: 28px;">
+    <div class="row" style="margin-top: 28px;">
       <div class="col-md-6 tile">
-        <h4>{{ 'MONITORS.stats_info' | translate}}</h4>
+        <h4>{{ 'MONITORS.stats_info' | translate }}</h4>
         <div class="text">
-          {{ 'MONITORS.stats_info_text' | translate}}
-          <strong> {{ 'MONITORS.button_actions' | translate}} </strong>
+          {{ 'MONITORS.stats_info_text' | translate }}
+          <strong> {{ 'MONITORS.button_actions' | translate }} </strong>
         </div>
       </div>
       <div class="col-md-6 tile">
-        <h4> {{ 'MONITORS.latest' | translate}}</h4>
+        <h4>{{ 'MONITORS.latest' | translate }}</h4>
         <div class="text">
-          {{'MONITORS.latest_text' | translate : {monitor:lastEventMonitor, date: lastEventTime | date: 'medium'} }}
+          {{
+            'MONITORS.latest_text'
+              | translate
+                : { monitor: lastEventMonitor, date: lastEventTime | date: 'medium' }
+          }}
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12"
-           style="margin-top: 40px; font-size: 14px;">
-        {{ 'MONITORS.latest_table' | translate}}
-        <a id="csv"
-           [routerLink]="'.'"
-           (click)="exportCsv()"> {{ 'MONITORS.export' | translate}}</a>
+      <div class="col-md-12" style="margin-top: 40px; font-size: 14px;">
+        {{ 'MONITORS.latest_table' | translate }}
+        <a id="csv" [routerLink]="'.'" (click)="exportCsv()">
+          {{ 'MONITORS.export' | translate }}</a
+        >
       </div>
       <div class="col-md-12">
         <div class="example-container">
-          <table id="downtime"
-                 mat-table
-                 matSort
-                 [dataSource]="dataSourceEvents"
-                 *ngIf="dataSourceEvents.data.length > 0">
+          <table
+            id="downtime"
+            mat-table
+            matSort
+            [dataSource]="dataSourceEvents"
+            *ngIf="dataSourceEvents.data.length > 0"
+          >
             <ng-container matColumnDef="name">
-              <th mat-header-cell
-                  *matHeaderCellDef> {{ 'MONITORS.name' | translate}}</th>
-              <td mat-cell
-                  *matCellDef="let element">
+              <th mat-header-cell *matHeaderCellDef>{{ 'MONITORS.name' | translate }}</th>
+              <td mat-cell *matCellDef="let element">
                 {{ element.project.name }}
               </td>
             </ng-container>
             <ng-container matColumnDef="status">
-              <th mat-header-cell
-                  *matHeaderCellDef> {{ 'MONITORS.event' | translate}}</th>
-              <td mat-cell
-                  *matCellDef="let element">
+              <th mat-header-cell *matHeaderCellDef>
+                {{ 'MONITORS.event' | translate }}
+              </th>
+              <td mat-cell *matCellDef="let element">
                 {{ element.status | uppercase }}
               </td>
             </ng-container>
 
             <ng-container matColumnDef="startedAt">
-              <th mat-header-cell
-                  *matHeaderCellDef
-                  mat-sort-header>
-                {{ 'MONITORS.time' | translate}}
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                {{ 'MONITORS.time' | translate }}
               </th>
-              <td mat-cell
-                  *matCellDef="let element">
+              <td mat-cell *matCellDef="let element">
                 {{ element.startedAt | date: 'medium' }}
               </td>
             </ng-container>
 
-            <tr mat-header-row
-                *matHeaderRowDef="displayedColumn; sticky: true"></tr>
-            <tr mat-row
-                *matRowDef="let row; columns: displayedColumn"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumn; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumn"></tr>
           </table>
-          <div class="no-data"
-               *ngIf="dataSourceEvents.data.length === 0">
-            {{ 'MONITORS.no_event' | translate}}
+          <div class="no-data" *ngIf="dataSourceEvents.data.length === 0">
+            {{ 'MONITORS.no_event' | translate }}
           </div>
         </div>
       </div>

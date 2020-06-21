@@ -1,196 +1,233 @@
-<div class="col-md-8 offset-md-2"
-     style="margin-top: 20px;">
+<div class="col-md-8 offset-md-2" style="margin-top: 20px;">
   <mat-card>
     <mat-card-title>
-      {{'MONITORS.button' | translate}}
+      {{ 'MONITORS.button' | translate }}
     </mat-card-title>
     <mat-card-content>
-      <form class="example-form"
-            [formGroup]="createForm"
-            (ngSubmit)="createProject()">
-        <div class="row"
-             style="margin: 20px 20px;">
+      <form
+        class="example-form"
+        id="form"
+        [formGroup]="createForm"
+        (ngSubmit)="createProject()"
+      >
+        <div class="row" style="margin: 20px 20px;">
           <div class="col-md-6">
             <h5>
-              <mat-icon class="material-icons"
-                        matTooltip="{{'MONITOR.info_tooltip' | translate}}"
-                        aria-label="Icon that displays a tooltip when focused or hovered over">
+              <mat-icon
+                class="material-icons"
+                matTooltip="{{ 'MONITOR.info_tooltip' | translate }}"
+                aria-label="Icon that displays a tooltip when focused or hovered over"
+              >
                 help_outline
               </mat-icon>
-              {{'MONITOR.info_title' | translate}}
+              {{ 'MONITOR.info_title' | translate }}
             </h5>
             <mat-form-field class="example-chip-list">
-              <mat-label>{{'MONITORS.name' | translate}}</mat-label>
-              <input matInput
-                     placeholder="Ex. Panic Control"
-                     formControlName="name"
-                     required />
+              <mat-label>{{ 'MONITORS.name' | translate }}</mat-label>
+              <input
+                matInput
+                placeholder="Ex. Panic Control"
+                formControlName="name"
+                required
+              />
               <mat-error *ngFor="let validation of monitorValidationMessages.name">
-                <mat-error class="error-message"
-                           *ngIf="createForm.get('name').hasError(validation.type) &&  (createForm.get('name').dirty || createForm.get('name').touched)">
-                  {{validation.message | translate}}</mat-error>
+                <mat-error
+                  class="error-message"
+                  *ngIf="
+                    createForm.get('name').hasError(validation.type) &&
+                    (createForm.get('name').dirty || createForm.get('name').touched)
+                  "
+                >
+                  {{ validation.message | translate }}</mat-error
+                >
               </mat-error>
             </mat-form-field>
             <mat-form-field class="example-chip-list">
-              <mat-label>{{'MONITORS.description' | translate}}</mat-label>
-              <input matInput
-                     placeholder="Ex.my precious website"
-                     formControlName="description" />
+              <mat-label>{{ 'MONITORS.description' | translate }}</mat-label>
+              <input
+                matInput
+                placeholder="Ex.my precious website"
+                formControlName="description"
+              />
             </mat-form-field>
           </div>
           <div class="col-md-6">
             <h5>
-              <mat-icon class="material-icons"
-                        matTooltip="{{'MONITOR.ws_tooltip' | translate}}"
-                        aria-label="Icon that displays a tooltip when focused or hovered over">
+              <mat-icon
+                class="material-icons"
+                matTooltip="{{ 'MONITOR.ws_tooltip' | translate }}"
+                aria-label="Icon that displays a tooltip when focused or hovered over"
+              >
                 help_outline
               </mat-icon>
-              {{'MONITOR.ws_title' | translate}}
+              {{ 'MONITOR.ws_title' | translate }}
             </h5>
             <mat-form-field class="example-chip-list">
-              <mat-label>{{'MONITORS.url' | translate}}</mat-label>
-              <input matInput
-                     required
-                     placeholder="Ex. https://"
-                     formControlName="url" />
+              <mat-label>{{ 'MONITORS.url' | translate }}</mat-label>
+              <input matInput required placeholder="Ex. https://" formControlName="url" />
               <mat-error *ngFor="let validation of monitorValidationMessages.url">
-                <mat-error class="error-message"
-                           *ngIf="createForm.get('url').hasError(validation.type) &&  (createForm.get('url').dirty || createForm.get('url').touched)">
-                  {{validation.message | translate}}</mat-error>
+                <mat-error
+                  class="error-message"
+                  *ngIf="
+                    createForm.get('url').hasError(validation.type) &&
+                    (createForm.get('url').dirty || createForm.get('url').touched)
+                  "
+                >
+                  {{ validation.message | translate }}</mat-error
+                >
               </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-chip-list">
-              <mat-label>{{'MONITOR.receiver' | translate}}</mat-label>
-              <mat-chip-list #chipList
-                             aria-label="Fruit selection"
-                             required>
-                <mat-chip *ngFor="let item of emails"
-                          [selectable]="selectable"
-                          [removable]="removable"
-                          (removed)="remove(item)">
+              <mat-label>{{ 'MONITOR.receiver' | translate }}</mat-label>
+              <mat-chip-list #chipList aria-label="Fruit selection" required>
+                <mat-chip
+                  *ngFor="let item of emails"
+                  [selectable]="selectable"
+                  [removable]="removable"
+                  (removed)="remove(item)"
+                >
                   {{ item }}
-                  <mat-icon matChipRemove
-                            *ngIf="removable">cancel</mat-icon>
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                 </mat-chip>
-                <input [matChipInputFor]="chipList"
-                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                       [matChipInputAddOnBlur]="addOnBlur"
-                       (matChipInputTokenEnd)="add($event)" />
+                <input
+                  id="receiver"
+                  [matChipInputFor]="chipList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="add($event)"
+                />
               </mat-chip-list>
-              <mat-error>{{'ERROR_MONITOR.required_receiver' | translate}}</mat-error>
+              <mat-error>{{ 'ERROR_MONITOR.required_receiver' | translate }}</mat-error>
             </mat-form-field>
           </div>
         </div>
 
-        <div class="row"
-             style="margin: 20px 20px;">
+        <div class="row" style="margin: 20px 20px;">
           <div class="col-md-6">
             <h5>
-              <mat-icon class="material-icons"
-                        matTooltip="{{'MONITOR.conf_tooltip' | translate}}"
-                        aria-label="Icon that displays a tooltip when focused or hovered over">
+              <mat-icon
+                class="material-icons"
+                matTooltip="{{ 'MONITOR.conf_tooltip' | translate }}"
+                aria-label="Icon that displays a tooltip when focused or hovered over"
+              >
                 help_outline
               </mat-icon>
-              {{'MONITOR.conf' | translate}}
+              {{ 'MONITOR.conf' | translate }}
             </h5>
-            <mat-form-field class="example-chip-list">
-              <mat-label>{{'MONITOR.ping' | translate}}</mat-label>
-              <mat-select formControlName="ping"
-                          required>
-                <mat-option *ngFor="let item of pings"
-                            [value]="item.ping">
+            <mat-form-field class="example-chip-list" id="ping">
+              <mat-label>{{ 'MONITOR.ping' | translate }}</mat-label>
+              <mat-select id="pg" formControlName="ping" required>
+                <mat-option *ngFor="let item of pings" [value]="item.ping">
                   {{ item.ping }}
                 </mat-option>
               </mat-select>
               <mat-hint> seconds</mat-hint>
               <mat-error *ngFor="let validation of monitorValidationMessages.ping">
-                <mat-error class="error-message"
-                           *ngIf="createForm.get('ping').hasError(validation.type) &&  (createForm.get('ping').dirty || createForm.get('ping').touched)">
-                  {{validation.message | translate}}</mat-error>
+                <mat-error
+                  class="error-message"
+                  *ngIf="
+                    createForm.get('ping').hasError(validation.type) &&
+                    (createForm.get('ping').dirty || createForm.get('ping').touched)
+                  "
+                >
+                  {{ validation.message | translate }}</mat-error
+                >
               </mat-error>
             </mat-form-field>
-            <mat-form-field class="example-chip-list">
-              <mat-label>{{'MONITOR.interval' | translate}}</mat-label>
-              <mat-select formControlName="monitorInterval"
-                          required>
-                <mat-option *ngFor="let item of intervals"
-                            [value]="item.monitorInterval">
+            <mat-form-field class="example-chip-list" id="interval">
+              <mat-label>{{ 'MONITOR.interval' | translate }}</mat-label>
+              <mat-select formControlName="monitorInterval" required>
+                <mat-option *ngFor="let item of intervals" [value]="item.monitorInterval">
                   {{ item.monitorInterval }}
                 </mat-option>
               </mat-select>
               <mat-hint> minutes</mat-hint>
               <mat-error
-                         *ngFor="let validation of monitorValidationMessages.monitorInterval">
-                <mat-error class="error-message"
-                           *ngIf="createForm.get('monitorInterval').hasError(validation.type) &&  (createForm.get('monitorInterval').dirty || createForm.get('monitorInterval').touched)">
-                  {{validation.message | translate}}</mat-error>
+                *ngFor="let validation of monitorValidationMessages.monitorInterval"
+              >
+                <mat-error
+                  class="error-message"
+                  *ngIf="
+                    createForm.get('monitorInterval').hasError(validation.type) &&
+                    (createForm.get('monitorInterval').dirty ||
+                      createForm.get('monitorInterval').touched)
+                  "
+                >
+                  {{ validation.message | translate }}</mat-error
+                >
               </mat-error>
             </mat-form-field>
           </div>
-          <div class="col-md-6"
-               id="alerting">
+          <div class="col-md-6" id="alerting">
             <h5>
-              <mat-icon class="material-icons"
-                        matTooltip="{{'MONITOR.alert_tooltip' | translate}}"
-                        aria-label="Icon that displays a tooltip when focused or hovered over">
+              <mat-icon
+                class="material-icons"
+                matTooltip="{{ 'MONITOR.alert_tooltip' | translate }}"
+                aria-label="Icon that displays a tooltip when focused or hovered over"
+              >
                 help_outline
               </mat-icon>
-              {{'MONITOR.alert' | translate}}
+              {{ 'MONITOR.alert' | translate }}
             </h5>
-            <mat-label>{{'MONITOR.alert_label' | translate}} </mat-label>
-            <button class="mat-button"
-                    type="button"
-                    [matMenuTriggerFor]="menu"
-                    aria-label="menu template">
-              {{'MONITOR.choose' | translate}}
+            <mat-label>{{ 'MONITOR.alert_label' | translate }} </mat-label>
+            <button
+              class="mat-button"
+              type="button"
+              [matMenuTriggerFor]="menu"
+              aria-label="menu template"
+            >
+              {{ 'MONITOR.choose' | translate }}
               <mat-icon>keyboard_arrow_down</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item
-                      (click)="toggleDisplayNextDivIf()">
-                {{'MONITOR.default' | translate}}
+              <button mat-menu-item (click)="toggleDisplayNextDivIf()">
+                {{ 'MONITOR.default' | translate }}
               </button>
-              <button mat-menu-item
-                      (click)="toggleDisplayDivIf()">
-                {{'MONITOR.custom' | translate}}
+              <button mat-menu-item (click)="toggleDisplayDivIf()">
+                {{ 'MONITOR.custom' | translate }}
               </button>
             </mat-menu>
 
             <div *ngIf="isShowDivIf">
-              <jodit-editor [config]="{ buttons: 'bold' }"
-                            formControlName="emailTemplate"></jodit-editor>
+              <jodit-editor
+                [config]="{ buttons: 'bold' }"
+                formControlName="emailTemplate"
+              ></jodit-editor>
             </div>
 
             <div *ngIf="isShowNextDivIf">
-              <img src="/assets/img/default-template.PNG"
-                   alt="email template"
-                   style="width: 100%;" />
+              <img
+                src="/assets/img/default-template.PNG"
+                alt="email template"
+                style="width: 100%;"
+              />
             </div>
           </div>
         </div>
 
-        <div class="row"
-             style="margin: 20px 20px;">
+        <div class="row" style="margin: 20px 20px;">
           <div class="col-md-4 offset-md-4">
-            <mat-label>{{'MONITOR.running' | translate}} </mat-label>
-            <mat-slide-toggle color="primary"
-                              formControlName="testRunning"
-                              (change)="onChange()"></mat-slide-toggle>
+            <mat-label>{{ 'MONITOR.running' | translate }} </mat-label>
+            <mat-slide-toggle
+              color="primary"
+              formControlName="testRunning"
+              (change)="onChange()"
+            ></mat-slide-toggle>
           </div>
         </div>
 
         <div class="buttons">
-          <button id="cancel-button"
-                  mat-raised-button
-                  type="button"
-                  [routerLink]="['/dashboard']">
-            {{'MONITOR.cancel' | translate}}
+          <button
+            id="cancel-button"
+            mat-raised-button
+            type="button"
+            [routerLink]="['/dashboard']"
+          >
+            {{ 'MONITOR.cancel' | translate }}
           </button>
-          <button id="submit-button"
-                  mat-raised-button
-                  type="submit">
-            {{'MONITOR.submit' | translate}}
+          <button id="submit-button" mat-raised-button type="submit">
+            {{ 'MONITOR.submit' | translate }}
           </button>
         </div>
       </form>

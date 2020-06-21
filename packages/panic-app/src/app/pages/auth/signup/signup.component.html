@@ -1,69 +1,89 @@
-<div class="login-page"
-     [@routerTransition]>
+<div class="login-page" [@routerTransition]>
   <div class="row justify-content-md-center">
-    <div class="col-md-4"
-         id="login-section">
-
-      <h1>{{'SIGNUP' | translate}}</h1>
-      <form role="form-register"
-            [formGroup]="registerForm"
-            (ngSubmit)="registerUser()">
+    <div class="col-md-4" id="login-section">
+      <h1>{{ 'SIGNUP' | translate }}</h1>
+      <form
+        role="form-register"
+        id="form"
+        [formGroup]="registerForm"
+        (ngSubmit)="registerUser()"
+      >
         <div class="form-content">
           <div class="form-group">
-            <input type="text"
-                   class="form-control input-underline input-lg"
-                   id="username"
-                   formControlName="username"
-                   placeholder="{{'USERNAME' | translate}}" />
+            <input
+              type="text"
+              class="form-control input-underline input-lg"
+              id="username"
+              formControlName="username"
+              placeholder="{{ 'USERNAME' | translate }}"
+            />
             <mat-error *ngFor="let validation of accountValidationMessages.username">
-              <mat-error class="error-message"
-                         *ngIf="registerForm.get('username').hasError(validation.type) &&  (registerForm.get('username').dirty || registerForm.get('username').touched)">
-                {{validation.message | translate}}</mat-error>
+              <mat-error
+                class="error-message"
+                *ngIf="
+                  registerForm.get('username').hasError(validation.type) &&
+                  (registerForm.get('username').dirty ||
+                    registerForm.get('username').touched)
+                "
+              >
+                {{ validation.message | translate }}</mat-error
+              >
             </mat-error>
-
-
           </div>
 
           <div class="form-group">
-            <input type="email"
-                   class="form-control input-underline input-lg"
-                   id="email"
-                   formControlName="email"
-                   placeholder="{{'EMAIL' | translate}}" />
+            <input
+              type="email"
+              class="form-control input-underline input-lg"
+              id="email"
+              formControlName="email"
+              placeholder="{{ 'EMAIL' | translate }}"
+            />
             <mat-error *ngFor="let validation of accountValidationMessages.email">
-              <mat-error class="error-message"
-                         *ngIf="registerForm.get('email').hasError(validation.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
-                {{validation.message | translate}}</mat-error>
+              <mat-error
+                class="error-message"
+                *ngIf="
+                  registerForm.get('email').hasError(validation.type) &&
+                  (registerForm.get('email').dirty || registerForm.get('email').touched)
+                "
+              >
+                {{ validation.message | translate }}</mat-error
+              >
             </mat-error>
           </div>
 
           <div class="form-group">
-            <input type="password"
-                   class="form-control input-underline input-lg"
-                   id="password"
-                   formControlName="password"
-                   placeholder="{{'PASSWORD' | translate}}" />
+            <input
+              type="password"
+              class="form-control input-underline input-lg"
+              id="password"
+              formControlName="password"
+              placeholder="{{ 'PASSWORD' | translate }}"
+            />
 
             <mat-error *ngFor="let validation of accountValidationMessages.password">
-              <mat-error class="error-message"
-                         *ngIf="registerForm.get('password').hasError(validation.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
-                {{validation.message | translate}}</mat-error>
+              <mat-error
+                class="error-message"
+                *ngIf="
+                  registerForm.get('password').hasError(validation.type) &&
+                  (registerForm.get('password').dirty ||
+                    registerForm.get('password').touched)
+                "
+              >
+                {{ validation.message | translate }}</mat-error
+              >
             </mat-error>
-
           </div>
           <small>
-            <img src="./assets/icons/report_problem.png"
-                 alt="report problem icon" />
-            {{'PWD_VALIDATION' | translate}}
-
+            <img src="./assets/icons/report_problem.png" alt="report problem icon" />
+            {{ 'PWD_VALIDATION' | translate }}
           </small>
         </div>
-        <button type="submit"
-                class="btn rounded-btn"
-                id="signup">{{'SIGNUP' | translate}}</button>&nbsp;
-        <button class="btn rounded-btn"
-                [routerLink]="['/auth/login']">
-          {{'LOGIN' |translate}}
+        <button type="submit" class="btn rounded-btn" id="signup">
+          {{ 'SIGNUP' | translate }}</button
+        >&nbsp;
+        <button class="btn rounded-btn" [routerLink]="['/auth/login']">
+          {{ 'LOGIN' | translate }}
         </button>
       </form>
     </div>
