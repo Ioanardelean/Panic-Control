@@ -29,11 +29,12 @@ export class HistoryService {
   async getDowntimeSinceCreation(projectId: Project) {
     return this.repo
       .createQueryBuilder('downtime')
-      .innerJoinAndSelect('downtime.project', 'project')
-      .innerJoinAndSelect(this.projectRelation, 'user')
+      .addSelect('project.name', 'project_name')
+      .innerJoin('downtime.project', 'project')
+      .innerJoin(this.projectRelation, 'user')
       .where('project.id=:id', { id: projectId })
       .andWhere('downtime.status =:status', { status: 'down' })
-      .getMany();
+      .getRawMany();
   }
 
   async getDowntimeOnMonth(userId: any) {
@@ -43,15 +44,21 @@ export class HistoryService {
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     return this.repo
       .createQueryBuilder('month')
-      .innerJoinAndSelect('month.project', 'project')
-      .innerJoinAndSelect(this.projectRelation, 'user')
+      .addSelect('month.id', 'id')
+      .addSelect('month.uptime', 'uptime')
+      .addSelect('month.url', 'url')
+      .addSelect('month.startedAt', 'startedAt')
+      .addSelect('month.status', 'status')
+      .addSelect('project.name', 'name')
+      .innerJoin('month.project', 'project')
+      .innerJoin(this.projectRelation, 'user')
       .where('month.status =:status', { status: 'down' })
       .andWhere('user.id=:id', { id: userId })
       .andWhere(
         `month.startedAt BETWEEN '${firstDay.toUTCString()}' AND '${lastDay.toUTCString()}'`
       )
       .orderBy('month.startedAt', 'DESC')
-      .getMany();
+      .getRawMany();
   }
 
   async getDowntimeOnYear(projectId: number) {

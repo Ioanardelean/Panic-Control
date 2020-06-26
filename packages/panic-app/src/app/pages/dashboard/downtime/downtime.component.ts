@@ -19,8 +19,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class DowntimeComponent implements OnInit {
   displayedColumns: string[] = ['status', 'startedAt'];
   dataSource = new MatTableDataSource<History>();
-
-
   monitorName: string;
   monitorUrl: string;
 
@@ -33,7 +31,6 @@ export class DowntimeComponent implements OnInit {
   ) {
     this.getProject(this.route.snapshot.params.id);
     this.getDowntimeOnYear(this.route.snapshot.params.id);
-
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -49,7 +46,7 @@ export class DowntimeComponent implements OnInit {
     {
       borderWidth: 1,
       borderColor: '#0a2d48',
-      backgroundColor: 'rgba(77, 216, 171, 0.3)'
+      backgroundColor: 'rgba(77, 216, 171, 0.3)',
     },
   ];
 
@@ -77,37 +74,36 @@ export class DowntimeComponent implements OnInit {
   }
 
   exportCsv() {
+    console.log(this.dataSource.data);
     const data = this.dataSource.data;
     this.csvService.exportToCsv('downtime.csv', data);
   }
 
   getDowntimeOnYear(id) {
     this.historyService.getYearDowntimeOnProject(id).subscribe((res: any) => {
-      const monthNames = [this.translate.instant('DOWNTIME.jan'),
-      this.translate.instant('DOWNTIME.feb'),
-      this.translate.instant('DOWNTIME.mar'),
-      this.translate.instant('DOWNTIME.apr'),
-      this.translate.instant('DOWNTIME.may'),
-      this.translate.instant('DOWNTIME.jun'),
-      this.translate.instant('DOWNTIME.jul'),
-      this.translate.instant('DOWNTIME.aug'),
-      this.translate.instant('DOWNTIME.sep'),
-      this.translate.instant('DOWNTIME.oct'),
-      this.translate.instant('DOWNTIME.nov'),
-      this.translate.instant('DOWNTIME.dec'),
+      const monthNames = [
+        this.translate.instant('DOWNTIME.jan'),
+        this.translate.instant('DOWNTIME.feb'),
+        this.translate.instant('DOWNTIME.mar'),
+        this.translate.instant('DOWNTIME.apr'),
+        this.translate.instant('DOWNTIME.may'),
+        this.translate.instant('DOWNTIME.jun'),
+        this.translate.instant('DOWNTIME.jul'),
+        this.translate.instant('DOWNTIME.aug'),
+        this.translate.instant('DOWNTIME.sep'),
+        this.translate.instant('DOWNTIME.oct'),
+        this.translate.instant('DOWNTIME.nov'),
+        this.translate.instant('DOWNTIME.dec'),
       ];
 
       const groupByMonth = (jsonData, keyToGroup) => {
-
         return jsonData.reduce((array, item) => {
-
           const itemDate = new Date(item[keyToGroup]);
           const itemMonth = monthNames[itemDate.getMonth()];
           (array[itemMonth] = array[itemMonth] || []).push(item);
           return array;
         }, {});
       };
-
 
       const groupedByMonth = groupByMonth(res.data, 'startedAt');
       const arrTotals = [];
@@ -117,12 +113,12 @@ export class DowntimeComponent implements OnInit {
         Object.keys(groupedByMonth[key]).forEach((subKey) => {
           monthTotal += groupedByMonth[key][subKey].uptime;
           avg = monthTotal / groupedByMonth[key].length;
-
         });
         arrTotals.push(avg);
-
       });
-      this.lineChartData = [{ data: arrTotals, label: this.translate.instant('DOWNTIME.label') }];
+      this.lineChartData = [
+        { data: arrTotals, label: this.translate.instant('DOWNTIME.label') },
+      ];
       this.lineChartLabels = Object.keys(groupedByMonth);
     });
   }

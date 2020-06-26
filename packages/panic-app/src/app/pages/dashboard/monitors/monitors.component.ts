@@ -26,7 +26,6 @@ export class MonitorsComponent implements OnInit {
     public csvService: CsvDataServiceService,
 
     private translate: TranslateService
-
   ) {
     this.getAll();
     this.lastEvent();

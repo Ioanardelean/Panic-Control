@@ -1,91 +1,80 @@
-<div class="row"
-     id="banner">
+<div class="row" id="banner">
   <div class="col-md-12">
     <h2>
       <span class="material-icons">
         warning
       </span>
-      {{'DOWNTIME.title' | translate}} {{ monitorName }}
+      {{ 'DOWNTIME.title' | translate }} {{ monitorName }}
     </h2>
   </div>
 </div>
 <div class="row">
-  <div class="row"
-       id="chart">
+  <div class="row" id="chart">
     <div class="col-md-6">
       <mat-card>
         <mat-card-title>
-          <h4> {{'DOWNTIME.year' | translate}}</h4>
+          <h4>{{ 'DOWNTIME.year' | translate }}</h4>
         </mat-card-title>
         <mat-card-content>
           <div class="chart-wrapper">
-            <canvas baseChart
-                    [datasets]="lineChartData"
-                    [labels]="lineChartLabels"
-                    [options]="lineChartOptions"
-                    [colors]="lineChartColors"
-                    [legend]="lineChartLegend"
-                    [chartType]="lineChartType"
-                    [plugins]="lineChartPlugins">
+            <canvas
+              baseChart
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+              [plugins]="lineChartPlugins"
+            >
             </canvas>
           </div>
-
         </mat-card-content>
       </mat-card>
     </div>
     <div class="col-md-6">
       <mat-card>
         <mat-card-title>
-          <h4> {{'DOWNTIME.event' | translate}}</h4>
+          <h4>{{ 'DOWNTIME.event' | translate }}</h4>
         </mat-card-title>
 
         <mat-card-content>
           <div class="row">
             <div class="col-md-12">
               <p class="report-stats">
-                {{'DOWNTIME.rapport' | translate}}
+                {{ 'DOWNTIME.rapport' | translate }}
                 {{ monitorName }}
-                <a id="csv"
-                   [routerLink]="'.'"
-                   (click)="exportCsv()"> {{'MONITORS.export' | translate}}</a>
+                <a id="csv" [routerLink]="'.'" (click)="exportCsv()">
+                  {{ 'MONITORS.export' | translate }}</a
+                >
               </p>
             </div>
           </div>
           <div class="example-container mat-evaluation-z2">
-            <table mat-table
-                   matSort
-                   [dataSource]="dataSource"
-                   class="mat-elevation-z2">
+            <table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z2">
               <ng-container matColumnDef="status">
-                <th mat-header-cell
-                    *matHeaderCellDef> {{'MONITORS.status' | translate}}</th>
-                <td mat-cell
-                    *matCellDef="let element">
-                  {{ element.status }}
+                <th mat-header-cell *matHeaderCellDef>
+                  {{ 'MONITORS.status' | translate }}
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.downtime_status }}
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="startedAt">
-                <th mat-header-cell
-                    *matHeaderCellDef
-                    mat-sort-header>
-                  {{'MONITORS.time' | translate}}
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  {{ 'MONITORS.time' | translate }}
                 </th>
-                <td mat-cell
-                    *matCellDef="let element">
-                  {{ element.startedAt | date: 'medium' }}
+                <td mat-cell *matCellDef="let element">
+                  {{ element.downtime_startedAt | date: 'medium' }}
                 </td>
               </ng-container>
 
-              <tr mat-header-row
-                  *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-              <tr mat-row
-                  *matRowDef="let row; columns: displayedColumns"></tr>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
 
-            <mat-paginator [length]=""
-                           [pageSize]=""
-                           [pageSizeOptions]="[5, 10, 25, 100]">
+            <mat-paginator [length]="" [pageSize]="" [pageSizeOptions]="[5, 10, 25, 100]">
             </mat-paginator>
           </div>
         </mat-card-content>

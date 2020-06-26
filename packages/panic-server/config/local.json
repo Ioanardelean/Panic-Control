@@ -4,14 +4,12 @@
     "port": "5432",
     "database": "panic_server",
     "username": "postgres",
-    "password": "admin"
+    "password": "[[PASSWORD]]"
   },
   "options": {
     "type": "postgres",
     "synchronize": true,
-    "entities": [
-      "src/models/**/*.ts"
-    ],
+    "entities": ["src/models/**/*.ts"],
     "logging": false,
     "ssl": false
   },
@@ -24,7 +22,7 @@
     },
     "auth": {
       "user": "panic.control.all@gmail.com",
-      "pass": "Ardeleanioana1994"
+      "pass": "[[PASSWORD]]"
     }
   },
   "servers": {
