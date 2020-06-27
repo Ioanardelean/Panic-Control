@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MonitorService } from 'src/app/core/services/monitor/monitor.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -29,7 +29,7 @@ export class MonitorComponent implements OnInit {
     public router: Router,
     private toastr: ToastrService,
     private translate: TranslateService
-  ) { }
+  ) {}
   visible = true;
   selectable = true;
   removable = true;
@@ -56,27 +56,34 @@ export class MonitorComponent implements OnInit {
 
   ngOnInit(): void {
     this.creationForm();
-    this.createForm.get('receiver').statusChanges.subscribe(
-      status => this.chipList.errorState = status === 'INVALID'
-    );
+    this.createForm
+      .get('receiver')
+      .statusChanges.subscribe(
+        (status) => (this.chipList.errorState = status === 'INVALID')
+      );
   }
 
   creationForm() {
     this.createForm = this.formBuilder.group({
-      name: ['',
-        Validators.compose([Validators.required, Validators.minLength(2)])
-      ],
+      name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
       description: [''],
-      url: ['',
-        Validators.compose([Validators.required,
-        Validators.pattern('^https?:\/\/(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$')],
-        )
+      url: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(
+            '^https?://(www.)?[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(/.*)?$'
+          ),
+        ]),
       ],
-      receiver: [this.emails, [Validators.required, CustomValidators.validateArrayNotEmpty]],
+      receiver: [
+        this.emails,
+        [Validators.required, CustomValidators.validateArrayNotEmpty],
+      ],
       ping: ['', [Validators.required]],
       monitorInterval: ['', [Validators.required]],
       emailTemplate: [''],
-      testRunning: [''],
+      testRunning: [],
     });
   }
 
@@ -110,6 +117,7 @@ export class MonitorComponent implements OnInit {
       this.emails.splice(index, 1);
     }
   }
+
   onChange() {
     console.log();
   }
@@ -119,16 +127,17 @@ export class MonitorComponent implements OnInit {
     if (this.createForm.invalid) {
       return;
     }
-    this.monitorService.addProject(this.createForm.value).subscribe((res) => {
-      if (res.data) {
-        this.createForm.reset();
-        this.toastr.success(this.translate.instant('MONITORS.created_monitor'));
-        this.router.navigate(['/dashboard']);
-      } else {
-        this.toastr.error(res.error);
-      }
-    },
-      error => {
+    this.monitorService.addProject(this.createForm.value).subscribe(
+      (res) => {
+        if (res.data) {
+          this.createForm.reset();
+          this.toastr.success(this.translate.instant('MONITORS.created_monitor'));
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.toastr.error(res.error);
+        }
+      },
+      (error) => {
         this.toastr.error(this.translate.instant('MONITORS.exists'));
       }
     );

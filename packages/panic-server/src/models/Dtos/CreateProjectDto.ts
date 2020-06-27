@@ -2,7 +2,6 @@ import {
   IsInt,
   IsNotEmpty,
   IsOptional,
-
   Length,
   Max,
   Min,
@@ -43,4 +42,7 @@ export class CreateProjectDto {
   @IsOptional()
   emailTemplate: string;
   user: User;
+
+  @IsOptional()
+  testRunning: boolean;
 }
