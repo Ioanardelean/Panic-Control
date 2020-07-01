@@ -10,6 +10,7 @@
   "GREETING": "Salut",
   "WELCOME": "Bienvenue, {{value}}",
   "LOGOUT": "Déconnexion",
+  "BYE": "À bientôt",
   "DELETE": "L'utilisateur a été supprimé",
   "SUCCESS": "Vous avez été enregistré!",
   "SESSION": "Vous avez été automatiquement déconnecté pour des raisons de sécurité! Pour continuer la session, veuillez vous connecter",

@@ -1,7 +1,7 @@
 :host {
   footer {
     color: grey;
-    position: relative;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -9,5 +9,6 @@
     display: flex;
     font-size: 1.063rem;
     text-align: center;
+    background-color: white;
   }
 }

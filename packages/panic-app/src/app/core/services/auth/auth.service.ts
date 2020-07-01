@@ -9,8 +9,6 @@ import { Config } from '../../config/config';
 import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie-service';
 
-
-
 @Injectable({
   providedIn: 'root',
 })
@@ -24,7 +22,6 @@ export class AuthService {
     public config: Config,
     public translate: TranslateService,
     private cookieService: CookieService
-
   ) {
     this.apiBaseUrl = config.apiBaseUrl;
   }
@@ -34,24 +31,35 @@ export class AuthService {
   }
 
   login(user: User) {
-    return this.httpClient
-      .post<any>(`${this.apiBaseUrl}/auth/login`, user)
-      .subscribe((data: any) => {
+    return this.httpClient.post<any>(`${this.apiBaseUrl}/auth/login`, user).subscribe(
+      (data: any) => {
         if (user) {
-          this.cookieService.set('access_token', data.token, this.getTokenExpirationDate(data.token), '/', 'localhost', false, 'Lax');
+          this.cookieService.set(
+            'access_token',
+            data.token,
+            this.getTokenExpirationDate(data.token),
+            '/',
+            'localhost',
+            false,
+            'Lax'
+          );
 
           if (data.token !== undefined) {
             this.router.navigate(['/dashboard']);
-            this.toastr.success(this.translate.instant('WELCOME', { value: user.username }));
+            this.toastr.success(
+              this.translate.instant('WELCOME', { value: user.username })
+            );
             const tokenPayload = decode(data.token);
             if (tokenPayload.role === 'admin') {
               this.router.navigate(['/admin']);
             }
           }
         }
-      }, (error: any) => {
+      },
+      (error: any) => {
         this.toastr.error(this.translate.instant('INVALID'));
-      });
+      }
+    );
   }
 
   getAccessToken() {
@@ -63,13 +71,12 @@ export class AuthService {
     return authToken !== '' || null ? true : false;
   }
 
-
-
   logout() {
     const removeToken = this.cookieService.delete('access_token', '/', 'localhost');
     if (removeToken == null) {
       this.router.navigate(['auth/landing']);
     }
+    this.toastr.info(this.translate.instant('BYE'));
   }
 
   getUser(): Observable<any> {
@@ -99,5 +106,4 @@ export class AuthService {
     }
     return !(date.valueOf() > new Date().valueOf());
   }
-
 }

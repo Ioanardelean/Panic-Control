@@ -83,7 +83,7 @@ export class MonitorComponent implements OnInit {
       ping: ['', [Validators.required]],
       monitorInterval: ['', [Validators.required]],
       emailTemplate: [''],
-      testRunning: [],
+      testRunning: [''],
     });
   }
 
