@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateCacheService } from 'ngx-translate-cache';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -16,8 +17,13 @@ export class NavbarComponent implements OnInit {
 
   admin: string;
 
-  constructor(public router: Router, public authService: AuthService, public translate: TranslateService,
-    translateCacheService: TranslateCacheService) {
+  constructor(
+    public router: Router,
+    public authService: AuthService,
+    public translate: TranslateService,
+    private toastr: ToastrService,
+    translateCacheService: TranslateCacheService
+  ) {
     translate.addLangs(['en', 'fr']);
     translate.setDefaultLang('en');
     translateCacheService.init();
@@ -28,6 +34,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logoutUser() {
+    this.toastr.info(this.translate.instant('BYE'));
     this.authService.logout();
   }
 

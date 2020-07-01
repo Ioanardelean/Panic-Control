@@ -76,7 +76,6 @@ export class AuthService {
     if (removeToken == null) {
       this.router.navigate(['auth/landing']);
     }
-    this.toastr.info(this.translate.instant('BYE'));
   }
 
   getUser(): Observable<any> {
