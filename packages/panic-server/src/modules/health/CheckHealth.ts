@@ -83,7 +83,9 @@ export default class HealthCheck {
           this.stop();
 
           setTimeout(() => {
-            this.start();
+            if (this.running) {
+              this.start();
+            }
           }, 1000 * 60 * 10);
         } else {
           payloadHistory.status = Status.UP;

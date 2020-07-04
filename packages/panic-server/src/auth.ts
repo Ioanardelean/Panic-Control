@@ -1,10 +1,12 @@
 import bcrypt from 'bcryptjs';
+import fs from 'fs';
 import passport from 'passport';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import LocalStrategy from 'passport-local';
 import { UserService } from './helpers/UserService/UserService';
 import { User } from './models/User';
 require('dotenv').config();
+const privateKEY = fs.readFileSync('./cert/server.key', 'utf8');
 
 async function validatePassword(userPassword: any, databasePassword: any) {
   return bcrypt.compare(userPassword, databasePassword);
@@ -54,7 +56,7 @@ passport.use(
   new JwtStrategy(
     {
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: 'secret',
+      secretOrKey: privateKEY,
     },
     async (jwtPayload, done) => {
       done(null, jwtPayload);

@@ -10,3 +10,5 @@
 /logs/access.log
 /config/local.json
 /config/local-test.json
+/cert/server.key
+/cert/server.crt
