@@ -1,7 +1,10 @@
 import bcrypt from 'bcryptjs';
 import config from 'config';
+import fs from 'fs';
 import jwt from 'jsonwebtoken';
 export class AuthService {
+  privateKEY = fs.readFileSync('./cert/server.key', 'utf8');
+  publicKEY = fs.readFileSync('./cert/public.key', 'utf8');
   configJwt: any = config.get('tokenLife');
   constructor() {}
 
@@ -10,8 +13,9 @@ export class AuthService {
    * @param {string} userId
    * @returns {string}
    */
+
   generateToken(payload: any): string {
-    return jwt.sign({ ...payload }, process.env.JWT_SECRET, {
+    return jwt.sign({ ...payload }, this.privateKEY, {
       expiresIn: this.configJwt,
     });
   }
@@ -24,10 +28,12 @@ export class AuthService {
   verifyToken(token: string): void {
     return jwt.verify(
       token,
-      process.env.JWT_SECRET,
+      this.publicKEY,
+      { algorithms: ['RS256'] },
       (err: jwt.JsonWebTokenError, data: string | object) => {
         if (err) {
-          throw Error(`${err}`);
+          console.log(data);
+          throw Error(`****${err}`);
         }
         return data;
       }
