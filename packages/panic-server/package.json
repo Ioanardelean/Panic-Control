@@ -26,7 +26,7 @@
     "test:coverage": "jest --coverage",
     "typeorm:cli": "ts-node-dev ./node_modules/typeorm/cli -f ./src/databases/OrmConfig.ts",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "sonar": "node ./src/sonar-panic.js",
+    "sonar": "ts-node-dev ./src/sonar-panic.ts",
     "lint": "node ./scripts/linter.js"
   },
   "dependencies": {

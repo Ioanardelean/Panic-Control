@@ -4,15 +4,13 @@
     "port": "5432",
     "database": "panic_server_test",
     "username": "panic-test",
-    "password": "[[PASSWORD]]"
+    "password": "panictest"
   },
   "options": {
     "dropSchema": false,
     "type": "postgres",
     "synchronize": true,
-    "entities": [
-      "src/models/**/*.ts"
-    ],
+    "entities": ["src/models/**/*.ts"],
     "logging": false,
     "ssl": false
   },
