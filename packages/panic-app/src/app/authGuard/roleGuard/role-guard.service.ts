@@ -9,13 +9,16 @@ import {
 import decode from 'jwt-decode';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { AuthGuardService } from '../guard/auth-guard.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoleGuardService implements CanActivate {
-  constructor(public auth: AuthService, public router: Router, private authService: AuthService) { }
+  constructor(
+    public auth: AuthService,
+    public router: Router,
+    private authService: AuthService
+  ) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

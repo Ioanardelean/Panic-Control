@@ -1,19 +1,17 @@
 import path from 'path';
 import app from '../../app';
 import { load } from '../../core/DecoratorKoa';
-import DbConnect from '../../databases/DatabaseConnection';
+import DbConnect from '../../databases/DbConnect';
 import errorHandler from '../../middleware/errorHandler';
-import CheckHealth from '../../modules/health/MainCheckHealth';
+import CheckHealth from '../../modules/health/HealthCheckHandler';
 import server from '../../server';
 global.beforeAll(async () => {
-
   const db = new DbConnect();
   await db.start().then(() => {
     const apiRouter = load(path.resolve('src/controllers'));
     app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
     app.use(errorHandler());
     CheckHealth.startHealthCheck();
-
   });
   (global as any).socketMap = new Map();
 

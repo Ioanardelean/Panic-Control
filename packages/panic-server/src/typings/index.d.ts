@@ -5,3 +5,4 @@ declare module 'koa-session';
 declare module 'koa-flash-simple';
 declare module 'koa-healthcheck';
 declare module 'koa-morgan';
+declare module 'sonarqube-scanner';

@@ -37,6 +37,7 @@ table {
 }
 #chart {
   margin: 20px;
+  width: 100%;
 }
 mat-card-title {
   font-weight: 400;
@@ -48,9 +49,7 @@ mat-card-title {
     color: #868a98;
   }
 }
-#chart {
-  width: 100%;
-}
+
 #csv {
   font-size: 1rem;
   float: right;

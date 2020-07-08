@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -17,8 +16,8 @@ export class AuthGuardService implements CanActivate {
   constructor(
     private authService: AuthService,
     private route: Router,
-    private toastr: ToastrService,
-  ) { }
+    private toastr: ToastrService
+  ) {}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -29,7 +28,7 @@ export class AuthGuardService implements CanActivate {
       this.route.navigate(['/auth/login']);
       this.toastr.error($localize`Please login to access the dashboard`);
     }
-
+    console.log(this.authService.isTokenExpired(token));
     if (this.authService.isTokenExpired(token)) {
       this.authService.logout();
       this.toastr.warning(

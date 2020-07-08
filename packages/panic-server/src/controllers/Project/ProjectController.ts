@@ -3,7 +3,7 @@ import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
 import { jwtAuth } from '../../middleware/authorization';
 import { CreateProjectDto } from '../../models/dtos/CreateProjectDto';
 import { UpdateProjectDto } from '../../models/dtos/UpdateProjectDto';
-import CheckHealth from '../../modules/health/MainCheckHealth';
+import CheckHealth from '../../modules/health/HealthCheckHandler';
 
 @Controller('/projects')
 export default class ProjectController {

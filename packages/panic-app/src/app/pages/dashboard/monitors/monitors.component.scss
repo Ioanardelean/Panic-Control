@@ -34,6 +34,9 @@ div.status.down {
 .example-container {
   position: relative;
   min-height: 200px;
+  max-height: 400px;
+  overflow: auto;
+  border-top: #9e9e9e solid 1px;
 }
 
 #example-table-container {
@@ -74,6 +77,8 @@ table {
   font-size: 1.25rem;
 }
 #downtime {
+  width: 100%;
+  table-layout: fixed;
   .mat-header-row {
     background: white;
     th {
@@ -98,17 +103,6 @@ mat-card {
     color: #607d8b;
     font-weight: 400;
   }
-}
-
-.example-container {
-  max-height: 400px;
-  overflow: auto;
-  border-top: #9e9e9e solid 1px;
-}
-
-#downtime {
-  width: 100%;
-  table-layout: fixed;
 }
 
 .latest-content {

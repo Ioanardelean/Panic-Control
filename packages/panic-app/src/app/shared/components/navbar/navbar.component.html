@@ -1,70 +1,67 @@
 <nav class="navbar navbar-expand-sm">
   <div class="container">
     <a [routerLink]="['/']">
-      <img src="/assets/img/panic.png"
-           alt="" />
+      <img src="/assets/img/panic.png" alt="" />
     </a>
   </div>
 
   <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
-  <button class="navbar-toggler"
-          type="button"
-          (click)="isMenuCollapsed = !isMenuCollapsed">
+  <button
+    class="navbar-toggler"
+    type="button"
+    (click)="isMenuCollapsed = !isMenuCollapsed"
+  >
     &#9776;
   </button>
 
   <!-- Step 2: Add the ngbCollapse directive to the element below. -->
-  <div [ngbCollapse]="isMenuCollapsed"
-       class="collapse navbar-collapse">
-    <ul class="navbar-nav"
-        style="margin-left: 20px;">
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+    <ul class="navbar-nav" style="margin-left: 20px;">
       <li class="nav-item">
-        <a class="nav-link"
-           [routerLink]="'/dashboard'"
-           routerLinkActive="active">{{'DASHBOARD' | translate}}</a>
+        <a class="nav-link" [routerLink]="'/dashboard'" routerLinkActive="active">{{
+          'DASHBOARD' | translate
+        }}</a>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link"
-           [routerLink]="'/dashboard/profile'"
-           routerLinkActive="active">Profile</a>
-      </li> -->
       <li class="nav-item">
-        <a class="nav-link"
-           [routerLink]="'/admin'"
-           routerLinkActive="active"
-           *ngIf="admin === 'admin'">Admin</a>
+        <a
+          class="nav-link"
+          [routerLink]="'/admin'"
+          routerLinkActive="active"
+          *ngIf="admin === 'admin'"
+          >Admin</a
+        >
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link"
-           (click)="isMenuCollapsed = true"
-           id="username">
-          {{'GREETING' | translate}}, {{ username }}</a>
+        <a class="nav-link" (click)="isMenuCollapsed = true" id="username">
+          {{ 'GREETING' | translate }}, {{ username }}</a
+        >
       </li>
 
       <li class="nav-item">
-        <a [routerLink]="'.'"
-           class="nav-link"
-           (click)="isMenuCollapsed = true"
-           (click)="logoutUser()"
-           id="logout">{{ 'LOGOUT' | translate}}
+        <a
+          [routerLink]="'.'"
+          class="nav-link"
+          (click)="isMenuCollapsed = true"
+          (click)="logoutUser()"
+          id="logout"
+          >{{ 'LOGOUT' | translate }}
           <span class="material-icons">
             settings_power
           </span>
         </a>
       </li>
       <li class="nav-item">
-        <select class="btn"
-                #selectedLang
-                (change)="switchLang(selectedLang.value)">
-          <option *ngFor="let language of translate.getLangs()"
-                  [value]="language"
-                  [selected]="language === translate.currentLang">
+        <select class="btn" #selectedLang (change)="switchLang(selectedLang.value)">
+          <option
+            *ngFor="let language of translate.getLangs()"
+            [value]="language"
+            [selected]="language === translate.currentLang"
+          >
             {{ language }}
           </option>
         </select>
-
       </li>
     </ul>
   </div>
