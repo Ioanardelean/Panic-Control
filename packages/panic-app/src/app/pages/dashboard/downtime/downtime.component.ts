@@ -74,7 +74,6 @@ export class DowntimeComponent implements OnInit {
   }
 
   exportCsv() {
-    console.log(this.dataSource.data);
     const data = this.dataSource.data;
     this.csvService.exportToCsv('downtime.csv', data);
   }

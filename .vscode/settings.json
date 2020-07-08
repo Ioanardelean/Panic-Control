@@ -1,8 +1,5 @@
 {
   "editor.formatOnSave": true,
-  "eslint.autoFixOnSave": true,
-  "tslint.autoFixOnSave": true,
-  "editos.wordWrap": "on",
   "editor.rulers": [90],
   "editor.tabSize": 2,
   "html.format.wrapLineLength": 90,
@@ -12,5 +9,6 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "git.ignoreLimitWarning": true
 }

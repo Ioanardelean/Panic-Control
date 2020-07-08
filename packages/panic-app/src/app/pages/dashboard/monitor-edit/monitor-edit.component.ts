@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
 import { MonitorService } from 'src/app/core/services/monitor/monitor.service';
@@ -7,8 +7,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Interval } from '../monitor/monitor.component';
 import * as data from 'src/app/core/validators/monitor.message.json';
-import { CustomValidators } from 'src/app/core/validators/custom.validators';
 import { TranslateService } from '@ngx-translate/core';
+import { monitor } from 'src/app/core/validators/monitor.validator';
 
 export interface Ping {
   ping: number;
@@ -56,31 +56,15 @@ export class MonitorEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.update();
-    this.updateForm.get('receiver').statusChanges.subscribe(
-      status => this.chipList.errorState = status === 'INVALID'
-    );
+    this.updateForm
+      .get('receiver')
+      .statusChanges.subscribe(
+        (status) => (this.chipList.errorState = status === 'INVALID')
+      );
   }
 
   update() {
-    this.updateForm = this.formBuilder.group({
-      id: [''],
-      name: ['',
-        Validators.compose([Validators.required, Validators.minLength(2)])
-      ],
-      description: [''],
-      url: ['',
-        Validators.compose([Validators.required,
-        Validators.pattern('^https?:\/\/(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$')],
-        )],
-      receiver: [this.emails, [Validators.required, CustomValidators.validateArrayNotEmpty]],
-      ping: ['', [Validators.required]],
-      monitorInterval: ['', [Validators.required]],
-      emailTemplate: [''],
-      testRunning: [''],
-      status: null,
-      user: [''],
-      histories: [''],
-    });
+    this.updateForm = this.formBuilder.group(monitor);
   }
   add(event: MatChipInputEvent): void {
     const input = event.input;
@@ -109,10 +93,10 @@ export class MonitorEditComponent implements OnInit {
 
   getProject(id) {
     this.monitorService.getProject(id).subscribe((res) => {
-      const data = res.data;
-      this.emails = res.data.receiver.split(',');
-      this.id = data.id;
-      this.updateForm.setValue(data);
+      const dataEdit = res.data;
+      this.emails = dataEdit.receiver.split(',');
+      this.id = dataEdit.id;
+      this.updateForm.setValue(dataEdit);
     });
   }
 
@@ -130,5 +114,4 @@ export class MonitorEditComponent implements OnInit {
       }
     });
   }
-
 }

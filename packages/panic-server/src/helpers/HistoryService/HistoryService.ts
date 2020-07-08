@@ -1,4 +1,3 @@
-import moment from 'moment-timezone';
 import { getRepository } from 'typeorm';
 import { History } from '../../models/History';
 import { Project } from '../../models/Project';

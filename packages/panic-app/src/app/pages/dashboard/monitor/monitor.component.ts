@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatChipInputEvent, MatChipList } from '@angular/material/chips';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MonitorService } from 'src/app/core/services/monitor/monitor.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import * as data from 'src/app/core/validators/monitor.message.json';
-import { CustomValidators } from 'src/app/core/validators/custom.validators';
 import { TranslateService } from '@ngx-translate/core';
+import { monitor } from 'src/app/core/validators/monitor.validator';
 
 export interface Ping {
   ping: number;
@@ -64,27 +64,7 @@ export class MonitorComponent implements OnInit {
   }
 
   creationForm() {
-    this.createForm = this.formBuilder.group({
-      name: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      description: [''],
-      url: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.pattern(
-            '^https?://(www.)?[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(/.*)?$'
-          ),
-        ]),
-      ],
-      receiver: [
-        this.emails,
-        [Validators.required, CustomValidators.validateArrayNotEmpty],
-      ],
-      ping: ['', [Validators.required]],
-      monitorInterval: ['', [Validators.required]],
-      emailTemplate: [''],
-      testRunning: [''],
-    });
+    this.createForm = this.formBuilder.group(monitor);
   }
 
   toggleDisplayDivIf() {

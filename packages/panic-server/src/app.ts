@@ -10,13 +10,10 @@ import KoaSession from 'koa-session';
 import ServeStatic from 'koa-static';
 import path from 'path';
 import { load } from './core/DecoratorKoa';
-import DbConnect from './databases/DatabaseConnection';
+import DbConnect from './databases/DbConnect';
 import currentUser from './middleware/currentUser';
 import errorHandler from './middleware/errorHandler';
-import CheckHealth from './modules/health/MainCheckHealth';
-
-
-
+import CheckHealth from './modules/health/HealthCheckHandler';
 
 /**
  * Gives us access to variables set in the .env file via `process.env.VARIABLE_NAME` syntax
@@ -25,8 +22,6 @@ require('dotenv').config();
 const cwd = process.cwd();
 
 const app: Koa = new Koa();
-
-
 
 // Generic error handling middleware.
 app.use(errorHandler());
@@ -94,7 +89,5 @@ db.start().then(() => {
   app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
   CheckHealth.startHealthCheck();
 });
-
-
 
 export default app;

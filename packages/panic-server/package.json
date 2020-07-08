@@ -26,6 +26,7 @@
     "test:coverage": "jest --coverage",
     "typeorm:cli": "ts-node-dev ./node_modules/typeorm/cli -f ./src/databases/OrmConfig.ts",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "sonar": "node ./src/sonar-panic.js",
     "lint": "node ./scripts/linter.js"
   },
   "dependencies": {
@@ -81,6 +82,7 @@
     "rxjs": "^6.5.5",
     "shelljs": "^0.8.4",
     "socket.io": "^2.3.0",
+    "sonarqube-scanner": "^2.7.0",
     "supertest": "^4.0.2",
     "tslint-sonarts": "^1.9.0",
     "valid-url": "^1.0.9"

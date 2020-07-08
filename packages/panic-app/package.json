@@ -9,6 +9,7 @@
     "test": "ng test",
     "testProd": "karma start karma.conf.js",
     "lint": "ng lint",
+    "sonar": "node ./src/sonar-control.js",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -37,6 +38,7 @@
     "ngx-translate-cache": "^9.0.2",
     "rxjs": "~6.5.4",
     "socket.io-client": "^2.3.0",
+    "sonarqube-scanner": "^2.7.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

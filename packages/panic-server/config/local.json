@@ -35,5 +35,5 @@
       "port": "3001"
     }
   },
-  "tokenLife": "8h"
+  "tokenLife": "1800s"
 }

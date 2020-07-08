@@ -7,7 +7,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MonitorService } from 'src/app/core/services/monitor/monitor.service';
 import { Config } from 'src/app/core/config/config';
 import { ToastrModule } from 'ngx-toastr';
-import { CommonModule } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 
 describe('MonitorComponent', () => {

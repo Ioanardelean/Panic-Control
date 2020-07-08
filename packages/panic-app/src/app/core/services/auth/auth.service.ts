@@ -96,13 +96,12 @@ export class AuthService {
 
   isTokenExpired(token?: any): boolean {
     if (!token) {
-      token = this.cookieService.check('access_token');
       return true;
     }
     const date = this.getTokenExpirationDate(token);
     if (date === undefined) {
       return false;
     }
-    return !(date.valueOf() > new Date().valueOf());
+    return date.valueOf() < new Date().valueOf();
   }
 }
