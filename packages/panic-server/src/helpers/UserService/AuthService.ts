@@ -16,6 +16,7 @@ export class AuthService {
 
   generateToken(payload: any): string {
     return jwt.sign({ ...payload }, this.privateKEY, {
+      algorithm: 'RS256',
       expiresIn: this.configJwt,
     });
   }
