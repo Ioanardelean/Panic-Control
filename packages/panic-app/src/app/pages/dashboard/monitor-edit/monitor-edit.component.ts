@@ -10,6 +10,8 @@ import * as data from 'src/app/core/validators/monitor.message.json';
 import { TranslateService } from '@ngx-translate/core';
 import { monitor } from 'src/app/core/validators/monitor.validator';
 
+import { QuillModules, defaultModules } from 'ngx-quill';
+
 export interface Ping {
   ping: number;
 }
@@ -53,6 +55,14 @@ export class MonitorEditComponent implements OnInit {
     { monitorInterval: 60 },
   ];
   isShowDivIf = true;
+  quillModules: QuillModules = {
+    toolbar: {
+      container: defaultModules.toolbar,
+      handlers: {
+        image: this.imageHandler,
+      },
+    },
+  };
 
   ngOnInit(): void {
     this.update();
@@ -62,7 +72,19 @@ export class MonitorEditComponent implements OnInit {
         (status) => (this.chipList.errorState = status === 'INVALID')
       );
   }
-
+  imageHandler(this: any) {
+    const tooltip = this.quill.theme.tooltip;
+    const originalSave = tooltip.save;
+    tooltip.save = function (this: any) {
+      const range = this.quill.getSelection(true);
+      const value = this.textbox.value;
+      if (value) {
+        this.quill.insertEmbed(range.index, 'image', value, 'user');
+      }
+      tooltip.save = originalSave;
+    };
+    tooltip.edit('image');
+  }
   update() {
     this.updateForm = this.formBuilder.group(monitor);
   }

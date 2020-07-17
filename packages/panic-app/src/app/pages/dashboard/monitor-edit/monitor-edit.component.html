@@ -154,10 +154,13 @@
                 {{ 'MONITOR.alert' | translate }}
               </h5>
               <mat-label>{{ 'MONITOR.alert_label' | translate }} </mat-label>
-              <jodit-editor
-                [config]="{ buttons: 'bold' }"
+              <quill-editor
+                #editor
+                [sanitize]="true"
+                [modules]="quillModules"
+                [styles]="{ height: '200px' }"
                 formControlName="emailTemplate"
-              ></jodit-editor>
+              ></quill-editor>
             </div>
           </div>
 

@@ -199,17 +199,20 @@
               </mat-menu>
 
               <div *ngIf="isShowDivIf">
-                <jodit-editor
-                  [config]="{ buttons: 'bold' }"
+                <quill-editor
+                  #editor
+                  [modules]="quillModules"
+                  [sanitize]="true"
+                  [styles]="{ height: '200px' }"
                   formControlName="emailTemplate"
-                ></jodit-editor>
+                ></quill-editor>
               </div>
 
               <div *ngIf="isShowNextDivIf">
                 <img
                   src="/assets/img/default-template.PNG"
                   alt="email template"
-                  style="width: 100%;"
+                  style="width: 100%; height: 200px;"
                 />
               </div>
             </div>
