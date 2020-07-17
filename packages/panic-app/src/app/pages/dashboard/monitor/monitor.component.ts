@@ -9,6 +9,8 @@ import * as data from 'src/app/core/validators/monitor.message.json';
 import { TranslateService } from '@ngx-translate/core';
 import { monitor } from 'src/app/core/validators/monitor.validator';
 
+import { QuillModules, defaultModules } from 'ngx-quill';
+
 export interface Ping {
   ping: number;
 }
@@ -39,6 +41,14 @@ export class MonitorComponent implements OnInit {
   monitorValidationMessages = (data as any).default;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   createForm: FormGroup;
+  quillModules: QuillModules = {
+    toolbar: {
+      container: defaultModules.toolbar,
+      handlers: {
+        image: this.imageHandler,
+      },
+    },
+  };
 
   pings: Ping[] = [{ ping: 10 }, { ping: 20 }, { ping: 30 }, { ping: 60 }];
   intervals: Interval[] = [
@@ -61,6 +71,20 @@ export class MonitorComponent implements OnInit {
       .statusChanges.subscribe(
         (status) => (this.chipList.errorState = status === 'INVALID')
       );
+  }
+
+  imageHandler(this: any) {
+    const tooltip = this.quill.theme.tooltip;
+    const originalSave = tooltip.save;
+    tooltip.save = function (this: any) {
+      const range = this.quill.getSelection(true);
+      const value = this.textbox.value;
+      if (value) {
+        this.quill.insertEmbed(range.index, 'image', value, 'user');
+      }
+      tooltip.save = originalSave;
+    };
+    tooltip.edit('image');
   }
 
   creationForm() {
