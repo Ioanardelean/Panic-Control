@@ -156,6 +156,7 @@
               <mat-label>{{ 'MONITOR.alert_label' | translate }} </mat-label>
               <quill-editor
                 #editor
+                [sanitize]="true"
                 [modules]="quillModules"
                 [styles]="{ height: '200px' }"
                 formControlName="emailTemplate"

@@ -23,7 +23,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { DowntimeComponent } from './downtime/downtime.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { JoditAngularModule } from 'jodit-angular';
 import { ProfileComponent } from './profile/profile.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { QuillModule } from 'ngx-quill';
@@ -56,7 +55,6 @@ import { QuillModule } from 'ngx-quill';
     ChartsModule,
     MatPaginatorModule,
     MatSortModule,
-    JoditAngularModule,
     MatTooltipModule,
     TranslateModule,
     QuillModule.forRoot({

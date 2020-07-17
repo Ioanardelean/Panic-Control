@@ -1,1 +1,1 @@
-declare var Jodit: any;
+
