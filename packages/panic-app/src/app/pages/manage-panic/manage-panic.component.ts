@@ -3,7 +3,7 @@ import { MonitorService } from 'src/app/core/services/monitor/monitor.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MatTableDataSource } from '@angular/material/table';
-import { Project } from 'src/app/core/models/monitor';
+import { Monitor } from 'src/app/core/models/monitor';
 import { MatPaginator } from '@angular/material/paginator';
 import { AdminService } from 'src/app/core/services/admin/admin.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -27,7 +27,7 @@ export class ManagePanicComponent implements OnInit {
   }
   displayedColumns: string[] = ['status', 'name', 'description', 'url', 'actions'];
   displayedColumnsForUsers: string[] = ['username', 'email', 'role', 'action'];
-  dataSource = new MatTableDataSource<Project>();
+  dataSource = new MatTableDataSource<Monitor>();
   dataSourceUsers = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -37,7 +37,7 @@ export class ManagePanicComponent implements OnInit {
   }
   getAll() {
     return this.adminService.getAdminInterface().subscribe((res: any) => {
-      this.dataSource.data = res.data as Project[];
+      this.dataSource.data = res.data as Monitor[];
       this.dataSource.paginator = this.paginator;
     });
   }
@@ -49,15 +49,15 @@ export class ManagePanicComponent implements OnInit {
     });
   }
 
-  startProject(id) {
-    this.monitorService.startProject(id).subscribe((res) => {
+  startMonitor(id) {
+    this.monitorService.startMonitor(id).subscribe((res) => {
       this.getAll();
       this.toastr.success(this.translate.instant('MONITORS.start_monitor'));
     });
   }
 
-  stopProject(id) {
-    this.monitorService.stopProject(id).subscribe((res) => {
+  stopMonitor(id) {
+    this.monitorService.stopMonitor(id).subscribe((res) => {
       this.getAll();
       this.toastr.success(this.translate.instant('MONITORS.stop_monitor'));
     });
@@ -68,8 +68,8 @@ export class ManagePanicComponent implements OnInit {
       this.dataSourceUsers.data = res.data as any[];
     });
   }
-  deleteProject(id: any) {
-    this.adminService.deleteProject(id).subscribe((res) => {
+  deleteMonitor(id: any) {
+    this.adminService.deleteMonitor(id).subscribe((res) => {
       this.getAll();
       this.toastr.success(this.translate.instant('MONITORS.delete_monitor'));
     });

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Project } from '../../models/monitor';
+import { Monitor } from '../../models/monitor';
 import { Config } from '../../config/config';
 
 @Injectable({
@@ -19,44 +19,44 @@ export class MonitorService {
     this.apiBaseUrl = config.apiBaseUrl;
   }
 
-  getProjects(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiBaseUrl}/projects`);
+  getMonitors(): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiBaseUrl}/monitors`);
   }
 
   getLastEvent(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiBaseUrl}/history/last`);
   }
 
-  getCountProjectsOnStatus(): Observable<any> {
-    return this.httpClient.get(`${this.apiBaseUrl}/projects/count-status`);
+  getCountMonitorsOnStatus(): Observable<any> {
+    return this.httpClient.get(`${this.apiBaseUrl}/monitors/count-status`);
   }
 
-  getCountProjects(): Observable<any> {
-    return this.httpClient.get(`${this.apiBaseUrl}/projects/count-monitors`);
+  getCountMonitors(): Observable<any> {
+    return this.httpClient.get(`${this.apiBaseUrl}/monitors/count-monitors`);
   }
 
-  getProject(id: string): Observable<any> {
-    return this.httpClient.get(`${this.apiBaseUrl}/projects/${id}`);
+  getMonitor(id: string): Observable<any> {
+    return this.httpClient.get(`${this.apiBaseUrl}/monitors/${id}`);
   }
 
-  addProject(project: Project): Observable<any> {
-    return this.httpClient.post(`${this.apiBaseUrl}/projects`, project);
+  addMonitor(monitor: Monitor): Observable<any> {
+    return this.httpClient.post(`${this.apiBaseUrl}/monitors`, monitor);
   }
 
-  updateProject(project: Project, id: string): Observable<any> {
-    return this.httpClient.put(`${this.apiBaseUrl}/projects/${id}/update`, project);
+  updateMonitor(monitor: Monitor, id: string): Observable<any> {
+    return this.httpClient.put(`${this.apiBaseUrl}/monitors/${id}/update`, monitor);
   }
 
-  deleteProject(id: string): Observable<any> {
-    return this.httpClient.delete(`${this.apiBaseUrl}/projects/${id}/delete`);
+  deleteMonitor(id: string): Observable<any> {
+    return this.httpClient.delete(`${this.apiBaseUrl}/monitors/${id}/delete`);
   }
 
-  startProject(id: string): Observable<any> {
-    return this.httpClient.post(`${this.apiBaseUrl}/projects/${id}/start`, null);
+  startMonitor(id: string): Observable<any> {
+    return this.httpClient.post(`${this.apiBaseUrl}/monitors/${id}/start`, null);
   }
 
-  stopProject(id: string): Observable<any> {
-    return this.httpClient.post(`${this.apiBaseUrl}/projects/${id}/stop`, null);
+  stopMonitor(id: string): Observable<any> {
+    return this.httpClient.post(`${this.apiBaseUrl}/monitors/${id}/stop`, null);
   }
 
   getMonthlyEvents(): Observable<any> {

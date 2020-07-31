@@ -1,19 +1,10 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
-import { Project } from './Project';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { AbstractEntity } from './Entity';
+import { Monitor } from './Monitor';
 import { Status } from './Status';
 
 @Entity()
-export class History {
-  @PrimaryGeneratedColumn({ type: 'bigint' })
-  id: number;
-
+export class History extends AbstractEntity {
   @Column({ type: 'enum', enum: Status, default: Status.DOWN })
   status: Status;
 
@@ -28,10 +19,10 @@ export class History {
   startedAt: Date;
 
   @ManyToOne(
-    () => Project,
-    (project: Project) => project.histories,
+    () => Monitor,
+    (monitor: Monitor) => monitor.histories,
     { onDelete: 'CASCADE', onUpdate: 'CASCADE', nullable: false }
   )
-  @JoinColumn({ name: 'project_id' })
-  project: Project;
+  @JoinColumn({ name: 'monitor_id' })
+  monitor: Monitor;
 }

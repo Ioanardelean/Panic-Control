@@ -5,7 +5,7 @@ export enum Status {
   DOWN = 'down',
   STOPPED = 'stopped',
 }
-export class Project {
+export class Monitor {
   id: string;
   name: string;
   description: string;

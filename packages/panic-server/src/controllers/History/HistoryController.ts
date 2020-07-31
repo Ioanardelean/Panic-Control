@@ -1,16 +1,14 @@
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
-import { HistoryService } from '../../helpers/HistoryService/HistoryService';
-import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
 import { jwtAuth } from '../../middleware/authorization';
+import { HistoryService } from '../../services/HistoryService';
 
 @Controller('/history')
 export default class HistoryController {
-  projectService = new ProjectService();
   historyService = new HistoryService();
   @route('/', HttpMethod.POST, jwtAuth)
   async addHistory(ctx: any) {
     const payload = ctx.request.body;
-    await this.historyService.addHistory(payload, payload.projectId, payload.projectUrl);
+    await this.historyService.addHistory(payload, payload.monitorId, payload.monitorUrl);
     ctx.body = {
       data: payload,
     };
@@ -26,8 +24,8 @@ export default class HistoryController {
   }
   @route('/:id/downtime-year', HttpMethod.GET, jwtAuth)
   async getEventOnYear(ctx: any) {
-    const projectId = ctx.params.id;
-    const yearStats = await this.historyService.getDowntimeOnYear(projectId);
+    const monitorId = ctx.params.id;
+    const yearStats = await this.historyService.getDowntimeOnYear(monitorId);
 
     ctx.body = {
       data: yearStats,
@@ -37,14 +35,15 @@ export default class HistoryController {
   async getEventOnMonth(ctx: any) {
     const currentUser = ctx.state.user.id;
     const monthStats = await this.historyService.getDowntimeOnMonth(currentUser);
+
     ctx.body = {
       data: monthStats,
     };
   }
   @route('/:id/downtime', HttpMethod.GET, jwtAuth)
-  async getEventsOnProject(ctx: any) {
-    const projectId = ctx.params.id;
-    const allDowntime = await this.historyService.getDowntimeSinceCreation(projectId);
+  async getEventsOnMonitor(ctx: any) {
+    const monitorId = ctx.params.id;
+    const allDowntime = await this.historyService.getDowntimeSinceCreation(monitorId);
     ctx.body = {
       data: allDowntime,
     };

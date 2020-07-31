@@ -1,10 +1,10 @@
 {
   "database": {
     "host": "localhost",
-    "port": "5432",
-    "database": "panic_server",
-    "username": "postgres",
-    "password": "admin"
+    "port": 3306,
+    "database": "panic_server_test",
+    "username": "root",
+    "password": "password"
   },
   "options": {
     "type": "postgres",

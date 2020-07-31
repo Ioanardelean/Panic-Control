@@ -15,7 +15,7 @@ describe('Admin dashboard', () => {
       });
   });
 
-  it('if not admin, return error for project list ', async () => {
+  it('if not admin, return error for monitors list ', async () => {
     const response = await request(app.callback()).get('/admin/projects');
     expect(response.status).toBe(401);
   });

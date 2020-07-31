@@ -2,19 +2,19 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  PrimaryGeneratedColumn,
+  JoinTable,
+  ManyToMany,
   UpdateDateColumn,
 } from 'typeorm';
+import { AbstractEntity } from './Entity';
+import { Role } from './Role';
 
 export enum UserRole {
   ADMIN = 'admin',
   USER = 'user',
 }
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn({ type: 'bigint' })
-  id: number;
-
+export class User extends AbstractEntity {
   @Column({ nullable: false, unique: true, length: 255 })
   username: string;
 
@@ -24,8 +24,15 @@ export class User {
   @Column({ nullable: false, length: 100, select: false })
   password: string;
 
-  @Column({ nullable: false, type: 'enum', enum: UserRole, default: UserRole.USER })
-  role: UserRole;
+  @ManyToMany(
+    () => Role,
+    role => role.users,
+    {
+      cascade: ['insert'],
+    }
+  )
+  @JoinTable()
+  roles: Role[];
 
   @Column({ nullable: false })
   @CreateDateColumn()

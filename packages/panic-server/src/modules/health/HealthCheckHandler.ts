@@ -1,15 +1,15 @@
 import config from 'config';
-import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
 import { MailerTransport } from '../../lib/mailer/mailerTransport';
+import { MonitorService } from '../../services/MonitorService';
 import HealthCheck from './HealthCheck';
 
 class MainCheckHealth {
   mailerTransport: MailerTransport;
 
-  projectsTest: any[];
+  monitorsTest: any[];
 
   constructor() {
-    this.projectsTest = [];
+    this.monitorsTest = [];
     this.initMailer();
   }
   initMailer() {
@@ -17,31 +17,31 @@ class MainCheckHealth {
     this.mailerTransport = new MailerTransport(configMailer);
   }
   async startHealthCheck() {
-    const projectService = new ProjectService();
-    const projects = await projectService.getAll();
-    projects.forEach(async (project: any) => {
-      this.projectsTest.push({
-        id: project.id,
-        healthCheck: new HealthCheck(project, this.mailerTransport),
+    const monitorService = new MonitorService();
+    const monitors = await monitorService.getAll();
+    monitors.forEach(async (monitor: any) => {
+      this.monitorsTest.push({
+        id: monitor.id,
+        healthCheck: new HealthCheck(monitor, this.mailerTransport),
       });
     });
   }
 
-  stopTestByProjectId(projectId: string) {
-    const projectTest = this.projectsTest.filter(
-      (project: any) => String(project.id) === String(projectId)
+  stopTestByMonitorId(monitorId: string) {
+    const monitorTest = this.monitorsTest.filter(
+      (monitor: any) => String(monitor.id) === String(monitorId)
     )[0];
 
-    if (projectTest) {
-      projectTest.healthCheck.stop();
+    if (monitorTest) {
+      monitorTest.healthCheck.stop();
     }
   }
-  startTestByProjectId(projectId: string) {
-    const projectTest = this.projectsTest.filter(
-      (project: any) => String(project.id) === String(projectId)
+  startTestByMonitorId(monitorId: string) {
+    const monitorTest = this.monitorsTest.filter(
+      (monitor: any) => String(monitor.id) === String(monitorId)
     )[0];
-    if (projectTest) {
-      projectTest.healthCheck.start();
+    if (monitorTest) {
+      monitorTest.healthCheck.start();
     }
   }
 }
