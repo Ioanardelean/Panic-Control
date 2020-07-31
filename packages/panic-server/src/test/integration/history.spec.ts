@@ -16,7 +16,7 @@ beforeEach(async done => {
 let id: any = null;
 
 describe('POST /projects creation', () => {
-  it('respond with 200 new project created', async done => {
+  it('respond with 200 new monitor created', async done => {
     await request(app.callback())
       .post('/projects/')
       .set('Authorization', `Bearer ${token}`)

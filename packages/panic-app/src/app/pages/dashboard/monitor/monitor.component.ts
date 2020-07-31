@@ -126,12 +126,12 @@ export class MonitorComponent implements OnInit {
     console.log();
   }
 
-  createProject() {
+  createMonitor() {
     this.isSubmitted = true;
     if (this.createForm.invalid) {
       return;
     }
-    this.monitorService.addProject(this.createForm.value).subscribe(
+    this.monitorService.addMonitor(this.createForm.value).subscribe(
       (res) => {
         if (res.data) {
           this.createForm.reset();

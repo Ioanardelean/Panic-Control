@@ -1,9 +1,9 @@
 import * as HttpStatus from 'http-status-codes';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
-import { UserService } from '../../helpers/UserService/UserService';
 import { jwtAuth } from '../../middleware/authorization';
 import { UpdateUserDto } from '../../models/dtos/UpdateUserDto';
 import { User } from '../../models/User';
+import { UserService } from '../../Services/UserService';
 
 @Controller('/users')
 export default class UserController {

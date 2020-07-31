@@ -31,7 +31,7 @@ export class MonitorEditComponent implements OnInit {
     private toastr: ToastrService,
     private translate: TranslateService
   ) {
-    this.getProject(this.route.snapshot.params.id);
+    this.getMonitor(this.route.snapshot.params.id);
   }
   visible = true;
   selectable = true;
@@ -113,8 +113,8 @@ export class MonitorEditComponent implements OnInit {
     this.isShowDivIf = !this.isShowDivIf;
   }
 
-  getProject(id) {
-    this.monitorService.getProject(id).subscribe((res) => {
+  getMonitor(id) {
+    this.monitorService.getMonitor(id).subscribe((res) => {
       const dataEdit = res.data;
       this.emails = dataEdit.receiver.split(',');
       this.id = dataEdit.id;
@@ -122,12 +122,12 @@ export class MonitorEditComponent implements OnInit {
     });
   }
 
-  updateProject() {
+  updateMonitor() {
     this.isSubmitted = true;
     if (this.updateForm.invalid) {
       return;
     }
-    this.monitorService.updateProject(this.updateForm.value, this.id).subscribe((res) => {
+    this.monitorService.updateMonitor(this.updateForm.value, this.id).subscribe((res) => {
       if (res.message) {
         this.toastr.success(this.translate.instant('MONITORS.update_monitor'));
         this.router.navigate(['/dashboard']);

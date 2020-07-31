@@ -29,7 +29,7 @@ export class DowntimeComponent implements OnInit {
     public historyService: HistoryService,
     private translate: TranslateService
   ) {
-    this.getProject(this.route.snapshot.params.id);
+    this.getMonitor(this.route.snapshot.params.id);
     this.getDowntimeOnYear(this.route.snapshot.params.id);
   }
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -55,18 +55,18 @@ export class DowntimeComponent implements OnInit {
   lineChartType = 'line';
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
-    this.getProjectDetail(this.route.snapshot.params.id);
+    this.getMonitorDetail(this.route.snapshot.params.id);
   }
 
-  getProject(id) {
-    this.historyService.getDowntimeOnProject(id).subscribe((res) => {
+  getMonitor(id) {
+    this.historyService.getDowntimeOnMonitor(id).subscribe((res) => {
       const data = res.data;
       this.dataSource.data = data;
       this.dataSource.paginator = this.paginator;
     });
   }
-  getProjectDetail(id) {
-    this.monitorService.getProject(id).subscribe((res) => {
+  getMonitorDetail(id) {
+    this.monitorService.getMonitor(id).subscribe((res) => {
       const data = res.data;
       this.monitorName = data.name;
       this.monitorUrl = data.url;
@@ -79,7 +79,7 @@ export class DowntimeComponent implements OnInit {
   }
 
   getDowntimeOnYear(id) {
-    this.historyService.getYearDowntimeOnProject(id).subscribe((res: any) => {
+    this.historyService.getYearDowntimeOnMonitor(id).subscribe((res: any) => {
       const monthNames = [
         this.translate.instant('DOWNTIME.jan'),
         this.translate.instant('DOWNTIME.feb'),

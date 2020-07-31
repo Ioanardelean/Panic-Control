@@ -5,7 +5,7 @@ import { MonitorService } from 'src/app/core/services/monitor/monitor.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { SocketService } from 'src/app/core/services/socket/socket.service';
-import { Project } from 'src/app/core/models/monitor';
+import { Monitor } from 'src/app/core/models/monitor';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { CsvDataServiceService } from 'src/app/core/services/history/csv-data-service.service';
@@ -34,7 +34,7 @@ export class MonitorsComponent implements OnInit {
   disableSelect = new FormControl(false);
   displayedColumn: string[] = ['name', 'status', 'startedAt'];
   displayedColumns: string[] = ['status', 'name', 'description', 'url', 'actions'];
-  dataSource = new MatTableDataSource<Project>();
+  dataSource = new MatTableDataSource<Monitor>();
   dataSourceEvents = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -53,25 +53,25 @@ export class MonitorsComponent implements OnInit {
   lastEventTime: any;
 
   getAll() {
-    return this.monitorService.getProjects().subscribe((res: any) => {
-      this.dataSource.data = res.data as Project[];
+    return this.monitorService.getMonitors().subscribe((res: any) => {
+      this.dataSource.data = res.data as Monitor[];
       this.dataSource.paginator = this.paginator;
     });
   }
   ngOnInit(): void {
     this.dataSource.sort = this.sort;
     this.socketConnection();
-    this.countProjectStopped();
-    this.countProjectActive();
-    this.countProjectDown();
+    this.countMonitorStopped();
+    this.countMonitorActive();
+    this.countMonitorDown();
     this.latestEvents();
     this.countAll();
   }
   socketConnection() {
     this.socketService.setupSocketConnection();
-    this.socketService.statusMonitor$.subscribe((project) => {
-      const objIndex = this.dataSource.data.findIndex((obj) => obj.id === project.id);
-      this.dataSource.data[objIndex] = project;
+    this.socketService.statusMonitor$.subscribe((monitor) => {
+      const objIndex = this.dataSource.data.findIndex((obj) => obj.id === monitor.id);
+      this.dataSource.data[objIndex] = monitor;
       this.dataSource.connect().next(this.dataSource.data);
     });
   }
@@ -81,45 +81,45 @@ export class MonitorsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  deleteProject(id: any) {
-    this.monitorService.deleteProject(id).subscribe((res) => {
+  deleteMonitor(id: any) {
+    this.monitorService.deleteMonitor(id).subscribe((res) => {
       this.getAll();
       this.toastr.success(this.translate.instant('MONITORS.delete_monitor'));
     });
   }
 
-  startProject(id) {
-    this.monitorService.startProject(id).subscribe((res) => {
+  startMonitor(id) {
+    this.monitorService.startMonitor(id).subscribe((res) => {
       this.getAll();
       this.toastr.success(this.translate.instant('MONITORS.start_monitor'));
     });
   }
 
-  stopProject(id) {
-    this.monitorService.stopProject(id).subscribe((res) => {
+  stopMonitor(id) {
+    this.monitorService.stopMonitor(id).subscribe((res) => {
       this.getAll();
       this.toastr.success(this.translate.instant('MONITORS.stop_monitor'));
     });
   }
 
-  countProjectStopped() {
-    return this.monitorService.getCountProjectsOnStatus().subscribe((res) => {
+  countMonitorStopped() {
+    return this.monitorService.getCountMonitorsOnStatus().subscribe((res) => {
       this.stopped = res.stopped[1];
     });
   }
-  countProjectActive() {
-    this.monitorService.getCountProjectsOnStatus().subscribe((res) => {
+  countMonitorActive() {
+    this.monitorService.getCountMonitorsOnStatus().subscribe((res) => {
       this.active = res.active[1];
     });
   }
-  countProjectDown() {
-    this.monitorService.getCountProjectsOnStatus().subscribe((res) => {
+  countMonitorDown() {
+    this.monitorService.getCountMonitorsOnStatus().subscribe((res) => {
       this.down = res.down[1];
     });
   }
 
   countAll() {
-    this.monitorService.getCountProjects().subscribe((res) => {
+    this.monitorService.getCountMonitors().subscribe((res) => {
       this.all = res.data[1];
     });
   }
@@ -132,7 +132,7 @@ export class MonitorsComponent implements OnInit {
     this.historyService.getLastEvent().subscribe((res) => {
       if (res.data) {
         const data = res.data;
-        this.lastEventMonitor = data.project.name;
+        this.lastEventMonitor = data.monitor.name;
         this.lastEventTime = data.startedAt;
       }
     });

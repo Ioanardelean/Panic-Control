@@ -1,9 +1,9 @@
 import * as HttpStatus from 'http-status-codes';
 import passport from 'passport';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
-import { AuthService } from '../../helpers/UserService/AuthService';
-import { UserService } from '../../helpers/UserService/UserService';
 import { CreateUserDto } from '../../models/dtos/CreateUserDto';
+import { AuthService } from '../../Services/AuthService';
+import { UserService } from '../../Services/UserService';
 
 @Controller('/auth')
 export default class AuthController {

@@ -2,11 +2,11 @@ import fs from 'fs';
 import isReachable from 'is-reachable';
 import { MailerTransport } from 'lib/mailer/mailerTransport';
 import { template } from 'lodash';
-import { HistoryService } from '../../helpers/HistoryService/HistoryService';
-import { ProjectService } from '../../helpers/ProjectServices/ProjectService';
 import { History } from '../../models/History';
-import { Project } from '../../models/Project';
+import { Monitor } from '../../models/Monitor';
 import { Status } from '../../models/Status';
+import { HistoryService } from '../../services/HistoryService';
+import { MonitorService } from '../../services/MonitorService';
 
 const cwd = process.cwd();
 const panicMailTpl = fs.readFileSync(
@@ -17,19 +17,19 @@ const panicMailTpl = fs.readFileSync(
 export default class HealthCheck {
   mailerTransport: MailerTransport;
 
-  projectService = new ProjectService();
+  monitorService = new MonitorService();
   historyService = new HistoryService();
 
-  project: Project;
+  monitor: Monitor;
 
   running: boolean;
 
   timer: any;
 
-  constructor(project: Project, mailerTransport: MailerTransport) {
-    this.project = project;
+  constructor(monitor: Monitor, mailerTransport: MailerTransport) {
+    this.monitor = monitor;
 
-    this.running = this.project.testRunning;
+    this.running = this.monitor.testRunning;
     this.mailerTransport = mailerTransport;
     this.init();
   }
@@ -42,7 +42,7 @@ export default class HealthCheck {
    *
    * @remarks insert incident stat into database with addHistory method
    * @param {History} payloadHistory.
-   * @param {Project}  projectId;
+   * @param {Monitor}  monitorId;
    *
    * server is not reachable, change status into database
    * show up in frontend with socket io the status down
@@ -53,17 +53,18 @@ export default class HealthCheck {
    *
    */
 
+  // tslint:disable-next-line: cognitive-complexity
   init() {
     const payloadHistory = new History();
-    const socketClient = (global as any).socketMap[this.project.user.id];
+    const socketClient = (global as any).socketMap[this.monitor.user.id];
     const monitorInterval = this.convertMinutesToMilliseconds(
-      this.project.monitorInterval
+      this.monitor.monitorInterval
     );
-    const ping = this.project.ping * 1000;
+    const ping = this.monitor.ping * 1000;
 
     this.timer = setTimeout(async () => {
       if (this.running) {
-        const reachable: boolean = await isReachable(this.project.url, {
+        const reachable: boolean = await isReachable(this.monitor.url, {
           timeout: ping,
         });
         console.log(reachable);
@@ -73,13 +74,13 @@ export default class HealthCheck {
           this.monitorStatus('down');
 
           if (socketClient) {
-            socketClient.emit(`projectsUpdate-${this.project.user.id}`, {
-              ...this.project,
+            socketClient.emit(`projectsUpdate-${this.monitor.user.id}`, {
+              ...this.monitor,
               status: 'down',
             });
           }
 
-          this.sendEmail(this.project.receiver, this.project.emailTemplate);
+          this.sendEmail(this.monitor.receiver, this.monitor.emailTemplate);
           this.stop();
 
           setTimeout(() => {
@@ -93,8 +94,8 @@ export default class HealthCheck {
           this.getHistory(payloadHistory);
           this.monitorStatus('up');
           if (socketClient) {
-            socketClient.emit(`projectsUpdate-${this.project.user.id}`, {
-              ...this.project,
+            socketClient.emit(`projectsUpdate-${this.monitor.user.id}`, {
+              ...this.monitor,
               status: 'up',
             });
           }
@@ -108,11 +109,11 @@ export default class HealthCheck {
   }
 
   async monitorStatus(stat: string) {
-    await this.projectService.changeStatus(this.project.id, { status: stat });
+    await this.monitorService.changeStatus(this.monitor.id, { status: stat });
   }
 
   async getHistory(payload: any) {
-    await this.historyService.addHistory(payload, this.project, this.project.url);
+    await this.historyService.addHistory(payload, this.monitor, this.monitor.url);
   }
   stop() {
     clearTimeout(this.timer);
@@ -126,7 +127,7 @@ export default class HealthCheck {
   async sendEmail(to: string, html: string) {
     if (!html) {
       html = template(panicMailTpl)({
-        data: { ProjectUrl: this.project.url, ProjectName: this.project.name },
+        data: { MonitorUrl: this.monitor.url, MonitorName: this.monitor.name },
       });
     }
 

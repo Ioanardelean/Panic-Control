@@ -18,10 +18,10 @@ export class AdminService {
   }
 
   getAdminInterface(): Observable<any> {
-    return this.httpClient.get<any>(`${this.apiBaseUrl}/admin/projects`);
+    return this.httpClient.get<any>(`${this.apiBaseUrl}/admin/monitors`);
   }
-  deleteProject(id: string): Observable<any> {
-    return this.httpClient.delete(`${this.apiBaseUrl}/admin/projects/${id}/delete`);
+  deleteMonitor(id: string): Observable<any> {
+    return this.httpClient.delete(`${this.apiBaseUrl}/admin/monitors/${id}/delete`);
   }
   getUsers(): Observable<any> {
     return this.httpClient.get<any>(`${this.apiBaseUrl}/admin/users`);

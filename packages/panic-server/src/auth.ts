@@ -3,7 +3,7 @@ import fs from 'fs';
 import passport from 'passport';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import LocalStrategy from 'passport-local';
-import { UserService } from './helpers/UserService/UserService';
+import { UserService } from './Services/UserService';
 import { User } from './models/User';
 require('dotenv').config();
 const publicKEY = fs.readFileSync('./cert/public.key', 'utf8');

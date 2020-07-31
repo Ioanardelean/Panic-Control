@@ -144,7 +144,7 @@
                   id="start"
                   *ngIf="element.testRunning === false"
                   mat-menu-item
-                  (click)="startProject(element.id)"
+                  (click)="startMonitor(element.id)"
                 >
                   {{ 'MONITORS.start' | translate }}
                 </a>
@@ -152,11 +152,11 @@
                   id="stop"
                   *ngIf="element.testRunning === true"
                   mat-menu-item
-                  (click)="stopProject(element.id)"
+                  (click)="stopMonitor(element.id)"
                 >
                   {{ 'MONITORS.stop' | translate }}
                 </a>
-                <a id="delete" mat-menu-item (click)="deleteProject(element.id)">
+                <a id="delete" mat-menu-item (click)="deleteMonitor(element.id)">
                   {{ 'MONITORS.delete' | translate }}
                 </a>
               </mat-menu>

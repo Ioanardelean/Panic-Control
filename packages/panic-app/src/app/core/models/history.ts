@@ -1,4 +1,4 @@
-import { Project } from './monitor';
+import { Monitor } from './monitor';
 
 export enum Status {
   UP = 'up',
@@ -10,5 +10,5 @@ export class History {
   status: Status.DOWN;
   startedAt: string;
   uptime: number;
-  project: Project;
+  monitor: Monitor;
 }

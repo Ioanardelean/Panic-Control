@@ -26,10 +26,10 @@ export class HistoryService {
     return this.httpClient.get<any>(`${this.apiBaseUrl}/history/downtime-month`);
   }
 
-  getDowntimeOnProject(id: string): Observable<any> {
+  getDowntimeOnMonitor(id: string): Observable<any> {
     return this.httpClient.get(`${this.apiBaseUrl}/history/${id}/downtime`);
   }
-  getYearDowntimeOnProject(id: string) {
+  getYearDowntimeOnMonitor(id: string) {
     return this.httpClient.get(`${this.apiBaseUrl}/history/${id}/downtime-year`);
   }
 }
