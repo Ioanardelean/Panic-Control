@@ -42,7 +42,6 @@ export class HistoryService {
 
     const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1);
-
     return this.repo
       .createQueryBuilder('month')
       .addSelect('month.id', 'id')
@@ -56,7 +55,7 @@ export class HistoryService {
       .where('month.status =:status', { status: 'down' })
       .andWhere('user.id=:id', { id: userId })
       .andWhere(
-        `month.startedAt BETWEEN '${firstDay.toUTCString()}' AND '${lastDay.toUTCString()}'`
+        `month.startedAt BETWEEN '${firstDay.toLocaleString()}' AND '${lastDay.toLocaleString()}'`
       )
       .orderBy('month.startedAt', 'DESC')
       .getRawMany();

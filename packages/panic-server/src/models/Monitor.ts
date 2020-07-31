@@ -12,7 +12,7 @@ export class Monitor extends AbstractEntity {
   @Column({ nullable: true, length: 5000 })
   description: string;
 
-  @Column({ unique: true, nullable: false, length: 2083 })
+  @Column({ unique: true, nullable: false, length: 150 })
   url: string;
 
   @Column({ nullable: false, length: 255 })

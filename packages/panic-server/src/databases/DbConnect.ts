@@ -15,8 +15,12 @@ export default class DbConnect {
         const isTestMode = process.env.NODE_ENV === 'test';
         const connection = await createConnection({
           ...this.config,
-          type: 'postgres',
-          entities: [...(isDevMode || isTestMode ? ['src/models/**/*.ts'] : ['dist/models/**/*.js'])],
+          type: 'mysql',
+          entities: [
+            ...(isDevMode || isTestMode
+              ? ['src/models/**/*.ts']
+              : ['dist/models/**/*.js']),
+          ],
           synchronize: true,
           logging: false,
           ssl: false,
