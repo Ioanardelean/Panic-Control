@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty, Length, Validate } from 'class-validator';
+import { Role } from '../../models/Role';
 import { ValidPassword } from '../../modules/utils/passValid';
 
 export class CreateUserDto {
@@ -14,4 +15,6 @@ export class CreateUserDto {
   @IsNotEmpty()
   @Validate(ValidPassword)
   password: string;
+
+  roles: Role[];
 }

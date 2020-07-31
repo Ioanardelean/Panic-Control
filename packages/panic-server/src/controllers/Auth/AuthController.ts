@@ -2,8 +2,8 @@ import * as HttpStatus from 'http-status-codes';
 import passport from 'passport';
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import { CreateUserDto } from '../../models/dtos/CreateUserDto';
-import { AuthService } from '../../Services/AuthService';
-import { UserService } from '../../Services/UserService';
+import { AuthService } from '../../services/AuthService';
+import { UserService } from '../../services/UserService';
 
 @Controller('/auth')
 export default class AuthController {
@@ -17,6 +17,7 @@ export default class AuthController {
     userDto.email = ctx.request.body.email;
     userDto.password = ctx.request.body.password;
     const userToBeSaved = await this.userService.createUser(userDto);
+
     ctx.body = {
       data: userToBeSaved,
       message: 'You have been registered!',

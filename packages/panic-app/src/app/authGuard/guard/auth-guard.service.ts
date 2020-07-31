@@ -28,7 +28,6 @@ export class AuthGuardService implements CanActivate {
       this.route.navigate(['/auth/login']);
       this.toastr.error($localize`Please login to access the dashboard`);
     }
-    console.log(this.authService.isTokenExpired(token));
     if (this.authService.isTokenExpired(token)) {
       this.authService.logout();
       this.toastr.warning(
