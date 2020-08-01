@@ -12,22 +12,22 @@ export class Monitor extends AbstractEntity {
   @Column({ nullable: true, length: 5000 })
   description: string;
 
-  @Column({ unique: true, nullable: false, length: 150 })
+  @Column({ unique: true, nullable: false, length: 250 })
   url: string;
 
   @Column({ nullable: false, length: 255 })
   receiver: string;
 
-  @Column({ nullable: true, type: 'text' })
+  @Column({ nullable: true, type: 'text', name: 'email_template' })
   emailTemplate: string;
 
   @Column({ nullable: false })
   ping: number;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, name: 'monitor_interval' })
   monitorInterval: number;
 
-  @Column({ nullable: false, default: false })
+  @Column({ nullable: false, default: false, name: 'test_running' })
   testRunning: boolean;
 
   @Column({ type: 'enum', enum: Status, default: Status.STOPPED })

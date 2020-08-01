@@ -9,10 +9,6 @@ import {
 import { AbstractEntity } from './Entity';
 import { Role } from './Role';
 
-export enum UserRole {
-  ADMIN = 'admin',
-  USER = 'user',
-}
 @Entity()
 export class User extends AbstractEntity {
   @Column({ nullable: false, unique: true, length: 255 })
@@ -31,14 +27,14 @@ export class User extends AbstractEntity {
       cascade: ['insert'],
     }
   )
-  @JoinTable()
+  @JoinTable({ name: 'user_roles' })
   roles: Role[];
 
   @Column({ nullable: false })
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
   @Column({ nullable: false })
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updateAt: Date;
 }
