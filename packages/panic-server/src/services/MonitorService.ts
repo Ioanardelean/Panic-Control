@@ -10,7 +10,7 @@ export class MonitorService {
   repo = getRepository(Monitor);
 
   async getMonitors(userId: User) {
-    return this.repo.find({ relations: ['user', 'histories'], where: { user: userId } });
+    return this.repo.find({ relations: ['user'], where: { user: userId } });
   }
   async getAll() {
     return this.repo.find({ relations: ['user'] });

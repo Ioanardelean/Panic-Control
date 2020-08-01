@@ -34,86 +34,90 @@ export default class HealthCheck {
     this.init();
   }
   /**
-   * @function isReachable check availability of servers
-   * @param {string} url the target of methods
-   * @param {number} ping in milliseconds.
-   * @param {number} monitorInterval in milliseconds.
-   * @returns {boolean} response.
-   *
-   * @remarks insert incident stat into database with addHistory method
-   * @param {History} payloadHistory.
-   * @param {Monitor}  monitorId;
-   *
-   * server is not reachable, change status into database
-   * show up in frontend with socket io the status down
-   *
-   * response of is reachable method is false, sent a email alert
-   * stop the running test for 10 minutes and retest the server
-   *
+   * init Health test for each monitor
    *
    */
-
-  // tslint:disable-next-line: cognitive-complexity
   init() {
-    const payloadHistory = new History();
-    const socketClient = (global as any).socketMap[this.monitor.user.id];
-    const monitorInterval = this.convertMinutesToMilliseconds(
-      this.monitor.monitorInterval
-    );
-    const ping = this.monitor.ping * 1000;
-
+    const monitorInterval = this.convertMinutesToMilliseconds();
+    const ping = this.convertSecondsToMilliseconds();
+    // if monitor is started, it will e tested over the specific interval
     this.timer = setTimeout(async () => {
       if (this.running) {
+        /**
+         * @function isReachable check availability of servers
+         * @param {string} url the target of methods
+         * @param {number} ping in milliseconds.
+         * @returns {boolean} response.
+         */
         const reachable: boolean = await isReachable(this.monitor.url, {
           timeout: ping,
         });
         console.log(reachable);
         if (!reachable) {
-          payloadHistory.status = Status.DOWN;
-          this.getHistory(payloadHistory);
-          this.monitorStatus('down');
-
-          if (socketClient) {
-            socketClient.emit(`projectsUpdate-${this.monitor.user.id}`, {
-              ...this.monitor,
-              status: 'down',
-            });
-          }
-
+          /**
+           * given server is not available the downtime is store in db
+           * socket.io emit down event
+           * send email alert
+           */
+          this.storeIncident();
+          this.emitAvailability('down');
           this.sendEmail(this.monitor.receiver, this.monitor.emailTemplate);
+          /**
+           * the availability test will be stopped
+           * and retest during the incident of 10 min interval
+           */
           this.stop();
-
-          setTimeout(() => {
-            if (this.running) {
-              this.start();
-            }
-          }, 1000 * 60 * 10);
+          this.retest();
         } else {
-          payloadHistory.status = Status.UP;
-          payloadHistory.uptime = 1;
-          this.getHistory(payloadHistory);
-          this.monitorStatus('up');
-          if (socketClient) {
-            socketClient.emit(`projectsUpdate-${this.monitor.user.id}`, {
-              ...this.monitor,
-              status: 'up',
-            });
-          }
+          // given server is available the metric is stored in db and emit event
+          this.storeAvailability();
+          this.emitAvailability('up');
         }
         this.init();
       }
     }, monitorInterval);
   }
-  convertMinutesToMilliseconds(minutes: any) {
+
+  async emitAvailability(stat: string) {
+    await this.monitorService.changeStatus(this.monitor.id, { status: stat });
+    const socketClient = (global as any).socketMap[this.monitor.user.id];
+    if (socketClient) {
+      socketClient.emit(`projectsUpdate-${this.monitor.user.id}`, {
+        ...this.monitor,
+        status: stat,
+      });
+    }
+  }
+  retest() {
+    setTimeout(() => {
+      this.start();
+    }, 1000 * 60 * 10);
+  }
+  storeAvailability() {
+    const payloadHistory = new History();
+    payloadHistory.status = Status.UP;
+    payloadHistory.uptime = 1;
+    this.getHistory(payloadHistory);
+  }
+
+  storeIncident() {
+    const payloadHistory = new History();
+    payloadHistory.status = Status.DOWN;
+    this.getHistory(payloadHistory);
+  }
+  convertMinutesToMilliseconds() {
+    const minutes = this.monitor.monitorInterval;
     return Math.floor(minutes * 60 * 1000);
   }
 
-  async monitorStatus(stat: string) {
-    await this.monitorService.changeStatus(this.monitor.id, { status: stat });
+  convertSecondsToMilliseconds() {
+    return this.monitor.ping * 1000;
   }
 
   async getHistory(payload: any) {
     await this.historyService.addHistory(payload, this.monitor, this.monitor.url);
+    const payloadHistory = new History();
+    payloadHistory.status = Status.DOWN;
   }
   stop() {
     clearTimeout(this.timer);
