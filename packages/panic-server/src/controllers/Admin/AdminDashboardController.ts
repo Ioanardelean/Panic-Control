@@ -1,7 +1,7 @@
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import { adminMdw, jwtAuth } from '../../middleware/authorization';
 import { MonitorService } from '../../services/MonitorService';
-import { UserService } from '../../Services/UserService';
+import { UserService } from '../../services/UserService';
 
 @Controller('/admin')
 export default class AdminDashboardController {

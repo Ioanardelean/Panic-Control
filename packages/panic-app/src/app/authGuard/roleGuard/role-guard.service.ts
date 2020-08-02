@@ -14,11 +14,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   providedIn: 'root',
 })
 export class RoleGuardService implements CanActivate {
-  constructor(
-    public auth: AuthService,
-    public router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(public router: Router, private authService: AuthService) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -26,7 +22,7 @@ export class RoleGuardService implements CanActivate {
     const expectedRole = route.data.expectedRole;
     const token = this.authService.getAccessToken();
     const tokenPayload = decode(token);
-    if (!this.auth.isLoggedIn || tokenPayload.role !== expectedRole) {
+    if (!this.authService.isLoggedIn || tokenPayload.role !== expectedRole) {
       this.router.navigate(['/dashboard/']);
       return false;
     }
