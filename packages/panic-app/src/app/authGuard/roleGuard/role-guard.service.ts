@@ -16,13 +16,12 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 export class RoleGuardService implements CanActivate {
   constructor(public router: Router, private authService: AuthService) {}
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    route: ActivatedRouteSnapshot
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     const expectedRole = route.data.expectedRole;
     const token = this.authService.getAccessToken();
-    const tokenPayload = decode(token);
-    if (!this.authService.isLoggedIn || tokenPayload.role !== expectedRole) {
+    const user = decode(token);
+    if (!this.authService.isLoggedIn || user.role !== expectedRole) {
       this.router.navigate(['/dashboard/']);
       return false;
     }

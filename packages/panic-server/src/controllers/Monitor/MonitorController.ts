@@ -1,11 +1,11 @@
 import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
-import { jwtAuth } from '../../middleware/authorization';
+import { jwtAuth, userRole } from '../../middleware/authorization';
 import { CreateMonitorDto } from '../../models/dtos/CreateMonitorDto';
 import { UpdateMonitorDto } from '../../models/dtos/UpdateMonitorDto';
 import CheckHealth from '../../modules/health/HealthCheckHandler';
 import { MonitorService } from '../../services/MonitorService';
 
-@Controller('/monitors')
+@Controller('/monitors', [userRole])
 export default class MonitorController {
   monitorService = new MonitorService();
   @route('/', HttpMethod.GET, jwtAuth)

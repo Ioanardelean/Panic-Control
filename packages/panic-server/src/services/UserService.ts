@@ -42,6 +42,7 @@ export class UserService {
   }
   async findUserById(id: any) {
     return this.repo.findOne({
+      relations: ['roles'],
       where: { id },
     });
   }

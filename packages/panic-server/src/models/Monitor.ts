@@ -1,18 +1,20 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, Unique } from 'typeorm';
 import { AbstractEntity } from './Entity';
 import { History } from './History';
 import { Status } from './Status';
 import { User } from './User';
 
 @Entity()
+@Index('monitor_name_url_IDX', ['name', 'url'])
+@Unique('monitor_name_url_UNIQUE', ['name', 'url'])
 export class Monitor extends AbstractEntity {
-  @Column({ unique: true, nullable: false, length: 100 })
+  @Column({ nullable: false, length: 100 })
   name: string;
 
   @Column({ nullable: true, length: 5000 })
   description: string;
 
-  @Column({ unique: true, nullable: false, length: 250 })
+  @Column({ nullable: false, length: 250 })
   url: string;
 
   @Column({ nullable: false, length: 255 })

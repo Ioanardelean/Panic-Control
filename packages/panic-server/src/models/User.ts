@@ -5,16 +5,20 @@ import {
   JoinTable,
   ManyToMany,
   UpdateDateColumn,
+  Index,
+  Unique,
 } from 'typeorm';
 import { AbstractEntity } from './Entity';
 import { Role } from './Role';
 
 @Entity()
+@Index('user_username_email_IDX', ['username', 'email'])
+@Unique('user_username_email_UNIQUE', ['username', 'email'])
 export class User extends AbstractEntity {
-  @Column({ nullable: false, unique: true, length: 255 })
+  @Column({ nullable: false, length: 255 })
   username: string;
 
-  @Column({ nullable: false, unique: true, length: 255 })
+  @Column({ nullable: false, length: 255 })
   email: string;
 
   @Column({ nullable: false, length: 100, select: false })

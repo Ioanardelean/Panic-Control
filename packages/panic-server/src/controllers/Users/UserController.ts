@@ -3,7 +3,7 @@ import { Controller, HttpMethod, route } from '../../core/DecoratorKoa';
 import { jwtAuth } from '../../middleware/authorization';
 import { UpdateUserDto } from '../../models/dtos/UpdateUserDto';
 import { User } from '../../models/User';
-import { UserService } from '../../Services/UserService';
+import { UserService } from '../../services/UserService';
 
 @Controller('/users')
 export default class UserController {

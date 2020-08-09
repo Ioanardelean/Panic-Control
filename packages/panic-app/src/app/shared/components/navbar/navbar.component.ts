@@ -43,6 +43,9 @@ export class NavbarComponent implements OnInit {
       this.username = res.currentUser.username;
       this.emailAddress = res.currentUser.email;
       this.admin = res.currentUser.role;
+      res.currentUser.roles.forEach((element) => {
+        this.admin = element.name;
+      });
     });
   }
 
