@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm';
 import { History } from '../models/History';
 import { Monitor } from '../models/Monitor';
 import { User } from '../models/User';
+import { withoutTimestamp } from '../modules/utils/Datetime';
 
 export class HistoryService {
   repo = getRepository(History);
@@ -55,7 +56,9 @@ export class HistoryService {
       .where('month.status =:status', { status: 'down' })
       .andWhere('user.id=:id', { id: userId })
       .andWhere(
-        `month.startedAt BETWEEN '${firstDay.toLocaleString()}' AND '${lastDay.toLocaleString()}'`
+        `month.startedAt BETWEEN '${withoutTimestamp(firstDay)}' AND'${withoutTimestamp(
+          lastDay
+        )}' `
       )
       .orderBy('month.startedAt', 'DESC')
       .getRawMany();
@@ -70,7 +73,9 @@ export class HistoryService {
       .innerJoinAndSelect('monitor.user', 'user')
       .where('monitor.id=:id', { id: monitorId })
       .andWhere(
-        `year.startedAt BETWEEN '${lastDayOfPassedYear.toLocaleString()}' AND '${now.toLocaleString()}'`
+        `year.startedAt BETWEEN '${withoutTimestamp(
+          lastDayOfPassedYear
+        )}' AND '${withoutTimestamp(now)}'`
       )
       .orderBy('year.startedAt', 'ASC')
       .getMany();
