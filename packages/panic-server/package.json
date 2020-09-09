@@ -65,7 +65,7 @@
     "koa-session": "^5.13.1",
     "koa-static": "^5.0.0",
     "koa-views": "^6.2.3",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "lodash-decorators": "^6.0.1",
     "mocha": "^7.2.0",
     "moment": "^2.26.0",
