@@ -39,9 +39,7 @@
     <div class="row x_title">
       <div class="col-md-6">
         <h3>
-          <mat-icon class="material-icons">
-            cast
-          </mat-icon>
+          <mat-icon class="material-icons"> cast </mat-icon>
           {{ 'MONITORS.monitors' | translate }}
         </h3>
       </div>
@@ -142,7 +140,7 @@
                 </a>
                 <a
                   id="start"
-                  *ngIf="element.testRunning === false"
+                  *ngIf="element.status === 'stopped'"
                   mat-menu-item
                   (click)="startMonitor(element.id)"
                 >
@@ -150,7 +148,7 @@
                 </a>
                 <a
                   id="stop"
-                  *ngIf="element.testRunning === true"
+                  *ngIf="element.status === 'up' || element.status === 'down'"
                   mat-menu-item
                   (click)="stopMonitor(element.id)"
                 >
@@ -180,7 +178,7 @@
         </h3>
       </div>
     </div>
-    <div class="row" style="margin-top: 28px;">
+    <div class="row" style="margin-top: 28px">
       <div class="col-md-6 tile">
         <h4>{{ 'MONITORS.stats_info' | translate }}</h4>
         <div class="text">
@@ -190,17 +188,20 @@
       </div>
       <div class="col-md-6 tile">
         <h4>{{ 'MONITORS.latest' | translate }}</h4>
-        <div class="text">
+        <div class="text" *ngIf="lastEventMonitor">
           {{
             'MONITORS.latest_text'
               | translate
                 : { monitor: lastEventMonitor, date: lastEventTime | date: 'medium' }
           }}
         </div>
+        <div class="text" *ngIf="!lastEventMonitor">
+          {{ 'MONITORS.no_record' | translate }}
+        </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12" style="margin-top: 40px; font-size: 14px;">
+      <div class="col-md-12" style="margin-top: 40px; font-size: 14px">
         {{ 'MONITORS.latest_table' | translate }}
         <a id="csv" [routerLink]="'.'" (click)="exportCsv()">
           {{ 'MONITORS.export' | translate }}</a

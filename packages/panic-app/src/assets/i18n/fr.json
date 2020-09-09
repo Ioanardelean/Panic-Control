@@ -77,6 +77,7 @@
     "latest": "Dernier incident",
     "latest_text": "Il a été enregistré pour le moniteur {{monitor}} le {{date}} et le temps d'arrêt a duré une heure inconnue.",
     "latest_table": "Derniers événements pour tous les moniteurs (incidents)",
+    "no_record": "Pour le moment, n'existe aucun enregistrement d'incident, tout semble d'aller bien! Si tu n'as pas crée un monitor, je t'invite à le faire!",
     "export": "Exporter enregistrements",
     "event": "Événement",
     "time": "Date-heure",

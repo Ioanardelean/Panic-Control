@@ -21,7 +21,7 @@ export class History extends AbstractEntity {
   @ManyToOne(
     () => Monitor,
     (monitor: Monitor) => monitor.histories,
-    { onDelete: 'CASCADE', onUpdate: 'CASCADE', nullable: false }
+    { onDelete: 'CASCADE', onUpdate: 'CASCADE' }
   )
   @JoinColumn({ name: 'monitor_id' })
   monitor: Monitor;

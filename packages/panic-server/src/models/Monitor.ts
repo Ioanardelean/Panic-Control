@@ -8,13 +8,13 @@ import { User } from './User';
 @Index('monitor_name_url_IDX', ['name', 'url'])
 @Unique('monitor_name_url_UNIQUE', ['name', 'url'])
 export class Monitor extends AbstractEntity {
-  @Column({ nullable: false, length: 100 })
+  @Column({ nullable: false, length: 100, unique: true })
   name: string;
 
   @Column({ nullable: true, length: 5000 })
   description: string;
 
-  @Column({ nullable: false, length: 250 })
+  @Column({ nullable: false, length: 250, unique: true })
   url: string;
 
   @Column({ nullable: false, length: 255 })
@@ -45,8 +45,7 @@ export class Monitor extends AbstractEntity {
 
   @OneToMany(
     () => History,
-    history => history.monitor,
-    { cascade: true }
+    history => history.monitor
   )
   histories: History[];
 }

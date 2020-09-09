@@ -1,5 +1,3 @@
-import { first } from 'lodash';
-
 export function withoutTimestamp(time: any) {
   return time
     .toISOString()

@@ -22,7 +22,7 @@
     "forceConsistentCasingInFileNames": true,
     "rootDir": "./src",
     "typeRoots": ["./node_modules/@types/", "./typing"],
-    "target": "es2016"
+    "target": "esnext"
   },
   "typedocOptions": {
     "mode": "modules",

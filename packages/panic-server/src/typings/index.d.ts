@@ -6,3 +6,5 @@ declare module 'koa-flash-simple';
 declare module 'koa-healthcheck';
 declare module 'koa-morgan';
 declare module 'sonarqube-scanner';
+declare module 'is-reachable';
+declare module 'lodash';

@@ -52,7 +52,7 @@ export default class HealthCheck {
         const reachable: boolean = await isReachable(this.monitor.url, {
           timeout: ping,
         });
-        console.log(reachable);
+        console.log(reachable, this.monitor.name, new Date());
         if (!reachable) {
           /**
            * given server is not available the downtime is store in db
@@ -90,8 +90,10 @@ export default class HealthCheck {
   }
   retest() {
     setTimeout(() => {
-      this.start();
-    }, 1000 * 60 * 10);
+      if (this.monitor.status === 'down') {
+        this.start();
+      }
+    }, 1000 * 60 * 3);
   }
   storeAvailability() {
     const payloadHistory = new History();

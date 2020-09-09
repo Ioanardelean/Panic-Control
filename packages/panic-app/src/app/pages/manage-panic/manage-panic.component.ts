@@ -26,7 +26,7 @@ export class ManagePanicComponent implements OnInit {
     this.listOfUsers();
   }
   displayedColumns: string[] = ['status', 'name', 'description', 'url', 'actions'];
-  displayedColumnsForUsers: string[] = ['username', 'email', 'role', 'action'];
+  displayedColumnsForUsers: string[] = ['username', 'email', 'action'];
   dataSource = new MatTableDataSource<Monitor>();
   dataSourceUsers = new MatTableDataSource<any>();
 
