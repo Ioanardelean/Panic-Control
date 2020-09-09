@@ -110,7 +110,9 @@
     "dot-prop": ">=5.2.0",
     "bl": "^1.2.3",
     "flat": "^5.0.1",
-    "vizion": "^2.1.0"
+    "vizion": "^2.1.0",
+    "thenify": "3.3.1",
+    "lodash": "4.17.20"
   },
   "jest": {
     "transform": {
