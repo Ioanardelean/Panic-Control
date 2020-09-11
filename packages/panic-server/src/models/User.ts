@@ -15,10 +15,10 @@ import { Role } from './Role';
 @Index('user_username_email_IDX', ['username', 'email'])
 @Unique('user_username_email_UNIQUE', ['username', 'email'])
 export class User extends AbstractEntity {
-  @Column({ nullable: false, length: 255 })
+  @Column({ nullable: false, length: 255, unique: true })
   username: string;
 
-  @Column({ nullable: false, length: 255 })
+  @Column({ nullable: false, length: 255, unique: true })
   email: string;
 
   @Column({ nullable: false, length: 100, select: false })

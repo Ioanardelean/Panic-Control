@@ -31,12 +31,19 @@ export class MonitorService {
       testRunning: monitor.testRunning,
       user: userId,
     };
-    const errors: ValidationError[] = await validate(monitor);
-    if (errors.length > 0) {
-      throw new BadRequest(errors);
+    const nameExist = await this.findMonitorByName(monitor.name);
+    const urlExist = await this.findMonitorByUrl(monitor.url);
+
+    if (nameExist || urlExist) {
+      throw new BadRequest('Monitor already exist');
     } else {
-      await this.repo.save(dto);
-      return dto;
+      const errors: ValidationError[] = await validate(monitor);
+      if (errors.length > 0) {
+        throw new BadRequest(errors);
+      } else {
+        await this.repo.save(dto);
+        return dto;
+      }
     }
   }
 
@@ -96,5 +103,12 @@ export class MonitorService {
       relations: ['histories'],
     });
     return this.repo.remove(monitorToRemove);
+  }
+
+  async findMonitorByName(name: string) {
+    return this.repo.findOne({ where: { name } });
+  }
+  async findMonitorByUrl(url: string) {
+    return this.repo.findOne({ where: { url } });
   }
 }

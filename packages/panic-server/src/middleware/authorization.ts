@@ -1,13 +1,16 @@
 import passport from 'passport';
 
 export async function userRole(ctx: any, next: any) {
-  if (ctx.isAuthenticated() && jwtAuth && ctx.state.user.role === 'user') {
+  if (
+    (ctx.state.user.id && ctx.state.user.role === 'user') ||
+    ctx.state.user.role === 'admin'
+  ) {
     await next();
   }
 }
 // tslint:disable-next-line: no-identical-functions
 export async function adminRole(ctx: any, next: any) {
-  if (ctx.isAuthenticated() && ctx.state.user.role === 'admin') {
+  if (ctx.state.user && ctx.state.user.role === 'admin') {
     await next();
   }
 }

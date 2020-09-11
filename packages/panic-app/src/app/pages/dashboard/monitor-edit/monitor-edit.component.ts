@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Interval } from '../monitor/monitor.component';
 import * as data from 'src/app/core/validators/monitor.message.json';
 import { TranslateService } from '@ngx-translate/core';
-import { monitor } from 'src/app/core/validators/monitor.validator';
+import { monitor, validateEmail } from 'src/app/core/validators/monitor.validator';
 
 import { QuillModules, defaultModules } from 'ngx-quill';
 
@@ -93,7 +93,12 @@ export class MonitorEditComponent implements OnInit {
     const value = event.value;
 
     if ((value || '').trim()) {
-      this.emails.push(value.trim());
+      if (validateEmail(value)) {
+        this.emails.push(value.trim());
+      } else {
+        this.toastr.error('Invalid email, please make sur enter a valid address email');
+        // this.updateForm.controls.receiver.setErrors({ incorrectEmail: true });
+      }
     }
 
     if (input) {
