@@ -93,7 +93,7 @@ export default class HealthCheck {
       if (this.monitor.status === 'down') {
         this.start();
       }
-    }, 1000 * 60 * 3);
+    }, 1000 * 60 * 10);
   }
   storeAvailability() {
     const payloadHistory = new History();

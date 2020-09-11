@@ -5,7 +5,6 @@ import { CreateMonitorDto } from '../models/dtos/CreateMonitorDto';
 import { UpdateMonitorDto } from '../models/dtos/UpdateMonitorDto';
 import { Monitor } from '../models/Monitor';
 import { User } from '../models/User';
-import { url } from 'koa-router';
 
 export class MonitorService {
   repo = getRepository(Monitor);
@@ -107,9 +106,9 @@ export class MonitorService {
   }
 
   async findMonitorByName(name: string) {
-    return await this.repo.find({ where: { name: name } });
+    return this.repo.findOne({ where: { name } });
   }
   async findMonitorByUrl(url: string) {
-    return await this.repo.find({ where: { url: url } });
+    return this.repo.findOne({ where: { url } });
   }
 }

@@ -84,6 +84,8 @@ export class MonitorsComponent implements OnInit {
   deleteMonitor(id: any) {
     this.monitorService.deleteMonitor(id).subscribe((res) => {
       this.getAll();
+      this.lastEvent();
+      this.latestEvents();
       this.toastr.success(this.translate.instant('MONITORS.delete_monitor'));
     });
   }
