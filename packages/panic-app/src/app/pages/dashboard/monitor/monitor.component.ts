@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import * as data from 'src/app/core/validators/monitor.message.json';
 import { TranslateService } from '@ngx-translate/core';
-import { monitor } from 'src/app/core/validators/monitor.validator';
+import { monitor, validateEmail } from 'src/app/core/validators/monitor.validator';
 
 import { QuillModules, defaultModules } from 'ngx-quill';
 
@@ -105,9 +105,13 @@ export class MonitorComponent implements OnInit {
     const value = event.value;
 
     if ((value || '').trim()) {
-      this.emails.push(value.trim());
+      if (validateEmail(value)) {
+        this.emails.push(value.trim());
+      } else {
+        this.toastr.error('Invalid email, please make sur enter a valid address email');
+        // this.updateForm.controls.receiver.setErrors({ incorrectEmail: true });
+      }
     }
-
     if (input) {
       input.value = '';
     }
@@ -142,6 +146,7 @@ export class MonitorComponent implements OnInit {
         }
       },
       (error) => {
+        console.log(error);
         this.toastr.error(this.translate.instant('MONITORS.exists'));
       }
     );

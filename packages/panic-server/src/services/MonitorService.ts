@@ -5,6 +5,7 @@ import { CreateMonitorDto } from '../models/dtos/CreateMonitorDto';
 import { UpdateMonitorDto } from '../models/dtos/UpdateMonitorDto';
 import { Monitor } from '../models/Monitor';
 import { User } from '../models/User';
+import { url } from 'koa-router';
 
 export class MonitorService {
   repo = getRepository(Monitor);
@@ -31,12 +32,19 @@ export class MonitorService {
       testRunning: monitor.testRunning,
       user: userId,
     };
-    const errors: ValidationError[] = await validate(monitor);
-    if (errors.length > 0) {
-      throw new BadRequest(errors);
+    const nameExist = await this.findMonitorByName(monitor.name);
+    const urlExist = await this.findMonitorByUrl(monitor.url);
+
+    if (nameExist || urlExist) {
+      throw new BadRequest('Monitor already exist');
     } else {
-      await this.repo.save(dto);
-      return dto;
+      const errors: ValidationError[] = await validate(monitor);
+      if (errors.length > 0) {
+        throw new BadRequest(errors);
+      } else {
+        await this.repo.save(dto);
+        return dto;
+      }
     }
   }
 
@@ -96,5 +104,23 @@ export class MonitorService {
       relations: ['histories'],
     });
     return this.repo.remove(monitorToRemove);
+  }
+
+  async findMonitorByName(name: string) {
+    return this.repo
+      .createQueryBuilder('mt')
+      .addSelect('mt.name', 'name')
+      .addSelect('mt.url', 'url')
+      .where('mt.name = :name', { name })
+      .getRawOne();
+    //return await this.repo.findOne(name);
+  }
+  async findMonitorByUrl(url: string) {
+    return this.repo
+      .createQueryBuilder('mt')
+      .addSelect('mt.name', 'name')
+      .addSelect('mt.url', 'url')
+      .where('mt.url = :url', { url })
+      .getRawOne();
   }
 }

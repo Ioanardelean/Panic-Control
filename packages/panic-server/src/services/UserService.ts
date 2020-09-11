@@ -27,8 +27,9 @@ export class UserService {
       roles: [userRole],
     };
     const usernameExist = await this.findUserByName(user.username);
+    const emailExist = await this.findUserByEmail(user.email);
 
-    if (usernameExist) {
+    if (usernameExist || emailExist) {
       throw new BadRequest('User already exist');
     } else {
       const errors: ValidationError[] = await validate(user);
@@ -47,7 +48,12 @@ export class UserService {
     });
   }
   async findUserByEmail(email: any) {
-    return this.repo.findOne(email);
+    return this.repo
+      .createQueryBuilder('userRole')
+      .addSelect('userRole.id', 'id')
+      .addSelect('userRole.email', 'email')
+      .where('userRole.email = :email', { email })
+      .getRawOne();
   }
 
   async findUserByName(username: any) {
