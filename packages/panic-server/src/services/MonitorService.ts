@@ -107,20 +107,9 @@ export class MonitorService {
   }
 
   async findMonitorByName(name: string) {
-    return this.repo
-      .createQueryBuilder('mt')
-      .addSelect('mt.name', 'name')
-      .addSelect('mt.url', 'url')
-      .where('mt.name = :name', { name })
-      .getRawOne();
-    //return await this.repo.findOne(name);
+    return await this.repo.find({ where: { name: name } });
   }
   async findMonitorByUrl(url: string) {
-    return this.repo
-      .createQueryBuilder('mt')
-      .addSelect('mt.name', 'name')
-      .addSelect('mt.url', 'url')
-      .where('mt.url = :url', { url })
-      .getRawOne();
+    return await this.repo.find({ where: { url: url } });
   }
 }

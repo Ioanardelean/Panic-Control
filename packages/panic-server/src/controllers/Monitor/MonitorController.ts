@@ -5,10 +5,10 @@ import { UpdateMonitorDto } from '../../models/dtos/UpdateMonitorDto';
 import CheckHealth from '../../modules/health/HealthCheckHandler';
 import { MonitorService } from '../../services/MonitorService';
 
-@Controller('/monitors', [userRole])
+@Controller('/monitors')
 export default class MonitorController {
   monitorService = new MonitorService();
-  @route('/', HttpMethod.GET, jwtAuth)
+  @route('/', HttpMethod.GET, jwtAuth, userRole)
   async getAllMonitors(ctx: any) {
     const userId = ctx.state.user.id;
     const monitor: any[] = await this.monitorService.getMonitors(userId);
@@ -17,7 +17,7 @@ export default class MonitorController {
     };
   }
 
-  @route('/count-monitors', HttpMethod.GET, jwtAuth)
+  @route('/count-monitors', HttpMethod.GET, jwtAuth, userRole)
   async getCountMonitor(ctx: any) {
     const userId = ctx.state.user.id;
     const numberOfMonitors = await this.monitorService.countAll(userId);
@@ -26,7 +26,7 @@ export default class MonitorController {
     };
   }
 
-  @route('/count-status', HttpMethod.GET, jwtAuth)
+  @route('/count-status', HttpMethod.GET, jwtAuth, userRole)
   async getMonitorOnStatus(ctx: any) {
     const userId = ctx.state.user.id;
     const numberOfStopped = await this.monitorService.getMonitorOnStatusStopped(userId);
@@ -39,7 +39,7 @@ export default class MonitorController {
     };
   }
 
-  @route('/', HttpMethod.POST, jwtAuth)
+  @route('/', HttpMethod.POST, jwtAuth, userRole)
   async create(ctx: any) {
     const userId = ctx.state.user.id;
     const monitor = new CreateMonitorDto();
@@ -59,7 +59,7 @@ export default class MonitorController {
       message: `${monitor.name} has been created`,
     };
   }
-  @route('/:id/', HttpMethod.GET, jwtAuth)
+  @route('/:id/', HttpMethod.GET, jwtAuth, userRole)
   async getMonitor(ctx: any) {
     const userId = ctx.state.user.id;
     const monitor = await this.monitorService.getMonitorById(ctx.params.id, userId);
@@ -68,7 +68,7 @@ export default class MonitorController {
     };
   }
 
-  @route('/:id/update', HttpMethod.PUT, jwtAuth)
+  @route('/:id/update', HttpMethod.PUT, jwtAuth, userRole)
   async update(ctx: any) {
     const id = ctx.params.id;
     const monitor = new UpdateMonitorDto();
@@ -90,7 +90,7 @@ export default class MonitorController {
     };
   }
 
-  @route('/:id/delete', HttpMethod.DELETE, jwtAuth)
+  @route('/:id/delete', HttpMethod.DELETE, jwtAuth, userRole)
   async delete(ctx: any) {
     const userId = ctx.state.user.id;
     const id = ctx.params.id;
@@ -102,7 +102,7 @@ export default class MonitorController {
     };
   }
 
-  @route('/:id/start', HttpMethod.POST, jwtAuth)
+  @route('/:id/start', HttpMethod.POST, jwtAuth, userRole)
   async start(ctx: any) {
     const id = ctx.params.id;
     const started = await this.monitorService.changeStatus(id, {
@@ -115,7 +115,7 @@ export default class MonitorController {
       message: 'Monitor has been started',
     };
   }
-  @route('/:id/stop', HttpMethod.POST, jwtAuth)
+  @route('/:id/stop', HttpMethod.POST, jwtAuth, userRole)
   async stop(ctx: any) {
     const id = ctx.params.id;
     const stopped = await this.monitorService.changeStatus(id, {
