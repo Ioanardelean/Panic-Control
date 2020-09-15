@@ -21,9 +21,7 @@ export default class UserController {
   async updateUser(ctx: any) {
     const id = ctx.params.id;
     if (id === ctx.state.user.id) {
-      const userDto = new UpdateUserDto();
-      userDto.username = ctx.request.body.username;
-      userDto.email = ctx.request.body.email;
+      const userDto = ctx.request.body as UpdateUserDto;
       const updated = await this.userService.updateUserById(id, userDto);
       ctx.body = {
         updated,

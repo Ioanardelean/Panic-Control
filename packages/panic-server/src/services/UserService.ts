@@ -26,8 +26,10 @@ export class UserService {
       password,
       roles: [userRole],
     };
+    const username = await this.findUserByName(user.username);
+    const mail = await this.findUserByEmail(user.email);
 
-    if (this.findUserByName(user.username) && this.findUserByEmail(user.email)) {
+    if (username || mail) {
       throw new BadRequest('User already exist');
     } else {
       const errors: ValidationError[] = await validate(user);
@@ -46,7 +48,7 @@ export class UserService {
     });
   }
   async findUserByEmail(email: any) {
-    return this.repo.findOne({ where: { email: email } });
+    return this.repo.findOne({ where: { email } });
   }
 
   async findUserByName(username: any) {

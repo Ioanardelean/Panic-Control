@@ -42,15 +42,7 @@ export default class MonitorController {
   @route('/', HttpMethod.POST, jwtAuth, userRole)
   async create(ctx: any) {
     const userId = ctx.state.user.id;
-    const monitor = new CreateMonitorDto();
-    monitor.name = ctx.request.body.name;
-    monitor.description = ctx.request.body.description;
-    monitor.url = ctx.request.body.url;
-    monitor.receiver = ctx.request.body.receiver;
-    monitor.ping = ctx.request.body.ping;
-    monitor.monitorInterval = ctx.request.body.monitorInterval;
-    monitor.emailTemplate = ctx.request.body.emailTemplate;
-    monitor.testRunning = ctx.request.body.testRunning;
+    const monitor = ctx.request.body as CreateMonitorDto;
 
     const newMonitor = await this.monitorService.createMonitor(monitor, userId);
     CheckHealth.startHealthCheck();
@@ -71,15 +63,7 @@ export default class MonitorController {
   @route('/:id/update', HttpMethod.PUT, jwtAuth, userRole)
   async update(ctx: any) {
     const id = ctx.params.id;
-    const monitor = new UpdateMonitorDto();
-    monitor.name = ctx.request.body.name;
-    monitor.description = ctx.request.body.description;
-    monitor.url = ctx.request.body.url;
-    monitor.receiver = ctx.request.body.receiver;
-    monitor.ping = ctx.request.body.ping;
-    monitor.monitorInterval = ctx.request.body.monitorInterval;
-    monitor.emailTemplate = ctx.request.body.emailTemplate;
-
+    const monitor = ctx.request.body as UpdateMonitorDto;
     const updated = await this.monitorService.updateMonitorById(id, monitor);
 
     CheckHealth.startHealthCheck();
