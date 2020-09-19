@@ -66,7 +66,7 @@ export default class MonitorController {
     const monitor = ctx.request.body as UpdateMonitorDto;
     const updated = await this.monitorService.updateMonitorById(id, monitor);
 
-    CheckHealth.startHealthCheck();
+    await CheckHealth.startHealthCheck();
     ctx.status = 200;
     ctx.body = {
       data: updated,

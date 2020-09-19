@@ -2,7 +2,7 @@
 /dist
 /logs
 /coverage
-/config/default.json
+/config/development.json
 /.vscode
 /package-lock.json
 /docs

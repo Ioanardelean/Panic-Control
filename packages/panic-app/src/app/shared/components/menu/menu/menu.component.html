@@ -1,54 +1,69 @@
 <nav class="navbar navbar-expand-sm fixed-top navbar">
   <div class="container">
     <a [routerLink]="['/']">
-      <img src="/assets/img/panic.png"
-           alt="" />
+      <img src="/assets/img/panic.png" alt="logo panic control" />
     </a>
   </div>
   <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
-  <button class="navbar-toggler"
-          type="button"
-          (click)="isMenuCollapsed = !isMenuCollapsed">
+  <button
+    class="navbar-toggler"
+    type="button"
+    (click)="isMenuCollapsed = !isMenuCollapsed"
+  >
     &#9776;
   </button>
 
-  <div [ngbCollapse]="isMenuCollapsed"
-       class="collapse navbar-collapse">
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a href=""
-           class="nav-link"> {{'ABOUT'| translate}}</a>
+        <a href="#feature" class="nav-link"> {{ 'ABOUT' | translate }}</a>
       </li>
       <li class="nav-item">
-        <a href=""
-           class="nav-link"> {{'CONTACT'| translate}}</a>
+        <a href="#contact" class="nav-link" (click)="isMenuCollapsed = true">
+          {{ 'CONTACT' | translate }}</a
+        >
       </li>
       <li class="nav-item">
-        <a [routerLink]="['/dashboard']"
-           class="nav-link"
-           *ngIf="currentUser"> {{'DASHBOARD'| translate}}</a>
+        <a
+          [routerLink]="['/dashboard']"
+          class="nav-link"
+          *ngIf="currentUser"
+          (click)="isMenuCollapsed = true"
+        >
+          {{ 'DASHBOARD' | translate }}</a
+        >
       </li>
       <li class="nav-item">
-        <button class="btn"
-                [routerLink]="['/auth/signup']">
-          {{'SIGNUP'| translate}}
+        <button
+          class="btn"
+          [routerLink]="['/auth/signup']"
+          (click)="isMenuCollapsed = true"
+        >
+          {{ 'SIGNUP' | translate }}
         </button>
       </li>
       <li class="nav-item">
-        <button class="btn"
-                [routerLink]="['/auth/login']">
-          {{'LOGIN'| translate}}
+        <button
+          class="btn"
+          [routerLink]="['/auth/login']"
+          (click)="isMenuCollapsed = true"
+        >
+          {{ 'LOGIN' | translate }}
         </button>
       </li>
       <li class="nav-item">
-
-        <select class="btn"
-                id="lang"
-                #selectedLang
-                (change)="switchLang(selectedLang.value)">
-          <option *ngFor="let language of translate.getLangs()"
-                  [value]="language"
-                  [selected]="language === translate.currentLang">
+        <select
+          class="btn"
+          id="lang"
+          #selectedLang
+          (change)="switchLang(selectedLang.value)"
+          (click)="isMenuCollapsed = true"
+        >
+          <option
+            *ngFor="let language of translate.getLangs()"
+            [value]="language"
+            [selected]="language === translate.currentLang"
+          >
             {{ language }}
           </option>
         </select>

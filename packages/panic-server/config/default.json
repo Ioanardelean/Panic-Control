@@ -4,14 +4,7 @@
     "port": 3306,
     "database": "panic_server_dev",
     "username": "root",
-    "password": "password"
-  },
-  "options": {
-    "type": "postgres",
-    "synchronize": true,
-    "entities": ["src/models/**/*.ts"],
-    "logging": false,
-    "ssl": false
+    "password": "[[PASSWORD]]"
   },
   "mailer": {
     "host": "smtp.gmail.com",
@@ -22,7 +15,7 @@
     },
     "auth": {
       "user": "panic.control.all@gmail.com",
-      "pass": "Ardeleanioana1994"
+      "pass": "[[PASSWORD]]"
     }
   },
   "servers": {

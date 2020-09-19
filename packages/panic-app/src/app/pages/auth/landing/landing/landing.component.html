@@ -2,48 +2,51 @@
   <div class="content">
     <div id="presentation">
       <p class="title">
-        {{'LANDING.title' | translate}}
+        {{ 'LANDING.title' | translate }}
       </p>
       <p class="description">
-        {{'LANDING.description' | translate}}
+        {{ 'LANDING.description' | translate }}
       </p>
-      <button class="cta">{{'LANDING.button_title' | translate}}</button>
+      <button [routerLink]="['/auth/signup']" class="cta">
+        {{ 'LANDING.button_title' | translate }}
+      </button>
     </div>
   </div>
 </header>
 
 <main class="main">
   <section>
-    <div class="row"
-         id="feature">
+    <div class="row" id="feature">
       <div class="col-md-4">
         <h2>
-          <span class="material-icons">
-            broken_image
-          </span>
-          {{'LANDING.monitoring_title' | translate}}
+          <span class="material-icons"> broken_image </span>
+          {{ 'LANDING.monitoring_title' | translate }}
         </h2>
         <div class="feat-1">
           <p class="monitoring-description">
-            {{'LANDING.monitoring_description' | translate}}
+            {{ 'LANDING.monitoring_description' | translate }}
           </p>
         </div>
       </div>
       <div class="col-md-4">
-        <h2><span class="material-icons"> local_post_office
-          </span>{{'LANDING.alerting_title' | translate}}</h2>
+        <h2>
+          <span class="material-icons"> local_post_office </span
+          >{{ 'LANDING.alerting_title' | translate }}
+        </h2>
         <div class="feat-1">
           <p class="alerting-description">
-            {{'LANDING.alerting_description' | translate}}
+            {{ 'LANDING.alerting_description' | translate }}
           </p>
         </div>
       </div>
       <div class="col-md-4">
-        <h2><span class="material-icons"> bar_chart
-          </span>{{'LANDING.stats_title' | translate}}</h2>
+        <h2>
+          <span class="material-icons"> bar_chart </span
+          >{{ 'LANDING.stats_title' | translate }}
+        </h2>
         <div class="feat-1">
           <p class="stats-description">
-            {{'LANDING.stats_description' | translate}}
+            {{ 'LANDING.stats_description' | translate }}
           </p>
         </div>
       </div>
@@ -51,20 +54,18 @@
   </section>
 </main>
 
-<footer class="footer">
+<footer class="footer" id="contact">
   <div class="row-land">
     <div class="col-6">
       <p class="email">
-        <img src="./assets/icons/contact_mail.png"
-             alt="email contact icon" />
+        <img src="./assets/icons/contact_mail.png" alt="email contact icon" />
         panic.control.all@gmail.com
       </p>
     </div>
-    <div class="col-6"
-         style="text-align: right;">
+    <div class="col-6" style="text-align: right">
       <h3>Contact</h3>
       <p class="contact-description">
-        {{'LANDING.contact_text'| translate}}
+        {{ 'LANDING.contact_text' | translate }}
       </p>
     </div>
   </div>
