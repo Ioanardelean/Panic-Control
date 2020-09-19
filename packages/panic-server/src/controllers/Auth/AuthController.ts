@@ -12,10 +12,8 @@ export default class AuthController {
 
   @route('/register', HttpMethod.POST)
   async registerUser(ctx: any) {
-    const userDto = new CreateUserDto();
-    userDto.username = ctx.request.body.username;
-    userDto.email = ctx.request.body.email;
-    userDto.password = ctx.request.body.password;
+    const userDto = ctx.request.body as CreateUserDto;
+
     const userToBeSaved = await this.userService.createUser(userDto);
 
     ctx.body = {
