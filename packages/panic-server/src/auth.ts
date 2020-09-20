@@ -38,7 +38,7 @@ passport.use(
         return;
       }
 
-      searchUser.username = username;
+      searchUser.Username = username;
 
       const isValidPassword = await validatePassword(password, user.password);
 

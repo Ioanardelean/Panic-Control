@@ -79,7 +79,6 @@ export default class MonitorController {
     const userId = ctx.state.user.id;
     const id = ctx.params.id;
     const removed = await this.monitorService.deleteMonitorById(id, userId);
-
     ctx.body = {
       data: removed,
       message: 'Monitor has been deleted',

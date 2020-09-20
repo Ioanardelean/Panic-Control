@@ -22,7 +22,6 @@ export const monitor = {
   testRunning: [''],
   status: null,
   user: [''],
-  histories: [''],
 };
 
 export function validateEmail(email) {

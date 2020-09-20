@@ -140,7 +140,10 @@
                 </a>
                 <a
                   id="start"
-                  *ngIf="element.status === 'stopped'"
+                  *ngIf="
+                    element.testRunning === false ||
+                    (element.testRunning === false && element.status === down)
+                  "
                   mat-menu-item
                   (click)="startMonitor(element.id)"
                 >
@@ -148,7 +151,7 @@
                 </a>
                 <a
                   id="stop"
-                  *ngIf="element.status === 'up' || element.status === 'down'"
+                  *ngIf="element.testRunning === true"
                   mat-menu-item
                   (click)="stopMonitor(element.id)"
                 >

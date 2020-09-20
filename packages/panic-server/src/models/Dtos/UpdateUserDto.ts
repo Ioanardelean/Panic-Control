@@ -6,4 +6,21 @@ export class UpdateUserDto {
 
   @IsEmail()
   email: string;
+  protected constructor() {
+    //
+  }
+  get Username(): string {
+    return this.username;
+  }
+
+  set Username(username: string) {
+    this.username = username;
+  }
+  get Email(): string {
+    return this.email;
+  }
+
+  set Email(email: string) {
+    this.email = email;
+  }
 }

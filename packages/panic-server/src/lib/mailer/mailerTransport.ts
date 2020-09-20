@@ -14,6 +14,10 @@ export class MailerTransport {
   }
 
   async sendEmail(mailOptions: MailOptions) {
-    await this.transporter.sendMail(mailOptions);
+    try {
+      await this.transporter.sendMail(mailOptions);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

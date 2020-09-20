@@ -11,10 +11,10 @@ export class HistoryService {
 
   async addHistory(history: History, monitorId: Monitor, monitorUrl: any) {
     const createHistory = history;
-    createHistory.monitor = monitorId;
-    createHistory.url = monitorUrl;
+    createHistory.Monitor = monitorId;
+    createHistory.Url = monitorUrl;
     await this.repo.save(createHistory);
-    return createHistory.id;
+    return createHistory.Id;
   }
   async getLastEvent(userId: User) {
     return this.repo

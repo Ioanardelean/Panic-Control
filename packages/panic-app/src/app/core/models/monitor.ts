@@ -16,5 +16,4 @@ export class Monitor {
   monitorInterval: number;
   testRunning: boolean;
   status: Status;
-  histories: History;
 }

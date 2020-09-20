@@ -2,11 +2,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   JoinTable,
   ManyToMany,
-  UpdateDateColumn,
-  Index,
   Unique,
+  UpdateDateColumn,
 } from 'typeorm';
 import { AbstractEntity } from './Entity';
 import { Role } from './Role';
@@ -16,29 +16,75 @@ import { Role } from './Role';
 @Unique('user_username_email_UNIQUE', ['username', 'email'])
 export class User extends AbstractEntity {
   @Column({ nullable: false, length: 255, unique: true })
-  username: string;
+  private username: string;
 
   @Column({ nullable: false, length: 255, unique: true })
-  email: string;
+  private email: string;
 
   @Column({ nullable: false, length: 100, select: false })
-  password: string;
+  private password: string;
 
   @ManyToMany(
     () => Role,
-    role => role.users,
+    role => role.Users,
     {
-      cascade: ['insert'],
+      cascade: true,
     }
   )
   @JoinTable({ name: 'user_roles' })
-  roles: Role[];
+  private roles: Role[];
 
   @Column({ nullable: false })
   @CreateDateColumn({ name: 'created_at' })
-  createdAt: Date;
+  private createdAt: Date;
 
   @Column({ nullable: false })
   @UpdateDateColumn({ name: 'updated_at' })
-  updateAt: Date;
+  private updateAt: Date;
+
+  constructor() {
+    super();
+  }
+  get Username(): string {
+    return this.username;
+  }
+
+  set Username(username: string) {
+    this.username = username;
+  }
+  get Email(): string {
+    return this.email;
+  }
+
+  set Email(email: string) {
+    this.email = email;
+  }
+  get Password(): string {
+    return this.password;
+  }
+
+  set Password(password: string) {
+    this.password = password;
+  }
+  get CreatedAt(): Date {
+    return this.createdAt;
+  }
+
+  set CreatedAt(createdAt: Date) {
+    this.createdAt = createdAt;
+  }
+  get UpdatedAt(): Date {
+    return this.updateAt;
+  }
+
+  set UpdatedAt(updatedAt: Date) {
+    this.updateAt = updatedAt;
+  }
+  get Roles(): Role[] {
+    return this.roles;
+  }
+
+  set Roles(roles: Role[]) {
+    this.roles = roles;
+  }
 }

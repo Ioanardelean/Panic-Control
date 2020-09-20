@@ -3,9 +3,9 @@ import config from 'config';
 import fs from 'fs';
 import jwt from 'jsonwebtoken';
 export class AuthService {
-  privateKEY = fs.readFileSync('./cert/server.key', 'utf8');
-  publicKEY = fs.readFileSync('./cert/public.key', 'utf8');
-  configJwt: any = config.get('tokenLife');
+  private readonly privateKEY = fs.readFileSync('./cert/server.key', 'utf8');
+  private readonly publicKEY = fs.readFileSync('./cert/public.key', 'utf8');
+  private readonly configJwt: any = config.get('tokenLife');
   constructor() {}
 
   /**

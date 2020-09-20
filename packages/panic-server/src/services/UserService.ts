@@ -9,25 +9,25 @@ import { AuthService } from '../services/AuthService';
 
 export class UserService {
   repo = getRepository(User);
-  authsrv = new AuthService();
+  authService = new AuthService();
   userRole = getRepository(Role);
   async getAllUsers(): Promise<User[]> {
     return this.repo.find();
   }
 
-  async createUser(user: CreateUserDto) {
-    const password = await this.authsrv.hashPassword(user.password);
+  async createUser(userDto: CreateUserDto) {
+    const password = await this.authService.hashPassword(userDto.password);
     const userRole = await this.userRole.findOne({
       where: { name: 'user' },
     });
-    const dto: CreateUserDto = {
-      username: user.username,
-      email: user.email,
-      password,
-      roles: [userRole],
-    };
-    const username = await this.findUserByName(user.username);
-    const mail = await this.findUserByEmail(user.email);
+    const user: User = new User();
+    user.Email = userDto.email;
+    user.Password = password;
+    user.Roles = [userRole];
+    user.Username = userDto.username;
+
+    const username = await this.findUserByName(userDto.username);
+    const mail = await this.findUserByEmail(userDto.email);
 
     if (username || mail) {
       throw new BadRequest('User already exist');
@@ -36,8 +36,8 @@ export class UserService {
       if (errors.length > 0) {
         throw new BadRequest(errors);
       } else {
-        await this.repo.save(dto);
-        return dto;
+        await this.repo.save(user);
+        return user;
       }
     }
   }
@@ -63,8 +63,8 @@ export class UserService {
       .getRawOne();
   }
 
-  async updateUserById(id: number, data: UpdateUserDto) {
-    const user = await this.repo.findOne({ id });
+  async updateUserById(Id: number, data: UpdateUserDto) {
+    const user = await this.repo.findOne({ Id });
     const userToUpdate = this.repo.merge(user, data);
     const errors: ValidationError[] = await validate(data);
     if (errors.length > 0) {
@@ -74,7 +74,13 @@ export class UserService {
     }
   }
 
-  async deleteById(userToDelete: any) {
+  async deleteById(id: number) {
+    const userToDelete = await this.repo.findOne({
+      where: { id },
+    });
+    return this.repo.remove(userToDelete);
+  }
+  async delete(userToDelete: any) {
     return this.repo.remove(userToDelete);
   }
 }

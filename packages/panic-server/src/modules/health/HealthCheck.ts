@@ -29,7 +29,7 @@ export default class HealthCheck {
   constructor(monitor: Monitor, mailerTransport: MailerTransport) {
     this.monitor = monitor;
 
-    this.running = this.monitor.testRunning;
+    this.running = this.monitor.TestRunning;
     this.mailerTransport = mailerTransport;
     this.init();
   }
@@ -49,10 +49,10 @@ export default class HealthCheck {
          * @param {number} ping in milliseconds.
          * @returns {boolean} response.
          */
-        const reachable: boolean = await isReachable(this.monitor.url, {
+        const reachable: boolean = await isReachable(this.monitor.Url, {
           timeout: ping,
         });
-        console.log(reachable, this.monitor.name, new Date());
+        console.log(reachable, this.monitor.Name, new Date());
         if (!reachable) {
           /**
            * given server is not available the downtime is store in db
@@ -61,7 +61,7 @@ export default class HealthCheck {
            */
           this.storeIncident();
           this.emitAvailability('down');
-          this.sendEmail(this.monitor.receiver, this.monitor.emailTemplate);
+          this.sendEmail(this.monitor.Receiver, this.monitor.EmailTemplate);
           /**
            * the availability test will be stopped
            * and retest during the incident of 10 min interval
@@ -79,10 +79,10 @@ export default class HealthCheck {
   }
 
   async emitAvailability(stat: string) {
-    await this.monitorService.changeStatus(this.monitor.id, { status: stat });
-    const socketClient = (global as any).socketMap[this.monitor.user.id];
+    await this.monitorService.changeStatus(this.monitor.Id, { status: stat });
+    const socketClient = (global as any).socketMap[this.monitor.User.Id];
     if (socketClient) {
-      socketClient.emit(`projectsUpdate-${this.monitor.user.id}`, {
+      socketClient.emit(`projectsUpdate-${this.monitor.User.Id}`, {
         ...this.monitor,
         status: stat,
       });
@@ -90,36 +90,36 @@ export default class HealthCheck {
   }
   retest() {
     setTimeout(() => {
-      if (this.monitor.status === 'down') {
+      if (this.monitor.Status === 'down') {
         this.start();
       }
     }, 1000 * 60 * 10);
   }
   storeAvailability() {
     const payloadHistory = new History();
-    payloadHistory.status = Status.UP;
-    payloadHistory.uptime = 1;
+    payloadHistory.isAvailable();
+    payloadHistory.isUP();
     this.getHistory(payloadHistory);
   }
 
   storeIncident() {
     const payloadHistory = new History();
-    payloadHistory.status = Status.DOWN;
+    payloadHistory.isNotAvailable();
     this.getHistory(payloadHistory);
   }
   convertMinutesToMilliseconds() {
-    const minutes = this.monitor.monitorInterval;
+    const minutes = this.monitor.MonitorInterval;
     return Math.floor(minutes * 60 * 1000);
   }
 
   convertSecondsToMilliseconds() {
-    return this.monitor.ping * 1000;
+    return this.monitor.Ping * 1000;
   }
 
   async getHistory(payload: any) {
-    await this.historyService.addHistory(payload, this.monitor, this.monitor.url);
+    await this.historyService.addHistory(payload, this.monitor, this.monitor.Url);
     const payloadHistory = new History();
-    payloadHistory.status = Status.DOWN;
+    payloadHistory.Status = Status.DOWN;
   }
   stop() {
     clearTimeout(this.timer);
@@ -133,7 +133,7 @@ export default class HealthCheck {
   async sendEmail(to: string, html: string) {
     if (!html) {
       html = template(panicMailTpl)({
-        data: { MonitorUrl: this.monitor.url, MonitorName: this.monitor.name },
+        data: { MonitorUrl: this.monitor.Url, MonitorName: this.monitor.Name },
       });
     }
 

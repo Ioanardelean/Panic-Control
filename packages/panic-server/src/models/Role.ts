@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, Unique, Index } from 'typeorm';
+import { Column, Entity, Index, ManyToMany, Unique } from 'typeorm';
 import { AbstractEntity } from './Entity';
 import { User } from './User';
 
@@ -7,10 +7,28 @@ import { User } from './User';
 @Index('role_name_IDX', ['name'])
 export class Role extends AbstractEntity {
   @Column()
-  name: string;
+  private name: string;
   @ManyToMany(
     () => User,
-    (user: User) => user.roles
+    (user: User) => user.Roles
   )
-  users: User[];
+  private users: User[];
+  constructor() {
+    super();
+  }
+  get Name(): string {
+    return this.name;
+  }
+
+  set Name(name: string) {
+    this.name = name;
+  }
+
+  get Users(): User[] {
+    return this.users;
+  }
+
+  set Users(users: User[]) {
+    this.users = users;
+  }
 }

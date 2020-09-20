@@ -120,6 +120,7 @@ export class MonitorEditComponent implements OnInit {
 
   getMonitor(id) {
     this.monitorService.getMonitor(id).subscribe((res) => {
+      console.log(res.data);
       const dataEdit = res.data;
       this.emails = dataEdit.receiver.split(',');
       this.id = dataEdit.id;

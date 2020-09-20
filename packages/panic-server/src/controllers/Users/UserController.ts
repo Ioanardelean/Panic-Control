@@ -35,10 +35,10 @@ export default class UserController {
     );
     if (!userToRemove) {
       ctx.throw(HttpStatus.BAD_REQUEST);
-    } else if (ctx.state.user.email !== userToRemove.email) {
+    } else if (ctx.state.user.userRole_email !== userToRemove.Email) {
       ctx.throw(HttpStatus.UNAUTHORIZED);
     } else {
-      await this.userService.deleteById(userToRemove);
+      await this.userService.delete(userToRemove);
       ctx.throw(HttpStatus.NO_CONTENT);
     }
   }

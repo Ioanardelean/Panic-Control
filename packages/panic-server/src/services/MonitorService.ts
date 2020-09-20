@@ -19,20 +19,20 @@ export class MonitorService {
   async countAll(userId: User) {
     return this.repo.findAndCount({ where: { user: userId } });
   }
-  async createMonitor(monitor: CreateMonitorDto, userId: User) {
-    const dto: CreateMonitorDto = {
-      name: monitor.name,
-      description: monitor.description,
-      url: monitor.url,
-      receiver: monitor.receiver,
-      ping: monitor.ping,
-      monitorInterval: monitor.monitorInterval,
-      emailTemplate: monitor.emailTemplate,
-      testRunning: monitor.testRunning,
-      user: userId,
-    };
-    const nameExist = await this.findMonitorByName(monitor.name);
-    const urlExist = await this.findMonitorByUrl(monitor.url);
+  async createMonitor(monitorDto: CreateMonitorDto, userId: User) {
+    const monitor: Monitor = new Monitor();
+    monitor.Name = monitorDto.name;
+    monitor.Description = monitorDto.description;
+    monitor.Url = monitorDto.url;
+    monitor.Receiver = monitorDto.receiver;
+    monitor.Ping = monitorDto.ping;
+    monitor.MonitorInterval = monitorDto.monitorInterval;
+    monitor.EmailTemplate = monitorDto.emailTemplate;
+    monitor.TestRunning = monitorDto.testRunning;
+    monitor.User = userId;
+
+    const nameExist = await this.findMonitorByName(monitorDto.name);
+    const urlExist = await this.findMonitorByUrl(monitorDto.url);
 
     if (nameExist || urlExist) {
       throw new BadRequest('Monitor already exist');
@@ -41,8 +41,8 @@ export class MonitorService {
       if (errors.length > 0) {
         throw new BadRequest(errors);
       } else {
-        await this.repo.save(dto);
-        return dto;
+        await this.repo.save(monitor);
+        return monitor;
       }
     }
   }
@@ -50,7 +50,7 @@ export class MonitorService {
   async getMonitorById(id: number, userId: any) {
     return this.repo.findOne({
       where: { id, user: userId },
-      relations: ['user', 'histories'],
+      relations: ['user'],
     });
   }
 
@@ -90,17 +90,16 @@ export class MonitorService {
     return this.repo.save(monitorToUpdate);
   }
 
-  async deleteMonitorById(id: number, userId: any) {
+  async deleteMonitorById(id: number, userId: number) {
     const monitorToRemove = await this.repo.findOne({
       where: { id, user: userId },
-      relations: ['user', 'histories'],
+      relations: ['user'],
     });
     return this.repo.remove(monitorToRemove);
   }
   async deleteMonitor(id: number) {
     const monitorToRemove = await this.repo.findOne({
       where: { id },
-      relations: ['histories'],
     });
     return this.repo.remove(monitorToRemove);
   }

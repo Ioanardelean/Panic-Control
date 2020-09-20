@@ -35,7 +35,9 @@ export default class AdminDashboardController {
   @route('/users/:id/delete', HttpMethod.DELETE, jwtAuth, adminRole)
   async deleteUser(ctx: any) {
     const id = ctx.params.id;
-    const userToRemove = await this.userService.findUserById(+id || 0);
-    await this.userService.deleteById(userToRemove);
+    await this.userService.deleteById(id || 0);
+    ctx.body = {
+      message: 'User has been deleted',
+    };
   }
 }
