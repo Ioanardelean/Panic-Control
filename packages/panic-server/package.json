@@ -45,7 +45,7 @@
     "chai": "^4.2.0",
     "class-validator": "^0.12.2",
     "colors": "^1.4.0",
-    "config": "^3.3.1",
+    "config": "^3.3.2",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
     "file-system": "^2.2.2",
