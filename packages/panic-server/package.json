@@ -42,7 +42,7 @@
     "@types/passport-jwt": "^3.0.3",
     "bcryptjs": "^2.4.3",
     "caporal": "^1.4.0",
-    "chai": "^4.2.0",
+    "chai": "^4.3.6",
     "class-validator": "^0.12.2",
     "colors": "^1.4.0",
     "config": "^3.3.1",
