@@ -5382,18 +5382,13 @@ module-details-from-path@^1.0.3:
   integrity sha1-EUyUlnPiqKNenTV4hSeqN7Z52is=
 
 moment-timezone@^0.5.31, moment-timezone@^0.5.x:
-  version "0.5.31"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.31.tgz#9c40d8c5026f0c7ab46eda3d63e49c155148de05"
-  integrity sha512-+GgHNg8xRhMXfEbv81iDtrVeTcWt0kWmTEY1XQK14dICTXnWJnT0dxdlPspwqF3keKMVPXwayEsk1DI0AA/jdA==
+  version "0.5.35"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.35.tgz#6fa2631bdbe8ff04f6b8753f7199516be6dc9839"
+  integrity sha512-cY/pBOEXepQvlgli06ttCTKcIf8cD1nmNwOKQQAdHBqYApQSpAqotBMX0RJZNgMp6i0PlZuf1mFtnlyEkwyvFw==
   dependencies:
     moment ">= 2.9.0"
 
-"moment@>= 2.9.0":
-  version "2.27.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.27.0.tgz#8bff4e3e26a236220dfe3e36de756b6ebaa0105d"
-  integrity sha512-al0MUK7cpIcglMv3YF13qSgdAIqxHTO7brRtaz3DlSULbqfazqkc5kEjNrLDOM7fsjshoFIihnU8snrP7zUvhQ==
-
-moment@^2.27.0:
+"moment@>= 2.9.0", moment@^2.27.0:
   version "2.28.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.28.0.tgz#cdfe73ce01327cee6537b0fafac2e0f21a237d75"
   integrity sha512-Z5KOjYmnHyd/ukynmFd/WwyXHd7L4J9vTI/nn5Ap9AVUgaAE15VvQ9MOGmJJygEUklupqIrFnor/tjTwRU+tQw==
